@@ -19,6 +19,7 @@
 #ifndef BASE_AUDIO_LINUX_AUDIO_PIPE_READER_H
 #define BASE_AUDIO_LINUX_AUDIO_PIPE_READER_H
 
+#include "base/filesystem.hpp"
 #include "base/macros_magic.h"
 #include "base/task_runner.h"
 #include "base/waitable_timer.h"
@@ -29,7 +30,6 @@
 
 #include <chrono>
 #include <cstdint>
-#include <filesystem>
 #include <memory>
 #include <string>
 
@@ -59,17 +59,17 @@ public:
     };
 
     static local_shared_ptr<AudioPipeReader> create(std::shared_ptr<TaskRunner> task_runner,
-                                                    const std::filesystem::path& pipe_path,
+                                                    const ghc::filesystem::path& pipe_path,
                                                     Delegate* delegate);
 
     void start();
 
 private:
     AudioPipeReader(std::shared_ptr<TaskRunner> task_runner,
-                    const std::filesystem::path& pipe_path,
+                    const ghc::filesystem::path& pipe_path,
                     Delegate* delegate);
 
-    void onDirectoryChanged(const std::filesystem::path& path, bool error);
+    void onDirectoryChanged(const ghc::filesystem::path& path, bool error);
     void tryOpenPipe();
     void startTimer();
     void doCapture();
@@ -127,7 +127,7 @@ private:
     };
 
     std::shared_ptr<TaskRunner> task_runner_;
-    std::filesystem::path pipe_path_;
+    ghc::filesystem::path pipe_path_;
     Delegate* delegate_;
 
     // Watcher for the directory that contains audio pipe we are reading from, to monitor when

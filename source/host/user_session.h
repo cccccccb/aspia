@@ -20,6 +20,7 @@
 #define HOST_USER_SESSION_H
 
 #include "build/build_config.h"
+#include "base/optional.hpp"
 #include "base/session_id.h"
 #include "base/waitable_timer.h"
 #include "base/ipc/ipc_channel.h"
@@ -85,7 +86,7 @@ public:
     State state() const { return state_; }
     base::SessionId sessionId() const { return session_id_; }
     base::HostId hostId() const { return host_id_; }
-    std::optional<std::string> sessionName() const;
+    tl::optional<std::string> sessionName() const;
     base::User user() const;
     size_t clientsCount() const;
     bool isConnectedToUi() const { return channel_ != nullptr; }

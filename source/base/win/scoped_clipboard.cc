@@ -20,92 +20,94 @@
 
 #include "base/logging.h"
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-//--------------------------------------------------------------------------------------------------
-ScopedClipboard::~ScopedClipboard()
-{
-    if (opened_)
-    {
-        //
-        // CloseClipboard() must be called with anonymous access token. See
-        // crbug.com/441834.
-        //
-        BOOL result = ImpersonateAnonymousToken(GetCurrentThread());
-        CHECK(result);
+		//--------------------------------------------------------------------------------------------------
+		ScopedClipboard::~ScopedClipboard()
+		{
+			if (opened_)
+			{
+				//
+				// CloseClipboard() must be called with anonymous access token. See
+				// crbug.com/441834.
+				//
+				BOOL result = ImpersonateAnonymousToken(GetCurrentThread());
+				CHECK(result);
 
-        CloseClipboard();
+				CloseClipboard();
 
-        result = RevertToSelf();
-        CHECK(result);
-    }
-}
+				result = RevertToSelf();
+				CHECK(result);
+			}
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool ScopedClipboard::init(HWND owner)
-{
-    const int kMaxAttemptsToOpenClipboard = 5;
-    const DWORD kSleepTimeBetweenAttempts = 5;
+		//--------------------------------------------------------------------------------------------------
+		bool ScopedClipboard::init(HWND owner)
+		{
+			const int kMaxAttemptsToOpenClipboard = 5;
+			const DWORD kSleepTimeBetweenAttempts = 5;
 
-    if (opened_)
-    {
-        DLOG(LS_ERROR) << "Attempt to open an already opened clipboard";
-        return true;
-    }
+			if (opened_)
+			{
+				DLOG(LS_ERROR) << "Attempt to open an already opened clipboard";
+				return true;
+			}
 
-    // This code runs on the UI thread, so we can block only very briefly.
-    for (int attempt = 0; attempt < kMaxAttemptsToOpenClipboard; ++attempt)
-    {
-        if (attempt > 0)
-        {
-            Sleep(kSleepTimeBetweenAttempts);
-        }
+			// This code runs on the UI thread, so we can block only very briefly.
+			for (int attempt = 0; attempt < kMaxAttemptsToOpenClipboard; ++attempt)
+			{
+				if (attempt > 0)
+				{
+					Sleep(kSleepTimeBetweenAttempts);
+				}
 
-        if (OpenClipboard(owner))
-        {
-            opened_ = true;
-            return true;
-        }
-    }
+				if (OpenClipboard(owner))
+				{
+					opened_ = true;
+					return true;
+				}
+			}
 
-    return false;
-}
+			return false;
+		}
 
-//--------------------------------------------------------------------------------------------------
-BOOL ScopedClipboard::empty()
-{
-    if (!opened_)
-    {
-        DLOG(LS_WARNING) << "Clipboard is not open";
-        return FALSE;
-    }
+		//--------------------------------------------------------------------------------------------------
+		BOOL ScopedClipboard::empty()
+		{
+			if (!opened_)
+			{
+				DLOG(LS_WARNING) << "Clipboard is not open";
+				return FALSE;
+			}
 
-    return EmptyClipboard();
-}
+			return EmptyClipboard();
+		}
 
-//--------------------------------------------------------------------------------------------------
-void ScopedClipboard::setData(UINT format, HANDLE mem)
-{
-    if (!opened_)
-    {
-        DLOG(LS_WARNING) << "Clipboard is not open";
-        return;
-    }
+		//--------------------------------------------------------------------------------------------------
+		void ScopedClipboard::setData(UINT format, HANDLE mem)
+		{
+			if (!opened_)
+			{
+				DLOG(LS_WARNING) << "Clipboard is not open";
+				return;
+			}
 
-    // The caller must not close the handle that SetClipboardData returns.
-    SetClipboardData(format, mem);
-}
+			// The caller must not close the handle that SetClipboardData returns.
+			SetClipboardData(format, mem);
+		}
 
-//--------------------------------------------------------------------------------------------------
-HANDLE ScopedClipboard::data(UINT format) const
-{
-    if (!opened_)
-    {
-        DLOG(LS_WARNING) << "Clipboard is not open";
-        return nullptr;
-    }
+		//--------------------------------------------------------------------------------------------------
+		HANDLE ScopedClipboard::data(UINT format) const
+		{
+			if (!opened_)
+			{
+				DLOG(LS_WARNING) << "Clipboard is not open";
+				return nullptr;
+			}
 
-    return GetClipboardData(format);
-}
+			return GetClipboardData(format);
+		}
 
+	}
 } // namespace base::win

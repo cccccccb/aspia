@@ -55,7 +55,7 @@ AudioOutputMac::~AudioOutputMac()
 
 bool AudioOutputMac::start()
 {
-    std::scoped_lock lock(lock_);
+    std::lock_guard<std::mutex> lock(lock_);
 
     if (!playout_initialized_)
         return false;
@@ -81,7 +81,7 @@ bool AudioOutputMac::start()
 
 bool AudioOutputMac::stop()
 {
-    std::scoped_lock lock(lock_);
+    std::lock_guard<std::mutex> lock(lock_);
 
     if (!playout_initialized_)
         return true;
@@ -93,7 +93,7 @@ bool AudioOutputMac::stop()
         lock_.unlock();  // Cannot be under lock, risk of deadlock.
         if (!stop_event_.wait(std::chrono::seconds(2)))
         {
-            std::scoped_lock crit_scoped(lock_);
+            std::lock_guard<std::mutex> crit_scoped(lock_);
             LOG(LS_WARNING) << "Timed out stopping the render IOProc."
                                "We may have failed to detect a device removal.";
 
@@ -136,7 +136,7 @@ bool AudioOutputMac::stop()
 
 bool AudioOutputMac::initDevice()
 {
-    std::scoped_lock lock(lock_);
+    std::lock_guard<std::mutex> lock(lock_);
 
     if (device_initialized_)
         return true;
@@ -209,7 +209,7 @@ void AudioOutputMac::terminate()
         return;
     }
 
-    std::scoped_lock lock(lock_);
+    std::lock_guard<std::mutex> lock(lock_);
 
     AudioObjectPropertyAddress property_address =
     {
@@ -226,7 +226,7 @@ void AudioOutputMac::terminate()
 
 bool AudioOutputMac::initPlayout()
 {
-    std::scoped_lock lock(lock_);
+    std::lock_guard<std::mutex> lock(lock_);
 
     if (playing_)
         return true;
@@ -565,7 +565,7 @@ void AudioOutputMac::implDeviceIOProc(AudioBufferList* output_data)
     // locking overhead.
     if (do_stop_)
     {
-        std::scoped_lock lock(lock_);
+        std::lock_guard<std::mutex> lock(lock_);
         if (do_stop_)
         {
             // In the case of a shared device, the single driving ioProc is stopped here.

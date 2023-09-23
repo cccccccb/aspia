@@ -29,21 +29,21 @@ ThreadChecker::ThreadChecker()
 //--------------------------------------------------------------------------------------------------
 bool ThreadChecker::calledOnValidThread() const
 {
-    std::scoped_lock lock(thread_id_lock_);
+    std::lock_guard<std::mutex> lock(thread_id_lock_);
     return thread_id_ == std::this_thread::get_id();
 }
 
 //--------------------------------------------------------------------------------------------------
 void ThreadChecker::detachFromThread()
 {
-    std::scoped_lock lock(thread_id_lock_);
+    std::lock_guard<std::mutex> lock(thread_id_lock_);
     thread_id_ = std::thread::id();
 }
 
 //--------------------------------------------------------------------------------------------------
 void ThreadChecker::ensureAssigned()
 {
-    std::scoped_lock lock(thread_id_lock_);
+    std::lock_guard<std::mutex> lock(thread_id_lock_);
     thread_id_ = std::this_thread::get_id();
 }
 

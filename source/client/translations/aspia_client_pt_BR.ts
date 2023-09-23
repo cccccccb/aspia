@@ -6,169 +6,161 @@
     <message>
         <location filename="../ui/authorization_dialog.ui" line="14"/>
         <source>Authorization</source>
-        <translation>Autorização</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/authorization_dialog.ui" line="26"/>
         <source>User Name</source>
-        <translation>Usuário</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/authorization_dialog.ui" line="46"/>
         <source>Password</source>
-        <translation>Senha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/authorization_dialog.ui" line="96"/>
         <source>One-time password connection</source>
-        <translation>Conexão com senha de uso único</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Client</name>
     <message>
         <location filename="../client_main.cc" line="60"/>
+        <location filename="../client_main.cc" line="642"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../client_main.cc" line="61"/>
         <source>Incorrect value for &quot;%1&quot;. Possible values: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="411"/>
+        <location filename="../client_main.cc" line="410"/>
         <source>Remote computer address.</source>
-        <translation>Endereço do computador remoto.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="415"/>
+        <location filename="../client_main.cc" line="414"/>
         <source>Remote computer port.</source>
-        <translation>Porta do computador remoto.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="420"/>
+        <location filename="../client_main.cc" line="419"/>
         <source>Name of host.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="424"/>
+        <location filename="../client_main.cc" line="423"/>
         <source>Name of user.</source>
-        <translation>Usuário.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="428"/>
+        <location filename="../client_main.cc" line="427"/>
         <source>Password of user.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Session type. Possible values: desktop-manage, desktop-view, file-transfer.</source>
-        <translation type="vanished">Tipo de sessão. Opções disponíveis: controle da área de trabalho, visualização da área de trabalho e transferência de arquivos.</translation>
-    </message>
-    <message>
-        <location filename="../client_main.cc" line="432"/>
+        <location filename="../client_main.cc" line="431"/>
         <source>Session type. Possible values: desktop-manage, desktop-view, file-transfer, system-info, text-chat.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="437"/>
+        <location filename="../client_main.cc" line="436"/>
         <source>Type of codec. Possible values: vp8, vp9, zstd.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="441"/>
+        <location filename="../client_main.cc" line="440"/>
         <source>Color depth. Possible values: 3, 6, 8, 16, 32.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="445"/>
+        <location filename="../client_main.cc" line="444"/>
         <source>Compression ratio. Possible values: 1-22.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="449"/>
+        <location filename="../client_main.cc" line="448"/>
         <source>Enable or disable audio. Possible values: 0 or 1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="453"/>
+        <location filename="../client_main.cc" line="452"/>
         <source>Enable or disable cursor shape. Possible values: 0 or 1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="457"/>
+        <location filename="../client_main.cc" line="456"/>
         <source>Enable or disable cursor position. Possible values: 0 or 1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="461"/>
+        <location filename="../client_main.cc" line="460"/>
         <source>Enable or disable clipboard. Possible values: 0 or 1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="465"/>
+        <location filename="../client_main.cc" line="464"/>
         <source>Enable or disable desktop effects. Possible values: 0 or 1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="469"/>
+        <location filename="../client_main.cc" line="468"/>
         <source>Enable or disable desktop wallpaper. Possible values: 0 or 1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="473"/>
+        <location filename="../client_main.cc" line="472"/>
         <source>Enable or disable font smoothing. Possible values: 0 or 1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="477"/>
+        <location filename="../client_main.cc" line="476"/>
         <source>Clear clipboard at disconnect. Possible values: 0 or 1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="481"/>
+        <location filename="../client_main.cc" line="480"/>
         <source>Lock computer at disconnect. Possible values: 0 or 1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="485"/>
+        <location filename="../client_main.cc" line="484"/>
         <source>Block remote input. Possible values: 0 or 1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="489"/>
+        <location filename="../client_main.cc" line="488"/>
         <source>Router address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="493"/>
+        <location filename="../client_main.cc" line="492"/>
         <source>Router port.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="498"/>
+        <location filename="../client_main.cc" line="497"/>
         <source>Router name of user.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="502"/>
+        <location filename="../client_main.cc" line="501"/>
         <source>Router password of user.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="506"/>
+        <location filename="../client_main.cc" line="505"/>
         <source>Aspia Client</source>
-        <translation>Aspia Client</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../client_main.cc" line="59"/>
         <location filename="../client_main.cc" line="643"/>
-        <source>Warning</source>
-        <translation>Atenção</translation>
-    </message>
-    <message>
-        <source>Incorrect session type entered.</source>
-        <translation type="vanished">Tipo de sessão incorreta.</translation>
-    </message>
-    <message>
-        <location filename="../client_main.cc" line="644"/>
         <source>A host ID was entered, but the router was not configured. You need to configure your router before connecting.</source>
-        <translation>Uma ID de host foi inserida mas o roteador não foi configurado. Você precisa configurar o roteador antes de conectar.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -176,37 +168,37 @@
     <message>
         <location filename="../ui/client_settings_dialog.ui" line="14"/>
         <source>Settings</source>
-        <translation>Configurações</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_settings_dialog.ui" line="24"/>
         <source>Router</source>
-        <translation>Roteador</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_settings_dialog.ui" line="30"/>
         <source>Use a router</source>
-        <translation>Usar roteador</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_settings_dialog.ui" line="39"/>
         <source>Address:</source>
-        <translation>Endereço:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_settings_dialog.ui" line="53"/>
         <source>User Name:</source>
-        <translation>Usuário:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_settings_dialog.ui" line="67"/>
         <source>Password:</source>
-        <translation>Senha:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_settings_dialog.ui" line="99"/>
         <source>A router is required to connect to a computer if there is no direct connection (bypass NAT). Aspia does not provide a public router, but you can install your own. You can download the router on the &lt;a href=&quot;https://aspia.org&quot;&gt;official website&lt;/a&gt;.</source>
-        <translation>É necessário um roteador para se conectar a um computador se não houver uma conexão direta (bypass NAT). O Aspia não fornece um, mas você pode instalar o seu próprio roteador público. Baixe o roteador no &lt;a href=&quot;https://aspia.org&quot;&gt;site oficial&lt;/a&gt;.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -214,26 +206,56 @@
     <message>
         <location filename="../ui/client_window.ui" line="14"/>
         <source>Aspia Client</source>
-        <translation>Aspia Client</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_window.ui" line="48"/>
         <source>ID / Address</source>
-        <translation>ID / Endereço</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_window.ui" line="120"/>
         <source>Session Type</source>
-        <translation>Tipo de Sessão</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_window.ui" line="256"/>
         <source>Connect</source>
-        <translation>Conectar</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/client_window.ui" line="290"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_window.ui" line="301"/>
         <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/client_window.ui" line="305"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/client_window.ui" line="326"/>
+        <source>Online Help...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/client_window.ui" line="335"/>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/client_window.ui" line="344"/>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/client_window.ui" line="353"/>
+        <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -256,62 +278,18 @@
         <source>Clear history</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../ui/client_window.ui" line="305"/>
-        <source>Language</source>
-        <translation>Idioma</translation>
-    </message>
-    <message>
-        <location filename="../ui/client_window.ui" line="290"/>
-        <source>Help</source>
-        <translation>Ajuda</translation>
-    </message>
-    <message>
-        <location filename="../ui/client_window.ui" line="326"/>
-        <source>Online Help...</source>
-        <translation>Ajuda online...</translation>
-    </message>
-    <message>
-        <location filename="../ui/client_window.ui" line="335"/>
-        <source>About</source>
-        <translation>Sobre</translation>
-    </message>
-    <message>
-        <location filename="../ui/client_window.ui" line="344"/>
-        <source>Settings...</source>
-        <translation>Configurações...</translation>
-    </message>
-    <message>
-        <location filename="../ui/client_window.ui" line="353"/>
-        <source>Exit</source>
-        <translation>Sair</translation>
-    </message>
 </context>
 <context>
     <name>DesktopConfigDialog</name>
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="20"/>
         <source>Session Configuration</source>
-        <translation>Configuração da Sessão</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="32"/>
         <source>Codec</source>
-        <translation>Codec</translation>
-    </message>
-    <message>
-        <location filename="../ui/desktop/desktop_config_dialog.ui" line="145"/>
-        <source>Appearance</source>
-        <translation>Aparência</translation>
-    </message>
-    <message>
-        <location filename="../ui/desktop/desktop_config_dialog.ui" line="201"/>
-        <source>Block remote input</source>
-        <translation>Bloquear entrada remota</translation>
-    </message>
-    <message>
-        <source>Enable cursor shape</source>
-        <translation type="vanished">Exibir cursor remoto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="43"/>
@@ -331,17 +309,17 @@
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="102"/>
         <source>Features</source>
-        <translation>Funcionalidades</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="108"/>
         <source>Enable audio</source>
-        <translation>Habilitar áudio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="115"/>
         <source>Enable clipboard</source>
-        <translation>Habilitar área de transferência</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="122"/>
@@ -354,24 +332,29 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/desktop/desktop_config_dialog.ui" line="145"/>
+        <source>Appearance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="151"/>
         <source>Disable desktop effects</source>
-        <translation>Desabilitar efeitos da área de trabalho</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="158"/>
         <source>Disable desktop wallpaper</source>
-        <translation>Desabilitar papel de parede</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="165"/>
         <source>Disable font smoothing</source>
-        <translation>Desabilitar suavização de fonte</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="181"/>
         <source>Other</source>
-        <translation>Outro</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="187"/>
@@ -381,118 +364,12 @@
     <message>
         <location filename="../ui/desktop/desktop_config_dialog.ui" line="194"/>
         <source>Lock computer at disconnect</source>
-        <translation>BLoquear computador ao desconectar</translation>
-    </message>
-</context>
-<context>
-    <name>DesktopPanel</name>
-    <message>
-        <source>Lock toolbar</source>
-        <translation type="vanished">Bloquear barra de ferramentas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Session configuration</source>
-        <translation type="vanished">Configuração da sessão</translation>
-    </message>
-    <message>
-        <source>Monitor selection</source>
-        <translation type="vanished">Seleção do monitor</translation>
-    </message>
-    <message>
-        <source>Automatic window size</source>
-        <translation type="vanished">Tamanho da janela automático</translation>
-    </message>
-    <message>
-        <source>Switch to full screen mode or back</source>
-        <translation type="vanished">Trocar para o modo de tela cheia</translation>
-    </message>
-    <message>
-        <source>Automatic scrolling</source>
-        <translation type="vanished">Rolagem automática</translation>
-    </message>
-    <message>
-        <source>Send Ctrl+Alt+Delete</source>
-        <translation type="vanished">Enviar CTRL+ALT+DEL</translation>
-    </message>
-    <message>
-        <source>Advanced menu</source>
-        <translation type="vanished">Menu avançado</translation>
-    </message>
-    <message>
-        <source>Save screenshot...</source>
-        <translation type="vanished">Salvar captura de tela...</translation>
-    </message>
-    <message>
-        <source>File transfer</source>
-        <translation type="vanished">Transferência de arquivos</translation>
-    </message>
-    <message>
-        <source>Scale</source>
-        <translation type="vanished">Escala</translation>
-    </message>
-    <message>
-        <source>Send key combinations</source>
-        <translation type="vanished">Enviar combinação de teclas</translation>
-    </message>
-    <message>
-        <source>Power control</source>
-        <translation type="vanished">Controle de energia</translation>
-    </message>
-    <message>
-        <source>Shutdown</source>
-        <translation type="vanished">Desligar</translation>
-    </message>
-    <message>
-        <source>Reboot</source>
-        <translation type="vanished">Reiniciar</translation>
-    </message>
-    <message>
-        <source>Logoff</source>
-        <translation type="vanished">Logoff</translation>
-    </message>
-    <message>
-        <source>Lock</source>
-        <translation type="vanished">Bloquear</translation>
-    </message>
-    <message>
-        <source>Remote Update</source>
-        <translation type="vanished">Atualização remota</translation>
-    </message>
-    <message>
-        <source>System Information</source>
-        <translation type="vanished">Informações do Sistema</translation>
-    </message>
-    <message>
-        <source>Close</source>
-        <translation type="vanished">Fechar</translation>
-    </message>
-    <message>
-        <source>Close session</source>
-        <translation type="vanished">Fechar sessão</translation>
-    </message>
-    <message>
-        <source>Fit window</source>
-        <translation type="vanished">Ajustar a janela</translation>
-    </message>
-    <message>
-        <source>Minimize</source>
-        <translation type="vanished">Minimizar</translation>
-    </message>
-    <message>
-        <source>Minimize window</source>
-        <translation type="vanished">Minimizar janela</translation>
-    </message>
-    <message>
-        <source>Statistics</source>
-        <translation type="vanished">Estatísticas</translation>
-    </message>
-    <message>
-        <source>Reboot (Safe mode)</source>
-        <translation type="vanished">Reiniciar (Modo seguro)</translation>
-    </message>
-    <message>
-        <source>Reboot in safe mode</source>
-        <translation type="vanished">Reiniciar no modo seguro</translation>
+        <location filename="../ui/desktop/desktop_config_dialog.ui" line="201"/>
+        <source>Block remote input</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -500,90 +377,90 @@
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="126"/>
         <source>Lock toolbar</source>
-        <translation type="unfinished">Bloquear barra de ferramentas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="138"/>
         <source>Session configuration</source>
-        <translation type="unfinished">Configuração da sessão</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="150"/>
         <source>Automatic window size</source>
-        <translation type="unfinished">Tamanho da janela automático</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="165"/>
         <source>Switch to full screen mode or back</source>
-        <translation type="unfinished">Trocar para o modo de tela cheia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="176"/>
         <source>Automatic scrolling</source>
-        <translation type="unfinished">Rolagem automática</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="188"/>
         <source>Send Ctrl+Alt+Delete</source>
-        <translation type="unfinished">Enviar CTRL+ALT+DEL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="200"/>
         <source>Advanced menu</source>
-        <translation type="unfinished">Menu avançado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="205"/>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="208"/>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="211"/>
         <source>Save screenshot...</source>
-        <translation type="unfinished">Salvar captura de tela...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="223"/>
         <source>File transfer</source>
-        <translation type="unfinished">Transferência de arquivos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="231"/>
         <source>Scale</source>
-        <translation type="unfinished">Escala</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="242"/>
         <source>Send key combinations</source>
-        <translation type="unfinished">Enviar combinação de teclas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="251"/>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="254"/>
         <source>Power control</source>
-        <translation type="unfinished">Controle de energia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="262"/>
         <source>Shutdown</source>
-        <translation type="unfinished">Desligar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="267"/>
         <source>Reboot</source>
-        <translation type="unfinished">Reiniciar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="272"/>
         <source>Logoff</source>
-        <translation type="unfinished">Logoff</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="277"/>
         <source>Lock</source>
-        <translation type="unfinished">Bloquear</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="286"/>
         <source>Remote Update</source>
-        <translation type="unfinished">Atualização remota</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="298"/>
@@ -593,43 +470,43 @@
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="310"/>
         <source>Close</source>
-        <translation type="unfinished">Fechar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="313"/>
         <source>Close session</source>
-        <translation type="unfinished">Fechar sessão</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="372"/>
         <source>Fit window</source>
-        <translation type="unfinished">Ajustar a janela</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="381"/>
         <source>Minimize</source>
-        <translation type="unfinished">Minimizar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="384"/>
         <source>Minimize window</source>
-        <translation type="unfinished">Minimizar janela</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="389"/>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="392"/>
         <source>Statistics</source>
-        <translation type="unfinished">Estatísticas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="397"/>
         <source>Reboot (Safe mode)</source>
-        <translation type="unfinished">Reiniciar (Modo seguro)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="400"/>
         <source>Reboot in safe mode</source>
-        <translation type="unfinished">Reiniciar no modo seguro</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.ui" line="405"/>
@@ -675,77 +552,77 @@
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="33"/>
         <source>Successfully completed</source>
-        <translation>Completado com sucesso</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="37"/>
         <source>Invalid request</source>
-        <translation>Solicitação inválida</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="41"/>
         <source>Invalid directory or file name</source>
-        <translation>Nome do arquivo ou pasta inválido</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="45"/>
         <source>Path not found</source>
-        <translation>Caminho não encontrado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="49"/>
         <source>Path already exists</source>
-        <translation>Caminho já existe</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="53"/>
         <source>No drives found</source>
-        <translation>Drives não encontrados</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="57"/>
         <source>Disk full</source>
-        <translation>Disco cheio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="61"/>
         <source>Access denied</source>
-        <translation>Acesso negado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="65"/>
         <source>Could not open file for reading</source>
-        <translation>O arquivo não pôde ser aberto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="69"/>
         <source>Could not create or replace file</source>
-        <translation>Erro ao criar ou substituir o arquivo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="73"/>
         <source>Could not write to file</source>
-        <translation>Não foi possível gravar no arquivo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="77"/>
         <source>Could not read file</source>
-        <translation>Não foi possível ler o arquivo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="81"/>
         <source>Drive not ready</source>
-        <translation>A unidade não está pronta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="85"/>
         <source>No logged in user</source>
-        <translation>Usuário não logado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_error_code.cc" line="89"/>
         <source>Unknown error code</source>
-        <translation>Erro desconhecido</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -753,7 +630,7 @@
     <message>
         <location filename="../ui/file_transfer/file_item_delegate.cc" line="56"/>
         <source>The name can not contain characters %1.</source>
-        <translation>O nome não pode conter caracteres %1.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -761,52 +638,52 @@
     <message>
         <location filename="../ui/file_transfer/file_panel.ui" line="165"/>
         <source>Up</source>
-        <translation>Acima</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.ui" line="168"/>
         <source>Browse to parent folder (Backspace)</source>
-        <translation>Ir para a pasta raíz (Backspace)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.ui" line="177"/>
         <source>Refresh</source>
-        <translation>Atualizar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.ui" line="180"/>
         <source>Refresh (F5)</source>
-        <translation>Atualizar (F5)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.ui" line="192"/>
         <source>New Folder</source>
-        <translation>Nova Pasta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.ui" line="195"/>
         <source>Create a new folder</source>
-        <translation>Criar nova pasta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.ui" line="207"/>
         <source>Delete</source>
-        <translation>Excluir</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.ui" line="210"/>
         <source>Delete selected object(s) (Delete)</source>
-        <translation>Excluir objetos selecionados (Delete)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.ui" line="222"/>
         <source>Send</source>
-        <translation>Enviar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.ui" line="225"/>
         <source>Send selected object(s) (F11)</source>
-        <translation>Enviar objeto(s) selecionado(s) (F11)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -814,12 +691,12 @@
     <message>
         <location filename="../ui/file_transfer/file_remove_dialog.ui" line="14"/>
         <source>Deleting Items</source>
-        <translation>Excluindo itens</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_remove_dialog.ui" line="20"/>
         <source>Creating a list of files to delete...</source>
-        <translation>Criando lista de arquivos a serem excluídos...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -827,22 +704,22 @@
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.ui" line="14"/>
         <source>File Transfer</source>
-        <translation>Transfência de arquivos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.ui" line="26"/>
         <source>Current Task: Creating a list of files to copy...</source>
-        <translation>Tarefa atual: Criando lista de arquivos para copiar...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.ui" line="33"/>
         <source>From: ...</source>
-        <translation>De: ...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.ui" line="40"/>
         <source>To: ...</source>
-        <translation>Para: ...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.ui" line="47"/>
@@ -852,48 +729,21 @@
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.ui" line="57"/>
         <source>Progress</source>
-        <translation>Progresso</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.ui" line="65"/>
         <source>Total:</source>
-        <translation>Total:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.ui" line="72"/>
         <source>Item:</source>
-        <translation>Item:</translation>
-    </message>
-</context>
-<context>
-    <name>LogLevel</name>
-    <message>
-        <source>Warning</source>
-        <translation type="obsolete">Atenção</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ProcessItem</name>
-    <message>
-        <source>TB</source>
-        <translation type="obsolete">TB</translation>
-    </message>
-    <message>
-        <source>GB</source>
-        <translation type="obsolete">GB</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation type="obsolete">MB</translation>
-    </message>
-    <message>
-        <source>kB</source>
-        <translation type="obsolete">kB</translation>
-    </message>
-    <message>
-        <source>B</source>
-        <translation type="obsolete">B</translation>
-    </message>
     <message>
         <location filename="../ui/desktop/task_manager_window.cc" line="88"/>
         <source>System Idle Process</source>
@@ -928,64 +778,51 @@
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="20"/>
         <source>Router Management</source>
-        <translation>Gerenciamento do roteador</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="41"/>
         <source>Hosts</source>
-        <translation>Hosts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="49"/>
         <location filename="../ui/router_manager/router_manager_window.ui" line="163"/>
         <source>Connections count:</source>
-        <translation>Número de conexões:</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.ui" line="82"/>
-        <location filename="../ui/router_manager/router_manager_window.ui" line="195"/>
-        <source>Connect Time</source>
-        <translation>Hora da conexão</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.ui" line="77"/>
-        <source>IP Address</source>
-        <translation>Endereço IP</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nome</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <translation type="vanished">Valor</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.ui" line="92"/>
-        <location filename="../ui/router_manager/router_manager_window.ui" line="205"/>
-        <source>Version</source>
-        <translation>Versão</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="72"/>
         <location filename="../ui/router_manager/router_manager_window.ui" line="210"/>
         <source>Computer Name</source>
-        <translation>Nome do computador</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.ui" line="77"/>
+        <source>IP Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.ui" line="82"/>
+        <location filename="../ui/router_manager/router_manager_window.ui" line="195"/>
+        <source>Connect Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.ui" line="87"/>
+        <source>ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.ui" line="92"/>
+        <location filename="../ui/router_manager/router_manager_window.ui" line="205"/>
+        <source>Version</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="97"/>
         <location filename="../ui/router_manager/router_manager_window.ui" line="215"/>
         <source>Operating System</source>
-        <translation>Sistema Operacional</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.ui" line="127"/>
-        <source>Disconnect</source>
-        <translation>Desconectar</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.ui" line="87"/>
-        <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -995,40 +832,51 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/router_manager/router_manager_window.ui" line="127"/>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="134"/>
         <source>Disconnect All</source>
-        <translation>Desconectar todos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="141"/>
         <location filename="../ui/router_manager/router_manager_window.ui" line="308"/>
         <location filename="../ui/router_manager/router_manager_window.ui" line="378"/>
         <source>Refresh</source>
-        <translation>Atualizar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="155"/>
         <source>Relay</source>
-        <translation>Retransmitir</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="190"/>
         <source>Address</source>
-        <translation>Endereço</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="200"/>
         <source>Pool Size</source>
-        <translation>Tamanho do pool</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/router_manager/router_manager_window.ui" line="254"/>
-        <source>Host Address</source>
+        <location filename="../ui/router_manager/router_manager_window.ui" line="244"/>
+        <location filename="../ui/router_manager/router_manager_window.ui" line="411"/>
+        <source>User Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="249"/>
         <source>Host ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.ui" line="254"/>
+        <source>Host Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1054,7 +902,7 @@
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="322"/>
         <source>Users</source>
-        <translation>Usuários</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="330"/>
@@ -1069,13 +917,7 @@
     <message>
         <location filename="../ui/router_manager/router_manager_window.ui" line="364"/>
         <source>Delete</source>
-        <translation type="unfinished">Excluir</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.ui" line="244"/>
-        <location filename="../ui/router_manager/router_manager_window.ui" line="411"/>
-        <source>User Name</source>
-        <translation>Usuário</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1083,7 +925,7 @@
     <message>
         <location filename="../ui/router_manager/router_status_dialog.ui" line="14"/>
         <source>Status</source>
-        <translation>Status</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1091,32 +933,32 @@
     <message>
         <location filename="../ui/router_manager/router_user_dialog.ui" line="14"/>
         <source>User Properties</source>
-        <translation>Propriedades do Usuário</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.ui" line="27"/>
         <source>Name:</source>
-        <translation>Nome:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.ui" line="34"/>
         <source>Password:</source>
-        <translation>Senha:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.ui" line="41"/>
         <source>Password (retry):</source>
-        <translation>Senha (novamente):</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.ui" line="73"/>
         <source>Disable User Account</source>
-        <translation>Desabilitar Usuário</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.ui" line="80"/>
         <source>Allowed Session Types:</source>
-        <translation>Tipos de sessões Permitidas:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1193,17 +1035,17 @@
     <message>
         <location filename="../ui/desktop/statistics_dialog.ui" line="14"/>
         <source>Statistics</source>
-        <translation>Estatísticas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/statistics_dialog.ui" line="36"/>
         <source>Parameter</source>
-        <translation>Parametro</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/statistics_dialog.ui" line="41"/>
         <source>Value</source>
-        <translation>Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1211,12 +1053,12 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_applications.ui" line="54"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_applications.ui" line="59"/>
         <source>Version</source>
-        <translation type="unfinished">Versão</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_applications.ui" line="64"/>
@@ -1236,12 +1078,12 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_applications.ui" line="82"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_applications.ui" line="87"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_applications.ui" line="92"/>
@@ -1251,10 +1093,6 @@
 </context>
 <context>
     <name>SysInfoConnections</name>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Valor</translation>
-    </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_connections.ui" line="54"/>
         <source>Process Name</source>
@@ -1293,28 +1131,20 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_connections.ui" line="92"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
-    </message>
-    <message>
-        <source>Copy Name</source>
-        <translation type="obsolete">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_connections.ui" line="97"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SysInfoDevices</name>
     <message>
-        <source>Value</source>
-        <translation type="obsolete">Valor</translation>
-    </message>
-    <message>
         <location filename="../ui/sys_info/sys_info_widget_devices.ui" line="54"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_devices.ui" line="59"/>
@@ -1339,29 +1169,21 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_devices.ui" line="82"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/sys_info/sys_info_widget_devices.ui" line="87"/>
+        <source>Copy Value</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_devices.ui" line="92"/>
         <source>Search in Google</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Copy Name</source>
-        <translation type="obsolete">Copiar Nome</translation>
-    </message>
-    <message>
-        <location filename="../ui/sys_info/sys_info_widget_devices.ui" line="87"/>
-        <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
-    </message>
 </context>
 <context>
     <name>SysInfoDrivers</name>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Valor</translation>
-    </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_drivers.ui" line="54"/>
         <source>Display Name</source>
@@ -1370,7 +1192,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_drivers.ui" line="59"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_drivers.ui" line="64"/>
@@ -1380,7 +1202,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_drivers.ui" line="69"/>
         <source>Status</source>
-        <translation type="unfinished">Status</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_drivers.ui" line="74"/>
@@ -1395,16 +1217,12 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_drivers.ui" line="87"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
-    </message>
-    <message>
-        <source>Copy Name</source>
-        <translation type="obsolete">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_drivers.ui" line="92"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1412,49 +1230,31 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_env_vars.ui" line="51"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_env_vars.ui" line="56"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_env_vars.ui" line="64"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_env_vars.ui" line="69"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_env_vars.ui" line="74"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SysInfoEventLogs</name>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Valor</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation type="obsolete">Tipo</translation>
-    </message>
-    <message>
-        <location filename="../ui/sys_info/sys_info_widget_event_logs.ui" line="130"/>
-        <source>Level</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/sys_info/sys_info_widget_event_logs.ui" line="125"/>
-        <source>Time</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_event_logs.ui" line="53"/>
         <source>Previous</source>
@@ -1468,6 +1268,16 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_event_logs.ui" line="83"/>
         <source>Events type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/sys_info/sys_info_widget_event_logs.ui" line="125"/>
+        <source>Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/sys_info/sys_info_widget_event_logs.ui" line="130"/>
+        <source>Level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1494,16 +1304,12 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_event_logs.ui" line="195"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
-    </message>
-    <message>
-        <source>Copy Name</source>
-        <translation type="obsolete">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_event_logs.ui" line="200"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1516,22 +1322,22 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_licenses.ui" line="50"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_licenses.ui" line="58"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_licenses.ui" line="63"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_licenses.ui" line="68"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1539,7 +1345,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_local_user_groups.ui" line="48"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_local_user_groups.ui" line="53"/>
@@ -1549,17 +1355,17 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_local_user_groups.ui" line="61"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_local_user_groups.ui" line="66"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_local_user_groups.ui" line="71"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1572,22 +1378,22 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_local_users.ui" line="50"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_local_users.ui" line="58"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_local_users.ui" line="63"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_local_users.ui" line="68"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1600,22 +1406,22 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_monitors.ui" line="50"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_monitors.ui" line="58"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_monitors.ui" line="63"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_monitors.ui" line="68"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1628,22 +1434,22 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.ui" line="50"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.ui" line="58"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.ui" line="63"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.ui" line="68"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1656,30 +1462,35 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_shares.ui" line="50"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_shares.ui" line="58"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_shares.ui" line="63"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_shares.ui" line="68"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SysInfoOpenFiles</name>
     <message>
+        <location filename="../ui/sys_info/sys_info_widget_open_files.ui" line="54"/>
+        <source>File Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/sys_info/sys_info_widget_open_files.ui" line="59"/>
         <source>User Name</source>
-        <translation type="unfinished">Usuário</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_open_files.ui" line="64"/>
@@ -1687,19 +1498,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/sys_info/sys_info_widget_open_files.ui" line="54"/>
-        <source>File Path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/sys_info/sys_info_widget_open_files.ui" line="72"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_open_files.ui" line="77"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1712,22 +1518,22 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_power_options.ui" line="53"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_power_options.ui" line="61"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_power_options.ui" line="66"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_power_options.ui" line="71"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1740,22 +1546,22 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.ui" line="50"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.ui" line="58"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.ui" line="63"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.ui" line="68"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1763,7 +1569,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_processes.ui" line="51"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_processes.ui" line="56"/>
@@ -1778,7 +1584,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_processes.ui" line="66"/>
         <source>Memory</source>
-        <translation type="unfinished">Memória</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_processes.ui" line="71"/>
@@ -1788,11 +1594,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_processes.ui" line="76"/>
         <source>User Name</source>
-        <translation type="unfinished">Usuário</translation>
-    </message>
-    <message>
-        <source>Threads</source>
-        <translation type="obsolete">Threads</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_processes.ui" line="81"/>
@@ -1802,44 +1604,21 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_processes.ui" line="89"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_processes.ui" line="94"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_processes.ui" line="99"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
-    </message>
-</context>
-<context>
-    <name>SysInfoRas</name>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Valor</translation>
-    </message>
-    <message>
-        <source>Copy Row</source>
-        <translation type="obsolete">Copiar Linha</translation>
-    </message>
-    <message>
-        <source>Copy Name</source>
-        <translation type="obsolete">Copiar Nome</translation>
-    </message>
-    <message>
-        <source>Copy Value</source>
-        <translation type="obsolete">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SysInfoRoutes</name>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Valor</translation>
-    </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_routes.ui" line="54"/>
         <source>Destonation</source>
@@ -1853,7 +1632,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_routes.ui" line="64"/>
         <source>Gateway</source>
-        <translation type="unfinished">Gateway</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_routes.ui" line="69"/>
@@ -1863,24 +1642,16 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_routes.ui" line="77"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
-    </message>
-    <message>
-        <source>Copy Name</source>
-        <translation type="obsolete">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_routes.ui" line="82"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SysInfoServices</name>
-    <message>
-        <source>Value</source>
-        <translation type="obsolete">Valor</translation>
-    </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_services.ui" line="54"/>
         <source>Display Name</source>
@@ -1889,7 +1660,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_services.ui" line="59"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_services.ui" line="64"/>
@@ -1899,7 +1670,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_services.ui" line="69"/>
         <source>Status</source>
-        <translation type="unfinished">Status</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_services.ui" line="74"/>
@@ -1919,16 +1690,12 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_services.ui" line="92"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
-    </message>
-    <message>
-        <source>Copy Name</source>
-        <translation type="obsolete">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_services.ui" line="97"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1941,22 +1708,22 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.ui" line="50"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.ui" line="58"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.ui" line="63"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.ui" line="68"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1969,22 +1736,22 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_video_adapters.ui" line="50"/>
         <source>Value</source>
-        <translation type="unfinished">Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_video_adapters.ui" line="58"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_video_adapters.ui" line="63"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_video_adapters.ui" line="68"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1992,64 +1759,61 @@
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.ui" line="14"/>
         <source>System Information</source>
-        <translation>Informação do Sistema</translation>
-    </message>
-    <message>
-        <source>Parameter</source>
-        <translation type="vanished">Parâmetro</translation>
-    </message>
-    <message>
-        <source>Value</source>
-        <translation type="vanished">Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.ui" line="108"/>
         <source>Save</source>
-        <translation>Salvar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.ui" line="111"/>
         <source>Save (Ctrl+S)</source>
-        <translation>Salvar (CTRL+S)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.ui" line="123"/>
         <source>Print</source>
-        <translation>Imprimir</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.ui" line="126"/>
         <source>Print (Ctrl+P)</source>
-        <translation>Imprimir (CTRL+P)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.ui" line="134"/>
         <source>Copy Row</source>
-        <translation>Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.ui" line="139"/>
         <source>Copy Name</source>
-        <translation>Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.ui" line="144"/>
         <source>Copy Value</source>
-        <translation>Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.ui" line="153"/>
         <source>Refresh</source>
-        <translation>Atualizar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.ui" line="156"/>
         <source>Refresh (F5)</source>
-        <translation>Atualizar (F5)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TaskManagerWindow</name>
+    <message>
+        <location filename="../ui/desktop/task_manager_window.ui" line="14"/>
+        <source>Task Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="../ui/desktop/task_manager_window.ui" line="37"/>
         <source>Processes</source>
@@ -2060,21 +1824,7 @@
         <location filename="../ui/desktop/task_manager_window.ui" line="188"/>
         <location filename="../ui/desktop/task_manager_window.ui" line="237"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
-    </message>
-    <message>
-        <location filename="../ui/desktop/task_manager_window.ui" line="80"/>
-        <source>User Name</source>
-        <translation type="unfinished">Usuário</translation>
-    </message>
-    <message>
-        <location filename="../ui/desktop/task_manager_window.ui" line="85"/>
-        <source>CPU</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Memory</source>
-        <translation type="obsolete">Memória</translation>
     </message>
     <message>
         <location filename="../ui/desktop/task_manager_window.ui" line="70"/>
@@ -2082,13 +1832,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/desktop/task_manager_window.ui" line="14"/>
-        <source>Task Manager</source>
+        <location filename="../ui/desktop/task_manager_window.ui" line="75"/>
+        <source>Session ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/desktop/task_manager_window.ui" line="75"/>
-        <source>Session ID</source>
+        <location filename="../ui/desktop/task_manager_window.ui" line="80"/>
+        <source>User Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/desktop/task_manager_window.ui" line="85"/>
+        <source>CPU</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2114,7 +1869,7 @@
     <message>
         <location filename="../ui/desktop/task_manager_window.ui" line="122"/>
         <source>Threads</source>
-        <translation type="unfinished">Threads</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/task_manager_window.ui" line="127"/>
@@ -2133,6 +1888,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/desktop/task_manager_window.ui" line="193"/>
+        <location filename="../ui/desktop/task_manager_window.ui" line="247"/>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/desktop/task_manager_window.ui" line="198"/>
         <source>Startup type</source>
         <translation type="unfinished"></translation>
@@ -2143,10 +1904,36 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/desktop/task_manager_window.ui" line="212"/>
+        <source>Users</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/desktop/task_manager_window.ui" line="242"/>
+        <source>ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/desktop/task_manager_window.ui" line="252"/>
+        <source>Client name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/desktop/task_manager_window.ui" line="257"/>
+        <source>Session name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/desktop/task_manager_window.ui" line="283"/>
+        <location filename="../ui/desktop/task_manager_window.ui" line="323"/>
+        <source>Disconnect</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/desktop/task_manager_window.ui" line="293"/>
         <location filename="../ui/desktop/task_manager_window.ui" line="328"/>
         <source>Logoff</source>
-        <translation type="unfinished">Logoff</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/task_manager_window.ui" line="313"/>
@@ -2157,17 +1944,6 @@
         <location filename="../ui/desktop/task_manager_window.ui" line="318"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/desktop/task_manager_window.ui" line="365"/>
-        <source>Disabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/desktop/task_manager_window.ui" line="193"/>
-        <location filename="../ui/desktop/task_manager_window.ui" line="247"/>
-        <source>Status</source>
-        <translation type="unfinished">Status</translation>
     </message>
     <message>
         <location filename="../ui/desktop/task_manager_window.ui" line="336"/>
@@ -2190,66 +1966,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/desktop/task_manager_window.ui" line="212"/>
-        <source>Users</source>
-        <translation type="unfinished">Usuários</translation>
-    </message>
-    <message>
-        <location filename="../ui/desktop/task_manager_window.ui" line="242"/>
-        <source>ID</source>
+        <location filename="../ui/desktop/task_manager_window.ui" line="365"/>
+        <source>Disabled</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/desktop/task_manager_window.ui" line="252"/>
-        <source>Client name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/desktop/task_manager_window.ui" line="257"/>
-        <source>Session name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/desktop/task_manager_window.ui" line="283"/>
-        <location filename="../ui/desktop/task_manager_window.ui" line="323"/>
-        <source>Disconnect</source>
-        <translation type="unfinished">Desconectar</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="obsolete">Salvar</translation>
-    </message>
-    <message>
-        <source>Save (Ctrl+S)</source>
-        <translation type="obsolete">Salvar (CTRL+S)</translation>
-    </message>
-    <message>
-        <source>Print</source>
-        <translation type="obsolete">Imprimir</translation>
-    </message>
-    <message>
-        <source>Print (Ctrl+P)</source>
-        <translation type="obsolete">Imprimir (CTRL+P)</translation>
-    </message>
-    <message>
-        <source>Copy Row</source>
-        <translation type="obsolete">Copiar Linha</translation>
-    </message>
-    <message>
-        <source>Copy Name</source>
-        <translation type="obsolete">Copiar Nome</translation>
-    </message>
-    <message>
-        <source>Copy Value</source>
-        <translation type="obsolete">Copiar Valor</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation type="obsolete">Atualizar</translation>
-    </message>
-    <message>
-        <source>Refresh (F5)</source>
-        <translation type="obsolete">Atualizar (F5)</translation>
     </message>
 </context>
 <context>
@@ -2262,47 +1981,47 @@
     <message>
         <location filename="../ui/text_chat/qt_text_chat_window.ui" line="42"/>
         <source>Save</source>
-        <translation type="unfinished">Salvar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat/qt_text_chat_window.ui" line="45"/>
         <source>Save (Ctrl+S)</source>
-        <translation type="unfinished">Salvar (CTRL+S)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat/qt_text_chat_window.ui" line="57"/>
         <source>Print</source>
-        <translation type="unfinished">Imprimir</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat/qt_text_chat_window.ui" line="60"/>
         <source>Print (Ctrl+P)</source>
-        <translation type="unfinished">Imprimir (CTRL+P)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat/qt_text_chat_window.ui" line="68"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat/qt_text_chat_window.ui" line="73"/>
         <source>Copy Name</source>
-        <translation type="unfinished">Copiar Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat/qt_text_chat_window.ui" line="78"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat/qt_text_chat_window.ui" line="87"/>
         <source>Refresh</source>
-        <translation type="unfinished">Atualizar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat/qt_text_chat_window.ui" line="90"/>
         <source>Refresh (F5)</source>
-        <translation type="unfinished">Atualizar (F5)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2396,12 +2115,12 @@
     <message>
         <location filename="../ui/file_transfer/address_bar.cc" line="56"/>
         <source>Warning</source>
-        <translation>Atenção</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar.cc" line="57"/>
         <source>An incorrect path to the folder was entered.</source>
-        <translation>Foi inserido um caminho incorreto para a pasta..</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2410,102 +2129,102 @@
         <location filename="../ui/file_transfer/address_bar_model.cc" line="85"/>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="466"/>
         <source>Home Folder</source>
-        <translation>Pasta Principal</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="89"/>
         <source>Desktop</source>
-        <translation>Área de Trabalho</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="293"/>
         <source>Computer</source>
-        <translation>Computador</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="408"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="411"/>
         <source>Type</source>
-        <translation>Tipo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="414"/>
         <source>Total Space</source>
-        <translation>Espaço total</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="417"/>
         <source>Free Space</source>
-        <translation>Espaço livre</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="451"/>
         <source>Optical Drive</source>
-        <translation>Unidade óptica (CD)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="454"/>
         <source>Removable Drive</source>
-        <translation>Unidade Removível</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="457"/>
         <source>Fixed Drive</source>
-        <translation>Unidade Fixa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="460"/>
         <source>Network Drive</source>
-        <translation>Unidade de Rede</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="463"/>
         <source>RAM Drive</source>
-        <translation>Unidade RAM</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="469"/>
         <source>Desktop Folder</source>
-        <translation>Pasta da Área de Trabalho</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="472"/>
         <source>Root Directory</source>
-        <translation>Diretório Raiz</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="475"/>
         <source>Unknown Drive</source>
-        <translation>Unidade Desconhecida</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="493"/>
         <source>TB</source>
-        <translation>TB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="498"/>
         <source>GB</source>
-        <translation>GB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="503"/>
         <source>MB</source>
-        <translation>MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="508"/>
         <source>kB</source>
-        <translation>kB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/address_bar_model.cc" line="513"/>
         <source>B</source>
-        <translation>B</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2519,17 +2238,17 @@
         <location filename="../ui/authorization_dialog.cc" line="161"/>
         <location filename="../ui/authorization_dialog.cc" line="171"/>
         <source>Warning</source>
-        <translation>Atenção</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/authorization_dialog.cc" line="162"/>
         <source>Username cannot be empty.</source>
-        <translation>Usuário não pode ficar em branco.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/authorization_dialog.cc" line="172"/>
         <source>Password cannot be empty.</source>
-        <translation>O campo &quot;senha&quot; não pode ficar em branco.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2542,22 +2261,22 @@
     <message>
         <location filename="../ui/client_settings_dialog.cc" line="102"/>
         <source>An invalid router address was entered.</source>
-        <translation>Um endereço inválido foi inserido.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_settings_dialog.cc" line="113"/>
         <source>The user name can not be empty and can contain only alphabet characters, numbers and _, -, . characters.</source>
-        <translation>O Usuário não pode estar vazio e pode conter apenas caracteres do alfabeto, números e _, -,. .</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_settings_dialog.cc" line="122"/>
         <source>Password cannot be empty.</source>
-        <translation>Senha não pode ficar em branco.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_settings_dialog.cc" line="147"/>
         <source>Warning</source>
-        <translation>Atenção</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2565,7 +2284,7 @@
     <message>
         <location filename="../ui/client_window.cc" line="84"/>
         <source>Confirmation</source>
-        <translation type="unfinished">Confirmação</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_window.cc" line="85"/>
@@ -2575,33 +2294,33 @@
     <message>
         <location filename="../ui/client_window.cc" line="88"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_window.cc" line="89"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_window.cc" line="186"/>
         <source>Aspia Client</source>
-        <translation>Aspia Client</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_window.cc" line="278"/>
         <location filename="../ui/client_window.cc" line="295"/>
         <source>Warning</source>
-        <translation>Atenção</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_window.cc" line="279"/>
         <source>An invalid computer address was entered.</source>
-        <translation>Um endereço inválido do computador foi inserido.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/client_window.cc" line="296"/>
         <source>A host ID was entered, but the router was not configured. You need to configure your router before connecting.</source>
-        <translation>Uma ID de host foi inserida mas o roteador não foi configurado. Você precisa configurar o roteador antes de conectar.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2643,57 +2362,6 @@
     </message>
 </context>
 <context>
-    <name>client::DesktopPanel</name>
-    <message>
-        <source>Monitor selection</source>
-        <translation type="obsolete">Seleção do monitor</translation>
-    </message>
-    <message>
-        <source>Monitor %1 (primary)</source>
-        <translation type="vanished">Monitor %1 (primário)</translation>
-    </message>
-    <message>
-        <source>Monitor %1</source>
-        <translation type="vanished">Monitor %1</translation>
-    </message>
-    <message>
-        <source>Confirmation</source>
-        <translation type="vanished">Confirmação</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to shutdown the remote computer?</source>
-        <translation type="vanished">Você tem certeza que deseja desligar o computador remoto?</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Sim</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">No</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to reboot the remote computer?</source>
-        <translation type="vanished">Você tem certeza que deseja reiniciar o computador remoto?</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to reboot the remote computer in Safe Mode?</source>
-        <translation type="vanished">Tem certeza de que deseja reiniciar o computador remoto no Modo Seguro?</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to end the user session on the remote computer?</source>
-        <translation type="vanished">Você tem certeza que deseja finalizar a sessão de usuário do computador remoto?</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to lock the user session on the remote computer?</source>
-        <translation type="vanished">Você tem certeza que deseja bloquear a sessão de usuário do computador remoto?</translation>
-    </message>
-    <message>
-        <source>Scale</source>
-        <translation type="vanished">Escala</translation>
-    </message>
-</context>
-<context>
     <name>client::DesktopToolBar</name>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="315"/>
@@ -2717,12 +2385,12 @@
         <location filename="../ui/desktop/desktop_toolbar.cc" line="538"/>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="553"/>
         <source>Confirmation</source>
-        <translation type="unfinished">Confirmação</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="494"/>
         <source>Are you sure you want to shutdown the remote computer?</source>
-        <translation type="unfinished">Você tem certeza que deseja desligar o computador remoto?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="497"/>
@@ -2731,7 +2399,7 @@
         <location filename="../ui/desktop/desktop_toolbar.cc" line="542"/>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="557"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="498"/>
@@ -2740,32 +2408,32 @@
         <location filename="../ui/desktop/desktop_toolbar.cc" line="543"/>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="558"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="509"/>
         <source>Are you sure you want to reboot the remote computer?</source>
-        <translation type="unfinished">Você tem certeza que deseja reiniciar o computador remoto?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="524"/>
         <source>Are you sure you want to reboot the remote computer in Safe Mode?</source>
-        <translation type="unfinished">Tem certeza de que deseja reiniciar o computador remoto no Modo Seguro?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="539"/>
         <source>Are you sure you want to end the user session on the remote computer?</source>
-        <translation type="unfinished">Você tem certeza que deseja finalizar a sessão de usuário do computador remoto?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="554"/>
         <source>Are you sure you want to lock the user session on the remote computer?</source>
-        <translation type="unfinished">Você tem certeza que deseja bloquear a sessão de usuário do computador remoto?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/desktop_toolbar.cc" line="642"/>
         <source>Scale</source>
-        <translation type="unfinished">Escala</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2796,132 +2464,132 @@
     <message>
         <location filename="../ui/file_transfer/file_list_model.cc" line="105"/>
         <source>Folder</source>
-        <translation>Pasta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_list_model.cc" line="382"/>
         <source>Name</source>
-        <translation>Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_list_model.cc" line="385"/>
         <source>Size</source>
-        <translation>Tamanho</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_list_model.cc" line="388"/>
         <source>Type</source>
-        <translation>Tipo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_list_model.cc" line="391"/>
         <source>Modified</source>
-        <translation>Modificado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_list_model.cc" line="558"/>
         <source>TB</source>
-        <translation>TB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_list_model.cc" line="563"/>
         <source>GB</source>
-        <translation>GB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_list_model.cc" line="568"/>
         <source>MB</source>
-        <translation>MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_list_model.cc" line="573"/>
         <source>kB</source>
-        <translation>kB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_list_model.cc" line="578"/>
         <source>B</source>
-        <translation>B</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>client::FilePanel</name>
     <message>
-        <location filename="../ui/file_transfer/file_panel.cc" line="459"/>
-        <source>Warning</source>
-        <translation>Atenção</translation>
-    </message>
-    <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="96"/>
         <source>Failed to get list of drives: %1</source>
-        <translation>Falha ao obter a lista de drives: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="112"/>
         <source>Failed to get list of files: %1</source>
-        <translation>Falha ao obter a lista de arquivos: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="137"/>
         <source>Failed to create directory: %1</source>
-        <translation>Falha ao criar o diretório: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="149"/>
         <source>Failed to rename item: %1</source>
-        <translation>Falha ao renomear item: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="276"/>
         <source>%1 object(s) selected</source>
-        <translation>%1 objeto(s) selecionado(s)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="296"/>
         <location filename="../ui/file_transfer/file_panel.cc" line="315"/>
         <source>Folder name can not be empty.</source>
-        <translation>O nome da pasta deve ser inserido.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="302"/>
         <location filename="../ui/file_transfer/file_panel.cc" line="321"/>
         <source>Name contains invalid characters.</source>
-        <translation>O nome contém caracteres inválidos.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="342"/>
         <source>&amp;Send	F11</source>
-        <translation>&amp;Enviar	F11</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="343"/>
         <source>&amp;Delete	Delete</source>
-        <translation>&amp;Excluir	Delete</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="353"/>
         <source>&amp;Create Folder</source>
-        <translation>&amp;Criar Pasta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="418"/>
         <source>Confirmation</source>
-        <translation>Confirmação</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="419"/>
         <source>Are you sure you want to delete the selected items?</source>
-        <translation>Você tem certeza que deseja excluir os itens selecionados?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="422"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_panel.cc" line="423"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/file_transfer/file_panel.cc" line="459"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2934,37 +2602,37 @@
     <message>
         <location filename="../ui/file_transfer/file_remove_dialog.cc" line="107"/>
         <source>Deleting: %1</source>
-        <translation>Excluindo: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_remove_dialog.cc" line="138"/>
         <source>An error occurred while retrieving the list of files: %1</source>
-        <translation>Ocorreu um erro ao obter a lista de arquivos: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_remove_dialog.cc" line="143"/>
         <source>Failed to delete &quot;%1&quot;: %2.</source>
-        <translation>Erro ao excluir &quot;%1&quot;: %2.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_remove_dialog.cc" line="150"/>
         <source>Warning</source>
-        <translation>Atenção</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_remove_dialog.cc" line="158"/>
         <source>Skip</source>
-        <translation>Pular</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_remove_dialog.cc" line="161"/>
         <source>Skip All</source>
-        <translation>Pular todos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_remove_dialog.cc" line="164"/>
         <source>Abort</source>
-        <translation>Cancelar</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2977,47 +2645,92 @@
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="115"/>
         <source>Current Task: Copying items.</source>
-        <translation>Tarefa atual: Copiando itens.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="129"/>
         <source>From: %1</source>
-        <translation>De: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="134"/>
         <source>To: %1</source>
-        <translation>Para %1</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="159"/>
+        <source>Speed: %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="174"/>
         <source>Warning</source>
-        <translation>Atenção</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="186"/>
         <source>Skip</source>
-        <translation>Pular</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="189"/>
         <source>Skip All</source>
-        <translation>Pular todos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="192"/>
         <source>Replace</source>
-        <translation>Substituir</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="195"/>
         <source>Replace All</source>
-        <translation>Substituir todos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="198"/>
         <source>Abort</source>
-        <translation>Abortar</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="276"/>
+        <source>Current Task: Cancel transfer of files.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="291"/>
+        <source>An error occurred while building the file queue for copying</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="296"/>
+        <source>Failed to create directory &quot;%1&quot;: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="304"/>
+        <source>Failed to create file &quot;%1&quot;: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="311"/>
+        <source>Failed to open file &quot;%1&quot;: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="318"/>
+        <source>Failed to write file &quot;%1&quot;: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="325"/>
+        <source>Failed to read file &quot;%1&quot;: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="332"/>
+        <source>Unknown error type while copying files</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="351"/>
@@ -3044,108 +2757,40 @@
         <source>B/s</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="159"/>
-        <source>Speed: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="276"/>
-        <source>Current Task: Cancel transfer of files.</source>
-        <translation>Tarefa atual: Cancelando transferência de arquivos.</translation>
-    </message>
-    <message>
-        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="291"/>
-        <source>An error occurred while building the file queue for copying</source>
-        <translation>Ocorreu um erro ao montar a fila de arquivos para cópia</translation>
-    </message>
-    <message>
-        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="296"/>
-        <source>Failed to create directory &quot;%1&quot;: %2</source>
-        <translation>Erro ao criar diretório &quot;%1&quot;: %2</translation>
-    </message>
-    <message>
-        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="304"/>
-        <source>Failed to create file &quot;%1&quot;: %2</source>
-        <translation>Erro ao criar arquivo &quot;%1&quot;: %2</translation>
-    </message>
-    <message>
-        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="311"/>
-        <source>Failed to open file &quot;%1&quot;: %2</source>
-        <translation>Erro ao abrir arquivo &quot;%1&quot;: %2</translation>
-    </message>
-    <message>
-        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="318"/>
-        <source>Failed to write file &quot;%1&quot;: %2</source>
-        <translation>Erro ao gravar arquivo &quot;%1&quot;: %2</translation>
-    </message>
-    <message>
-        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="325"/>
-        <source>Failed to read file &quot;%1&quot;: %2</source>
-        <translation>Erro ao ler arquivo &quot;%1&quot;: %2</translation>
-    </message>
-    <message>
-        <location filename="../ui/file_transfer/file_transfer_dialog.cc" line="332"/>
-        <source>Unknown error type while copying files</source>
-        <translation>Erro desconhecido ao copiar arquivos</translation>
-    </message>
-</context>
-<context>
-    <name>client::ProcessItem</name>
-    <message>
-        <source>TB</source>
-        <translation type="obsolete">TB</translation>
-    </message>
-    <message>
-        <source>GB</source>
-        <translation type="obsolete">GB</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation type="obsolete">MB</translation>
-    </message>
-    <message>
-        <source>kB</source>
-        <translation type="obsolete">kB</translation>
-    </message>
-    <message>
-        <source>B</source>
-        <translation type="obsolete">B</translation>
-    </message>
 </context>
 <context>
     <name>client::QtDesktopWindow</name>
     <message>
-        <location filename="../ui/desktop/qt_desktop_window.cc" line="301"/>
-        <location filename="../ui/desktop/qt_desktop_window.cc" line="309"/>
-        <location filename="../ui/desktop/qt_desktop_window.cc" line="953"/>
-        <source>Warning</source>
-        <translation>Atenção</translation>
-    </message>
-    <message>
         <location filename="../ui/desktop/qt_desktop_window.cc" line="302"/>
-        <source>There are no supported video encodings.</source>
-        <translation>Não há codificações de vídeo compatíveis.</translation>
-    </message>
-    <message>
         <location filename="../ui/desktop/qt_desktop_window.cc" line="310"/>
+        <location filename="../ui/desktop/qt_desktop_window.cc" line="965"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/desktop/qt_desktop_window.cc" line="303"/>
+        <source>There are no supported video encodings.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/desktop/qt_desktop_window.cc" line="311"/>
         <source>The current video encoding is not supported by the host. Please specify a different video encoding.</source>
-        <translation>A codificação de vídeo atual não é compatível com o host. Especifique uma codificação de vídeo diferente.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/desktop/qt_desktop_window.cc" line="931"/>
+        <location filename="../ui/desktop/qt_desktop_window.cc" line="943"/>
         <source>Save File</source>
-        <translation>Salvar arquivo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/desktop/qt_desktop_window.cc" line="933"/>
+        <location filename="../ui/desktop/qt_desktop_window.cc" line="945"/>
         <source>PNG Image (*.png);;BMP Image (*.bmp)</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/desktop/qt_desktop_window.cc" line="953"/>
+        <location filename="../ui/desktop/qt_desktop_window.cc" line="965"/>
         <source>Could not save image</source>
-        <translation>Não foi possível salvar a imagem</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3153,22 +2798,22 @@
     <message>
         <location filename="../ui/file_transfer/qt_file_manager_window.cc" line="53"/>
         <source>Local Computer</source>
-        <translation>Computador local</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/qt_file_manager_window.cc" line="54"/>
         <source>Remote Computer</source>
-        <translation>Computador remoto</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/qt_file_manager_window.cc" line="91"/>
         <source>Warning</source>
-        <translation>Atenção</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/file_transfer/qt_file_manager_window.cc" line="92"/>
         <source>Session error: %1</source>
-        <translation>Erro de sessão:%1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3201,7 +2846,7 @@
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.cc" line="174"/>
         <source>Printers</source>
-        <translation type="unfinished">Impressoras</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.cc" line="180"/>
@@ -3231,21 +2876,6 @@
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.cc" line="217"/>
         <source>Processes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/sys_info/qt_system_info_window.cc" line="280"/>
-        <source>Operating System</source>
-        <translation type="unfinished">Sistema Operacional</translation>
-    </message>
-    <message>
-        <location filename="../ui/sys_info/qt_system_info_window.cc" line="285"/>
-        <source>Environment Variables</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/sys_info/qt_system_info_window.cc" line="291"/>
-        <source>Event Logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3284,9 +2914,24 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/sys_info/qt_system_info_window.cc" line="280"/>
+        <source>Operating System</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/sys_info/qt_system_info_window.cc" line="285"/>
+        <source>Environment Variables</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/sys_info/qt_system_info_window.cc" line="291"/>
+        <source>Event Logs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/sys_info/qt_system_info_window.cc" line="297"/>
         <source>Users</source>
-        <translation type="unfinished">Usuários</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.cc" line="303"/>
@@ -3296,22 +2941,22 @@
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.cc" line="330"/>
         <source>HTML File</source>
-        <translation type="unfinished">Arquivo HTML</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.cc" line="332"/>
         <source>HTML File (*.html)</source>
-        <translation type="unfinished">Arquivo HTML (*.html)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.cc" line="343"/>
         <source>Warning</source>
-        <translation type="unfinished">Atenção</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/qt_system_info_window.cc" line="344"/>
         <source>Failed to save file: %1</source>
-        <translation type="unfinished">Falha ao salvar o arquivo:%1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3330,148 +2975,187 @@
 <context>
     <name>client::RouterManagerWindow</name>
     <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="284"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1070"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1110"/>
+        <source>Active peers: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="409"/>
         <source>Connecting to %1:%2...</source>
-        <translation>Conectando em %1:%2...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="436"/>
         <source>Connected to: %1:%2 (version %3)</source>
-        <translation>Conectado em: %1:%2 (versão %3)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="458"/>
         <source>Violation of the communication protocol.</source>
-        <translation>Violação do protocolo de comunicação.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="462"/>
         <source>Cryptography error (message encryption or decryption failed).</source>
-        <translation>Erro de criptografia (falha na criptografia ou descriptografia da mensagem).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="466"/>
         <source>An error occurred with the network (e.g., the network cable was accidentally plugged out).</source>
-        <translation>Ocorreu um erro com a rede (por exemplo, o cabo de rede foi desconectado acidentalmente).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="470"/>
         <source>Connection was refused by the peer (or timed out).</source>
-        <translation>A conexão foi recusada pelo host (ou expirou).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="474"/>
         <source>Remote host closed the connection.</source>
-        <translation>O host remoto fechou a conexão.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="478"/>
         <source>Host address was not found.</source>
-        <translation>O endereço do host não foi encontrado.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="482"/>
         <source>Socket operation timed out.</source>
-        <translation>A operação atingiu o tempo limite.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="486"/>
         <source>Address specified is already in use and was set to be exclusive.</source>
-        <translation>O endereço especificado já está em uso e foi definido como exclusivo.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="490"/>
         <source>Address specified does not belong to the host.</source>
-        <translation>O endereço especificado não pertence ao host.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="500"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="549"/>
         <source>An unknown error occurred.</source>
-        <translation>Ocorreu um erro desconhecido.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="505"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="517"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="553"/>
         <source>Error: %1</source>
-        <translation>Erro: %1</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="514"/>
+        <source>The Router version is newer than the Client version (%1 &gt; %2). Please update the application.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="529"/>
         <source>Authentication successfully completed.</source>
-        <translation>Autenticação concluída com sucesso.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="533"/>
         <source>Network authentication error.</source>
-        <translation>Erro de autenticação de rede.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="537"/>
         <source>Violation of the data exchange protocol.</source>
-        <translation>Violação do protocolo de troca de dados.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="541"/>
         <source>An error occured while authenticating: wrong user name or password.</source>
-        <translation>Ocorreu um erro durante a autenticação: usuário ou senha incorretos.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="545"/>
         <source>Specified session type is not allowed for the user.</source>
-        <translation>O tipo de sessão especificado não é permitido para o usuário.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="676"/>
         <source>Invalid request.</source>
-        <translation>Solicitação inválida.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="680"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="721"/>
         <source>Unknown internal error.</source>
-        <translation>Erro interno desconhecido.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="684"/>
         <source>Invalid session ID was passed.</source>
-        <translation>Foi inserido um ID de sessão inválido.</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="688"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="733"/>
+        <source>Unknown error type.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="692"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="737"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1303"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1377"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1427"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1450"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1519"/>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="725"/>
+        <source>Invalid data was passed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="729"/>
+        <source>A user with the specified name already exists.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="756"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="815"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="868"/>
         <source>Disconnect</source>
-        <translation type="unfinished">Desconectar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="760"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="817"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="870"/>
         <source>Disconnect All</source>
-        <translation type="unfinished">Desconectar todos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="761"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="818"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="947"/>
         <source>Refresh</source>
-        <translation type="unfinished">Atualizar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="765"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="820"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="872"/>
         <source>Copy Row</source>
-        <translation type="unfinished">Copiar Linha</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="766"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="821"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="873"/>
         <source>Copy Value</source>
-        <translation type="unfinished">Copiar Valor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="770"/>
@@ -3487,11 +3171,44 @@
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="930"/>
         <source>Delete</source>
-        <translation type="unfinished">Excluir</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="944"/>
         <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1131"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1158"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1187"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1214"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1308"/>
+        <source>Confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1132"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1188"/>
+        <source>Are you sure you want to disconnect session &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1136"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1162"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1192"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1218"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1313"/>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1137"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1163"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1193"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1219"/>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1314"/>
+        <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3500,10 +3217,25 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1215"/>
+        <source>Are you sure you want to disconnect all hosts?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1303"/>
+        <source>You cannot delete a built-in user.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/router_manager/router_manager_window.cc" line="1309"/>
+        <source>Are you sure you want to delete user &quot;%1&quot;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="1366"/>
         <location filename="../ui/router_manager/router_manager_window.cc" line="1439"/>
         <source>Save File</source>
-        <translation type="unfinished">Salvar arquivo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="1368"/>
@@ -3527,165 +3259,58 @@
         <location filename="../ui/router_manager/router_manager_window.cc" line="1599"/>
         <source>%n seconds</source>
         <translation type="unfinished">
-            <numerusform>%n segundo</numerusform>
-            <numerusform>%n segundos</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/router_manager/router_manager_window.cc" line="1600"/>
         <source>%n minutes</source>
         <translation type="unfinished">
-            <numerusform>%n minuto</numerusform>
-            <numerusform>%n minutos</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/router_manager/router_manager_window.cc" line="1601"/>
         <source>%n hours</source>
         <translation type="unfinished">
-            <numerusform>%n hora</numerusform>
-            <numerusform>%n horas</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/router_manager/router_manager_window.cc" line="1625"/>
         <source>%n days</source>
         <translation type="unfinished">
-            <numerusform>%n dia</numerusform>
-            <numerusform>%n dias</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="1648"/>
         <source>TB</source>
-        <translation type="unfinished">TB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="1653"/>
         <source>GB</source>
-        <translation type="unfinished">GB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="1658"/>
         <source>MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="1663"/>
         <source>kB</source>
-        <translation type="unfinished">kB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_manager_window.cc" line="1668"/>
         <source>B</source>
-        <translation type="unfinished">B</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1132"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1188"/>
-        <source>Are you sure you want to disconnect session &quot;%1&quot;?</source>
-        <translation>Tem certeza que deseja desconectar a sessão &quot;%1&quot;?</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="284"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1070"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1110"/>
-        <source>Active peers: %1</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="514"/>
-        <source>The Router version is newer than the Client version (%1 &gt; %2). Please update the application.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="688"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="733"/>
-        <source>Unknown error type.</source>
-        <translation>Tipo de erro desconhecido.</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="692"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="737"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1303"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1377"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1427"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1450"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1519"/>
-        <source>Warning</source>
-        <translation>Atenção</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="725"/>
-        <source>Invalid data was passed.</source>
-        <translation>Dados inválidos foram inseridos.</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="729"/>
-        <source>A user with the specified name already exists.</source>
-        <translation>Já existe um usuário com o nome especificado.</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1131"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1158"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1187"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1214"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1308"/>
-        <source>Confirmation</source>
-        <translation>Confirmação</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1136"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1162"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1192"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1218"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1313"/>
-        <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1137"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1163"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1193"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1219"/>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1314"/>
-        <source>No</source>
-        <translation type="unfinished">No</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1215"/>
-        <source>Are you sure you want to disconnect all hosts?</source>
-        <translation>Tem certeza de que deseja desconectar de todos os hosts?</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1303"/>
-        <source>You cannot delete a built-in user.</source>
-        <translation>Você não pode excluir um usuário do sistema.</translation>
-    </message>
-    <message>
-        <location filename="../ui/router_manager/router_manager_window.cc" line="1309"/>
-        <source>Are you sure you want to delete user &quot;%1&quot;?</source>
-        <translation>Tem certeza de que deseja excluir o usuário &quot;%1&quot;?</translation>
-    </message>
-    <message>
-        <source>Computer Name</source>
-        <translation type="vanished">Nome do computador</translation>
-    </message>
-    <message>
-        <source>IP Address</source>
-        <translation type="vanished">Endereço IP</translation>
-    </message>
-    <message>
-        <source>Connect Time</source>
-        <translation type="vanished">Tempo de conexão</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="vanished">Versão</translation>
-    </message>
-    <message>
-        <source>Operating System</source>
-        <translation type="vanished">Sistema Operacional</translation>
     </message>
 </context>
 <context>
@@ -3711,78 +3336,78 @@
         <location filename="../ui/router_manager/router_user_dialog.cc" line="202"/>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="230"/>
         <source>Warning</source>
-        <translation>Atenção</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="138"/>
         <source>The user name can not be empty and can contain only alphabet characters, numbers and _, -, ., @ characters.</source>
-        <translation>O usuário não pode estar vazio e pode conter apenas caracteres do alfabeto, números e _, -,., @.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="153"/>
         <source>The username you entered already exists.</source>
-        <translation>O usuário que você digitou já existe.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="166"/>
         <source>The passwords you entered do not match.</source>
-        <translation>As senhas inseridas não são iguais.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/router_manager/router_user_dialog.cc" line="180"/>
         <source>Password can not be empty and should not exceed %n characters.</source>
-        <translation>
-            <numerusform>A senha não pode estar em branco e não deve exceder %n caracteres.</numerusform>
-            <numerusform>A senha não pode estar em branco e não deve exceder %n caracteres.</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="192"/>
         <source>Password you entered does not meet the security requirements!</source>
-        <translation>A senha que você digitou não atende aos requisitos de segurança!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/router_manager/router_user_dialog.cc" line="195"/>
         <source>The password must contain lowercase and uppercase characters, numbers and should not be shorter than %n characters.</source>
-        <translation>
-            <numerusform>A senha deve conter letras maiúsculas e minúsculas, números e não deve ter menos de%n caracteres.</numerusform>
-            <numerusform>A senha deve conter letras maiúsculas e minúsculas, números e não deve ter menos de%n caracteres.</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="199"/>
         <source>Do you want to enter a different password?</source>
-        <translation>Você desejar inserir uma senha diferente?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="206"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="207"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="231"/>
         <source>Unknown internal error when creating or modifying a user.</source>
-        <translation>Erro interno desconhecido ao criar ou editar usuário.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="280"/>
         <source>Double-click to change</source>
-        <translation>Clique duas vezes para alterar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="305"/>
         <source>Administrator</source>
-        <translation>Administrador</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/router_manager/router_user_dialog.cc" line="309"/>
         <source>Client</source>
-        <translation>Cliente</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3790,17 +3415,17 @@
     <message>
         <location filename="../ui/desktop/select_screen_action.h" line="37"/>
         <source>Full Desktop</source>
-        <translation>Área de Trabalho Completa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/select_screen_action.h" line="50"/>
         <source>Monitor %1 (primary)</source>
-        <translation type="unfinished">Monitor %1 (primário)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/select_screen_action.h" line="52"/>
         <source>Monitor %1</source>
-        <translation type="unfinished">Monitor %1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3808,12 +3433,12 @@
     <message>
         <location filename="../ui/session_window.cc" line="138"/>
         <source>Attempt to connect to %1.</source>
-        <translation>Tentando conectar-se a%1.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="153"/>
         <source>Connection established.</source>
-        <translation>Conexão estabelecida.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="171"/>
@@ -3823,27 +3448,27 @@
     <message>
         <location filename="../ui/session_window.cc" line="192"/>
         <source>Network error when connecting to the router: %1</source>
-        <translation>Erro de rede ao conectar ao roteador:%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="199"/>
         <source>Authentication error when connecting to the router: %1</source>
-        <translation>Erro de autenticação ao conectar ao roteador:%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="224"/>
         <source>Desktop Manage</source>
-        <translation>Controlar área de trabalho</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="228"/>
         <source>Desktop View</source>
-        <translation>Visualizar da área de trabalho</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="232"/>
         <source>File Transfer</source>
-        <translation>Transferência de arquivo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="236"/>
@@ -3858,345 +3483,103 @@
     <message>
         <location filename="../ui/session_window.cc" line="284"/>
         <source>Violation of the communication protocol.</source>
-        <translation>Violação do protocolo de comunicação.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="288"/>
         <source>Cryptography error (message encryption or decryption failed).</source>
-        <translation>Erro de criptografia (falha na criptografia ou descriptografia da mensagem).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="292"/>
         <source>An error occurred with the network (e.g., the network cable was accidentally plugged out).</source>
-        <translation>Ocorreu um erro com a rede (por exemplo, o cabo de rede foi desconectado acidentalmente).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="296"/>
         <source>Connection was refused by the peer (or timed out).</source>
-        <translation>A conexão foi recusada pelo host (ou expirou).</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="300"/>
         <source>Remote host closed the connection.</source>
-        <translation>O host remoto fechou a conexão.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="304"/>
         <source>Host address was not found.</source>
-        <translation>O endereço do host não foi encontrado.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="308"/>
         <source>Socket operation timed out.</source>
-        <translation>A operação atingiu o tempo limite.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="312"/>
         <source>Address specified is already in use and was set to be exclusive.</source>
-        <translation>O endereço especificado já está em uso e foi definido como exclusivo.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="316"/>
         <source>Address specified does not belong to the host.</source>
-        <translation>O endereço especificado não pertence ao host.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="326"/>
         <location filename="../ui/session_window.cc" line="363"/>
         <source>An unknown error occurred.</source>
-        <translation>Ocorreu um erro desconhecido.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="343"/>
         <source>Authentication successfully completed.</source>
-        <translation>Autenticação concluída com sucesso.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="347"/>
         <source>Network authentication error.</source>
-        <translation>Erro de autenticação de rede.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="351"/>
         <source>Violation of the data exchange protocol.</source>
-        <translation>Violação do protocolo de troca de dados.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="355"/>
         <source>Wrong user name or password.</source>
-        <translation>Usuário ou senha incorretos.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="359"/>
         <source>Specified session type is not allowed for the user.</source>
-        <translation>O tipo de sessão especificado não é permitido para o usuário.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="379"/>
         <source>No host with the specified ID was found.</source>
-        <translation>Nenhum host com o ID especificado foi encontrado.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="383"/>
         <source>There are no relays available or the key pool is empty.</source>
-        <translation>Não há relés disponíveis ou o pool de chaves está vazio.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="387"/>
         <source>Failed to connect to the relay server.</source>
-        <translation>Falha ao conectar ao servidor de retransmissão.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="391"/>
         <source>Access is denied.</source>
-        <translation>Acesso negado.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_window.cc" line="395"/>
         <source>Unknown error.</source>
-        <translation>Erro desconhecido.</translation>
-    </message>
-</context>
-<context>
-    <name>client::SysInfo</name>
-    <message>
-        <source>TB</source>
-        <translation type="obsolete">TB</translation>
-    </message>
-    <message>
-        <source>GB</source>
-        <translation type="obsolete">GB</translation>
-    </message>
-    <message>
-        <source>MB</source>
-        <translation type="obsolete">MB</translation>
-    </message>
-    <message>
-        <source>kB</source>
-        <translation type="obsolete">kB</translation>
-    </message>
-    <message>
-        <source>B</source>
-        <translation type="obsolete">B</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n seconds</source>
-        <translation type="obsolete">
-            <numerusform>%n segundo</numerusform>
-            <numerusform>%n segundos</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%n minutes</source>
-        <translation type="obsolete">
-            <numerusform>%n minuto</numerusform>
-            <numerusform>%n minutos</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%n hours</source>
-        <translation type="obsolete">
-            <numerusform>%n hora</numerusform>
-            <numerusform>%n horas</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%n days</source>
-        <translation type="obsolete">
-            <numerusform>%n dia</numerusform>
-            <numerusform>%n dias</numerusform>
-        </translation>
-    </message>
-</context>
-<context>
-    <name>client::SysInfoSummary</name>
-    <message>
-        <source>Name</source>
-        <translation type="obsolete">Nome</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation type="obsolete">Domínio</translation>
-    </message>
-    <message>
-        <source>Workgroup</source>
-        <translation type="obsolete">Grupo de trabalho</translation>
-    </message>
-    <message>
-        <source>Uptime</source>
-        <translation type="obsolete">Tempo de atividade</translation>
-    </message>
-    <message>
-        <source>Computer</source>
-        <translation type="obsolete">Computador</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="obsolete">Versão</translation>
-    </message>
-    <message>
-        <source>Architecture</source>
-        <translation type="obsolete">Arquitetura</translation>
-    </message>
-    <message>
-        <source>Operating System</source>
-        <translation type="obsolete">Sistema Operacional</translation>
-    </message>
-    <message>
-        <source>Manufacturer</source>
-        <translation type="obsolete">Fabricante</translation>
-    </message>
-    <message>
-        <source>Model</source>
-        <translation type="obsolete">Modelo</translation>
-    </message>
-    <message>
-        <source>Motherboard</source>
-        <translation type="obsolete">Placa mãe</translation>
-    </message>
-    <message>
-        <source>Vendor</source>
-        <translation type="obsolete">Fornecedor</translation>
-    </message>
-    <message>
-        <source>Packages</source>
-        <translation type="obsolete">Pacotes</translation>
-    </message>
-    <message>
-        <source>Cores</source>
-        <translation type="obsolete">Núcleos</translation>
-    </message>
-    <message>
-        <source>Threads</source>
-        <translation type="obsolete">Threads</translation>
-    </message>
-    <message>
-        <source>Processor</source>
-        <translation type="obsolete">Processador</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation type="obsolete">Data</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="obsolete">Tamanho</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation type="obsolete">Velocidade</translation>
-    </message>
-    <message>
-        <source>%1 MHz</source>
-        <translation type="obsolete">%1 MHz</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation type="obsolete">Tipo</translation>
-    </message>
-    <message>
-        <source>Part Number</source>
-        <translation type="obsolete">Part Number</translation>
-    </message>
-    <message>
-        <source>Installed</source>
-        <translation type="obsolete">Instalado</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">No</translation>
-    </message>
-    <message>
-        <source>Memory</source>
-        <translation type="obsolete">Memória</translation>
-    </message>
-    <message>
-        <source>%1 (%2 free)</source>
-        <translation type="obsolete">%1 (%2 livre)</translation>
-    </message>
-    <message>
-        <source>Logical Drives</source>
-        <translation type="obsolete">Unidades lógicas</translation>
-    </message>
-    <message>
-        <source>Adapter Name</source>
-        <translation type="obsolete">Nome do adaptador</translation>
-    </message>
-    <message>
-        <source>Interface Type</source>
-        <translation type="obsolete">Tipo de interface</translation>
-    </message>
-    <message>
-        <source>Connection Speed</source>
-        <translation type="obsolete">Velocidade de conexão</translation>
-    </message>
-    <message>
-        <source>MAC Address</source>
-        <translation type="obsolete">Endereço MAC</translation>
-    </message>
-    <message>
-        <source>DHCP Enabled</source>
-        <translation type="obsolete">DHCP ativo</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Sim</translation>
-    </message>
-    <message>
-        <source>DHCP Server #%1</source>
-        <translation type="obsolete">Servidor DHCP #%1</translation>
-    </message>
-    <message>
-        <source>DHCP Server</source>
-        <translation type="obsolete">Servidor DHCP</translation>
-    </message>
-    <message>
-        <source>Address #%1</source>
-        <translation type="obsolete">Endereço #%1</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation type="obsolete">Endereço</translation>
-    </message>
-    <message>
-        <source>Gateway #%1</source>
-        <translation type="obsolete">Gateway #%1</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation type="obsolete">Gateway</translation>
-    </message>
-    <message>
-        <source>Network Connections</source>
-        <translation type="obsolete">Conexões de rede</translation>
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="obsolete">Padrão</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation type="obsolete">Porta</translation>
-    </message>
-    <message>
-        <source>Driver</source>
-        <translation type="obsolete">Driver</translation>
-    </message>
-    <message>
-        <source>Shared</source>
-        <translation type="obsolete">Compartilhado</translation>
-    </message>
-    <message>
-        <source>Share Name</source>
-        <translation type="obsolete">Nome de compartilhamento</translation>
-    </message>
-    <message>
-        <source>Jobs Count</source>
-        <translation type="obsolete">Contador de serviços</translation>
-    </message>
-    <message>
-        <source>Printers</source>
-        <translation type="obsolete">Impressoras</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4204,58 +3587,58 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget.cc" line="105"/>
         <source>TB</source>
-        <translation type="unfinished">TB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget.cc" line="110"/>
         <source>GB</source>
-        <translation type="unfinished">GB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget.cc" line="115"/>
         <source>MB</source>
-        <translation type="unfinished">MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget.cc" line="120"/>
         <source>kB</source>
-        <translation type="unfinished">kB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget.cc" line="125"/>
         <source>B</source>
-        <translation type="unfinished">B</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/sys_info/sys_info_widget.cc" line="142"/>
         <source>%n seconds</source>
         <translation type="unfinished">
-            <numerusform>%n segundo</numerusform>
-            <numerusform>%n segundos</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/sys_info/sys_info_widget.cc" line="143"/>
         <source>%n minutes</source>
         <translation type="unfinished">
-            <numerusform>%n minuto</numerusform>
-            <numerusform>%n minutos</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/sys_info/sys_info_widget.cc" line="144"/>
         <source>%n hours</source>
         <translation type="unfinished">
-            <numerusform>%n hora</numerusform>
-            <numerusform>%n horas</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/sys_info/sys_info_widget.cc" line="168"/>
         <source>%n days</source>
         <translation type="unfinished">
-            <numerusform>%n dia</numerusform>
-            <numerusform>%n dias</numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
@@ -4366,8 +3749,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/sys_info/sys_info_widget_event_logs.cc" line="325"/>
-        <source>Unknown</source>
+        <location filename="../ui/sys_info/sys_info_widget_event_logs.cc" line="195"/>
+        <source>Page %1/%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4376,14 +3759,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/sys_info/sys_info_widget_event_logs.cc" line="195"/>
-        <source>Page %1/%2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/sys_info/sys_info_widget_event_logs.cc" line="313"/>
         <source>Warning</source>
-        <translation type="unfinished">Atenção</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_event_logs.cc" line="316"/>
@@ -4398,6 +3776,11 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_event_logs.cc" line="322"/>
         <source>Audit Failure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/sys_info/sys_info_widget_event_logs.cc" line="325"/>
+        <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4468,7 +3851,7 @@
         <location filename="../ui/sys_info/sys_info_widget_local_users.cc" line="160"/>
         <location filename="../ui/sys_info/sys_info_widget_local_users.cc" line="161"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_local_users.cc" line="157"/>
@@ -4477,7 +3860,7 @@
         <location filename="../ui/sys_info/sys_info_widget_local_users.cc" line="160"/>
         <location filename="../ui/sys_info/sys_info_widget_local_users.cc" line="161"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_local_users.cc" line="158"/>
@@ -4553,21 +3936,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="180"/>
-        <source>Gamma</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="194"/>
-        <source>Diagonal Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="244"/>
-        <source>%1 Hz</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="174"/>
         <source>Date Of Manufacture</source>
         <translation type="unfinished"></translation>
@@ -4578,6 +3946,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="180"/>
+        <source>Gamma</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="184"/>
         <source>Image Size</source>
         <translation type="unfinished"></translation>
@@ -4585,6 +3958,11 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="185"/>
         <source>%1x%2 cm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="194"/>
+        <source>Diagonal Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4621,11 +3999,16 @@
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="219"/>
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="222"/>
         <source>%1 MHz</source>
-        <translation type="unfinished">%1 MHz</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="222"/>
         <source>Maximum Pixel Clock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="224"/>
+        <source>Input Signal Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4636,7 +4019,7 @@
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="231"/>
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="232"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="227"/>
@@ -4646,7 +4029,7 @@
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="231"/>
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="232"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="235"/>
@@ -4654,13 +4037,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="248"/>
-        <source>Supported Video Modes</source>
+        <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="244"/>
+        <source>%1 Hz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="224"/>
-        <source>Input Signal Type</source>
+        <location filename="../ui/sys_info/sys_info_widget_monitors.cc" line="248"/>
+        <source>Supported Video Modes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4684,67 +4067,67 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="139"/>
         <source>Adapter Name</source>
-        <translation type="unfinished">Nome do adaptador</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="142"/>
         <source>Interface Type</source>
-        <translation type="unfinished">Tipo de interface</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="145"/>
         <source>Connection Speed</source>
-        <translation type="unfinished">Velocidade de conexão</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="148"/>
         <source>MAC Address</source>
-        <translation type="unfinished">Endereço MAC</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="150"/>
         <source>DHCP Enabled</source>
-        <translation type="unfinished">DHCP ativo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="150"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="150"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="155"/>
         <source>DHCP Server #%1</source>
-        <translation type="unfinished">Servidor DHCP #%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="155"/>
         <source>DHCP Server</source>
-        <translation type="unfinished">Servidor DHCP</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="167"/>
         <source>Address #%1</source>
-        <translation type="unfinished">Endereço #%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="167"/>
         <source>Address</source>
-        <translation type="unfinished">Endereço</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="175"/>
         <source>Gateway #%1</source>
-        <translation type="unfinished">Gateway #%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_adapters.cc" line="175"/>
         <source>Gateway</source>
-        <translation type="unfinished">Gateway</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4757,7 +4140,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_shares.cc" line="136"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_net_shares.cc" line="139"/>
@@ -4815,7 +4198,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_power_options.cc" line="186"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Fabricante</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_power_options.cc" line="189"/>
@@ -4852,7 +4235,7 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_power_options.cc" line="204"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_power_options.cc" line="207"/>
@@ -4891,7 +4274,7 @@
         <location filename="../ui/sys_info/sys_info_widget_power_options.cc" line="228"/>
         <location filename="../ui/sys_info/sys_info_widget_power_options.cc" line="231"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_power_options.cc" line="225"/>
@@ -4956,44 +4339,44 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.cc" line="138"/>
         <source>Default</source>
-        <translation type="unfinished">Padrão</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.cc" line="138"/>
         <location filename="../ui/sys_info/sys_info_widget_printers.cc" line="146"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.cc" line="138"/>
         <location filename="../ui/sys_info/sys_info_widget_printers.cc" line="146"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.cc" line="141"/>
         <source>Port</source>
-        <translation type="unfinished">Porta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.cc" line="144"/>
         <source>Driver</source>
-        <translation type="unfinished">Driver</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.cc" line="146"/>
         <source>Shared</source>
-        <translation type="unfinished">Compartilhado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.cc" line="149"/>
         <source>Share Name</source>
-        <translation type="unfinished">Nome de compartilhamento</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_printers.cc" line="151"/>
         <source>Jobs Count</source>
-        <translation type="unfinished">Contador de serviços</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5084,38 +4467,38 @@
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="135"/>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="158"/>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="138"/>
         <source>Domain</source>
-        <translation type="unfinished">Domínio</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="141"/>
         <source>Workgroup</source>
-        <translation type="unfinished">Grupo de trabalho</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="144"/>
         <source>Uptime</source>
-        <translation type="unfinished">Tempo de atividade</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="148"/>
         <source>Computer</source>
-        <translation type="unfinished">Computador</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="161"/>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="233"/>
         <source>Version</source>
-        <translation type="unfinished">Versão</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="164"/>
         <source>Architecture</source>
-        <translation type="unfinished">Arquitetura</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="167"/>
@@ -5130,75 +4513,75 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="175"/>
         <source>Operating System</source>
-        <translation type="unfinished">Sistema Operacional</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="185"/>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="257"/>
         <source>Manufacturer</source>
-        <translation type="unfinished">Fabricante</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="188"/>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="203"/>
         <source>Model</source>
-        <translation type="unfinished">Modelo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="193"/>
         <source>Motherboard</source>
-        <translation type="unfinished">Placa mãe</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="206"/>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="230"/>
         <source>Vendor</source>
-        <translation type="unfinished">Fornecedor</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="209"/>
         <source>Packages</source>
-        <translation type="unfinished">Pacotes</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="212"/>
         <source>Cores</source>
-        <translation type="unfinished">Núcleos</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="215"/>
         <source>Threads</source>
-        <translation type="unfinished">Threads</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="220"/>
         <source>Processor</source>
-        <translation type="unfinished">Processador</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="236"/>
         <source>Date</source>
-        <translation type="unfinished">Data</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="260"/>
         <source>Size</source>
-        <translation type="unfinished">Tamanho</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="263"/>
         <source>Speed</source>
-        <translation type="unfinished">Velocidade</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="263"/>
         <source>%1 MHz</source>
-        <translation type="unfinished">%1 MHz</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="266"/>
         <source>Type</source>
-        <translation type="unfinished">Tipo</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="269"/>
@@ -5208,112 +4591,32 @@
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="272"/>
         <source>Part Number</source>
-        <translation type="unfinished">Part Number</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="276"/>
         <source>Installed</source>
-        <translation type="unfinished">Instalado</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="276"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="286"/>
         <source>Memory</source>
-        <translation type="unfinished">Memória</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="315"/>
         <source>%1 (%2 free)</source>
-        <translation type="unfinished">%1 (%2 livre)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/sys_info/sys_info_widget_summary.cc" line="325"/>
         <source>Logical Drives</source>
-        <translation type="unfinished">Unidades lógicas</translation>
-    </message>
-    <message>
-        <source>Adapter Name</source>
-        <translation type="obsolete">Nome do adaptador</translation>
-    </message>
-    <message>
-        <source>Interface Type</source>
-        <translation type="obsolete">Tipo de interface</translation>
-    </message>
-    <message>
-        <source>Connection Speed</source>
-        <translation type="obsolete">Velocidade de conexão</translation>
-    </message>
-    <message>
-        <source>MAC Address</source>
-        <translation type="obsolete">Endereço MAC</translation>
-    </message>
-    <message>
-        <source>DHCP Enabled</source>
-        <translation type="obsolete">DHCP ativo</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Sim</translation>
-    </message>
-    <message>
-        <source>DHCP Server #%1</source>
-        <translation type="obsolete">Servidor DHCP #%1</translation>
-    </message>
-    <message>
-        <source>DHCP Server</source>
-        <translation type="obsolete">Servidor DHCP</translation>
-    </message>
-    <message>
-        <source>Address #%1</source>
-        <translation type="obsolete">Endereço #%1</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation type="obsolete">Endereço</translation>
-    </message>
-    <message>
-        <source>Gateway #%1</source>
-        <translation type="obsolete">Gateway #%1</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation type="obsolete">Gateway</translation>
-    </message>
-    <message>
-        <source>Network Connections</source>
-        <translation type="obsolete">Conexões de rede</translation>
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="obsolete">Padrão</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation type="obsolete">Porta</translation>
-    </message>
-    <message>
-        <source>Driver</source>
-        <translation type="obsolete">Driver</translation>
-    </message>
-    <message>
-        <source>Shared</source>
-        <translation type="obsolete">Compartilhado</translation>
-    </message>
-    <message>
-        <source>Share Name</source>
-        <translation type="obsolete">Nome de compartilhamento</translation>
-    </message>
-    <message>
-        <source>Jobs Count</source>
-        <translation type="obsolete">Contador de serviços</translation>
-    </message>
-    <message>
-        <source>Printers</source>
-        <translation type="obsolete">Impressoras</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5370,253 +4673,13 @@
     </message>
 </context>
 <context>
-    <name>client::SystemInfoWindow</name>
-    <message>
-        <source>HTML File</source>
-        <translation type="vanished">Arquivo HTML</translation>
-    </message>
-    <message>
-        <source>HTML File (*.html)</source>
-        <translation type="vanished">Arquivo HTML (*.html)</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">Atenção</translation>
-    </message>
-    <message>
-        <source>Failed to save file: %1</source>
-        <translation type="vanished">Falha ao salvar o arquivo:%1</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nome</translation>
-    </message>
-    <message>
-        <source>Domain</source>
-        <translation type="vanished">Domínio</translation>
-    </message>
-    <message>
-        <source>Workgroup</source>
-        <translation type="vanished">Grupo de trabalho</translation>
-    </message>
-    <message>
-        <source>Uptime</source>
-        <translation type="vanished">Tempo de atividade</translation>
-    </message>
-    <message>
-        <source>Computer</source>
-        <translation type="vanished">Computador</translation>
-    </message>
-    <message>
-        <source>Version</source>
-        <translation type="vanished">Versão</translation>
-    </message>
-    <message>
-        <source>Architecture</source>
-        <translation type="vanished">Arquitetura</translation>
-    </message>
-    <message>
-        <source>Operating System</source>
-        <translation type="vanished">Sistema Operacional</translation>
-    </message>
-    <message>
-        <source>Manufacturer</source>
-        <translation type="vanished">Fabricante</translation>
-    </message>
-    <message>
-        <source>Model</source>
-        <translation type="vanished">Modelo</translation>
-    </message>
-    <message>
-        <source>Motherboard</source>
-        <translation type="vanished">Placa mãe</translation>
-    </message>
-    <message>
-        <source>Vendor</source>
-        <translation type="vanished">Fornecedor</translation>
-    </message>
-    <message>
-        <source>Packages</source>
-        <translation type="vanished">Pacotes</translation>
-    </message>
-    <message>
-        <source>Cores</source>
-        <translation type="vanished">Núcleos</translation>
-    </message>
-    <message>
-        <source>Threads</source>
-        <translation type="vanished">Threads</translation>
-    </message>
-    <message>
-        <source>Processor</source>
-        <translation type="vanished">Processador</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation type="vanished">Data</translation>
-    </message>
-    <message>
-        <source>Size</source>
-        <translation type="vanished">Tamanho</translation>
-    </message>
-    <message>
-        <source>Speed</source>
-        <translation type="vanished">Velocidade</translation>
-    </message>
-    <message>
-        <source>%1 MHz</source>
-        <translation type="vanished">%1 MHz</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation type="vanished">Tipo</translation>
-    </message>
-    <message>
-        <source>Part Number</source>
-        <translation type="vanished">Part Number</translation>
-    </message>
-    <message>
-        <source>Installed</source>
-        <translation type="vanished">Instalado</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="vanished">No</translation>
-    </message>
-    <message>
-        <source>Memory</source>
-        <translation type="vanished">Memória</translation>
-    </message>
-    <message>
-        <source>%1 (%2 free)</source>
-        <translation type="vanished">%1 (%2 livre)</translation>
-    </message>
-    <message>
-        <source>Logical Drives</source>
-        <translation type="vanished">Unidades lógicas</translation>
-    </message>
-    <message>
-        <source>Adapter Name</source>
-        <translation type="vanished">Nome do adaptador</translation>
-    </message>
-    <message>
-        <source>Interface Type</source>
-        <translation type="vanished">Tipo de interface</translation>
-    </message>
-    <message>
-        <source>Connection Speed</source>
-        <translation type="vanished">Velocidade de conexão</translation>
-    </message>
-    <message>
-        <source>MAC Address</source>
-        <translation type="vanished">Endereço MAC</translation>
-    </message>
-    <message>
-        <source>DHCP Enabled</source>
-        <translation type="vanished">DHCP ativo</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="vanished">Sim</translation>
-    </message>
-    <message>
-        <source>DHCP Server #%1</source>
-        <translation type="vanished">Servidor DHCP #%1</translation>
-    </message>
-    <message>
-        <source>DHCP Server</source>
-        <translation type="vanished">Servidor DHCP</translation>
-    </message>
-    <message>
-        <source>Address #%1</source>
-        <translation type="vanished">Endereço #%1</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation type="vanished">Endereço</translation>
-    </message>
-    <message>
-        <source>Gateway #%1</source>
-        <translation type="vanished">Gateway #%1</translation>
-    </message>
-    <message>
-        <source>Gateway</source>
-        <translation type="vanished">Gateway</translation>
-    </message>
-    <message>
-        <source>Network Connections</source>
-        <translation type="vanished">Conexões de rede</translation>
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="vanished">Padrão</translation>
-    </message>
-    <message>
-        <source>Port</source>
-        <translation type="vanished">Porta</translation>
-    </message>
-    <message>
-        <source>Driver</source>
-        <translation type="vanished">Driver</translation>
-    </message>
-    <message>
-        <source>Shared</source>
-        <translation type="vanished">Compartilhado</translation>
-    </message>
-    <message>
-        <source>Share Name</source>
-        <translation type="vanished">Nome de compartilhamento</translation>
-    </message>
-    <message>
-        <source>Jobs Count</source>
-        <translation type="vanished">Contador de serviços</translation>
-    </message>
-    <message>
-        <source>Printers</source>
-        <translation type="vanished">Impressoras</translation>
-    </message>
-    <message numerus="yes">
-        <source>%n seconds</source>
-        <translation type="vanished">
-            <numerusform>%n segundo</numerusform>
-            <numerusform>%n segundos</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%n minutes</source>
-        <translation type="vanished">
-            <numerusform>%n minuto</numerusform>
-            <numerusform>%n minutos</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%n hours</source>
-        <translation type="vanished">
-            <numerusform>%n hora</numerusform>
-            <numerusform>%n horas</numerusform>
-        </translation>
-    </message>
-    <message numerus="yes">
-        <source>%n days</source>
-        <translation type="vanished">
-            <numerusform>%n dia</numerusform>
-            <numerusform>%n dias</numerusform>
-        </translation>
-    </message>
-</context>
-<context>
     <name>client::TaskManagerWindow</name>
-    <message>
-        <location filename="../ui/desktop/task_manager_window.cc" line="966"/>
-        <source>Update Speed</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="../ui/desktop/task_manager_window.cc" line="685"/>
         <location filename="../ui/desktop/task_manager_window.cc" line="723"/>
         <location filename="../ui/desktop/task_manager_window.cc" line="746"/>
         <source>Confirmation</source>
-        <translation type="unfinished">Confirmação</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/task_manager_window.cc" line="686"/>
@@ -5628,14 +4691,14 @@
         <location filename="../ui/desktop/task_manager_window.cc" line="728"/>
         <location filename="../ui/desktop/task_manager_window.cc" line="751"/>
         <source>Yes</source>
-        <translation type="unfinished">Sim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/task_manager_window.cc" line="691"/>
         <location filename="../ui/desktop/task_manager_window.cc" line="729"/>
         <location filename="../ui/desktop/task_manager_window.cc" line="752"/>
         <source>No</source>
-        <translation type="unfinished">No</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/desktop/task_manager_window.cc" line="724"/>
@@ -5653,13 +4716,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/desktop/task_manager_window.cc" line="954"/>
+        <source>CPU loading: %1%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../ui/desktop/task_manager_window.cc" line="960"/>
         <source>Physical memory: %1%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/desktop/task_manager_window.cc" line="954"/>
-        <source>CPU loading: %1%</source>
+        <location filename="../ui/desktop/task_manager_window.cc" line="966"/>
+        <source>Update Speed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

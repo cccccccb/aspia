@@ -60,7 +60,7 @@ void numberToHex(char*& target, const char* source, size_t source_count)
 }
 
 //--------------------------------------------------------------------------------------------------
-bool isValidGUIDInternal(std::string_view guid, bool strict)
+bool isValidGUIDInternal(std::string guid, bool strict)
 {
     if (guid.length() != kGUIDLength)
         return false;
@@ -95,7 +95,7 @@ T randomDataToGUIDStringT(const uint64_t bytes[2])
     big_endian[1] = EndianUtil::toBig(bytes[1]);
 
     const char* source = reinterpret_cast<const char*>(&big_endian[0]);
-    char* target = result.data();
+    char* target = const_cast<char*>(result.data());
 
     numberToHex(target, source, 4);
     *target++ = '-';
@@ -189,14 +189,14 @@ Guid Guid::create()
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool Guid::isValidGuidString(std::string_view guid)
+bool Guid::isValidGuidString(std::string guid)
 {
     return isValidGUIDInternal(guid, false /* strict */);
 }
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool Guid::isStrictValidGuidString(std::string_view guid)
+bool Guid::isStrictValidGuidString(std::string guid)
 {
     return isValidGUIDInternal(guid, true /* strict */);
 }

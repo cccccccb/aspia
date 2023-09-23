@@ -41,7 +41,7 @@ bool MessageLoopTaskRunner::belongsToCurrentThread() const
 //--------------------------------------------------------------------------------------------------
 void MessageLoopTaskRunner::postTask(Callback callback)
 {
-    std::shared_lock lock(loop_lock_);
+    std::shared_lock<std::shared_mutex> lock(loop_lock_);
 
     if (loop_)
         loop_->postTask(std::move(callback));
@@ -50,7 +50,7 @@ void MessageLoopTaskRunner::postTask(Callback callback)
 //--------------------------------------------------------------------------------------------------
 void MessageLoopTaskRunner::postDelayedTask(Callback callback, const Milliseconds& delay)
 {
-    std::shared_lock lock(loop_lock_);
+    std::shared_lock<std::shared_mutex> lock(loop_lock_);
 
     if (loop_)
         loop_->postDelayedTask(std::move(callback), delay);
@@ -59,7 +59,7 @@ void MessageLoopTaskRunner::postDelayedTask(Callback callback, const Millisecond
 //--------------------------------------------------------------------------------------------------
 void MessageLoopTaskRunner::postNonNestableTask(Callback callback)
 {
-    std::shared_lock lock(loop_lock_);
+    std::shared_lock<std::shared_mutex> lock(loop_lock_);
 
     if (loop_)
         loop_->postNonNestableTask(std::move(callback));
@@ -68,7 +68,7 @@ void MessageLoopTaskRunner::postNonNestableTask(Callback callback)
 //--------------------------------------------------------------------------------------------------
 void MessageLoopTaskRunner::postNonNestableDelayedTask(Callback callback, const Milliseconds& delay)
 {
-    std::shared_lock lock(loop_lock_);
+    std::shared_lock<std::shared_mutex> lock(loop_lock_);
 
     if (loop_)
         loop_->postNonNestableDelayedTask(std::move(callback), delay);
@@ -77,7 +77,7 @@ void MessageLoopTaskRunner::postNonNestableDelayedTask(Callback callback, const 
 //--------------------------------------------------------------------------------------------------
 void MessageLoopTaskRunner::postQuit()
 {
-    std::shared_lock lock(loop_lock_);
+    std::shared_lock<std::shared_mutex> lock(loop_lock_);
 
     if (loop_)
         loop_->postTask(loop_->quitClosure());
@@ -95,7 +95,7 @@ MessageLoopTaskRunner::MessageLoopTaskRunner(MessageLoop* loop)
 // Called directly by MessageLoop::~MessageLoop.
 void MessageLoopTaskRunner::willDestroyCurrentMessageLoop()
 {
-    std::unique_lock lock(loop_lock_);
+    std::unique_lock<std::shared_mutex> lock(loop_lock_);
     loop_ = nullptr;
 }
 

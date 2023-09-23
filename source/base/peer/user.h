@@ -43,11 +43,11 @@ public:
     static const size_t kMaxPasswordLength = 64;
     static const size_t kSafePasswordLength = 8;
 
-    static bool isValidUserName(std::u16string_view username);
-    static bool isValidPassword(std::u16string_view password);
-    static bool isSafePassword(std::u16string_view password);
+    static bool isValidUserName(std::u16string username);
+    static bool isValidPassword(std::u16string password);
+    static bool isSafePassword(std::u16string password);
 
-    static User create(std::u16string_view name, std::u16string_view password);
+    static User create(std::u16string name, std::u16string password);
     bool isValid() const;
 
     static User parseFrom(const proto::User& serialized_user);

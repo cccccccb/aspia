@@ -37,7 +37,7 @@ public:
 
     base::ByteArray privateKey() const;
     base::ByteArray publicKey() const;
-    base::ByteArray sessionKey(std::string_view peer_public_key) const;
+    base::ByteArray sessionKey(std::string peer_public_key) const;
     base::ByteArray iv() const;
 
 private:

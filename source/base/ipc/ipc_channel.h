@@ -23,6 +23,7 @@
 #include "base/session_id.h"
 #include "base/memory/byte_array.h"
 #include "base/threading/thread_checker.h"
+#include "base/filesystem.hpp"
 
 #if defined(OS_WIN)
 #include <asio/windows/stream_handle.hpp>
@@ -30,7 +31,6 @@
 #include <asio/local/stream_protocol.hpp>
 #endif
 
-#include <filesystem>
 #include <queue>
 
 namespace base {
@@ -61,7 +61,7 @@ public:
     void setListener(Listener* listener);
 
     [[nodiscard]]
-    bool connect(std::u16string_view channel_id);
+    bool connect(std::u16string channel_id);
 
     void disconnect();
 
@@ -75,7 +75,7 @@ public:
 
     ProcessId peerProcessId() const { return peer_process_id_; }
     SessionId peerSessionId() const { return peer_session_id_; }
-    std::filesystem::path peerFilePath() const;
+    ghc::filesystem::path peerFilePath() const;
 
 private:
     friend class IpcServer;
@@ -87,8 +87,8 @@ private:
     using Stream = asio::local::stream_protocol::socket;
 #endif
 
-    IpcChannel(std::u16string_view channel_name, Stream&& stream);
-    static std::u16string channelName(std::u16string_view channel_id);
+    IpcChannel(std::u16string channel_name, Stream&& stream);
+    static std::u16string channelName(std::u16string channel_id);
 
     void onErrorOccurred(const Location& location, const std::error_code& error_code);
     void doWrite();

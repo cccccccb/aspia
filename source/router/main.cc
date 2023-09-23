@@ -17,6 +17,7 @@
 //
 
 #include "base/command_line.h"
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/crypto/key_pair.h"
 #include "base/files/base_paths.h"
@@ -81,12 +82,12 @@ void createConfig()
 {
     std::cout << "Creation of initial configuration started." << std::endl;
 
-    std::filesystem::path settings_file_path = router::Settings::filePath();
+    ghc::filesystem::path settings_file_path = router::Settings::filePath();
 
     std::cout << "Settings file path: " << settings_file_path << std::endl;
 
     std::error_code error_code;
-    if (std::filesystem::exists(settings_file_path, error_code))
+    if (ghc::filesystem::exists(settings_file_path, error_code))
     {
         std::cout << "Settings file already exists. Continuation is impossible." << std::endl;
         return;
@@ -94,7 +95,7 @@ void createConfig()
 
     std::cout << "Settings file does not exist yet." << std::endl;
 
-    std::filesystem::path public_key_dir;
+    ghc::filesystem::path public_key_dir;
     if (!base::BasePaths::commonAppData(&public_key_dir))
     {
         std::cout << "Failed to get the path to the config directory." << std::endl;
@@ -105,12 +106,12 @@ void createConfig()
 
     std::cout << "Public key directory path: " << public_key_dir << std::endl;
 
-    if (!std::filesystem::exists(public_key_dir, error_code))
+    if (!ghc::filesystem::exists(public_key_dir, error_code))
     {
         std::cout << "Public key directory does not exist (" << error_code.message()
                   << "). Attempt to create..." << std::endl;
 
-        if (!std::filesystem::create_directories(public_key_dir, error_code))
+        if (!ghc::filesystem::create_directories(public_key_dir, error_code))
         {
             std::cout << "Failed to create directory for public key: "
                       << error_code.message() << std::endl;
@@ -126,12 +127,12 @@ void createConfig()
         std::cout << "Public key directory already exists." << std::endl;
     }
 
-    std::filesystem::path public_key_file = public_key_dir;
+    ghc::filesystem::path public_key_file = public_key_dir;
     public_key_file.append("router.pub");
 
     std::cout << "Public key file: " << public_key_file << std::endl;
 
-    if (std::filesystem::exists(public_key_file, error_code))
+    if (ghc::filesystem::exists(public_key_file, error_code))
     {
         std::cout << "Public key file already exists. Continuation is impossible." << std::endl;
         return;

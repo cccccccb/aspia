@@ -18,55 +18,58 @@
 
 #include "base/win/device.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-//--------------------------------------------------------------------------------------------------
-Device::~Device()
-{
-    close();
-}
+		//--------------------------------------------------------------------------------------------------
+		Device::~Device()
+		{
+			close();
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool Device::open(const std::filesystem::path& device_path,
-                  DWORD desired_access,
-                  DWORD share_mode)
-{
-    device_.reset(CreateFileW(device_path.c_str(),
-                              desired_access,
-                              share_mode,
-                              nullptr,
-                              OPEN_EXISTING,
-                              0,
-                              nullptr));
-    return device_.isValid();
-}
+		//--------------------------------------------------------------------------------------------------
+		bool Device::open(const ghc::filesystem::path& device_path,
+			DWORD desired_access,
+			DWORD share_mode)
+		{
+			device_.reset(CreateFileW(device_path.c_str(),
+				desired_access,
+				share_mode,
+				nullptr,
+				OPEN_EXISTING,
+				0,
+				nullptr));
+			return device_.isValid();
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool Device::open(const std::filesystem::path& device_path)
-{
-    return open(device_path, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE);
-}
+		//--------------------------------------------------------------------------------------------------
+		bool Device::open(const ghc::filesystem::path& device_path)
+		{
+			return open(device_path, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE);
+		}
 
-//--------------------------------------------------------------------------------------------------
-void Device::close()
-{
-    device_.reset();
-}
+		//--------------------------------------------------------------------------------------------------
+		void Device::close()
+		{
+			device_.reset();
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool Device::ioControl(DWORD io_control_code,
-                       LPVOID input_buffer,
-                       DWORD input_buffer_size,
-                       LPVOID output_buffer,
-                       DWORD output_buffer_size,
-                       LPDWORD bytes_returned)
-{
-    return !!DeviceIoControl(device_, io_control_code,
-                             input_buffer, input_buffer_size,
-                             output_buffer, output_buffer_size,
-                             bytes_returned, nullptr);
-}
+		//--------------------------------------------------------------------------------------------------
+		bool Device::ioControl(DWORD io_control_code,
+			LPVOID input_buffer,
+			DWORD input_buffer_size,
+			LPVOID output_buffer,
+			DWORD output_buffer_size,
+			LPDWORD bytes_returned)
+		{
+			return !!DeviceIoControl(device_, io_control_code,
+				input_buffer, input_buffer_size,
+				output_buffer, output_buffer_size,
+				bytes_returned, nullptr);
+		}
 
+	}
 } // namespace base::win

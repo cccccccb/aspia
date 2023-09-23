@@ -17,6 +17,7 @@
 //
 
 #include "base/converter.h"
+#include "base/optional.hpp"
 
 #include <gtest/gtest.h>
 
@@ -59,7 +60,7 @@ TEST(converter_test, for_bool)
 
     for (size_t i = 0; i < std::size(kTable); ++i)
     {
-        std::optional<bool> result = Converter<bool>::get_value(kTable[i].source_value);
+        tl::optional<bool> result = Converter<bool>::get_value(kTable[i].source_value);
 
         EXPECT_EQ(result.has_value(), kTable[i].expected_has_value);
 
@@ -94,7 +95,7 @@ TEST(converter_test, for_string)
 
     for (size_t i = 0; i < std::size(kTableForGet); ++i)
     {
-        std::optional<std::string> result =
+        tl::optional<std::string> result =
             Converter<std::string>::get_value(kTableForGet[i].source_value);
 
         EXPECT_EQ(result.has_value(), kTableForGet[i].expected_has_value);
@@ -136,7 +137,7 @@ TEST(converter_test, for_double)
 
     for (size_t i = 0; i < std::size(kTable); ++i)
     {
-        std::optional<double> result = Converter<double>::get_value(kTable[i].source_value);
+        tl::optional<double> result = Converter<double>::get_value(kTable[i].source_value);
 
         EXPECT_EQ(result.has_value(), kTable[i].expected_has_value);
 
@@ -168,7 +169,7 @@ TEST(converter_test, for_uint16_t)
 
     for (size_t i = 0; i < std::size(kTable); ++i)
     {
-        std::optional<uint16_t> result = Converter<uint16_t>::get_value(kTable[i].source_value);
+        tl::optional<uint16_t> result = Converter<uint16_t>::get_value(kTable[i].source_value);
 
         EXPECT_EQ(result.has_value(), kTable[i].expected_has_value);
 

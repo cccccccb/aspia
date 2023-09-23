@@ -20,6 +20,7 @@
 #define CONSOLE_FAST_CONNECT_DIALOG_H
 
 #include "base/macros_magic.h"
+#include "base/optional.hpp"
 #include "client/client_config.h"
 #include "proto/address_book.pb.h"
 #include "ui_fast_connect_dialog.h"
@@ -38,7 +39,7 @@ public:
     FastConnectDialog(QWidget* parent,
                       const QString& address_book_guid,
                       const proto::address_book::ComputerGroupConfig& default_config,
-                      const std::optional<client::RouterConfig>& router_config);
+                      const tl::optional<client::RouterConfig>& router_config);
     ~FastConnectDialog() override;
 
 private slots:
@@ -61,7 +62,7 @@ private:
     Ui::FastConnectDialog ui;
     QString address_book_guid_;
     proto::address_book::ComputerGroupConfig default_config_;
-    std::optional<client::RouterConfig> router_config_;
+    tl::optional<client::RouterConfig> router_config_;
     State state_;
 
     DISALLOW_COPY_AND_ASSIGN(FastConnectDialog);

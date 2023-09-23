@@ -19,10 +19,9 @@
 #ifndef CLIENT_INPUT_EVENT_FILTER_H
 #define CLIENT_INPUT_EVENT_FILTER_H
 
+#include "base/optional.hpp"
 #include "proto/common.pb.h"
 #include "proto/desktop.pb.h"
-
-#include <optional>
 
 namespace client {
 
@@ -36,12 +35,12 @@ public:
     void setClipboardEnabled(bool enable);
     void setNetworkOverflow(bool enable);
 
-    std::optional<proto::MouseEvent> mouseEvent(const proto::MouseEvent& event);
-    std::optional<proto::KeyEvent> keyEvent(const proto::KeyEvent& event);
-    std::optional<proto::TextEvent> textEvent(const proto::TextEvent& event);
+    tl::optional<proto::MouseEvent> mouseEvent(const proto::MouseEvent& event);
+    tl::optional<proto::KeyEvent> keyEvent(const proto::KeyEvent& event);
+    tl::optional<proto::TextEvent> textEvent(const proto::TextEvent& event);
 
-    std::optional<proto::ClipboardEvent> readClipboardEvent(const proto::ClipboardEvent& event);
-    std::optional<proto::ClipboardEvent> sendClipboardEvent(const proto::ClipboardEvent& event);
+    tl::optional<proto::ClipboardEvent> readClipboardEvent(const proto::ClipboardEvent& event);
+    tl::optional<proto::ClipboardEvent> sendClipboardEvent(const proto::ClipboardEvent& event);
 
     int sendMouseCount() const { return send_mouse_count_; }
     int dropMouseCount() const { return drop_mouse_count_; }

@@ -23,31 +23,33 @@
 
 #include <Windows.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class ScopedClipboard
-{
-public:
-    ScopedClipboard() = default;
-    ~ScopedClipboard();
+		class ScopedClipboard
+		{
+		public:
+			ScopedClipboard() = default;
+			~ScopedClipboard();
 
-    bool init(HWND owner);
-    BOOL empty();
-    void setData(UINT format, HANDLE mem);
+			bool init(HWND owner);
+			BOOL empty();
+			void setData(UINT format, HANDLE mem);
 
-    //
-    // The caller must not free the handle. The caller should lock the handle,
-    // copy the clipboard data, and unlock the handle. All this must be done
-    // before this ScopedClipboard is destroyed.
-    //
-    HANDLE data(UINT format) const;
+			//
+			// The caller must not free the handle. The caller should lock the handle,
+			// copy the clipboard data, and unlock the handle. All this must be done
+			// before this ScopedClipboard is destroyed.
+			//
+			HANDLE data(UINT format) const;
 
-private:
-    bool opened_ = false;
+		private:
+			bool opened_ = false;
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedClipboard);
-};
+			DISALLOW_COPY_AND_ASSIGN(ScopedClipboard);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SCOPED_CLIPBOARD_H

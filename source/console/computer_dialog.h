@@ -19,11 +19,11 @@
 #ifndef CONSOLE_COMPUTER_DIALOG_H
 #define CONSOLE_COMPUTER_DIALOG_H
 
+#include "base/optional.hpp"
 #include "console/settings.h"
 #include "proto/address_book.pb.h"
 #include "ui_computer_dialog.h"
 
-#include <optional>
 
 #include <QDialog>
 
@@ -41,7 +41,7 @@ public:
     ComputerDialog(QWidget* parent,
                    Mode mode,
                    const QString& parent_name,
-                   const std::optional<proto::address_book::Computer>& computer = std::nullopt);
+                   const tl::optional<proto::address_book::Computer>& computer = tl::nullopt);
     ~ComputerDialog() override;
 
     const proto::address_book::Computer& computer() const { return computer_; }

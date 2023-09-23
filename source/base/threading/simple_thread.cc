@@ -24,7 +24,7 @@ namespace base {
 void SimpleThread::threadMain()
 {
     {
-        std::unique_lock lock(running_lock_);
+        std::unique_lock<std::mutex> lock(running_lock_);
         running_ = true;
     }
 
@@ -33,7 +33,7 @@ void SimpleThread::threadMain()
     run_callback_();
 
     {
-        std::unique_lock lock(running_lock_);
+        std::unique_lock<std::mutex> lock(running_lock_);
         running_ = false;
     }
 }
@@ -88,7 +88,7 @@ void SimpleThread::start(const RunCallback& run_callback)
 
     thread_ = std::thread(&SimpleThread::threadMain, this);
 
-    std::unique_lock lock(running_lock_);
+    std::unique_lock<std::mutex> lock(running_lock_);
     while (!running_)
         running_event_.wait(lock);
 

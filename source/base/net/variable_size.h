@@ -20,11 +20,11 @@
 #define BASE_NET_VARIABLE_SIZE_H
 
 #include "base/macros_magic.h"
+#include "base/optional.hpp"
 
 #include <asio/buffer.hpp>
 
 #include <cstdint>
-#include <optional>
 
 namespace base {
 
@@ -35,7 +35,7 @@ public:
     ~VariableSizeReader();
 
     asio::mutable_buffer buffer();
-    std::optional<size_t> messageSize();
+    tl::optional<size_t> messageSize();
 
 private:
     uint8_t buffer_[4] = { 0 };

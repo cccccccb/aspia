@@ -37,7 +37,7 @@ asio::mutable_buffer VariableSizeReader::buffer()
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<size_t> VariableSizeReader::messageSize()
+tl::optional<size_t> VariableSizeReader::messageSize()
 {
     DCHECK_LT(pos_, std::size(buffer_));
 
@@ -63,7 +63,7 @@ std::optional<size_t> VariableSizeReader::messageSize()
     {
         ++pos_;
 
-        return std::nullopt;
+        return tl::nullopt;
     }
 }
 

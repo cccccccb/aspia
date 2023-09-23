@@ -18,6 +18,7 @@
 
 #include "host/system_settings.h"
 
+#include "base/filesystem.hpp"
 #include "base/crypto/password_generator.h"
 #include "base/crypto/password_hash.h"
 #include "base/crypto/random.h"
@@ -44,7 +45,7 @@ SystemSettings::~SystemSettings() = default;
 //--------------------------------------------------------------------------------------------------
 // static
 bool SystemSettings::createPasswordHash(
-    std::string_view password, base::ByteArray* hash, base::ByteArray* salt)
+    std::string password, base::ByteArray* hash, base::ByteArray* salt)
 {
     if (password.empty() || !hash || !salt)
         return false;
@@ -65,7 +66,7 @@ bool SystemSettings::createPasswordHash(
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool SystemSettings::isValidPassword(std::string_view password)
+bool SystemSettings::isValidPassword(std::string password)
 {
     if (password.empty())
         return false;
@@ -87,7 +88,7 @@ bool SystemSettings::isValidPassword(std::string_view password)
 }
 
 //--------------------------------------------------------------------------------------------------
-const std::filesystem::path& SystemSettings::filePath() const
+const ghc::filesystem::path& SystemSettings::filePath() const
 {
     return settings_.filePath();
 }

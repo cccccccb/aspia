@@ -19,11 +19,11 @@
 #ifndef COMMON_FILE_ENUMERATOR_H
 #define COMMON_FILE_ENUMERATOR_H
 
+#include "base/filesystem.hpp"
 #include "base/macros_magic.h"
 #include "build/build_config.h"
 #include "proto/file_transfer.pb.h"
 
-#include <filesystem>
 
 #if defined(OS_WIN)
 #include <Windows.h>
@@ -41,7 +41,7 @@ public:
         ~FileInfo() = default;
 
         bool isDirectory() const;
-        std::filesystem::path name() const;
+        ghc::filesystem::path name() const;
         std::string u8name() const;
         int64_t size() const;
         time_t lastWriteTime() const;
@@ -53,11 +53,11 @@ public:
 #endif // defined(OS_WIN)
 
 #if defined(OS_POSIX)
-    std::filesystem::directory_iterator it_;
+    ghc::filesystem::directory_iterator it_;
 #endif // defined(OS_POSIX)
     };
 
-    explicit FileEnumerator(const std::filesystem::path& root_path);
+    explicit FileEnumerator(const ghc::filesystem::path& root_path);
     ~FileEnumerator();
 
     const FileInfo& fileInfo() const { return file_info_; }

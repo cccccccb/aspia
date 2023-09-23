@@ -24,29 +24,31 @@
 
 #include <Windows.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class ScopedImpersonator
-{
-public:
-    ScopedImpersonator();
-    ~ScopedImpersonator();
+		class ScopedImpersonator
+		{
+		public:
+			ScopedImpersonator();
+			~ScopedImpersonator();
 
-    bool loggedOnUser(HANDLE user_token);
-    bool anonymous();
-    bool namedPipeClient(HANDLE named_pipe);
+			bool loggedOnUser(HANDLE user_token);
+			bool anonymous();
+			bool namedPipeClient(HANDLE named_pipe);
 
-    void revertToSelf();
+			void revertToSelf();
 
-    bool isImpersonated() const { return impersonated_; }
+			bool isImpersonated() const { return impersonated_; }
 
-private:
-    bool impersonated_ = false;
-    THREAD_CHECKER(thread_checker_);
+		private:
+			bool impersonated_ = false;
+			THREAD_CHECKER(thread_checker_);
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedImpersonator);
-};
+			DISALLOW_COPY_AND_ASSIGN(ScopedImpersonator);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SCOPED_IMPERSONATOR_H

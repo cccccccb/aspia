@@ -66,10 +66,8 @@ add_definitions(-DQT_NO_CAST_TO_ASCII
 set(QT_COMMON_LIBS
     Qt5::Core
     Qt5::CorePrivate
-    Qt5::QGenericEnginePlugin
     Qt5::Gui
     Qt5::GuiPrivate
-    Qt5::QICOPlugin
     Qt5::Network
     Qt5::NetworkPrivate
     Qt5::PrintSupport
@@ -83,10 +81,7 @@ if (WIN32)
     set(QT_PLATFORM_LIBS
         Qt5::WinMain
         Qt5::WinExtras
-        Qt5::WinExtrasPrivate
-        Qt5::QWindowsIntegrationPlugin
-        Qt5::QWindowsVistaStylePlugin
-        Qt5::QWindowsPrinterSupportPlugin)
+        Qt5::WinExtrasPrivate)
 endif()
 
 set(THIRD_PARTY_LIBS
@@ -103,9 +98,6 @@ set(THIRD_PARTY_LIBS
     yuv)
 
 include_directories(${PROJECT_SOURCE_DIR}/source ${PROJECT_BINARY_DIR}/source)
-
-# C++ compliller flags.
-set(CMAKE_CXX_STANDARD 17)
 
 if (MSVC)
     # C++ compliller flags.

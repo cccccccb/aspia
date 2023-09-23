@@ -18,6 +18,7 @@
 
 #include "router/session_client.h"
 
+#include "base/optional.hpp"
 #include "base/logging.h"
 #include "base/crypto/random.h"
 #include "base/strings/unicode.h"
@@ -92,7 +93,7 @@ void SessionClient::readConnectionRequest(const proto::ConnectionRequest& reques
     {
         LOG(LS_INFO) << "Host with id " << request.host_id() << " found";
 
-        std::optional<SharedKeyPool::Credentials> credentials = relayKeyPool().takeCredentials();
+        tl::optional<SharedKeyPool::Credentials> credentials = relayKeyPool().takeCredentials();
         if (!credentials.has_value())
         {
             LOG(LS_WARNING) << "Empty key pool";
@@ -109,7 +110,7 @@ void SessionClient::readConnectionRequest(const proto::ConnectionRequest& reques
             }
             else
             {
-                const std::optional<SessionRelay::PeerData>& peer_data = relay->peerData();
+                const tl::optional<SessionRelay::PeerData>& peer_data = relay->peerData();
                 if (!peer_data.has_value())
                 {
                     LOG(LS_ERROR) << "No peer data for relay with session id "

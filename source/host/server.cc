@@ -18,6 +18,7 @@
 
 #include "host/server.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/task_runner.h"
 #include "base/waitable_timer.h"
@@ -79,11 +80,11 @@ void Server::start()
 
     LOG(LS_INFO) << "Starting the host server";
 
-    std::filesystem::path settings_file = settings_.filePath();
+    ghc::filesystem::path settings_file = settings_.filePath();
     LOG(LS_INFO) << "Configuration file path: " << settings_file;
 
     std::error_code ignored_code;
-    if (!std::filesystem::exists(settings_file, ignored_code))
+    if (!ghc::filesystem::exists(settings_file, ignored_code))
     {
         LOG(LS_WARNING) << "Configuration file does not exist";
     }
@@ -310,7 +311,7 @@ void Server::onFileDownloaderCompleted()
 {
 #if defined(OS_WIN)
     std::error_code error_code;
-    std::filesystem::path file_path = std::filesystem::temp_directory_path(error_code);
+    ghc::filesystem::path file_path = ghc::filesystem::temp_directory_path(error_code);
     if (error_code)
     {
         LOG(LS_WARNING) << "Unable to get temp directory: "
@@ -343,7 +344,7 @@ void Server::onFileDownloaderCompleted()
                 LOG(LS_WARNING) << "Unable to create update process (cmd: " << arguments << ")";
 
                 // If the update fails, delete the temporary file.
-                if (!std::filesystem::remove(file_path, error_code))
+                if (!ghc::filesystem::remove(file_path, error_code))
                 {
                     LOG(LS_WARNING) << "Unable to remove installer file: "
                                     << base::utf16FromLocal8Bit(error_code.message());
@@ -386,7 +387,7 @@ void Server::startAuthentication(std::unique_ptr<base::TcpChannel> channel)
 void Server::addFirewallRules()
 {
 #if defined(OS_WIN)
-    std::filesystem::path file_path;
+    ghc::filesystem::path file_path;
     if (!base::BasePaths::currentExecFile(&file_path))
     {
         LOG(LS_WARNING) << "currentExecFile failed";
@@ -416,7 +417,7 @@ void Server::addFirewallRules()
 void Server::deleteFirewallRules()
 {
 #if defined(OS_WIN)
-    std::filesystem::path file_path;
+    ghc::filesystem::path file_path;
     if (!base::BasePaths::currentExecFile(&file_path))
     {
         LOG(LS_WARNING) << "currentExecFile failed";
@@ -436,19 +437,19 @@ void Server::deleteFirewallRules()
 }
 
 //--------------------------------------------------------------------------------------------------
-void Server::updateConfiguration(const std::filesystem::path& path, bool error)
+void Server::updateConfiguration(const ghc::filesystem::path& path, bool error)
 {
     LOG(LS_INFO) << "Configuration file change detected";
 
     if (!error)
     {
-        std::filesystem::path settings_file_path = settings_.filePath();
+        ghc::filesystem::path settings_file_path = settings_.filePath();
         std::error_code ignored_error;
 
         // While writing the configuration, the file may be empty for a short time. The
         // configuration monitor has time to detect this, but we must not load an empty
         // configuration.
-        if (std::filesystem::file_size(settings_file_path, ignored_error) <= 0)
+        if (ghc::filesystem::file_size(settings_file_path, ignored_error) <= 0)
         {
             LOG(LS_INFO) << "Configuration file is empty. Configuration update skipped";
             return;
@@ -571,7 +572,8 @@ void Server::checkForUpdates()
 {
 #if defined(OS_WIN)
     int64_t last_timepoint = settings_.lastUpdateCheck();
-    int64_t current_timepoint = std::time(nullptr);
+    auto now = std::chrono::system_clock::now();
+    auto current_timepoint = std::chrono::system_clock::to_time_t(now);
 
     LOG(LS_INFO) << "Last timepoint: " << last_timepoint << ", current: " << current_timepoint;
 

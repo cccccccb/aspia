@@ -18,6 +18,7 @@
 
 #include "client/input_event_filter.h"
 
+#include "base/optional.hpp"
 #include "base/logging.h"
 
 namespace client {
@@ -49,13 +50,13 @@ void InputEventFilter::setNetworkOverflow(bool enable)
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<proto::MouseEvent> InputEventFilter::mouseEvent(const proto::MouseEvent& event)
+tl::optional<proto::MouseEvent> InputEventFilter::mouseEvent(const proto::MouseEvent& event)
 {
     if (session_type_ != proto::SESSION_TYPE_DESKTOP_MANAGE)
-        return std::nullopt;
+        return tl::nullopt;
 
     if (network_overflow_)
-        return std::nullopt;
+        return tl::nullopt;
 
     int32_t delta_x = std::abs(event.x() - last_pos_x_);
     int32_t delta_y = std::abs(event.y() - last_pos_y_);
@@ -77,61 +78,61 @@ std::optional<proto::MouseEvent> InputEventFilter::mouseEvent(const proto::Mouse
         ++drop_mouse_count_;
     }
 
-    return std::nullopt;
+    return tl::nullopt;
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<proto::KeyEvent> InputEventFilter::keyEvent(const proto::KeyEvent& event)
+tl::optional<proto::KeyEvent> InputEventFilter::keyEvent(const proto::KeyEvent& event)
 {
     if (session_type_ != proto::SESSION_TYPE_DESKTOP_MANAGE)
-        return std::nullopt;
+        return tl::nullopt;
 
     if (network_overflow_)
-        return std::nullopt;
+        return tl::nullopt;
 
     ++send_key_count_;
     return event;
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<proto::TextEvent> InputEventFilter::textEvent(const proto::TextEvent& event)
+tl::optional<proto::TextEvent> InputEventFilter::textEvent(const proto::TextEvent& event)
 {
     if (session_type_ != proto::SESSION_TYPE_DESKTOP_MANAGE)
-        return std::nullopt;
+        return tl::nullopt;
 
     if (network_overflow_)
-        return std::nullopt;
+        return tl::nullopt;
 
     ++send_text_count_;
     return event;
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<proto::ClipboardEvent> InputEventFilter::readClipboardEvent(
+tl::optional<proto::ClipboardEvent> InputEventFilter::readClipboardEvent(
     const proto::ClipboardEvent& event)
 {
     if (session_type_ != proto::SESSION_TYPE_DESKTOP_MANAGE)
-        return std::nullopt;
+        return tl::nullopt;
 
     if (!clipboard_enabled_)
-        return std::nullopt;
+        return tl::nullopt;
 
     ++read_clipboard_count_;
     return event;
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<proto::ClipboardEvent> InputEventFilter::sendClipboardEvent(
+tl::optional<proto::ClipboardEvent> InputEventFilter::sendClipboardEvent(
     const proto::ClipboardEvent& event)
 {
     if (session_type_ != proto::SESSION_TYPE_DESKTOP_MANAGE)
-        return std::nullopt;
+        return tl::nullopt;
 
     if (network_overflow_)
-        return std::nullopt;
+        return tl::nullopt;
 
     if (!clipboard_enabled_)
-        return std::nullopt;
+        return tl::nullopt;
 
     ++send_clipboard_count_;
     return event;

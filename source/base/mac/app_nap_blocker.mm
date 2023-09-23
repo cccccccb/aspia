@@ -60,7 +60,7 @@ AppNapBlocker::~AppNapBlocker()
 //--------------------------------------------------------------------------------------------------
 void AppNapBlocker::addBlock()
 {
-    std::scoped_lock lock(id_lock_);
+    std::lock_guard<std::mutex> lock(id_lock_);
 
     if (!counter_)
         setBlocked(true);
@@ -71,7 +71,7 @@ void AppNapBlocker::addBlock()
 //--------------------------------------------------------------------------------------------------
 void AppNapBlocker::releaseBlock()
 {
-    std::scoped_lock lock(id_lock_);
+    std::lock_guard<std::mutex> lock(id_lock_);
 
     if (!counter_)
         return;
@@ -85,7 +85,7 @@ void AppNapBlocker::releaseBlock()
 //--------------------------------------------------------------------------------------------------
 bool AppNapBlocker::isBlocked() const
 {
-    std::scoped_lock lock(id_lock_);
+    std::lock_guard<std::mutex> lock(id_lock_);
     return id_ != nullptr;
 }
 

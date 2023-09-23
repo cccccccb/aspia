@@ -18,6 +18,7 @@
 
 #include "host/user_session.h"
 
+#include "base/optional.hpp"
 #include "base/location.h"
 #include "base/logging.h"
 #include "base/task_runner.h"
@@ -238,7 +239,7 @@ void UserSession::restart(std::unique_ptr<base::IpcChannel> channel)
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<std::string> UserSession::sessionName() const
+tl::optional<std::string> UserSession::sessionName() const
 {
     LOG(LS_INFO) << "Session name request (sid: " << session_id_
                  << " type: " << typeToString(type_)
@@ -257,7 +258,7 @@ std::optional<std::string> UserSession::sessionName() const
     if (!current_session_info.isValid())
     {
         LOG(LS_ERROR) << "Failed to get session information (sid: " << session_id_ << ")";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     std::u16string user_name = base::toLower(current_session_info.userName16());
@@ -266,7 +267,7 @@ std::optional<std::string> UserSession::sessionName() const
     if (user_name.empty())
     {
         LOG(LS_INFO) << "User is not logged in yet (sid: " << session_id_ << ")";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     using TimeInfo = std::pair<base::SessionId, int64_t>;
@@ -1200,7 +1201,7 @@ void UserSession::sendHostIdRequest(const base::Location& location)
         return;
     }
 
-    std::optional<std::string> session_name = sessionName();
+    tl::optional<std::string> session_name = sessionName();
     if (session_name.has_value())
         delegate_->onUserSessionHostIdRequest(*session_name);
 }

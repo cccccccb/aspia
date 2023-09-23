@@ -32,7 +32,7 @@ namespace {
 uint8_t* outputBuffer(proto::VideoPacket* packet, size_t size)
 {
     packet->mutable_data()->resize(size);
-    return reinterpret_cast<uint8_t*>(packet->mutable_data()->data());
+    return const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(packet->mutable_data()->data()));
 }
 
 //--------------------------------------------------------------------------------------------------

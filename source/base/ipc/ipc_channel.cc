@@ -18,6 +18,7 @@
 
 #include "base/ipc/ipc_channel.h"
 
+#include "base/filesystem.hpp"
 #include "base/location.h"
 #include "base/logging.h"
 #include "base/ipc/ipc_channel_proxy.h"
@@ -119,7 +120,7 @@ IpcChannel::IpcChannel()
 }
 
 //--------------------------------------------------------------------------------------------------
-IpcChannel::IpcChannel(std::u16string_view channel_name, Stream&& stream)
+IpcChannel::IpcChannel(std::u16string channel_name, Stream&& stream)
     : channel_name_(channel_name),
       stream_(std::move(stream)),
       proxy_(new IpcChannelProxy(MessageLoop::current()->taskRunner(), this)),
@@ -161,7 +162,7 @@ void IpcChannel::setListener(Listener* listener)
 }
 
 //--------------------------------------------------------------------------------------------------
-bool IpcChannel::connect(std::u16string_view channel_id)
+bool IpcChannel::connect(std::u16string channel_id)
 {
     DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
 
@@ -304,7 +305,7 @@ void IpcChannel::send(ByteArray&& buffer)
 }
 
 //--------------------------------------------------------------------------------------------------
-std::filesystem::path IpcChannel::peerFilePath() const
+ghc::filesystem::path IpcChannel::peerFilePath() const
 {
 #if defined(OS_WIN)
     win::ScopedHandle process(
@@ -312,7 +313,7 @@ std::filesystem::path IpcChannel::peerFilePath() const
     if (!process.isValid())
     {
         PLOG(LS_WARNING) << "OpenProcess failed";
-        return std::filesystem::path();
+        return ghc::filesystem::path();
     }
 
     wchar_t buffer[MAX_PATH] = { 0 };
@@ -320,19 +321,19 @@ std::filesystem::path IpcChannel::peerFilePath() const
     if (!GetModuleFileNameExW(process.get(), nullptr, buffer, static_cast<DWORD>(std::size(buffer))))
     {
         PLOG(LS_WARNING) << "GetModuleFileNameExW failed";
-        return std::filesystem::path();
+        return ghc::filesystem::path();
     }
 
     return buffer;
 #else // defined(OS_WIN)
     NOTIMPLEMENTED();
-    return std::filesystem::path();
+    return ghc::filesystem::path();
 #endif // !defined(OS_WIN)
 }
 
 //--------------------------------------------------------------------------------------------------
 // static
-std::u16string IpcChannel::channelName(std::u16string_view channel_id)
+std::u16string IpcChannel::channelName(std::u16string channel_id)
 {
 #if defined(OS_WIN)
     std::u16string name(kPipeNamePrefix);

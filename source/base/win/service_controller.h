@@ -20,59 +20,61 @@
 #define BASE_WIN_SERVICE_CONTROLLER_H
 
 #include "base/win/scoped_object.h"
+#include "base/filesystem.hpp"
 
-#include <filesystem>
 #include <string>
 #include <vector>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class ServiceController
-{
-public:
-    ServiceController();
+		class ServiceController
+		{
+		public:
+			ServiceController();
 
-    ServiceController(ServiceController&& other) noexcept;
-    ServiceController& operator=(ServiceController&& other) noexcept;
+			ServiceController(ServiceController&& other) noexcept;
+			ServiceController& operator=(ServiceController&& other) noexcept;
 
-    virtual ~ServiceController();
+			virtual ~ServiceController();
 
-    static ServiceController open(std::u16string_view name);
-    static ServiceController install(std::u16string_view name,
-                                     std::u16string_view display_name,
-                                     const std::filesystem::path& file_path);
-    static bool remove(std::u16string_view name);
-    static bool isInstalled(std::u16string_view name);
-    static bool isRunning(std::u16string_view name);
+			static ServiceController open(std::u16string name);
+			static ServiceController install(std::u16string name,
+				std::u16string display_name,
+				const ghc::filesystem::path& file_path);
+			static bool remove(std::u16string name);
+			static bool isInstalled(std::u16string name);
+			static bool isRunning(std::u16string name);
 
-    void close();
+			void close();
 
-    bool setDescription(std::u16string_view description);
-    std::u16string description() const;
+			bool setDescription(std::u16string description);
+			std::u16string description() const;
 
-    bool setDependencies(const std::vector<std::u16string>& dependencies);
-    std::vector<std::u16string> dependencies() const;
+			bool setDependencies(const std::vector<std::u16string>& dependencies);
+			std::vector<std::u16string> dependencies() const;
 
-    bool setAccount(std::u16string_view username, std::u16string_view password);
+			bool setAccount(std::u16string username, std::u16string password);
 
-    std::filesystem::path filePath() const;
+			ghc::filesystem::path filePath() const;
 
-    bool isValid() const;
-    bool isRunning() const;
+			bool isValid() const;
+			bool isRunning() const;
 
-    bool start();
-    bool stop();
+			bool start();
+			bool stop();
 
-protected:
-    ServiceController(SC_HANDLE sc_manager, SC_HANDLE service);
+		protected:
+			ServiceController(SC_HANDLE sc_manager, SC_HANDLE service);
 
-private:
-    ScopedScHandle sc_manager_;
-    mutable ScopedScHandle service_;
+		private:
+			ScopedScHandle sc_manager_;
+			mutable ScopedScHandle service_;
 
-    DISALLOW_COPY_AND_ASSIGN(ServiceController);
-};
+			DISALLOW_COPY_AND_ASSIGN(ServiceController);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SERVICE_CONTROLLER_H

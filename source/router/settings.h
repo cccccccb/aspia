@@ -20,6 +20,7 @@
 #define ROUTER_SETTINGS_H
 
 #include "base/settings/json_settings.h"
+#include "base/filesystem.hpp"
 
 namespace router {
 
@@ -29,7 +30,7 @@ public:
     Settings();
     ~Settings();
 
-    static std::filesystem::path filePath();
+    static ghc::filesystem::path filePath();
 
     void reset();
     void flush();
@@ -58,8 +59,8 @@ public:
     WhiteList relayWhiteList() const;
 
 private:
-    void setWhiteList(std::string_view key, const WhiteList& value);
-    WhiteList whiteList(std::string_view key) const;
+    void setWhiteList(std::string key, const WhiteList& value);
+    WhiteList whiteList(std::string key) const;
 
     base::JsonSettings impl_;
 };

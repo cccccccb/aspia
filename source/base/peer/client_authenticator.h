@@ -32,8 +32,8 @@ public:
 
     void setPeerPublicKey(const ByteArray& public_key);
     void setIdentify(proto::Identify identify);
-    void setUserName(std::u16string_view username);
-    void setPassword(std::u16string_view password);
+    void setUserName(std::u16string username);
+    void setPassword(std::u16string password);
     void setSessionType(uint32_t session_type);
 
 protected:

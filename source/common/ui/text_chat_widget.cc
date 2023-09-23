@@ -153,7 +153,7 @@ void TextChatWidget::readStatus(const proto::TextChatStatus& status)
             return;
     }
 
-    status_clear_timer_->start(std::chrono::seconds(1));
+    status_clear_timer_->start(1000);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -316,18 +316,22 @@ void TextChatWidget::onSaveChat()
                 static_cast<TextChatIncomingMessage*>(message_widget);
 
             stream << "[" << incoming_message_widget->messageTime() << "] "
-                   << incoming_message_widget->source() << Qt::endl;
-            stream << incoming_message_widget->messageText() << Qt::endl;
-            stream << Qt::endl;
+                   << incoming_message_widget->source();
+                   endl(stream);
+            stream << incoming_message_widget->messageText();
+            endl(stream);
+            endl(stream);
         }
         else if (message_widget->direction() == TextChatMessage::Direction::OUTGOING)
         {
             TextChatOutgoingMessage* outgoing_message_widget =
                 static_cast<TextChatOutgoingMessage*>(message_widget);
 
-            stream << "[" << outgoing_message_widget->messageTime() << "] " << Qt::endl;
-            stream << outgoing_message_widget->messageText() << Qt::endl;
-            stream << Qt::endl;
+            stream << "[" << outgoing_message_widget->messageTime() << "] ";
+            endl(stream);
+            stream << outgoing_message_widget->messageText();
+            endl(stream);
+            endl(stream);
         }
         else
         {
@@ -336,8 +340,9 @@ void TextChatWidget::onSaveChat()
             TextChatStatusMessage* status_message_widget =
                 static_cast<TextChatStatusMessage*>(message_widget);
 
-            stream << status_message_widget->messageText() << Qt::endl;
-            stream << Qt::endl;
+            stream << status_message_widget->messageText();
+            endl(stream);
+            endl(stream);
         }
     }
 }

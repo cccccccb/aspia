@@ -35,7 +35,7 @@ public:
 
     // UserListBase implementation.
     void add(const User& user) override;
-    User find(std::u16string_view username) const override;
+    User find(std::u16string username) const override;
     const ByteArray& seedKey() const override { return seed_key_; }
     void setSeedKey(const ByteArray& seed_key) override;
     std::vector<User> list() const override { return list_; }

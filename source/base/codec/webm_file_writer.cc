@@ -18,6 +18,7 @@
 
 #include "base/codec/webm_file_writer.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/system_time.h"
 #include "base/codec/webm_file_muxer.h"
@@ -30,7 +31,7 @@
 namespace base {
 
 //--------------------------------------------------------------------------------------------------
-WebmFileWriter::WebmFileWriter(const std::filesystem::path& path, std::u16string_view name)
+WebmFileWriter::WebmFileWriter(const ghc::filesystem::path& path, std::u16string name)
     : path_(path),
       name_(name)
 {
@@ -157,11 +158,11 @@ void WebmFileWriter::addAudioPacket(const proto::AudioPacket& packet)
 bool WebmFileWriter::init()
 {
     std::error_code error_code;
-    if (!std::filesystem::exists(path_, error_code))
+    if (!ghc::filesystem::exists(path_, error_code))
     {
         LOG(LS_INFO) << "Path '" << path_ << "' not exists yet";
 
-        if (std::filesystem::create_directories(path_, error_code))
+        if (ghc::filesystem::create_directories(path_, error_code))
         {
             LOG(LS_INFO) << "Path created successfully";
         }
@@ -194,7 +195,7 @@ bool WebmFileWriter::init()
               << file_counter_
               << ".webm";
 
-    std::filesystem::path file_path(path_);
+    ghc::filesystem::path file_path(path_);
     file_path.append(base::utf16FromUtf8(file_name.str()));
 
     LOG(LS_INFO) << "New video file: " << file_path;

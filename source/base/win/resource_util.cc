@@ -20,59 +20,61 @@
 
 #include "base/logging.h"
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-//--------------------------------------------------------------------------------------------------
-bool resourceFromModule(HMODULE module,
-                        int resource_id,
-                        const wchar_t* resource_type,
-                        void** data,
-                        size_t* length)
-{
-    if (!module)
-        return false;
+		//--------------------------------------------------------------------------------------------------
+		bool resourceFromModule(HMODULE module,
+			int resource_id,
+			const wchar_t* resource_type,
+			void** data,
+			size_t* length)
+		{
+			if (!module)
+				return false;
 
-    if (!IS_INTRESOURCE(resource_id))
-    {
-        NOTREACHED();
-        return false;
-    }
+			if (!IS_INTRESOURCE(resource_id))
+			{
+				NOTREACHED();
+				return false;
+			}
 
-    HRSRC hres_info = FindResourceW(module, MAKEINTRESOURCEW(resource_id), resource_type);
-    if (hres_info == nullptr)
-    {
-        PLOG(LS_WARNING) << "FindResourceW failed";
-        return false;
-    }
+			HRSRC hres_info = FindResourceW(module, MAKEINTRESOURCEW(resource_id), resource_type);
+			if (hres_info == nullptr)
+			{
+				PLOG(LS_WARNING) << "FindResourceW failed";
+				return false;
+			}
 
-    DWORD data_size = SizeofResource(module, hres_info);
-    HGLOBAL hres = LoadResource(module, hres_info);
-    if (!hres)
-    {
-        PLOG(LS_WARNING) << "LoadResource failed";
-        return false;
-    }
+			DWORD data_size = SizeofResource(module, hres_info);
+			HGLOBAL hres = LoadResource(module, hres_info);
+			if (!hres)
+			{
+				PLOG(LS_WARNING) << "LoadResource failed";
+				return false;
+			}
 
-    void* resource = LockResource(hres);
-    if (!resource)
-    {
-        PLOG(LS_WARNING) << "LockResource failed";
-        return false;
-    }
+			void* resource = LockResource(hres);
+			if (!resource)
+			{
+				PLOG(LS_WARNING) << "LockResource failed";
+				return false;
+			}
 
-    *data = resource;
-    *length = static_cast<size_t>(data_size);
+			*data = resource;
+			*length = static_cast<size_t>(data_size);
 
-    return true;
-}
+			return true;
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool dataResourceFromModule(HMODULE module,
-                            int resource_id,
-                            void** data,
-                            size_t* length)
-{
-    return resourceFromModule(module, resource_id, L"BINDATA", data, length);
-}
+		//--------------------------------------------------------------------------------------------------
+		bool dataResourceFromModule(HMODULE module,
+			int resource_id,
+			void** data,
+			size_t* length)
+		{
+			return resourceFromModule(module, resource_id, L"BINDATA", data, length);
+		}
 
+	}
 } // namespace base::win

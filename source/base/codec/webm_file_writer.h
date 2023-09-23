@@ -19,16 +19,16 @@
 #ifndef BASE_CODEC_WEBM_FILE_WRITER_H
 #define BASE_CODEC_WEBM_FILE_WRITER_H
 
+#include "base/filesystem.hpp"
 #include "base/macros_magic.h"
 #include "base/desktop/geometry.h"
 #include "base/memory/byte_array.h"
+#include "base/optional.hpp"
 #include "proto/desktop.pb.h"
 
 #include <chrono>
-#include <filesystem>
 #include <fstream>
 #include <memory>
-#include <optional>
 
 namespace base {
 
@@ -37,7 +37,7 @@ class WebmFileMuxer;
 class WebmFileWriter
 {
 public:
-    WebmFileWriter(const std::filesystem::path& path, std::u16string_view name);
+    WebmFileWriter(const ghc::filesystem::path& path, std::u16string name);
     ~WebmFileWriter();
 
     void addVideoPacket(const proto::VideoPacket& packet);
@@ -47,7 +47,7 @@ private:
     bool init();
     void close();
 
-    std::filesystem::path path_;
+    ghc::filesystem::path path_;
     std::u16string name_;
     int file_counter_ = 0;
     FILE* file_ = nullptr;
@@ -57,8 +57,8 @@ private:
     using NanoSeconds = std::chrono::nanoseconds;
 
     std::unique_ptr<WebmFileMuxer> muxer_;
-    std::optional<TimePoint> video_start_time_;
-    std::optional<TimePoint> audio_start_time_;
+    tl::optional<TimePoint> audio_start_time_;
+    tl::optional<TimePoint> video_start_time_;
 
     proto::VideoEncoding last_video_encoding_ = proto::VIDEO_ENCODING_UNKNOWN;
 

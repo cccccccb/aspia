@@ -42,7 +42,7 @@ bool isValidHostNameChar(const char16_t c)
 }
 
 //--------------------------------------------------------------------------------------------------
-bool isValidHostName(std::u16string_view host)
+bool isValidHostName(std::u16string host)
 {
     if (host.empty())
         return false;
@@ -79,7 +79,7 @@ bool isValidPort(uint16_t port)
 }
 
 //--------------------------------------------------------------------------------------------------
-bool isValidPort(std::u16string_view str)
+bool isValidPort(std::u16string str)
 {
     uint16_t value;
 
@@ -96,9 +96,9 @@ struct AddressParts
 };
 
 //--------------------------------------------------------------------------------------------------
-bool setHostAndPort(std::u16string_view::const_iterator first,
-                    std::u16string_view::const_iterator last,
-                    std::u16string_view::const_iterator last_colon,
+bool setHostAndPort(std::u16string::const_iterator first,
+                    std::u16string::const_iterator last,
+                    std::u16string::const_iterator last_colon,
                     AddressParts* parts)
 {
     if (first >= last_colon)
@@ -121,8 +121,8 @@ bool setHostAndPort(std::u16string_view::const_iterator first,
 }
 
 //--------------------------------------------------------------------------------------------------
-bool parse(std::u16string_view::const_iterator& it,
-           std::u16string_view::const_iterator last,
+bool parse(std::u16string::const_iterator& it,
+           std::u16string::const_iterator last,
            AddressParts* parts)
 {
     enum class ParseState { HOST, HOST_IPV6, PORT };
@@ -280,7 +280,7 @@ Address& Address::operator=(Address&& other) noexcept
 
 //--------------------------------------------------------------------------------------------------
 // static
-Address Address::fromString(std::u16string_view str, uint16_t default_port)
+Address Address::fromString(std::u16string str, uint16_t default_port)
 {
     auto begin = str.cbegin();
     auto end = str.cend();
@@ -334,7 +334,7 @@ std::u16string Address::toString() const
 }
 
 //--------------------------------------------------------------------------------------------------
-void Address::setHost(std::u16string_view host)
+void Address::setHost(std::u16string host)
 {
     host_ = host;
 }

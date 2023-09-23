@@ -39,7 +39,7 @@ const size_t kMinSizeToCompress = 512;
 uint8_t* outputBuffer(std::string* out, size_t size)
 {
     out->resize(size);
-    return reinterpret_cast<uint8_t*>(out->data());
+    return const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(out->data()));
 }
 
 //--------------------------------------------------------------------------------------------------

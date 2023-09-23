@@ -7,6 +7,17 @@
 /installer/bin/
 /installer/obj/
 /CMakeLists.txt.user
+*.VC.db
+*.ini
+*.sln
+*.vcxproj
+*.vcxproj.*
+*.opensdf
+*.sdf
+*.rc
+*.VC.VC.opendb
+vc140.pdb
+.vs/
 
 # VS generated files
 *.obj
@@ -17,3 +28,22 @@
 # SW build dir and generated files
 .sw
 /*.lnk
+
+# user file
+*.user
+*.user.*
+
+# build directories
+debug/
+release/
+build/
+bin/
+
+# temp files
+ui_*.h
+LogRecord/
+.qmake.stash
+package/Autosave/
+
+# vscode setting files
+.vscode/

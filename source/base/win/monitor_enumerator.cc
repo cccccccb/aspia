@@ -25,59 +25,61 @@
 
 #include <devguid.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-//--------------------------------------------------------------------------------------------------
-MonitorEnumerator::MonitorEnumerator()
-    : DeviceEnumerator(&GUID_DEVCLASS_MONITOR, DIGCF_PROFILE | DIGCF_PRESENT)
-{
-    // Nothing
-}
+		//--------------------------------------------------------------------------------------------------
+		MonitorEnumerator::MonitorEnumerator()
+			: DeviceEnumerator(&GUID_DEVCLASS_MONITOR, DIGCF_PROFILE | DIGCF_PRESENT)
+		{
+			// Nothing
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::unique_ptr<Edid> MonitorEnumerator::edid() const
-{
-    std::wstring key_path =
-        stringPrintf(L"SYSTEM\\CurrentControlSet\\Enum\\%s\\Device Parameters",
-                     wideFromUtf8(deviceID()).c_str());
+		//--------------------------------------------------------------------------------------------------
+		std::unique_ptr<Edid> MonitorEnumerator::edid() const
+		{
+			std::wstring key_path =
+				stringPrintf(L"SYSTEM\\CurrentControlSet\\Enum\\%s\\Device Parameters",
+					wideFromUtf8(deviceID()).c_str());
 
-    RegistryKey key;
-    LONG status = key.open(HKEY_LOCAL_MACHINE, key_path.c_str(), KEY_READ);
-    if (status != ERROR_SUCCESS)
-    {
-        DLOG(LS_WARNING) << "Unable to open registry key: "
-                         << SystemError(static_cast<DWORD>(status)).toString();
-        return nullptr;
-    }
+			RegistryKey key;
+			LONG status = key.open(HKEY_LOCAL_MACHINE, key_path.c_str(), KEY_READ);
+			if (status != ERROR_SUCCESS)
+			{
+				DLOG(LS_WARNING) << "Unable to open registry key: "
+					<< SystemError(static_cast<DWORD>(status)).toString();
+				return nullptr;
+			}
 
-    DWORD type;
-    DWORD size = 128;
-    std::unique_ptr<uint8_t[]> data = std::make_unique<uint8_t[]>(size);
+			DWORD type;
+			DWORD size = 128;
+			std::unique_ptr<uint8_t[]> data = std::make_unique<uint8_t[]>(size);
 
-    status = key.readValue(L"EDID", data.get(), &size, &type);
-    if (status != ERROR_SUCCESS)
-    {
-        if (status == ERROR_MORE_DATA)
-        {
-            data = std::make_unique<uint8_t[]>(size);
-            status = key.readValue(L"EDID", data.get(), &size, &type);
-        }
+			status = key.readValue(L"EDID", data.get(), &size, &type);
+			if (status != ERROR_SUCCESS)
+			{
+				if (status == ERROR_MORE_DATA)
+				{
+					data = std::make_unique<uint8_t[]>(size);
+					status = key.readValue(L"EDID", data.get(), &size, &type);
+				}
 
-        if (status != ERROR_SUCCESS)
-        {
-            DLOG(LS_WARNING) << "Unable to read EDID data from registry: "
-                             << SystemError(static_cast<DWORD>(status)).toString();
-            return nullptr;
-        }
-    }
+				if (status != ERROR_SUCCESS)
+				{
+					DLOG(LS_WARNING) << "Unable to read EDID data from registry: "
+						<< SystemError(static_cast<DWORD>(status)).toString();
+					return nullptr;
+				}
+			}
 
-    if (type != REG_BINARY)
-    {
-        DLOG(LS_WARNING) << "Unexpected data type: " << type;
-        return nullptr;
-    }
+			if (type != REG_BINARY)
+			{
+				DLOG(LS_WARNING) << "Unexpected data type: " << type;
+				return nullptr;
+			}
 
-    return Edid::create(std::move(data), size);
-}
+			return Edid::create(std::move(data), size);
+		}
 
+	}
 } // namespace base::win

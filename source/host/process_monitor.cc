@@ -62,7 +62,6 @@ typedef struct {
     LONGLONG UserTime;
     LONGLONG KernelTime;
     UNICODE_STRING ImageName;
-    KPRIORITY BasePriority;
     HANDLE UniqueProcessId;
     HANDLE InheritedFromUniqueProcessId;
     ULONG HandleCount;

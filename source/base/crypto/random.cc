@@ -33,7 +33,7 @@ ContainerT generateBuffer(size_t size)
     ContainerT random_buffer;
     random_buffer.resize(size);
 
-    bool result = Random::fillBuffer(random_buffer.data(), random_buffer.size());
+    bool result = Random::fillBuffer((void *)random_buffer.data(), random_buffer.size());
     CHECK(result);
 
     return random_buffer;

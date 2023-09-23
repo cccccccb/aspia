@@ -49,7 +49,7 @@ void MessagePumpDefault::run(Delegate* delegate)
 
         if (delayed_work_time_ == TimePoint())
         {
-            std::unique_lock lock(have_work_lock_);
+            std::unique_lock<std::mutex> lock(have_work_lock_);
 
             while (!have_work_)
                 event_.wait(lock);
@@ -63,7 +63,7 @@ void MessagePumpDefault::run(Delegate* delegate)
 
             if (delay > Milliseconds::zero())
             {
-                std::unique_lock lock(have_work_lock_);
+                std::unique_lock<std::mutex> lock(have_work_lock_);
 
                 do
                 {
@@ -103,7 +103,7 @@ void MessagePumpDefault::quit()
 void MessagePumpDefault::scheduleWork()
 {
     {
-        std::scoped_lock lock(have_work_lock_);
+        std::lock_guard<std::mutex> lock(have_work_lock_);
         have_work_ = true;
     }
 

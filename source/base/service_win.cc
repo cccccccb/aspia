@@ -206,12 +206,12 @@ void ServiceThread::setStatus(DWORD status)
 //--------------------------------------------------------------------------------------------------
 void ServiceThread::doEvent(EventCallback callback, bool quit)
 {
-    std::unique_lock lock(event_lock);
+    std::unique_lock<std::mutex> lock(event_lock);
     event_processed = false;
 
     task_runner_->postTask([callback, quit]()
     {
-        std::scoped_lock lock(self->event_lock);
+        std::lock_guard<std::mutex> _lock(self->event_lock);
 
         callback();
 
@@ -245,7 +245,7 @@ void ServiceThread::run()
 
     if (!StartServiceCtrlDispatcherW(service_table))
     {
-        std::scoped_lock lock(self->startup_lock);
+        std::lock_guard<std::mutex> lock(self->startup_lock);
 
         DWORD error_code = GetLastError();
         if (error_code == ERROR_FAILED_SERVICE_CONTROLLER_CONNECT)
@@ -276,14 +276,14 @@ void WINAPI ServiceThread::serviceMain(DWORD /* argc */, LPWSTR* /* argv */)
 
     // Start creating the MessageLoop instance.
     {
-        std::scoped_lock lock(self->startup_lock);
+        std::lock_guard<std::mutex> lock(self->startup_lock);
         self->startup_state = State::SERVICE_MAIN_CALLED;
         self->startup_condition.notify_all();
     }
 
     // Waiting for the completion of the creation.
     {
-        std::unique_lock lock(self->startup_lock);
+        std::unique_lock<std::mutex> lock(self->startup_lock);
 
         while (self->startup_state != State::MESSAGE_LOOP_CREATED)
             self->startup_condition.wait(lock);
@@ -359,7 +359,7 @@ DWORD WINAPI ServiceThread::serviceControlHandler(
 } // namespace
 
 //--------------------------------------------------------------------------------------------------
-Service::Service(std::u16string_view name, MessageLoop::Type type)
+Service::Service(std::u16string name, MessageLoop::Type type)
     : type_(type),
       name_(name)
 {
@@ -394,7 +394,7 @@ void Service::exec()
 
     // Waiting for the launch ServiceThread::serviceMain.
     {
-        std::unique_lock lock(service_thread->startup_lock);
+        std::unique_lock<std::mutex> lock(service_thread->startup_lock);
         service_thread->startup_state = ServiceThread::State::NOT_STARTED;
 
         // Starts handler thread.
@@ -409,7 +409,7 @@ void Service::exec()
 
     // Now we can complete the registration of the service.
     {
-        std::scoped_lock lock(service_thread->startup_lock);
+        std::lock_guard<std::mutex> lock(service_thread->startup_lock);
         service_thread->startup_state = ServiceThread::State::MESSAGE_LOOP_CREATED;
         service_thread->startup_condition.notify_all();
     }

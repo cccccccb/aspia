@@ -18,11 +18,11 @@
 
 #include "relay/win/service_util.h"
 
+#include "base/filesystem.hpp"
 #include "base/files/base_paths.h"
 #include "base/win/service_controller.h"
 #include "relay/service_constants.h"
 
-#include <filesystem>
 #include <iostream>
 
 namespace relay {
@@ -76,7 +76,7 @@ void stopService()
 //--------------------------------------------------------------------------------------------------
 void installService()
 {
-    std::filesystem::path file_path;
+    ghc::filesystem::path file_path;
 
     if (!base::BasePaths::currentExecFile(&file_path))
     {

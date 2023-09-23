@@ -18,6 +18,7 @@
 
 #include "relay/settings.h"
 
+#include "base/filesystem.hpp"
 #include "base/files/base_paths.h"
 #include "build/build_config.h"
 
@@ -43,7 +44,7 @@ Settings::~Settings() = default;
 
 //--------------------------------------------------------------------------------------------------
 // static
-std::filesystem::path Settings::filePath()
+ghc::filesystem::path Settings::filePath()
 {
     return base::JsonSettings::filePath(kScope, kApplicationName, kFileName);
 }

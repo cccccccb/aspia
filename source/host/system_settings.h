@@ -19,10 +19,10 @@
 #ifndef HOST_SYSTEM_SETTINGS_H
 #define HOST_SYSTEM_SETTINGS_H
 
+#include "base/filesystem.hpp"
 #include "base/macros_magic.h"
 #include "base/settings/json_settings.h"
 
-#include <filesystem>
 
 namespace base {
 class UserList;
@@ -37,10 +37,10 @@ public:
     ~SystemSettings();
 
     static bool createPasswordHash(
-        std::string_view password, base::ByteArray* hash, base::ByteArray* salt);
-    static bool isValidPassword(std::string_view password);
+        std::string password, base::ByteArray* hash, base::ByteArray* salt);
+    static bool isValidPassword(std::string password);
 
-    const std::filesystem::path& filePath() const;
+    const ghc::filesystem::path& filePath() const;
     bool isWritable() const;
     void sync();
     bool flush();

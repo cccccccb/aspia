@@ -19,10 +19,11 @@
 #ifndef BASE_LOGGING_H
 #define BASE_LOGGING_H
 
+#include "base/filesystem.hpp"
 #include "base/scoped_clear_last_error.h"
 #include "base/system_error.h"
 
-#include <filesystem>
+#include <iostream>
 #include <sstream>
 #include <type_traits>
 #include <utility>
@@ -128,7 +129,7 @@ struct LoggingSettings
     LoggingDestination destination;
     LoggingSeverity min_log_level;
 
-    std::filesystem::path log_dir;
+    ghc::filesystem::path log_dir;
 
     size_t max_log_file_size;
     size_t max_log_file_age;
@@ -257,12 +258,13 @@ private:
 // 'if' clause such as:
 // if (a == 1)
 //   CHECK_EQ(2, a);
-#define CHECK_OP(name, op, val1, val2)                                                           \
-  switch (0) case 0: default:                                                                    \
-  if (::base::CheckOpResult true_if_passed =                                                     \
-      ::base::check##name##Impl((val1), (val2), #val1 " " #op " " #val2));                       \
-  else                                                                                           \
-      ::base::LogMessage(__FILE__, __LINE__, __FUNCTION__, true_if_passed.message()).stream()
+#define CHECK_OP(name, op, val1, val2)                                                          \
+    std::cout                                                                                   \
+//      ::base::LogMessage(__FILE__, __LINE__, __FUNCTION__, true_if_passed.message()).stream()
+//  switch (0) case 0: default:                                                                    \
+//   if (::base::CheckOpResult true_if_passed =                                                     \
+//       ::base::check##name##Impl((val1), (val2), #val1 " " #op " " #val2));                       \
+//   else                                                                                           \
 
 template <typename T, typename = void>
 struct SupportsOstreamOperator : std::false_type {};
@@ -272,7 +274,7 @@ struct SupportsOstreamOperator<T, decltype(
     void(std::declval<std::ostream&>() << std::declval<T>()))> : std::true_type {};
 
 template<typename T>
-inline constexpr bool SupportsOstreamOperator_v = SupportsOstreamOperator<T>::value;
+constexpr bool SupportsOstreamOperator_v = SupportsOstreamOperator<T>::value;
 
 // This formats a value for a failing CHECK_XX statement. Ordinarily, it uses the definition for
 // operator<<, with a few special cases below.
@@ -335,30 +337,32 @@ std::string* makeCheckOpString(const std::string& v1, const std::string& v2, con
 // Helper functions for CHECK_OP macro.
 // The (int, int) specialization works around the issue that the compiler will not instantiate the
 // template version of the function on values of unnamed enum type - see comment below.
-#define DEFINE_CHECK_OP_IMPL(name, op)                                                           \
-    template <class t1, class t2>                                                                \
-    constexpr std::string* check##name##Impl(const t1& v1, const t2& v2, const char* names)      \
-    {                                                                                            \
-        if ((v1 op v2))                                                                          \
-            return nullptr;                                                                      \
-        else                                                                                     \
-            return ::base::makeCheckOpString(v1, v2, names);                                     \
-    }                                                                                            \
-    constexpr std::string* check##name##Impl(int v1, int v2, const char* names)                  \
-    {                                                                                            \
-        if ((v1 op v2))                                                                          \
-            return nullptr;                                                                      \
-        else                                                                                     \
-            return ::base::makeCheckOpString(v1, v2, names);                                     \
-    }
+// #ifndef DEFINE_CHECK_OP_IMPL
+// #define DEFINE_CHECK_OP_IMPL(name, op)                                                           \
+//     template <class t1, class t2>                                                                \
+//     std::string* check##name##Impl(const t1& v1, const t2& v2, const char* names)      \
+//     {                                                                                            \
+//         if ((v1 op v2))                                                                          \
+//             return nullptr;                                                                      \
+//         else                                                                                     \
+//             return ::base::makeCheckOpString(v1, v2, names);                                     \
+//     }                                                                                            \
+//     std::string* check##name##Impl(int v1, int v2, const char* names)                  \
+//     {                                                                                            \
+//         if ((v1 op v2))                                                                          \
+//             return nullptr;                                                                      \
+//         else                                                                                     \
+//             return ::base::makeCheckOpString(v1, v2, names);                                     \
+//     }
 
-DEFINE_CHECK_OP_IMPL(EQ, ==)
-DEFINE_CHECK_OP_IMPL(NE, !=)
-DEFINE_CHECK_OP_IMPL(LE, <=)
-DEFINE_CHECK_OP_IMPL(LT, < )
-DEFINE_CHECK_OP_IMPL(GE, >=)
-DEFINE_CHECK_OP_IMPL(GT, > )
-#undef DEFINE_CHECK_OP_IMPL
+// DEFINE_CHECK_OP_IMPL(EQ, ==)
+// DEFINE_CHECK_OP_IMPL(NE, !=)
+// DEFINE_CHECK_OP_IMPL(LE, <=)
+// DEFINE_CHECK_OP_IMPL(LT, < )
+// DEFINE_CHECK_OP_IMPL(GE, >=)
+// DEFINE_CHECK_OP_IMPL(GT, > )
+// // #undef DEFINE_CHECK_OP_IMPL
+// #endif
 
 #define CHECK_EQ(val1, val2) CHECK_OP(EQ, ==, val1, val2)
 #define CHECK_NE(val1, val2) CHECK_OP(NE, !=, val1, val2)
@@ -425,13 +429,14 @@ DEFINE_CHECK_OP_IMPL(GT, > )
 #if DCHECK_IS_ON()
 
 #define DCHECK_OP(name, op, val1, val2)                                                          \
-    switch (0) case 0: default:                                                                  \
-    if (::base::CheckOpResult true_if_passed =                                                   \
-        DCHECK_IS_ON() ?                                                                         \
-        ::base::check##name##Impl((val1), (val2),  #val1 " " #op " " #val2) : nullptr);          \
-    else                                                                                         \
-        ::base::LogMessage(__FILE__, __LINE__, __FUNCTION__, ::base::LOG_LS_DCHECK,              \
-                           true_if_passed.message()).stream()
+    std::cout                                                                                   \
+        // ::base::LogMessage(__FILE__, __LINE__, __FUNCTION__, ::base::LOG_LS_DCHECK,              \
+                           ""/*true_if_passed.message()).stream()*/
+    // switch (0) case 0: default:                                                                  \
+    // if (::base::CheckOpResult true_if_passed =                                                   \
+    //     DCHECK_IS_ON() ?                                                                         \
+    //     ::base::check##name##Impl((val1), (val2),  #val1 " " #op " " #val2) : nullptr);          \
+    // else                                                                                         \
 
 #else // DCHECK_IS_ON()
 
@@ -486,17 +491,17 @@ class LogMessage
 {
 public:
     // Used for LOG(severity).
-    LogMessage(std::string_view file, int line, std::string_view function, LoggingSeverity severity);
+    LogMessage(std::string file, int line, std::string function, LoggingSeverity severity);
 
     // Used for CHECK(). Implied severity = LOG_FATAL.
-    LogMessage(std::string_view file, int line, std::string_view function, const char* condition);
+    LogMessage(std::string file, int line, std::string function, const char* condition);
 
     // Used for CHECK_EQ(), etc. Takes ownership of the given string.
     // Implied severity = LOG_FATAL.
-    LogMessage(std::string_view file, int line, std::string_view function, std::string* result);
+    LogMessage(std::string file, int line, std::string function, std::string* result);
 
     // Used for DCHECK_EQ(), etc. Takes ownership of the given string.
-    LogMessage(std::string_view file, int line, std::string_view function, LoggingSeverity severity,
+    LogMessage(std::string file, int line, std::string function, LoggingSeverity severity,
                std::string* result);
 
     ~LogMessage();
@@ -507,7 +512,7 @@ public:
     std::string str() { return stream_.str(); }
 
 private:
-    void init(std::string_view file, int line, std::string_view function);
+    void init(std::string file, int line, std::string function);
 
     LoggingSeverity severity_;
     std::ostringstream stream_;
@@ -534,7 +539,7 @@ public:
 class ErrorLogMessage
 {
 public:
-    ErrorLogMessage(std::string_view file, int line, std::string_view function,
+    ErrorLogMessage(std::string file, int line, std::string function,
                     LoggingSeverity severity, SystemError error);
 
     // Appends the error message before destructing the encapsulated class.

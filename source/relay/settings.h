@@ -20,6 +20,7 @@
 #define RELAY_SETTINGS_H
 
 #include "base/settings/json_settings.h"
+#include "base/filesystem.hpp"
 
 #include <chrono>
 
@@ -31,7 +32,7 @@ public:
     Settings();
     ~Settings();
 
-    static std::filesystem::path filePath();
+    static ghc::filesystem::path filePath();
 
     void reset();
     void flush();

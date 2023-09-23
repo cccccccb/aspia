@@ -36,7 +36,7 @@ namespace {
 const size_t kIvSize = 12; // 12 bytes.
 
 //--------------------------------------------------------------------------------------------------
-bool verifyNg(std::string_view N, std::string_view g)
+bool verifyNg(std::string N, std::string g)
 {
     switch (N.size())
     {
@@ -97,13 +97,13 @@ void ClientAuthenticator::setIdentify(proto::Identify identify)
 }
 
 //--------------------------------------------------------------------------------------------------
-void ClientAuthenticator::setUserName(std::u16string_view username)
+void ClientAuthenticator::setUserName(std::u16string username)
 {
     username_ = username;
 }
 
 //--------------------------------------------------------------------------------------------------
-void ClientAuthenticator::setPassword(std::u16string_view password)
+void ClientAuthenticator::setPassword(std::u16string password)
 {
     password_ = password;
 }

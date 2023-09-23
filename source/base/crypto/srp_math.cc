@@ -144,14 +144,14 @@ BigNum SrpMath::calc_B(const BigNum& b, const BigNum& N, const BigNum& g, const 
 //--------------------------------------------------------------------------------------------------
 // static
 // x = BLAKE2b512(s | BLAKE2b512(I | ":" | p))
-BigNum SrpMath::calc_x(const BigNum& s, std::u16string_view I, std::u16string_view p)
+BigNum SrpMath::calc_x(const BigNum& s, std::u16string I, std::u16string p)
 {
     return calc_x(s, I, fromStdString(utf8FromUtf16(p)));
 }
 
 //--------------------------------------------------------------------------------------------------
 // static
-BigNum SrpMath::calc_x(const BigNum& s, std::u16string_view I, const ByteArray& p)
+BigNum SrpMath::calc_x(const BigNum& s, std::u16string I, const ByteArray& p)
 {
     if (!s.isValid() || I.empty() || p.empty())
     {
@@ -373,7 +373,7 @@ bool SrpMath::verify_A_mod_N(const BigNum& A, const BigNum& N)
 
 //--------------------------------------------------------------------------------------------------
 // static
-BigNum SrpMath::calc_v(std::u16string_view I, std::u16string_view p, const BigNum& s,
+BigNum SrpMath::calc_v(std::u16string I, std::u16string p, const BigNum& s,
                        const BigNum& N, const BigNum& g)
 {
     if (I.empty() || p.empty() || !N.isValid() || !g.isValid() || !s.isValid())
@@ -404,7 +404,7 @@ BigNum SrpMath::calc_v(std::u16string_view I, std::u16string_view p, const BigNu
 
 //--------------------------------------------------------------------------------------------------
 // static
-BigNum SrpMath::calc_v(std::u16string_view I, const ByteArray& p, const BigNum& s,
+BigNum SrpMath::calc_v(std::u16string I, const ByteArray& p, const BigNum& s,
                        const BigNum& N, const BigNum& g)
 {
     if (I.empty() || p.empty() || !N.isValid() || !g.isValid() || !s.isValid())

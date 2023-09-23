@@ -29,8 +29,8 @@ namespace base {
 
 #if defined(OS_WIN)
 
-static_assert(std::is_same<SessionId, DWORD>());
-static_assert(kInvalidSessionId == std::numeric_limits<DWORD>::max());
+static_assert(std::is_same<SessionId, DWORD>(), "");
+static_assert(kInvalidSessionId == std::numeric_limits<DWORD>::max(), "");
 
 //--------------------------------------------------------------------------------------------------
 SessionId activeConsoleSessionId()

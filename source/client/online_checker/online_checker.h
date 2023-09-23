@@ -19,13 +19,13 @@
 #ifndef CLIENT_ONLINE_CHECKER_ONLINE_CHECKER_H
 #define CLIENT_ONLINE_CHECKER_ONLINE_CHECKER_H
 
+#include "base/optional.hpp"
 #include "base/macros_magic.h"
 #include "base/scoped_task_runner.h"
 #include "base/threading/thread.h"
 #include "client/online_checker/online_checker_direct.h"
 #include "client/online_checker/online_checker_router.h"
 
-#include <optional>
 #include <mutex>
 #include <string>
 #include <vector>
@@ -58,7 +58,7 @@ public:
     };
     using ComputerList = std::vector<Computer>;
 
-    void checkComputers(const std::optional<RouterConfig>& router_config,
+    void checkComputers(const tl::optional<RouterConfig>& router_config,
                         const ComputerList& computers,
                         Delegate* delegate);
 
@@ -83,7 +83,7 @@ private:
     std::unique_ptr<OnlineCheckerDirect> direct_checker_;
     std::unique_ptr<OnlineCheckerRouter> router_checker_;
 
-    std::optional<RouterConfig> router_config_;
+    tl::optional<RouterConfig> router_config_;
     OnlineCheckerRouter::ComputerList router_computers_;
     OnlineCheckerDirect::ComputerList direct_computers_;
     Delegate* delegate_ = nullptr;

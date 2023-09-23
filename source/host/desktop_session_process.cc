@@ -18,6 +18,7 @@
 
 #include "host/desktop_session_process.h"
 
+#include "base/filesystem.hpp"
 #include "base/command_line.h"
 #include "base/logging.h"
 #include "base/stl_util.h"
@@ -252,7 +253,7 @@ DesktopSessionProcess::~DesktopSessionProcess()
 //--------------------------------------------------------------------------------------------------
 // static
 std::unique_ptr<DesktopSessionProcess> DesktopSessionProcess::create(
-    base::SessionId session_id, std::u16string_view channel_id)
+    base::SessionId session_id, std::u16string channel_id)
 {
     if (session_id == base::kInvalidSessionId)
     {
@@ -290,8 +291,8 @@ std::unique_ptr<DesktopSessionProcess> DesktopSessionProcess::create(
         new DesktopSessionProcess(std::move(process_handle), std::move(thread_handle)));
 #elif defined(OS_LINUX)
     std::error_code ignored_error;
-    std::filesystem::directory_iterator it("/usr/share/xsessions/", ignored_error);
-    if (it == std::filesystem::end(it))
+    ghc::filesystem::directory_iterator it("/usr/share/xsessions/", ignored_error);
+    if (it == ghc::filesystem::end(it))
     {
         LOG(LS_WARNING) << "No X11 sessions";
         return nullptr;
@@ -311,7 +312,7 @@ std::unique_ptr<DesktopSessionProcess> DesktopSessionProcess::create(
         if (!base::contains(line, u":0"))
             continue;
 
-        std::vector<std::u16string_view> splitted = base::splitStringView(
+        std::vector<std::u16string> splitted = base::splitStringView(
             line, u" ", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
         if (splitted.empty())
             continue;
@@ -349,13 +350,13 @@ std::unique_ptr<DesktopSessionProcess> DesktopSessionProcess::create(
 
 //--------------------------------------------------------------------------------------------------
 // static
-std::filesystem::path DesktopSessionProcess::filePath()
+ghc::filesystem::path DesktopSessionProcess::filePath()
 {
-    std::filesystem::path file_path;
+    ghc::filesystem::path file_path;
     if (!base::BasePaths::currentExecDir(&file_path))
     {
         LOG(LS_WARNING) << "currentExecDir failed";
-        return std::filesystem::path();
+        return ghc::filesystem::path();
     }
 
     file_path.append(kDesktopAgentFile);

@@ -18,6 +18,7 @@
 
 #include "base/peer/server_authenticator.h"
 
+#include "base/optional.hpp"
 #include "base/bitset.h"
 #include "base/cpuid_util.h"
 #include "base/location.h"
@@ -437,7 +438,7 @@ void ServerAuthenticator::onIdentify(const ByteArray& buffer)
         {
             session_types_ = user.sessions;
 
-            std::optional<SrpNgPair> Ng_pair = pairByGroup(user.group);
+            tl::optional<SrpNgPair> Ng_pair = pairByGroup(user.group);
             if (Ng_pair.has_value())
             {
                 N_ = BigNum::fromStdString(Ng_pair->first);

@@ -24,59 +24,61 @@
 
 #include <objbase.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-// Simple scoped memory releaser class for COM allocated memory.
-// Example:
-//   base::win::ScopedCoMem<ITEMIDLIST> file_item;
-//   SHGetSomeInfo(&file_item, ...);
-//   ...
-//   return;  <-- memory released
-template<typename T>
-class ScopedCoMem
-{
-public:
-    ScopedCoMem() = default;
+		// Simple scoped memory releaser class for COM allocated memory.
+		// Example:
+		//   base::win::ScopedCoMem<ITEMIDLIST> file_item;
+		//   SHGetSomeInfo(&file_item, ...);
+		//   ...
+		//   return;  <-- memory released
+		template<typename T>
+		class ScopedCoMem
+		{
+		public:
+			ScopedCoMem() = default;
 
-    ~ScopedCoMem()
-    {
-        reset(nullptr);
-    }
+			~ScopedCoMem()
+			{
+				reset(nullptr);
+			}
 
-    T** operator&()
-    {
-        DCHECK(mem_ptr_ == nullptr);
-        return &mem_ptr_;
-    }
+			T** operator&()
+			{
+				DCHECK(mem_ptr_ == nullptr);
+				return &mem_ptr_;
+			}
 
-    operator T*() { return mem_ptr_; }
+			operator T*() { return mem_ptr_; }
 
-    T* operator->()
-    {
-        DCHECK(mem_ptr_ != nullptr);
-        return mem_ptr_;
-    }
+			T* operator->()
+			{
+				DCHECK(mem_ptr_ != nullptr);
+				return mem_ptr_;
+			}
 
-    const T* operator->() const
-    {
-        DCHECK(mem_ptr_ != nullptr);
-        return mem_ptr_;
-    }
+			const T* operator->() const
+			{
+				DCHECK(mem_ptr_ != nullptr);
+				return mem_ptr_;
+			}
 
-    void reset(T* ptr)
-    {
-        CoTaskMemFree(mem_ptr_);
-        mem_ptr_ = ptr;
-    }
+			void reset(T* ptr)
+			{
+				CoTaskMemFree(mem_ptr_);
+				mem_ptr_ = ptr;
+			}
 
-    T* get() const { return mem_ptr_; }
+			T* get() const { return mem_ptr_; }
 
-private:
-    T* mem_ptr_ = nullptr;
+		private:
+			T* mem_ptr_ = nullptr;
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedCoMem);
-};
+			DISALLOW_COPY_AND_ASSIGN(ScopedCoMem);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SCOPED_CO_MEM_H

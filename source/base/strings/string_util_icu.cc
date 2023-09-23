@@ -26,7 +26,7 @@
 
 namespace base {
 
-int compareCaseInsensitive(std::u16string_view first, std::u16string_view second)
+int compareCaseInsensitive(std::u16string first, std::u16string second)
 {
     UErrorCode error_code = U_ZERO_ERROR;
     int ret = u_strCaseCompare(first.data(), first.length(),
@@ -38,7 +38,7 @@ int compareCaseInsensitive(std::u16string_view first, std::u16string_view second
     return ret;
 }
 
-std::u16string toUpper(std::u16string_view in)
+std::u16string toUpper(std::u16string in)
 {
     if (in.empty())
         return std::u16string();
@@ -60,7 +60,7 @@ std::u16string toUpper(std::u16string_view in)
     return out;
 }
 
-std::u16string toLower(std::u16string_view in)
+std::u16string toLower(std::u16string in)
 {
     if (in.empty())
         return std::u16string();

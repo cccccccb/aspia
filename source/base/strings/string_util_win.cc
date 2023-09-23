@@ -25,7 +25,7 @@
 namespace base {
 
 //--------------------------------------------------------------------------------------------------
-int compareCaseInsensitive(std::u16string_view first, std::u16string_view second)
+int compareCaseInsensitive(std::u16string first, std::u16string second)
 {
     int ret = CompareStringW(LOCALE_INVARIANT,
                              NORM_IGNORECASE,
@@ -42,7 +42,7 @@ int compareCaseInsensitive(std::u16string_view first, std::u16string_view second
 }
 
 //--------------------------------------------------------------------------------------------------
-std::u16string toUpper(std::u16string_view in)
+std::u16string toUpper(std::u16string in)
 {
     if (in.empty())
         return std::u16string();
@@ -53,7 +53,7 @@ std::u16string toUpper(std::u16string_view in)
     if (!LCMapStringW(LOCALE_INVARIANT,
                       LCMAP_UPPERCASE,
                       reinterpret_cast<const wchar_t*>(in.data()), static_cast<int>(in.size()),
-                      reinterpret_cast<wchar_t*>(out.data()), static_cast<int>(out.size())))
+                      const_cast<wchar_t*>(reinterpret_cast<const wchar_t*>(out.data())), static_cast<int>(out.size())))
     {
         return std::u16string();
     }
@@ -62,7 +62,7 @@ std::u16string toUpper(std::u16string_view in)
 }
 
 //--------------------------------------------------------------------------------------------------
-std::u16string toLower(std::u16string_view in)
+std::u16string toLower(std::u16string in)
 {
     if (in.empty())
         return std::u16string();
@@ -73,7 +73,7 @@ std::u16string toLower(std::u16string_view in)
     if (!LCMapStringW(LOCALE_INVARIANT,
                       LCMAP_LOWERCASE,
                       reinterpret_cast<const wchar_t*>(in.data()), static_cast<int>(in.size()),
-                      reinterpret_cast<wchar_t*>(out.data()), static_cast<int>(out.size())))
+					  const_cast<wchar_t*>(reinterpret_cast<const wchar_t*>(out.data())), static_cast<int>(out.size())))
     {
         return std::u16string();
     }

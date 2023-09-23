@@ -72,13 +72,13 @@ std::string Location::toString(PathType path_type) const
 {
     if (hasSourceInfo())
     {
-        std::string_view file_name(file_name_);
+        std::string file_name(file_name_);
 
         if (path_type == SHORT_PATH)
         {
             size_t last_slash_pos = file_name.find_last_of("\\/");
-            if (last_slash_pos != std::string_view::npos)
-                file_name.remove_prefix(last_slash_pos + 1);
+            if (last_slash_pos != std::string::npos)
+                file_name = file_name.substr(last_slash_pos, file_name.length() - last_slash_pos - 1);
         }
 
         return std::string(function_name_) + "@" +

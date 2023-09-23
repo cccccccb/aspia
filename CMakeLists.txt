@@ -17,8 +17,8 @@
 #
 
 cmake_minimum_required(VERSION 3.17.0)
-
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -v")
 
 project(aspia)
 

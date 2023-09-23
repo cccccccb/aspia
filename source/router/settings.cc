@@ -18,6 +18,7 @@
 
 #include "router/settings.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/net/ip_util.h"
 #include "base/strings/strcat.h"
@@ -45,7 +46,7 @@ Settings::~Settings() = default;
 
 //--------------------------------------------------------------------------------------------------
 // static
-std::filesystem::path Settings::filePath()
+ghc::filesystem::path Settings::filePath()
 {
     return base::JsonSettings::filePath(kScope, kApplicationName, kFileName);
 }
@@ -156,7 +157,7 @@ Settings::WhiteList Settings::relayWhiteList() const
 }
 
 //--------------------------------------------------------------------------------------------------
-void Settings::setWhiteList(std::string_view key, const WhiteList& value)
+void Settings::setWhiteList(std::string key, const WhiteList& value)
 {
     std::u16string result;
 
@@ -176,7 +177,7 @@ void Settings::setWhiteList(std::string_view key, const WhiteList& value)
 }
 
 //--------------------------------------------------------------------------------------------------
-Settings::WhiteList Settings::whiteList(std::string_view key) const
+Settings::WhiteList Settings::whiteList(std::string key) const
 {
     WhiteList result =
         base::splitString(impl_.get<std::u16string>(key),

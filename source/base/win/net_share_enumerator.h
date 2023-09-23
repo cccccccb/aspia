@@ -24,41 +24,43 @@
 #include <Windows.h>
 #include <LM.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class NetShareEnumerator
-{
-public:
-    NetShareEnumerator();
-    ~NetShareEnumerator();
+		class NetShareEnumerator
+		{
+		public:
+			NetShareEnumerator();
+			~NetShareEnumerator();
 
-    bool isAtEnd() const;
-    void advance();
+			bool isAtEnd() const;
+			void advance();
 
-    enum class Type
-    {
-        UNKNOWN   = 0,
-        DISK      = 1,
-        PRINTER   = 2,
-        DEVICE    = 3,
-        IPC       = 4,
-        SPECIAL   = 5,
-        TEMPORARY = 6
-    };
+			enum class Type
+			{
+				UNKNOWN = 0,
+				DISK = 1,
+				PRINTER = 2,
+				DEVICE = 3,
+				IPC = 4,
+				SPECIAL = 5,
+				TEMPORARY = 6
+			};
 
-    std::string name() const;
-    std::string localPath() const;
-    std::string description() const;
-    Type type() const;
-    uint32_t currentUses() const;
-    uint32_t maxUses() const;
+			std::string name() const;
+			std::string localPath() const;
+			std::string description() const;
+			Type type() const;
+			uint32_t currentUses() const;
+			uint32_t maxUses() const;
 
-private:
-    PSHARE_INFO_502 share_info_ = nullptr;
-    DWORD total_entries_ = 0;
-    DWORD current_pos_ = 0;
-};
+		private:
+			PSHARE_INFO_502 share_info_ = nullptr;
+			DWORD total_entries_ = 0;
+			DWORD current_pos_ = 0;
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_NET_SHARE_ENUMERATOR_H

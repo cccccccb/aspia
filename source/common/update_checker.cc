@@ -84,13 +84,13 @@ UpdateChecker::~UpdateChecker()
 }
 
 //--------------------------------------------------------------------------------------------------
-void UpdateChecker::setUpdateServer(std::string_view update_server)
+void UpdateChecker::setUpdateServer(std::string update_server)
 {
     update_server_ = update_server;
 }
 
 //--------------------------------------------------------------------------------------------------
-void UpdateChecker::setPackageName(std::string_view package_name)
+void UpdateChecker::setPackageName(std::string package_name)
 {
     package_name_ = package_name;
 }

@@ -114,7 +114,7 @@ HttpFileDownloader::~HttpFileDownloader()
 }
 
 //--------------------------------------------------------------------------------------------------
-void HttpFileDownloader::start(std::string_view url,
+void HttpFileDownloader::start(std::string url,
                                std::shared_ptr<base::TaskRunner> owner_task_runner,
                                Delegate* delegate)
 {

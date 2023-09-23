@@ -18,6 +18,7 @@
 
 #include "console/computer_dialog.h"
 
+#include "base/optional.hpp"
 #include "base/logging.h"
 #include "base/crypto/secure_memory.h"
 #include "client/config_factory.h"
@@ -47,7 +48,7 @@ enum ItemType
 ComputerDialog::ComputerDialog(QWidget* parent,
                                Mode mode,
                                const QString& parent_name,
-                               const std::optional<proto::address_book::Computer>& computer)
+                               const tl::optional<proto::address_book::Computer>& computer)
     : QDialog(parent),
       mode_(mode),
       computer_(computer.value_or(ComputerFactory::defaultComputer()))

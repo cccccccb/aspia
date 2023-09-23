@@ -28,7 +28,7 @@ namespace base {
 
 //--------------------------------------------------------------------------------------------------
 // static
-void Base64::encode(std::string_view input, std::string* output)
+void Base64::encode(std::string input, std::string* output)
 {
     DCHECK(output);
     auto temp = encode(input);
@@ -37,24 +37,24 @@ void Base64::encode(std::string_view input, std::string* output)
 
 //--------------------------------------------------------------------------------------------------
 // static
-std::string Base64::encode(std::string_view input)
+std::string Base64::encode(std::string input)
 {
-    return encodeT<std::string_view, std::string>(input);
+    return encodeT<std::string, std::string>(input);
 }
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool Base64::decode(std::string_view input, std::string* output)
+bool Base64::decode(std::string input, std::string* output)
 {
     DCHECK(output);
-    return decodeT<std::string_view>(input, output);
+    return decodeT<std::string>(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
 // static
-std::string Base64::decode(std::string_view input)
+std::string Base64::decode(std::string input)
 {
-    return decodeT<std::string_view, std::string>(input);
+    return decodeT<std::string, std::string>(input);
 }
 
 //--------------------------------------------------------------------------------------------------

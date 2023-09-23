@@ -31,25 +31,25 @@ namespace base {
 namespace {
 
 //--------------------------------------------------------------------------------------------------
-std::vector<std::string_view> splitString(std::string_view str, char separator)
+std::vector<std::string> splitString(std::string str, char separator)
 {
-    std::vector<std::string_view> result;
+    std::vector<std::string> result;
 
     if (str.empty())
         return result;
 
     size_t start = 0;
 
-    while (start != std::string_view::npos)
+    while (start != std::string::npos)
     {
         size_t end = str.find_first_of(separator, start);
 
-        std::string_view piece;
+        std::string piece;
 
-        if (end == std::string_view::npos)
+        if (end == std::string::npos)
         {
             piece = str.substr(start);
-            start = std::string_view::npos;
+            start = std::string::npos;
         }
         else
         {
@@ -68,15 +68,15 @@ std::vector<std::string_view> splitString(std::string_view str, char separator)
 // constructs a vector of valid integers. It stops when it reaches an invalid item (including the
 // wildcard character). |parsed| is the resulting integer vector. Function returns true if all
 // numbers were parsed successfully, false otherwise.
-bool parseVersionNumbers(std::string_view version_str, std::vector<uint32_t>* parsed)
+bool parseVersionNumbers(std::string version_str, std::vector<uint32_t>* parsed)
 {
-    std::vector<std::string_view> numbers = splitString(version_str, '.');
+    std::vector<std::string> numbers = splitString(version_str, '.');
     if (numbers.empty())
         return false;
 
     for (auto it = numbers.begin(); it != numbers.end(); ++it)
     {
-        std::string_view str = *it;
+        std::string str = *it;
 
         if (str.empty())
             return false;
@@ -94,7 +94,7 @@ bool parseVersionNumbers(std::string_view version_str, std::vector<uint32_t>* pa
             return false;
 
         // StringToUint returns unsigned int but Version fields are uint32_t.
-        static_assert(sizeof(uint32_t) == sizeof(unsigned int));
+        static_assert(sizeof (uint32_t) == sizeof (unsigned int), "");
 
         parsed->push_back(num);
     }
@@ -170,7 +170,7 @@ Version::Version(uint32_t major, uint32_t minor, uint32_t build, uint32_t revisi
 Version::~Version() = default;
 
 //--------------------------------------------------------------------------------------------------
-Version::Version(std::string_view version_str)
+Version::Version(std::string version_str)
 {
     std::vector<uint32_t> parsed;
 
@@ -195,7 +195,7 @@ bool Version::isValid() const
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool Version::isValidWildcardString(std::string_view wildcard_string)
+bool Version::isValidWildcardString(std::string wildcard_string)
 {
     std::string version_string(wildcard_string);
     if (endsWith(version_string, ".*"))
@@ -206,7 +206,7 @@ bool Version::isValidWildcardString(std::string_view wildcard_string)
 }
 
 //--------------------------------------------------------------------------------------------------
-int Version::compareToWildcardString(std::string_view wildcard_string) const
+int Version::compareToWildcardString(std::string wildcard_string) const
 {
     DCHECK(isValid());
     DCHECK(Version::isValidWildcardString(wildcard_string));

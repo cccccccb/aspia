@@ -17,6 +17,7 @@
 //
 
 #include "base/files/file_util.h"
+#include "base/filesystem.hpp"
 
 #include <fstream>
 
@@ -26,7 +27,7 @@ namespace {
 
 //--------------------------------------------------------------------------------------------------
 template <class Container>
-bool readFileT(const std::filesystem::path& filename, Container* buffer)
+bool readFileT(const ghc::filesystem::path& filename, Container* buffer)
 {
     if (!buffer)
         return false;
@@ -50,14 +51,14 @@ bool readFileT(const std::filesystem::path& filename, Container* buffer)
 
     buffer->resize(size);
 
-    stream.read(reinterpret_cast<char*>(buffer->data()), buffer->size());
+    stream.read(const_cast<char *>(reinterpret_cast<const char*>(buffer->data())), buffer->size());
     return !stream.fail();
 }
 
 } // namespace
 
 //--------------------------------------------------------------------------------------------------
-bool writeFile(const std::filesystem::path& filename, const void* data, size_t size)
+bool writeFile(const ghc::filesystem::path& filename, const void* data, size_t size)
 {
     if (!data)
         return false;
@@ -74,25 +75,25 @@ bool writeFile(const std::filesystem::path& filename, const void* data, size_t s
 }
 
 //--------------------------------------------------------------------------------------------------
-bool writeFile(const std::filesystem::path& filename, const ByteArray& buffer)
+bool writeFile(const ghc::filesystem::path& filename, const ByteArray& buffer)
 {
     return writeFile(filename, buffer.data(), buffer.size());
 }
 
 //--------------------------------------------------------------------------------------------------
-bool writeFile(const std::filesystem::path& filename, std::string_view buffer)
+bool writeFile(const ghc::filesystem::path& filename, std::string buffer)
 {
     return writeFile(filename, buffer.data(), buffer.size());
 }
 
 //--------------------------------------------------------------------------------------------------
-bool readFile(const std::filesystem::path& filename, ByteArray* buffer)
+bool readFile(const ghc::filesystem::path& filename, ByteArray* buffer)
 {
     return readFileT<ByteArray>(filename, buffer);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool readFile(const std::filesystem::path& filename, std::string* buffer)
+bool readFile(const ghc::filesystem::path& filename, std::string* buffer)
 {
     return readFileT<std::string>(filename, buffer);
 }

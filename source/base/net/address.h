@@ -39,11 +39,11 @@ public:
 
     ~Address() = default;
 
-    static Address fromString(std::u16string_view str, uint16_t default_port);
+    static Address fromString(std::u16string str, uint16_t default_port);
 
     std::u16string toString() const;
 
-    void setHost(std::u16string_view host);
+    void setHost(std::u16string host);
     std::u16string host() const;
 
     void setPort(uint16_t port);

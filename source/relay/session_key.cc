@@ -90,7 +90,7 @@ base::ByteArray SessionKey::publicKey() const
 }
 
 //--------------------------------------------------------------------------------------------------
-base::ByteArray SessionKey::sessionKey(std::string_view peer_public_key) const
+base::ByteArray SessionKey::sessionKey(std::string peer_public_key) const
 {
     base::ByteArray temp = key_pair_.sessionKey(base::fromStdString(peer_public_key));
     if (temp.empty())

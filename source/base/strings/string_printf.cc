@@ -85,13 +85,15 @@ StringType stringPrintfVT(const typename StringType::value_type* format, va_list
     StringType result;
     result.resize(static_cast<size_t>(length));
 
-    const int ret = vsnprintfT(result.data(), static_cast<size_t>(length + 1), format, args_copy);
+	int ret = 0; // vsnprintfT(const_cast<char *>(reinterpret_cast<const char *>(result.data())), static_cast<size_t>(length + 1), format, args_copy);
     va_end(args_copy);
 
     if (ret < 0 || ret > length)
         return StringType();
 
-    return result;
+	return StringType();
+	/// @todo
+    // return result;
 }
 
 } // namespace

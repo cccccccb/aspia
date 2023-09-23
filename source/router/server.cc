@@ -18,6 +18,7 @@
 
 #include "router/server.h"
 
+#include "base/optional.hpp"
 #include "base/logging.h"
 #include "base/stl_util.h"
 #include "base/task_runner.h"
@@ -222,7 +223,7 @@ std::unique_ptr<proto::SessionList> Server::sessionList() const
                 proto::RelaySessionData session_data;
                 session_data.set_pool_size(relay_key_pool_->countForRelay(session->sessionId()));
 
-                const std::optional<proto::RelayStat>& in_relay_stat =
+                const tl::optional<proto::RelayStat>& in_relay_stat =
                     static_cast<SessionRelay*>(session.get())->relayStat();
                 if (in_relay_stat.has_value())
                 {

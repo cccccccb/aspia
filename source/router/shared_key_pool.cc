@@ -18,6 +18,7 @@
 
 #include "router/shared_key_pool.h"
 
+#include "base/optional.hpp"
 #include "base/logging.h"
 
 #include <map>
@@ -33,7 +34,7 @@ public:
     void dettach();
 
     void addKey(Session::SessionId session_id, const proto::RelayKey& key);
-    std::optional<Credentials> takeCredentials();
+    tl::optional<Credentials> takeCredentials();
     void removeKeysForRelay(Session::SessionId session_id);
     void clear();
     size_t countForRelay(Session::SessionId session_id) const;
@@ -77,12 +78,12 @@ void SharedKeyPool::Impl::addKey(Session::SessionId session_id, const proto::Rel
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<SharedKeyPool::Credentials> SharedKeyPool::Impl::takeCredentials()
+tl::optional<SharedKeyPool::Credentials> SharedKeyPool::Impl::takeCredentials()
 {
     if (pool_.empty())
     {
         LOG(LS_WARNING) << "Empty key pool";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     auto preffered_relay = pool_.end();
@@ -101,7 +102,7 @@ std::optional<SharedKeyPool::Credentials> SharedKeyPool::Impl::takeCredentials()
     if (preffered_relay == pool_.end())
     {
         LOG(LS_WARNING) << "Empty key pool";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     LOG(LS_INFO) << "Preffered relay: " << preffered_relay->first;
@@ -110,7 +111,7 @@ std::optional<SharedKeyPool::Credentials> SharedKeyPool::Impl::takeCredentials()
     if (keys.empty())
     {
         LOG(LS_ERROR) << "Empty key pool for relay";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     Credentials credentials;
@@ -209,7 +210,7 @@ void SharedKeyPool::addKey(Session::SessionId session_id, const proto::RelayKey&
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<SharedKeyPool::Credentials> SharedKeyPool::takeCredentials()
+tl::optional<SharedKeyPool::Credentials> SharedKeyPool::takeCredentials()
 {
     return impl_->takeCredentials();
 }

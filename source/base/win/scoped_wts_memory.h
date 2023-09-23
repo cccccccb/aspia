@@ -24,70 +24,72 @@
 #include <Windows.h>
 #include <WtsApi32.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-template <typename T>
-class ScopedWtsMemory
-{
-public:
-    ScopedWtsMemory() = default;
+		template <typename T>
+		class ScopedWtsMemory
+		{
+		public:
+			ScopedWtsMemory() = default;
 
-    explicit ScopedWtsMemory(T* memory)
-        : memory_(memory)
-    {
-        // Nothing
-    }
+			explicit ScopedWtsMemory(T* memory)
+				: memory_(memory)
+			{
+				// Nothing
+			}
 
-    ~ScopedWtsMemory() { close(); }
+			~ScopedWtsMemory() { close(); }
 
-    T* get() { return memory_; }
+			T* get() { return memory_; }
 
-    void reset(T* memory)
-    {
-        close();
-        memory_ = memory;
-    }
+			void reset(T* memory)
+			{
+				close();
+				memory_ = memory;
+			}
 
-    T* release()
-    {
-        T* memory = memory_;
-        memory_ = nullptr;
-        return memory;
-    }
+			T* release()
+			{
+				T* memory = memory_;
+				memory_ = nullptr;
+				return memory;
+			}
 
-    T** recieve()
-    {
-        close();
-        return &memory_;
-    }
+			T** recieve()
+			{
+				close();
+				return &memory_;
+			}
 
-    bool isValid() const
-    {
-        return (memory_ != nullptr);
-    }
+			bool isValid() const
+			{
+				return (memory_ != nullptr);
+			}
 
-    T* operator [](DWORD index) const
-    {
-        return &memory_[index];
-    }
+			T* operator [](DWORD index) const
+			{
+				return &memory_[index];
+			}
 
-    T* operator->() const { return memory_; }
+			T* operator->() const { return memory_; }
 
-private:
-    void close()
-    {
-        if (isValid())
-        {
-            WTSFreeMemory(memory_);
-            memory_ = nullptr;
-        }
-    }
+		private:
+			void close()
+			{
+				if (isValid())
+				{
+					WTSFreeMemory(memory_);
+					memory_ = nullptr;
+				}
+			}
 
-    T* memory_ = nullptr;
+			T* memory_ = nullptr;
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedWtsMemory);
-};
+			DISALLOW_COPY_AND_ASSIGN(ScopedWtsMemory);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SCOPED_WTS_MEMORY_H

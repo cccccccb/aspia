@@ -18,6 +18,7 @@
 
 #include "common/file_packetizer.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "common/file_packet.h"
 
@@ -29,7 +30,7 @@ namespace {
 char* outputBuffer(proto::FilePacket* packet, size_t size)
 {
     packet->mutable_data()->resize(size);
-    return packet->mutable_data()->data();
+    return const_cast<char *>(packet->mutable_data()->data());
 }
 
 } // namespace
@@ -45,7 +46,7 @@ FilePacketizer::FilePacketizer(std::ifstream&& file_stream)
 }
 
 //--------------------------------------------------------------------------------------------------
-std::unique_ptr<FilePacketizer> FilePacketizer::create(const std::filesystem::path& file_path)
+std::unique_ptr<FilePacketizer> FilePacketizer::create(const ghc::filesystem::path& file_path)
 {
     std::ifstream file_stream;
 

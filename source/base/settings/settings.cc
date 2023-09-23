@@ -24,7 +24,7 @@
 
 namespace base {
 
-const std::string_view Settings::kSeparator = { "/" };
+const std::string Settings::kSeparator = { "/" };
 
 //--------------------------------------------------------------------------------------------------
 Settings::Settings(const Settings& other)
@@ -57,7 +57,7 @@ Settings::Settings(Map&& map) noexcept
 }
 
 //--------------------------------------------------------------------------------------------------
-Settings::Array Settings::getArray(std::string_view key) const
+Settings::Array Settings::getArray(std::string key) const
 {
     const size_t array_size = get<size_t>(strCat({ key, kSeparator, "size" }));
     Array result;
@@ -72,7 +72,7 @@ Settings::Array Settings::getArray(std::string_view key) const
 }
 
 //--------------------------------------------------------------------------------------------------
-void Settings::setArray(std::string_view key, const Array& array)
+void Settings::setArray(std::string key, const Array& array)
 {
     for (size_t i = 0; i < array.size(); ++i)
         setGroup(strCat({ key, kSeparator, numberToString(i + 1) }), array[i]);
@@ -81,7 +81,7 @@ void Settings::setArray(std::string_view key, const Array& array)
 }
 
 //--------------------------------------------------------------------------------------------------
-Settings Settings::getGroup(std::string_view key) const
+Settings Settings::getGroup(std::string key) const
 {
     const std::string prefix = strCat({ key, kSeparator });
     Map map;
@@ -96,7 +96,7 @@ Settings Settings::getGroup(std::string_view key) const
 }
 
 //--------------------------------------------------------------------------------------------------
-void Settings::setGroup(std::string_view key, const Settings& group)
+void Settings::setGroup(std::string key, const Settings& group)
 {
     const Map& array_map = group.constMap();
 
@@ -107,7 +107,7 @@ void Settings::setGroup(std::string_view key, const Settings& group)
 }
 
 //--------------------------------------------------------------------------------------------------
-void Settings::remove(std::string_view key)
+void Settings::remove(std::string key)
 {
     const std::string prefix = strCat({ key, kSeparator });
 

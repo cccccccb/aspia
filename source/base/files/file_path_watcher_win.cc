@@ -18,6 +18,7 @@
 
 #include "base/files/file_path_watcher.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/task_runner.h"
 #include "base/strings/unicode.h"
@@ -35,7 +36,7 @@ public:
     ~FilePathWatcherImpl() override;
 
     // FilePathWatcher::PlatformDelegate implementation.
-    bool watch(const std::filesystem::path& path,
+    bool watch(const ghc::filesystem::path& path,
                bool recursive,
                const FilePathWatcher::Callback& callback) override;
     void cancel() override;
@@ -46,12 +47,12 @@ public:
 private:
     using Clock = std::chrono::high_resolution_clock;
     using TimePoint = std::chrono::time_point<Clock>;
-    using FileTime = std::filesystem::file_time_type;
+    using FileTime = ghc::filesystem::file_time_type;
 
     // Setup a watch handle for directory |dir|. Set |recursive| to true to watch the directory sub
     // trees. Returns true if no fatal error occurs. |handle| will receive the handle value if
     // |dir| is watchable, otherwise INVALID_HANDLE_VALUE.
-    static bool setupWatchHandle(const std::filesystem::path& dir,
+    static bool setupWatchHandle(const ghc::filesystem::path& dir,
                                  bool recursive,
                                  HANDLE* handle);
 
@@ -65,7 +66,7 @@ private:
     FilePathWatcher::Callback callback_;
 
     // Path we're supposed to watch (passed to callback).
-    std::filesystem::path target_;
+    ghc::filesystem::path target_;
 
     // Set to true in the destructor.
     bool* was_deleted_ptr_ = nullptr;
@@ -107,7 +108,7 @@ FilePathWatcherImpl::~FilePathWatcherImpl()
 }
 
 //--------------------------------------------------------------------------------------------------
-bool FilePathWatcherImpl::watch(const std::filesystem::path& path,
+bool FilePathWatcherImpl::watch(const ghc::filesystem::path& path,
                                 bool recursive,
                                 const FilePathWatcher::Callback& callback)
 {
@@ -119,7 +120,7 @@ bool FilePathWatcherImpl::watch(const std::filesystem::path& path,
 
     std::error_code error_code;
 
-    FileTime last_modified = std::filesystem::last_write_time(target_, error_code);
+    FileTime last_modified = ghc::filesystem::last_write_time(target_, error_code);
     if (!error_code)
     {
         last_modified_ = last_modified;
@@ -127,7 +128,7 @@ bool FilePathWatcherImpl::watch(const std::filesystem::path& path,
     }
     else
     {
-        LOG(LS_WARNING) << "std::filesystem::last_write_time failed: "
+        LOG(LS_WARNING) << "ghc::filesystem::last_write_time failed: "
                         << base::utf16FromLocal8Bit(error_code.message());
     }
 
@@ -178,7 +179,7 @@ void FilePathWatcherImpl::onObjectSignaled(HANDLE object)
 
     std::error_code error_code;
 
-    FileTime last_modified = std::filesystem::last_write_time(target_, error_code);
+    FileTime last_modified = ghc::filesystem::last_write_time(target_, error_code);
     if (!error_code)
         file_exists = true;
 
@@ -234,7 +235,7 @@ void FilePathWatcherImpl::onObjectSignaled(HANDLE object)
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool FilePathWatcherImpl::setupWatchHandle(const std::filesystem::path& dir,
+bool FilePathWatcherImpl::setupWatchHandle(const ghc::filesystem::path& dir,
                                            bool recursive,
                                            HANDLE* handle)
 {
@@ -285,8 +286,8 @@ bool FilePathWatcherImpl::updateWatch()
     // Start at the target and walk up the directory chain until we succesfully create a watch
     // handle in |handle_|. |child_dirs| keeps a stack of child directories stripped from target,
     // in reverse order.
-    std::vector<std::filesystem::path> child_dirs;
-    std::filesystem::path watched_path(target_);
+    std::vector<ghc::filesystem::path> child_dirs;
+    ghc::filesystem::path watched_path(target_);
 
     while (true)
     {
@@ -300,7 +301,7 @@ bool FilePathWatcherImpl::updateWatch()
         // Abort if we hit the root directory.
         child_dirs.emplace_back(watched_path.parent_path());
 
-        std::filesystem::path parent(watched_path);
+        ghc::filesystem::path parent(watched_path);
         parent.remove_filename();
 
         if (parent == watched_path)

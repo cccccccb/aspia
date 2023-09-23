@@ -27,28 +27,30 @@
 
 struct _LOCALGROUP_INFO_1;
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class UserGroupEnumerator
-{
-public:
-    UserGroupEnumerator();
-    ~UserGroupEnumerator();
+		class UserGroupEnumerator
+		{
+		public:
+			UserGroupEnumerator();
+			~UserGroupEnumerator();
 
-    void advance();
-    bool isAtEnd() const;
+			void advance();
+			bool isAtEnd() const;
 
-    std::string name() const;
-    std::string comment() const;
+			std::string name() const;
+			std::string comment() const;
 
-private:
-    _LOCALGROUP_INFO_1* group_info_ = nullptr;
-    unsigned long total_entries_ = 0;
-    unsigned long current_entry_ = 0;
+		private:
+			_LOCALGROUP_INFO_1* group_info_ = nullptr;
+			unsigned long total_entries_ = 0;
+			unsigned long current_entry_ = 0;
 
-    DISALLOW_COPY_AND_ASSIGN(UserGroupEnumerator);
-};
+			DISALLOW_COPY_AND_ASSIGN(UserGroupEnumerator);
+		};
 
+	}
 } // base::win
 
 #endif // BASE_WIN_USER_GROUP_ENUMERATOR_H

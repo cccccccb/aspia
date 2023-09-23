@@ -20,6 +20,7 @@
 #define CLIENT_UI_DESKTOP_QT_DESKTOP_WINDOW_H
 
 #include "base/version.h"
+#include "base/optional.hpp"
 #include "client/client_desktop.h"
 #include "client/desktop_window.h"
 #include "client/system_info_control.h"
@@ -128,7 +129,7 @@ private:
     bool is_maximized_ = false;
     bool is_minimized_from_full_screen_ = false;
 
-    std::optional<QPoint> start_panel_pos_;
+    tl::optional<QPoint> start_panel_pos_;
     int panel_pos_x_ = 50;
 
     bool enable_video_pause_ = true;

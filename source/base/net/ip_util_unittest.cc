@@ -27,9 +27,9 @@ TEST(IpUtilTest, Range)
 {
     struct TestTable
     {
-        std::u16string_view ip;
-        std::u16string_view network;
-        std::u16string_view mask;
+        std::u16string ip;
+        std::u16string network;
+        std::u16string mask;
         bool expected;
     } const kTestTable[] =
     {

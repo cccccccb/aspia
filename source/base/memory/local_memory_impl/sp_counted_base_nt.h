@@ -25,80 +25,82 @@
 
 #include <typeinfo>
 
-namespace base::detail {
+namespace base {
+	namespace detail {
 
-class sp_counted_base
-{
-private:
-    sp_counted_base(sp_counted_base const&);
-    sp_counted_base& operator=(sp_counted_base const&);
+		class sp_counted_base
+		{
+		private:
+			sp_counted_base(sp_counted_base const&);
+			sp_counted_base& operator=(sp_counted_base const&);
 
-    long use_count_; // #shared
-    long weak_count_; // #weak + (#shared != 0)
+			long use_count_; // #shared
+			long weak_count_; // #weak + (#shared != 0)
 
-public:
-    sp_counted_base()
-        : use_count_(1), weak_count_(1)
-    {
-        // Nothing
-    }
+		public:
+			sp_counted_base()
+				: use_count_(1), weak_count_(1)
+			{
+				// Nothing
+			}
 
-    virtual ~sp_counted_base() = default;
+			virtual ~sp_counted_base() = default;
 
-    // dispose() is called when use_count_ drops to zero, to release
-    // the resources managed by *this.
+			// dispose() is called when use_count_ drops to zero, to release
+			// the resources managed by *this.
 
-    virtual void dispose() = 0;
+			virtual void dispose() = 0;
 
-    // destroy() is called when weak_count_ drops to zero.
+			// destroy() is called when weak_count_ drops to zero.
 
-    virtual void destroy()
-    {
-        delete this;
-    }
+			virtual void destroy()
+			{
+				delete this;
+			}
 
-    virtual void* get_deleter(std::type_info const& ti) = 0;
-    virtual void* get_untyped_deleter() = 0;
+			virtual void* get_deleter(std::type_info const& ti) = 0;
+			virtual void* get_untyped_deleter() = 0;
 
-    void add_ref_copy()
-    {
-        ++use_count_;
-    }
+			void add_ref_copy()
+			{
+				++use_count_;
+			}
 
-    bool add_ref_lock()
-    {
-        if (use_count_ == 0)
-            return false;
-        ++use_count_;
-        return true;
-    }
+			bool add_ref_lock()
+			{
+				if (use_count_ == 0)
+					return false;
+				++use_count_;
+				return true;
+			}
 
-    void release()
-    {
-        if (--use_count_ == 0)
-        {
-            dispose();
-            weak_release();
-        }
-    }
+			void release()
+			{
+				if (--use_count_ == 0)
+				{
+					dispose();
+					weak_release();
+				}
+			}
 
-    void weak_add_ref()
-    {
-        ++weak_count_;
-    }
+			void weak_add_ref()
+			{
+				++weak_count_;
+			}
 
-    void weak_release()
-    {
-        if (--weak_count_ == 0)
-            destroy();
-    }
+			void weak_release()
+			{
+				if (--weak_count_ == 0)
+					destroy();
+			}
 
-    long use_count() const
-    {
-        return use_count_;
-    }
-};
+			long use_count() const
+			{
+				return use_count_;
+			}
+		};
 
-} // namespace base::detail
+	}  // namespace detail
+} // namespace base
 
 #endif // BASE_MEMORY_LOCAL_MEMORY_IMPL_SP_COUNTED_BASE_NT_H

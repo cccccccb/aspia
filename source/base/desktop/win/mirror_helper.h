@@ -38,10 +38,10 @@ public:
     virtual void copyRegion(Frame* frame, const Region& updated_region) const = 0;
 
 protected:
-    static bool findDisplayDevice(std::wstring_view device_string,
+    static bool findDisplayDevice(std::wstring device_string,
                                   std::wstring* device_name,
                                   std::wstring* device_key);
-    static bool attachToDesktop(std::wstring_view key_path, bool attach);
+    static bool attachToDesktop(std::wstring key_path, bool attach);
 };
 
 } // namespace base

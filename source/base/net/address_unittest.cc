@@ -142,7 +142,7 @@ TEST(AddressTest, ValidAddress)
 
 TEST(AddressTest, TestVector)
 {
-    static_assert(DEFAULT_HOST_TCP_PORT == 8050);
+    static_assert(DEFAULT_HOST_TCP_PORT == 8050, "");
 
     Address addr = Address::fromString(u"192.168.1.1:8050", 8050);
 

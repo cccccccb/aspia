@@ -238,7 +238,7 @@ ByteArray RelayPeer::authenticationMessage(const proto::RelayKey& key, const std
 
     std::string encrypted_secret;
     encrypted_secret.resize(encryptor->encryptedDataSize(secret.size()));
-    if (!encryptor->encrypt(secret.data(), secret.size(), encrypted_secret.data()))
+    if (!encryptor->encrypt(secret.data(), secret.size(), (void *)encrypted_secret.data()))
     {
         LOG(LS_ERROR) << "encrypt failed";
         return ByteArray();

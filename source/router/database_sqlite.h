@@ -20,9 +20,9 @@
 #define ROUTER_DATABASE_SQLITE_H
 
 #include "base/macros_magic.h"
+#include "base/filesystem.hpp"
 #include "router/database.h"
 
-#include <filesystem>
 
 #include <sqlite3.h>
 
@@ -35,20 +35,20 @@ public:
 
     static std::unique_ptr<DatabaseSqlite> create();
     static std::unique_ptr<DatabaseSqlite> open();
-    static std::filesystem::path filePath();
+    static ghc::filesystem::path filePath();
 
     // Database implementation.
     std::vector<base::User> userList() const override;
     bool addUser(const base::User& user) override;
     bool modifyUser(const base::User& user) override;
     bool removeUser(int64_t entry_id) override;
-    base::User findUser(std::u16string_view username) override;
+    base::User findUser(std::u16string username) override;
     ErrorCode hostId(const base::ByteArray& key_hash, base::HostId* host_id) const override;
     bool addHost(const base::ByteArray& key_hash) override;
 
 private:
     explicit DatabaseSqlite(sqlite3* db);
-    static std::filesystem::path databaseDirectory();
+    static ghc::filesystem::path databaseDirectory();
 
     sqlite3* db_;
 

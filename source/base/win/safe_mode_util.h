@@ -23,18 +23,20 @@
 
 #include <string>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class SafeModeUtil
-{
-public:
-    static bool setSafeMode(bool enable);
-    static bool setSafeModeService(std::u16string_view service_name, bool enable);
+		class SafeModeUtil
+		{
+		public:
+			static bool setSafeMode(bool enable);
+			static bool setSafeModeService(std::u16string service_name, bool enable);
 
-private:
-    DISALLOW_COPY_AND_ASSIGN(SafeModeUtil);
-};
+		private:
+			DISALLOW_COPY_AND_ASSIGN(SafeModeUtil);
+		};
 
-} // namespace base::win
+	}  // namespace win
+} // namespace base
 
 #endif // BASE_WIN_SAFE_MODE_UTIL_H

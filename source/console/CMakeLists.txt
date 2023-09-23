@@ -92,6 +92,9 @@ list(APPEND SOURCE_CONSOLE
 
 list(APPEND SOURCE_CONSOLE_RESOURCES resources/console.qrc)
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
+
 source_group("" FILES ${SOURCE_CONSOLE})
 source_group(moc FILES ${SOURCE_CONSOLE_MOC})
 source_group(resources FILES ${SOURCE_CONSOLE_RESOURCES})
@@ -160,11 +163,14 @@ target_link_libraries(aspia_console
 set_property(TARGET aspia_console PROPERTY AUTOMOC ON)
 set_property(TARGET aspia_console PROPERTY AUTOUIC ON)
 set_property(TARGET aspia_console PROPERTY AUTORCC ON)
-qt5_import_plugins(aspia_console
-    INCLUDE ""
-    EXCLUDE ""
-    INCLUDE_BY_TYPE ""
-    EXCLUDE_BY_TYPE imageformats)
+
+# add_library(aspia_console SHARED test-plugin.cpp)
+
+# qt5_import_plugins(aspia_console
+#     INCLUDE ""
+#     EXCLUDE ""
+#     INCLUDE_BY_TYPE ""
+#     EXCLUDE_BY_TYPE imageformats)
 
 if(Qt5LinguistTools_FOUND)
     # Get the list of translation files.

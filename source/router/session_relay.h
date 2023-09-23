@@ -19,6 +19,7 @@
 #ifndef ROUTER_SESSION_RELAY_H
 #define ROUTER_SESSION_RELAY_H
 
+#include "base/optional.hpp"
 #include "proto/router_relay.pb.h"
 #include "router/session.h"
 #include "router/shared_key_pool.h"
@@ -33,8 +34,8 @@ public:
 
     using PeerData = std::pair<std::string, uint16_t>;
 
-    const std::optional<PeerData>& peerData() const { return peer_data_; }
-    const std::optional<proto::RelayStat>& relayStat() const { return relay_stat_; }
+    const tl::optional<PeerData>& peerData() const { return peer_data_; }
+    const tl::optional<proto::RelayStat>& relayStat() const { return relay_stat_; }
     void sendKeyUsed(uint32_t key_id);
     void disconnectPeerSession(const proto::PeerConnectionRequest& request);
 
@@ -47,8 +48,8 @@ protected:
 private:
     void readKeyPool(const proto::RelayKeyPool& key_pool);
 
-    std::optional<PeerData> peer_data_;
-    std::optional<proto::RelayStat> relay_stat_;
+    tl::optional<PeerData> peer_data_;
+    tl::optional<proto::RelayStat> relay_stat_;
 
     std::unique_ptr<proto::RelayToRouter> incoming_message_;
     std::unique_ptr<proto::RouterToRelay> outgoing_message_;

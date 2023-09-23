@@ -45,11 +45,11 @@ public:
     ~GenericHash();
 
     static ByteArray hash(Type type, const void* data, size_t size);
-    static ByteArray hash(Type type, std::string_view data);
+    static ByteArray hash(Type type, std::string data);
     static ByteArray hash(Type type, const ByteArray& data);
 
     void addData(const void* data, size_t size);
-    void addData(std::string_view data);
+    void addData(std::string data);
     void addData(const ByteArray& data);
 
     ByteArray result() const;

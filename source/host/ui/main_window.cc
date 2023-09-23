@@ -18,6 +18,7 @@
 
 #include "host/ui/main_window.h"
 
+#include "base/filesystem.hpp"
 #include "base/files/base_paths.h"
 #include "base/net/address.h"
 #include "base/peer/host_id.h"
@@ -89,7 +90,7 @@ MainWindow::MainWindow(QWidget* parent)
 
     connect(tray_tooltip_timer, &QTimer::timeout, this, &MainWindow::updateTrayIconTooltip);
 
-    tray_tooltip_timer->setInterval(std::chrono::seconds(30));
+    tray_tooltip_timer->setInterval(30 * 1000);
     tray_tooltip_timer->start();
 
     createLanguageMenu(user_settings.locale());
@@ -540,7 +541,7 @@ void MainWindow::onSettings()
     {
         LOG(LS_INFO) << "Process not elevated";
 
-        std::filesystem::path current_exec_file;
+        ghc::filesystem::path current_exec_file;
         if (base::BasePaths::currentExecFile(&current_exec_file))
         {
             SHELLEXECUTEINFOW sei;

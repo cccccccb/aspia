@@ -24,50 +24,52 @@
 
 #include <string>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class BatteryEnumerator
-{
-public:
-    BatteryEnumerator();
-    ~BatteryEnumerator();
+		class BatteryEnumerator
+		{
+		public:
+			BatteryEnumerator();
+			~BatteryEnumerator();
 
-    bool isAtEnd() const;
-    void advance();
+			bool isAtEnd() const;
+			void advance();
 
-    enum State
-    {
-        UNKNOWN      = 0,
-        CHARGING     = 1,
-        CRITICAL     = 2,
-        DISCHARGING  = 4,
-        POWER_ONLINE = 8
-    };
+			enum State
+			{
+				UNKNOWN = 0,
+				CHARGING = 1,
+				CRITICAL = 2,
+				DISCHARGING = 4,
+				POWER_ONLINE = 8
+			};
 
-    std::string deviceName() const;
-    std::string manufacturer() const;
-    std::string manufactureDate() const;
-    std::string uniqueId() const;
-    std::string serialNumber() const;
-    std::string temperature() const;
-    uint32_t designCapacity() const;
-    std::string type() const;
-    uint32_t fullChargedCapacity() const;
-    uint32_t depreciation() const;
-    uint32_t currentCapacity() const;
-    uint32_t voltage() const;
-    uint32_t state() const;
+			std::string deviceName() const;
+			std::string manufacturer() const;
+			std::string manufactureDate() const;
+			std::string uniqueId() const;
+			std::string serialNumber() const;
+			std::string temperature() const;
+			uint32_t designCapacity() const;
+			std::string type() const;
+			uint32_t fullChargedCapacity() const;
+			uint32_t depreciation() const;
+			uint32_t currentCapacity() const;
+			uint32_t voltage() const;
+			uint32_t state() const;
 
-private:
-    ScopedDeviceInfo device_info_;
-    DWORD device_index_ = 0;
+		private:
+			ScopedDeviceInfo device_info_;
+			DWORD device_index_ = 0;
 
-    mutable Device battery_;
-    mutable DWORD battery_tag_ = 0;
+			mutable Device battery_;
+			mutable DWORD battery_tag_ = 0;
 
-    DISALLOW_COPY_AND_ASSIGN(BatteryEnumerator);
-};
+			DISALLOW_COPY_AND_ASSIGN(BatteryEnumerator);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_BATTERY_ENUMERATOR_H

@@ -346,14 +346,14 @@ public:
 
 template <typename VALUE, int BASE>
 class StringPieceToNumberTraits
-    : public BaseIteratorRangeToNumberTraits<std::string_view::const_iterator, VALUE, BASE>
+    : public BaseIteratorRangeToNumberTraits<std::string::const_iterator, VALUE, BASE>
 {
     // Nothing
 };
 
 //--------------------------------------------------------------------------------------------------
 template <typename VALUE>
-bool stringToIntImpl(std::string_view input, VALUE* output)
+bool stringToIntImpl(std::string input, VALUE* output)
 {
     return IteratorRangeToNumber<StringPieceToNumberTraits<VALUE, 10> >::Invoke(
         input.begin(), input.end(), output);
@@ -362,14 +362,14 @@ bool stringToIntImpl(std::string_view input, VALUE* output)
 //--------------------------------------------------------------------------------------------------
 template <typename VALUE, int BASE>
 class StringPiece16ToNumberTraits
-    : public BaseIteratorRangeToNumberTraits<std::u16string_view::const_iterator, VALUE, BASE>
+    : public BaseIteratorRangeToNumberTraits<std::u16string::const_iterator, VALUE, BASE>
 {
     // Nothing
 };
 
 //--------------------------------------------------------------------------------------------------
 template <typename VALUE>
-bool string16ToIntImpl(std::u16string_view input, VALUE* output)
+bool string16ToIntImpl(std::u16string input, VALUE* output)
 {
     return IteratorRangeToNumber<StringPiece16ToNumberTraits<VALUE, 10> >::Invoke(
         input.begin(), input.end(), output);
@@ -378,121 +378,121 @@ bool string16ToIntImpl(std::u16string_view input, VALUE* output)
 } // namespace
 
 //--------------------------------------------------------------------------------------------------
-bool stringToInt(std::string_view input, int* output)
+bool stringToInt(std::string input, int* output)
 {
     return stringToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToInt(std::u16string_view input, int* output)
+bool stringToInt(std::u16string input, int* output)
 {
     return string16ToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToUint(std::string_view input, unsigned int* output)
+bool stringToUint(std::string input, unsigned int* output)
 {
     return stringToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToUint(std::u16string_view input, unsigned int* output)
+bool stringToUint(std::u16string input, unsigned int* output)
 {
     return string16ToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToChar(std::string_view input, signed char* output)
+bool stringToChar(std::string input, signed char* output)
 {
     return stringToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToChar(std::u16string_view input, signed char* output)
+bool stringToChar(std::u16string input, signed char* output)
 {
     return string16ToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToShort(std::string_view input, short* output)
+bool stringToShort(std::string input, short* output)
 {
     return stringToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToShort(std::u16string_view input, short* output)
+bool stringToShort(std::u16string input, short* output)
 {
     return string16ToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToUChar(std::string_view input, unsigned char* output)
+bool stringToUChar(std::string input, unsigned char* output)
 {
     return stringToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToUChar(std::u16string_view input, unsigned char* output)
+bool stringToUChar(std::u16string input, unsigned char* output)
 {
     return string16ToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToUShort(std::string_view input, unsigned short* output)
+bool stringToUShort(std::string input, unsigned short* output)
 {
     return stringToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToUShort(std::u16string_view input, unsigned short* output)
+bool stringToUShort(std::u16string input, unsigned short* output)
 {
     return string16ToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToULong(std::string_view input, unsigned long* output)
+bool stringToULong(std::string input, unsigned long* output)
 {
     return stringToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToULong(std::u16string_view input, unsigned long* output)
+bool stringToULong(std::u16string input, unsigned long* output)
 {
     return string16ToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToInt64(std::string_view input, int64_t* output)
+bool stringToInt64(std::string input, int64_t* output)
 {
     return stringToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToInt64(std::u16string_view input, int64_t* output)
+bool stringToInt64(std::u16string input, int64_t* output)
 {
     return string16ToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToUint64(std::string_view input, unsigned long int* output)
+bool stringToUint64(std::string input, unsigned long int* output)
 {
     return stringToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToUint64(std::u16string_view input, unsigned long int* output)
+bool stringToUint64(std::u16string input, unsigned long int* output)
 {
     return string16ToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToULong64(std::string_view input, unsigned long long* output)
+bool stringToULong64(std::string input, unsigned long long* output)
 {
     return stringToIntImpl(input, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool stringToULong64(std::u16string_view input, unsigned long long* output)
+bool stringToULong64(std::u16string input, unsigned long long* output)
 {
     return string16ToIntImpl(input, output);
 }

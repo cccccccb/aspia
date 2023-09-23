@@ -18,6 +18,7 @@
 
 #include "client/desktop_control_proxy.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/task_runner.h"
 #include "client/desktop_control.h"
@@ -121,7 +122,7 @@ void DesktopControlProxy::setAudioPause(bool enable)
 }
 
 //--------------------------------------------------------------------------------------------------
-void DesktopControlProxy::setVideoRecording(bool enable, const std::filesystem::path& file_path)
+void DesktopControlProxy::setVideoRecording(bool enable, const ghc::filesystem::path& file_path)
 {
     if (!io_task_runner_->belongsToCurrentThread())
     {

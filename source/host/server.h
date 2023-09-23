@@ -20,6 +20,7 @@
 #define HOST_SERVER_H
 
 #include "build/build_config.h"
+#include "base/filesystem.hpp"
 #include "base/net/tcp_server.h"
 #include "base/peer/server_authenticator_manager.h"
 #include "common/http_file_downloader.h"
@@ -81,7 +82,7 @@ private:
     void startAuthentication(std::unique_ptr<base::TcpChannel> channel);
     void addFirewallRules();
     void deleteFirewallRules();
-    void updateConfiguration(const std::filesystem::path& path, bool error);
+    void updateConfiguration(const ghc::filesystem::path& path, bool error);
     void reloadUserList();
     void connectToRouter();
     void disconnectFromRouter();

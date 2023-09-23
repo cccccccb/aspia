@@ -63,7 +63,7 @@ public:
 
     void dettach() { server_ = nullptr; }
 
-    bool listen(asio::io_context& io_context, std::u16string_view channel_name);
+    bool listen(asio::io_context& io_context, std::u16string channel_name);
 
 #if defined(OS_WIN)
     void onNewConnetion(const std::error_code& error_code, size_t bytes_transferred);
@@ -99,7 +99,7 @@ IpcServer::Listener::Listener(IpcServer* server, size_t index)
 IpcServer::Listener::~Listener() = default;
 
 //--------------------------------------------------------------------------------------------------
-bool IpcServer::Listener::listen(asio::io_context& io_context, std::u16string_view channel_name)
+bool IpcServer::Listener::listen(asio::io_context& io_context, std::u16string channel_name)
 {
 #if defined(OS_WIN)
     std::wstring user_sid;
@@ -316,7 +316,7 @@ std::u16string IpcServer::createUniqueId()
 }
 
 //--------------------------------------------------------------------------------------------------
-bool IpcServer::start(std::u16string_view channel_id, Delegate* delegate)
+bool IpcServer::start(std::u16string channel_id, Delegate* delegate)
 {
     DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
     DCHECK(delegate);

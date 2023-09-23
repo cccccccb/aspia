@@ -18,6 +18,7 @@
 
 #include "base/sys_info.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/files/base_paths.h"
 #include "base/strings/unicode.h"
@@ -221,7 +222,7 @@ std::string SysInfo::operatingSystemArchitecture()
 // static
 std::string SysInfo::operatingSystemDir()
 {
-    std::filesystem::path dir;
+    ghc::filesystem::path dir;
 
     if (!BasePaths::windowsDir(&dir))
         return std::string();

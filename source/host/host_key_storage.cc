@@ -26,7 +26,7 @@ namespace host {
 namespace {
 
 //--------------------------------------------------------------------------------------------------
-std::string sessionKey(std::string_view session_name)
+std::string sessionKey(std::string session_name)
 {
     base::ByteArray session_hash =
         base::GenericHash::hash(base::GenericHash::Type::BLAKE2s256, session_name);
@@ -34,7 +34,7 @@ std::string sessionKey(std::string_view session_name)
 }
 
 //--------------------------------------------------------------------------------------------------
-std::string sessionKeyForHostId(std::string_view session_name)
+std::string sessionKeyForHostId(std::string session_name)
 {
     base::ByteArray session_hash =
         base::GenericHash::hash(base::GenericHash::Type::BLAKE2s256, session_name);
@@ -54,7 +54,7 @@ HostKeyStorage::HostKeyStorage()
 HostKeyStorage::~HostKeyStorage() = default;
 
 //--------------------------------------------------------------------------------------------------
-base::ByteArray HostKeyStorage::key(std::string_view session_name) const
+base::ByteArray HostKeyStorage::key(std::string session_name) const
 {
     if (session_name.empty())
         return impl_.get<base::ByteArray>("console");
@@ -63,7 +63,7 @@ base::ByteArray HostKeyStorage::key(std::string_view session_name) const
 }
 
 //--------------------------------------------------------------------------------------------------
-void HostKeyStorage::setKey(std::string_view session_name, const base::ByteArray& key)
+void HostKeyStorage::setKey(std::string session_name, const base::ByteArray& key)
 {
     if (session_name.empty())
         impl_.set<base::ByteArray>("console", key);
@@ -74,7 +74,7 @@ void HostKeyStorage::setKey(std::string_view session_name, const base::ByteArray
 }
 
 //--------------------------------------------------------------------------------------------------
-base::HostId HostKeyStorage::lastHostId(std::string_view session_name) const
+base::HostId HostKeyStorage::lastHostId(std::string session_name) const
 {
     if (session_name.empty())
         return impl_.get<base::HostId>("console_host_id");
@@ -83,7 +83,7 @@ base::HostId HostKeyStorage::lastHostId(std::string_view session_name) const
 }
 
 //--------------------------------------------------------------------------------------------------
-void HostKeyStorage::setLastHostId(std::string_view session_name, base::HostId host_id)
+void HostKeyStorage::setLastHostId(std::string session_name, base::HostId host_id)
 {
     if (session_name.empty())
         impl_.set<base::HostId>("console_host_id", host_id);

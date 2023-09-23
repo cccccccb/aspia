@@ -20,13 +20,13 @@
 #define BASE_CONVERTER_H
 
 #include "build/build_config.h"
+
+#include "base/filesystem.hpp"
+#include "base/optional.hpp"
 #include "base/memory/byte_array.h"
 #include "base/strings/string_number_conversions.h"
 #include "base/strings/string_util.h"
 #include "base/strings/unicode.h"
-
-#include <filesystem>
-#include <optional>
 
 namespace base {
 
@@ -41,7 +41,7 @@ struct ConverterImpl
 template <>
 struct ConverterImpl<std::string>
 {
-    static bool fromString(std::string_view str, std::string* value)
+    static bool fromString(std::string str, std::string* value)
     {
         value->assign(str);
         return true;
@@ -56,7 +56,7 @@ struct ConverterImpl<std::string>
 template <>
 struct ConverterImpl<std::u16string>
 {
-    static bool fromString(std::string_view str, std::u16string* value)
+    static bool fromString(std::string str, std::u16string* value)
     {
         return utf8ToUtf16(str, value);
     }
@@ -71,7 +71,7 @@ struct ConverterImpl<std::u16string>
 template <>
 struct ConverterImpl<std::wstring>
 {
-    static bool fromString(std::string_view str, std::wstring* value)
+    static bool fromString(std::string str, std::wstring* value)
     {
         return utf8ToWide(str, value);
     }
@@ -86,7 +86,7 @@ struct ConverterImpl<std::wstring>
 template <>
 struct ConverterImpl<ByteArray>
 {
-    static bool fromString(std::string_view str, ByteArray* value)
+    static bool fromString(std::string str, ByteArray* value)
     {
         *value = fromHex(str);
         return true;
@@ -99,15 +99,15 @@ struct ConverterImpl<ByteArray>
 };
 
 template <>
-struct ConverterImpl<std::filesystem::path>
+struct ConverterImpl<ghc::filesystem::path>
 {
-    static bool fromString(std::string_view str, std::filesystem::path* value)
+    static bool fromString(std::string str, ghc::filesystem::path* value)
     {
-        *value = std::filesystem::u8path(str);
+        *value = ghc::filesystem::u8path(str);
         return true;
     }
 
-    static std::string toString(const std::filesystem::path& value)
+    static std::string toString(const ghc::filesystem::path& value)
     {
         return value.u8string();
     }
@@ -116,7 +116,7 @@ struct ConverterImpl<std::filesystem::path>
 template <>
 struct ConverterImpl<int64_t>
 {
-    static bool fromString(std::string_view str, int64_t* value)
+    static bool fromString(std::string str, int64_t* value)
     {
         return stringToInt64(str, value);
     }
@@ -130,7 +130,7 @@ struct ConverterImpl<int64_t>
 template <>
 struct ConverterImpl<int32_t>
 {
-    static bool fromString(std::string_view str, int32_t* value)
+    static bool fromString(std::string str, int32_t* value)
     {
         return stringToInt(str, value);
     }
@@ -144,7 +144,7 @@ struct ConverterImpl<int32_t>
 template <>
 struct ConverterImpl<int16_t>
 {
-    static bool fromString(std::string_view str, int16_t* value)
+    static bool fromString(std::string str, int16_t* value)
     {
         return stringToShort(str, value);
     }
@@ -158,7 +158,7 @@ struct ConverterImpl<int16_t>
 template <>
 struct ConverterImpl<int8_t>
 {
-    static bool fromString(std::string_view str, int8_t* value)
+    static bool fromString(std::string str, int8_t* value)
     {
         return stringToChar(str, value);
     }
@@ -172,7 +172,7 @@ struct ConverterImpl<int8_t>
 template <>
 struct ConverterImpl<unsigned long long>
 {
-    static bool fromString(std::string_view str, unsigned long long* value)
+    static bool fromString(std::string str, unsigned long long* value)
     {
         return stringToULong64(str, value);
     }
@@ -186,7 +186,7 @@ struct ConverterImpl<unsigned long long>
 template <>
 struct ConverterImpl<unsigned int>
 {
-    static bool fromString(std::string_view str, unsigned int* value)
+    static bool fromString(std::string str, unsigned int* value)
     {
         return stringToUint(str, value);
     }
@@ -200,7 +200,7 @@ struct ConverterImpl<unsigned int>
 template <>
 struct ConverterImpl<unsigned long>
 {
-    static bool fromString(std::string_view str, unsigned long* value)
+    static bool fromString(std::string str, unsigned long* value)
     {
         return stringToULong(str, value);
     }
@@ -214,7 +214,7 @@ struct ConverterImpl<unsigned long>
 template <>
 struct ConverterImpl<uint16_t>
 {
-    static bool fromString(std::string_view str, uint16_t* value)
+    static bool fromString(std::string str, uint16_t* value)
     {
         return stringToUShort(str, value);
     }
@@ -228,7 +228,7 @@ struct ConverterImpl<uint16_t>
 template <>
 struct ConverterImpl<uint8_t>
 {
-    static bool fromString(std::string_view str, uint8_t* value)
+    static bool fromString(std::string str, uint8_t* value)
     {
         return stringToUChar(str, value);
     }
@@ -242,7 +242,7 @@ struct ConverterImpl<uint8_t>
 template <>
 struct ConverterImpl<bool>
 {
-    static bool fromString(std::string_view str, bool* value)
+    static bool fromString(std::string str, bool* value)
     {
         if (str == "true" || str == "1")
             *value = true;
@@ -266,15 +266,15 @@ template <typename ValueType>
 class Converter
 {
 public:
-    static std::optional<ValueType> get_value(std::string_view str)
+    static tl::optional<ValueType> get_value(std::string str)
     {
-        std::string_view temp = trimWhitespaceASCII(str, TRIM_ALL);
+        std::string temp = trimWhitespaceASCII(str, TRIM_ALL);
         if (temp.empty())
-            return std::nullopt;
+            return tl::nullopt;
 
         ValueType result;
         if (!internal::ConverterImpl<ValueType>::fromString(temp, &result))
-            return std::nullopt;
+            return tl::nullopt;
 
         return result;
     }

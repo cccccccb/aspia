@@ -6,31 +6,27 @@
     <message>
         <location filename="../ui/about_dialog.ui" line="14"/>
         <source>About</source>
-        <translation>Про програму</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.ui" line="60"/>
         <source>General</source>
-        <translation>Основні</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">Ліцензія</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.ui" line="90"/>
         <source>Service Information</source>
-        <translation>Сервісна інформація</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.ui" line="105"/>
         <source>Donate!</source>
-        <translation>Допомогти розробникам!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.ui" line="129"/>
         <source>Close</source>
-        <translation>Закрити</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -38,12 +34,12 @@
     <message>
         <location filename="../ui/download_dialog.ui" line="14"/>
         <source>Downloading</source>
-        <translation>Завантаження</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/download_dialog.ui" line="26"/>
         <source>Downloading update in progress...</source>
-        <translation>Завантаження оновлення...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -51,27 +47,27 @@
     <message>
         <location filename="../ui/session_type.cc" line="31"/>
         <source>Desktop Manage</source>
-        <translation>Керування робочим столом</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_type.cc" line="34"/>
         <source>Desktop View</source>
-        <translation>Перегляд робочого столу</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_type.cc" line="37"/>
         <source>File Transfer</source>
-        <translation>Передача файлів</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_type.cc" line="40"/>
         <source>System Information</source>
-        <translation>Інформація про систему</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_type.cc" line="43"/>
         <source>Text Chat</source>
-        <translation>Тесктовий чат</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -79,7 +75,7 @@
     <message>
         <location filename="../ui/status_dialog.ui" line="14"/>
         <source>Connection Status</source>
-        <translation>Статус підключення</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -87,7 +83,7 @@
     <message>
         <location filename="../ui/text_chat_incoming_message.ui" line="197"/>
         <source>Time</source>
-        <translation>Час</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -95,7 +91,7 @@
     <message>
         <location filename="../ui/text_chat_outgoing_message.ui" line="48"/>
         <source>Time</source>
-        <translation>Час</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -103,22 +99,22 @@
     <message>
         <location filename="../ui/text_chat_widget.ui" line="20"/>
         <source>Aspia Chat</source>
-        <translation>Чат Aspia</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.ui" line="179"/>
         <source>Send message</source>
-        <translation>Відправити повідомлення</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.ui" line="225"/>
         <source>Tools</source>
-        <translation>Інструменти</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.ui" line="248"/>
         <source>···</source>
-        <translation>...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -126,42 +122,42 @@
     <message>
         <location filename="../ui/update_dialog.ui" line="14"/>
         <source>Update</source>
-        <translation>Оновлення</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="44"/>
         <source>Checking for updates</source>
-        <translation>Пошук оновлень</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="59"/>
         <source>Current version:</source>
-        <translation>Поточна версія:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="66"/>
         <source>Available version:</source>
-        <translation>Доступна версія:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="75"/>
         <source>URL:</source>
-        <translation>URL:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="136"/>
         <source>Update description:</source>
-        <translation>Опис оновлення:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="181"/>
         <source>Update now!</source>
-        <translation>Оновити зараз!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="188"/>
         <source>Close</source>
-        <translation>Закрити</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -169,67 +165,67 @@
     <message>
         <location filename="../ui/about_dialog.cc" line="116"/>
         <source>Version: %1</source>
-        <translation>Версія: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="120"/>
         <source>Aspia is free software released under GNU General Public License 3.</source>
-        <translation>Aspia — вільне програмне забезпечення, випущене під ліцензією GNU General Public License 3.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="121"/>
         <source>You can get a copy of license here:</source>
-        <translation>Ви можете отримати копію ліцензії тут:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="126"/>
         <source>You can also get a translation of GNU GPL license here:</source>
-        <translation>Ознайомитися з перекладом ліцензії GNU GPL на вашу мову можна тут:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="130"/>
         <source>Links:</source>
-        <translation>Посилання:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="131"/>
         <source>Home page:</source>
-        <translation>Домашня сторінка:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="132"/>
         <source>GitHub page:</source>
-        <translation>Сторінка GitHub:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="135"/>
         <source>Developers:</source>
-        <translation>Розробники:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="137"/>
         <source>Translators:</source>
-        <translation>Перекладачі:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="139"/>
         <source>Third-party components:</source>
-        <translation>Сторонні компоненти:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="160"/>
         <source>Path: %1</source>
-        <translation>Шлях: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="161"/>
         <source>Compilation date: %1</source>
-        <translation>Дата компіляції: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="162"/>
         <source>Compilation time: %1</source>
-        <translation>Час компіляції: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="165"/>
@@ -289,7 +285,7 @@
     <message>
         <location filename="../ui/about_dialog.cc" line="203"/>
         <source>%1 version: %2</source>
-        <translation>%1 версія: %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="252"/>
@@ -299,22 +295,22 @@
     <message>
         <location filename="../ui/about_dialog.cc" line="258"/>
         <source>Save File</source>
-        <translation type="unfinished">Зберегти файл</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="260"/>
         <source>TXT files (*.txt)</source>
-        <translation type="unfinished">TXT файли (*.txt)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="269"/>
         <source>Warning</source>
-        <translation type="unfinished">Попередження</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="270"/>
         <source>Could not open file for writing.</source>
-        <translation type="unfinished">Неможливо відкрити файл для запису.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -322,17 +318,17 @@
     <message>
         <location filename="../ui/download_dialog.cc" line="40"/>
         <source>Cancel</source>
-        <translation>Відмінити</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/download_dialog.cc" line="55"/>
         <source>Warning</source>
-        <translation>Попередження</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/download_dialog.cc" line="56"/>
         <source>An error occurred while downloading the update: %1</source>
-        <translation>Виникла помилка під час завантаження оновлення: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -340,7 +336,7 @@
     <message>
         <location filename="../ui/status_dialog.cc" line="40"/>
         <source>Close</source>
-        <translation>Закрити</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -348,74 +344,67 @@
     <message>
         <location filename="../ui/text_chat_widget.cc" line="63"/>
         <source>Save chat...</source>
-        <translation>Зберегти чат...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.cc" line="64"/>
         <source>Clear chat</source>
-        <translation>Очистити чат</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.cc" line="120"/>
         <source>%1 is typing...</source>
-        <translation>%1 набирає текст...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.cc" line="126"/>
         <source>User %1 has joined the chat (%2)</source>
-        <translation>Користувач %1 долучається до чату (%2)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.cc" line="133"/>
         <source>User %1 has left the chat (%2)</source>
-        <translation>Користувач %1 залишає чат (%2)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.cc" line="140"/>
         <source>User %1 is logged in (%2)</source>
-        <translation>Користувач %1 в системі (%2)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.cc" line="147"/>
         <source>User %1 is not logged in (%2)</source>
-        <translation>Користувач %1 не в системі (%2)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.cc" line="242"/>
         <location filename="../ui/text_chat_widget.cc" line="298"/>
         <source>Warning</source>
-        <translation>Попередження</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/text_chat_widget.cc" line="243"/>
         <source>The message is too long. The maximum message length is %n characters.</source>
-        <translation>
-            <numerusform>Повідомлення занадто довге. Максимальна довжина повідомлення - %n символ.</numerusform>
-            <numerusform>Повідомлення занадто довге. Максимальна довжина повідомлення - %n символи.</numerusform>
-            <numerusform>Повідомлення занадто довге. Максимальна довжина повідомлення - %n символів.</numerusform>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+            <numerusform></numerusform>
+            <numerusform></numerusform>
         </translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.cc" line="287"/>
         <source>Save File</source>
-        <translation>Зберегти файл</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.cc" line="289"/>
         <source>TXT files (*.txt)</source>
-        <translation>TXT файли (*.txt)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/text_chat_widget.cc" line="299"/>
         <source>Could not open file for writing.</source>
-        <translation>Неможливо відкрити файл для запису.</translation>
-    </message>
-</context>
-<context>
-    <name>common::TextChatWindow</name>
-    <message>
-        <source>Warning</source>
-        <translation type="obsolete">Попередження</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -423,52 +412,52 @@
     <message>
         <location filename="../ui/update_dialog.cc" line="59"/>
         <source>Receiving information...</source>
-        <translation>Отримання інформації...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="106"/>
         <source>Cancel checking for updates. Please wait.</source>
-        <translation>Скасування пошуку оновлень. Будь ласка, зачекайте.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="120"/>
         <source>Unknown</source>
-        <translation>Невідомо</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="121"/>
         <source>Error retrieving update information.</source>
-        <translation>Виникла помилка під час отримання інформації про оновлення.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="142"/>
         <source>No updates available.</source>
-        <translation>Немає доступних оновлень.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="158"/>
         <source>An update will be downloaded. After the download is complete, the application will automatically close.</source>
-        <translation>Оновлення буде завантажено. Після завершення завантаження програму буде закрито автоматично.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="160"/>
         <source>All connected sessions will be terminated. You cannot establish a connection until the update is complete.</source>
-        <translation>Всі підключені сесії буде завершено. Ви не зможете встановити з&apos;єднання до завершення оновлення.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="162"/>
         <source>All unsaved data will be lost.</source>
-        <translation>Всі не збережені дані буде втрачено.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="163"/>
         <source>Continue?</source>
-        <translation>Продовжити?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="166"/>
         <source>Confirmation</source>
-        <translation>Підтвердження</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="171"/>
@@ -483,12 +472,12 @@
     <message>
         <location filename="../ui/update_dialog.cc" line="180"/>
         <source>Warning</source>
-        <translation>Попередження</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="181"/>
         <source>An error occurred while installing the update: %1</source>
-        <translation>Виникла помилка під час встановлення оновлення: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

@@ -23,138 +23,140 @@
 
 #include <Windows.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-template<class T, class Traits>
-class ScopedObject
-{
-public:
-    ScopedObject() = default;
+		template<class T, class Traits>
+		class ScopedObject
+		{
+		public:
+			ScopedObject() = default;
 
-    explicit ScopedObject(T object)
-        : object_(object)
-    {
-        // Nothing
-    }
+			explicit ScopedObject(T object)
+				: object_(object)
+			{
+				// Nothing
+			}
 
-    ScopedObject(ScopedObject&& other) noexcept
-    {
-        object_ = other.object_;
-        other.object_ = nullptr;
-    }
+			ScopedObject(ScopedObject&& other) noexcept
+			{
+				object_ = other.object_;
+				other.object_ = nullptr;
+			}
 
-    ~ScopedObject()
-    {
-        Traits::close(object_);
-    }
+			~ScopedObject()
+			{
+				Traits::close(object_);
+			}
 
-    T get() const
-    {
-        return object_;
-    }
+			T get() const
+			{
+				return object_;
+			}
 
-    void reset(T object = nullptr)
-    {
-        Traits::close(object_);
-        object_ = object;
-    }
+			void reset(T object = nullptr)
+			{
+				Traits::close(object_);
+				object_ = object;
+			}
 
-    T* recieve()
-    {
-        Traits::close(object_);
-        return &object_;
-    }
+			T* recieve()
+			{
+				Traits::close(object_);
+				return &object_;
+			}
 
-    T release()
-    {
-        T object = object_;
-        object_ = nullptr;
-        return object;
-    }
+			T release()
+			{
+				T object = object_;
+				object_ = nullptr;
+				return object;
+			}
 
-    bool isValid() const
-    {
-        return Traits::isValid(object_);
-    }
+			bool isValid() const
+			{
+				return Traits::isValid(object_);
+			}
 
-    void swap(ScopedObject& other) noexcept
-    {
-        T object = other.object_;
-        other.object_ = object_;
-        object_ = object;
-    }
+			void swap(ScopedObject& other) noexcept
+			{
+				T object = other.object_;
+				other.object_ = object_;
+				object_ = object;
+			}
 
-    ScopedObject& operator=(ScopedObject&& other) noexcept
-    {
-        Traits::close(object_);
-        object_ = other.object_;
-        other.object_ = nullptr;
-        return *this;
-    }
+			ScopedObject& operator=(ScopedObject&& other) noexcept
+			{
+				Traits::close(object_);
+				object_ = other.object_;
+				other.object_ = nullptr;
+				return *this;
+			}
 
-    operator T()
-    {
-        return object_;
-    }
+			operator T()
+			{
+				return object_;
+			}
 
-private:
-    T object_ = nullptr;
+		private:
+			T object_ = nullptr;
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedObject);
-};
+			DISALLOW_COPY_AND_ASSIGN(ScopedObject);
+		};
 
-class HandleObjectTraits
-{
-public:
-    // Closes the handle.
-    static void close(HANDLE object)
-    {
-        if (isValid(object))
-            CloseHandle(object);
-    }
+		class HandleObjectTraits
+		{
+		public:
+			// Closes the handle.
+			static void close(HANDLE object)
+			{
+				if (isValid(object))
+					CloseHandle(object);
+			}
 
-    static bool isValid(HANDLE object)
-    {
-        return ((object != nullptr) && (object != INVALID_HANDLE_VALUE));
-    }
-};
+			static bool isValid(HANDLE object)
+			{
+				return ((object != nullptr) && (object != INVALID_HANDLE_VALUE));
+			}
+		};
 
-class ScHandleObjectTraits
-{
-public:
-    // Closes the handle.
-    static void close(SC_HANDLE object)
-    {
-        if (isValid(object))
-            CloseServiceHandle(object);
-    }
+		class ScHandleObjectTraits
+		{
+		public:
+			// Closes the handle.
+			static void close(SC_HANDLE object)
+			{
+				if (isValid(object))
+					CloseServiceHandle(object);
+			}
 
-    static bool isValid(SC_HANDLE object)
-    {
-        return (object != nullptr);
-    }
-};
+			static bool isValid(SC_HANDLE object)
+			{
+				return (object != nullptr);
+			}
+		};
 
-class EventLogObjectTraits
-{
-public:
-    // Closes the handle.
-    static void close(HANDLE object)
-    {
-        if (isValid(object))
-            CloseEventLog(object);
-    }
+		class EventLogObjectTraits
+		{
+		public:
+			// Closes the handle.
+			static void close(HANDLE object)
+			{
+				if (isValid(object))
+					CloseEventLog(object);
+			}
 
-    static bool isValid(HANDLE object)
-    {
-        return (object != nullptr);
-    }
-};
+			static bool isValid(HANDLE object)
+			{
+				return (object != nullptr);
+			}
+		};
 
-using ScopedHandle = ScopedObject<HANDLE, HandleObjectTraits>;
-using ScopedScHandle = ScopedObject<SC_HANDLE, ScHandleObjectTraits>;
-using ScopedEventLog = ScopedObject<HANDLE, EventLogObjectTraits>;
+		using ScopedHandle = ScopedObject<HANDLE, HandleObjectTraits>;
+		using ScopedScHandle = ScopedObject<SC_HANDLE, ScHandleObjectTraits>;
+		using ScopedEventLog = ScopedObject<HANDLE, EventLogObjectTraits>;
 
-} // namespace base::win
+	} // namesapce win
+} // namespace base
 
 #endif // BASE_WIN_SCOPED_HANDLE_H

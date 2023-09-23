@@ -19,14 +19,14 @@
 #ifndef BASE_NET_IP_UTIL_H
 #define BASE_NET_IP_UTIL_H
 
-#include <string_view>
+#include <string>
 
 namespace base {
 
-bool isValidIpV4Address(std::u16string_view address);
-bool isValidIpV6Address(std::u16string_view address);
+bool isValidIpV4Address(std::u16string address);
+bool isValidIpV6Address(std::u16string address);
 
-bool isIpInRange(std::u16string_view ip, std::u16string_view network, std::u16string_view mask);
+bool isIpInRange(std::u16string ip, std::u16string network, std::u16string mask);
 
 } // namespace base
 

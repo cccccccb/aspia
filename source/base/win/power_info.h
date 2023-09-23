@@ -25,30 +25,32 @@
 
 #include <Windows.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class PowerInfo
-{
-public:
-    PowerInfo();
-    ~PowerInfo();
+		class PowerInfo
+		{
+		public:
+			PowerInfo();
+			~PowerInfo();
 
-    enum class PowerSource { UNKNOWN, DC_BATTERY, AC_LINE };
-    enum class BatteryStatus { UNKNOWN, HIGH, LOW, CRITICAL, CHARGING, NO_BATTERY };
+			enum class PowerSource { UNKNOWN, DC_BATTERY, AC_LINE };
+			enum class BatteryStatus { UNKNOWN, HIGH, LOW, CRITICAL, CHARGING, NO_BATTERY };
 
-    PowerSource powerSource() const;
-    BatteryStatus batteryStatus() const;
-    uint32_t batteryLifePercent() const;
-    uint32_t batteryFullLifeTime() const;
-    uint32_t batteryRemainingLifeTime() const;
+			PowerSource powerSource() const;
+			BatteryStatus batteryStatus() const;
+			uint32_t batteryLifePercent() const;
+			uint32_t batteryFullLifeTime() const;
+			uint32_t batteryRemainingLifeTime() const;
 
-private:
-    SYSTEM_POWER_STATUS power_status_;
-    bool initialized_ = false;
+		private:
+			SYSTEM_POWER_STATUS power_status_;
+			bool initialized_ = false;
 
-    DISALLOW_COPY_AND_ASSIGN(PowerInfo);
-};
+			DISALLOW_COPY_AND_ASSIGN(PowerInfo);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_POWER_INFO_H

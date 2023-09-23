@@ -57,13 +57,13 @@ UpdateInfo UpdateInfo::fromXml(const base::ByteArray& buffer)
         if (child_node->type() != rapidxml::node_element)
             continue;
 
-        std::string_view name(child_node->name(), child_node->name_size());
+        std::string name(child_node->name(), child_node->name_size());
 
         const rapidxml::xml_node<>* node = child_node->first_node();
         if (node && node->type() == rapidxml::node_data)
         {
             if (name == "version")
-                update_info.version_ = base::Version(std::string_view(node->value(), node->value_size()));
+                update_info.version_ = base::Version(std::string(node->value(), node->value_size()));
             else if (name == "description")
                 update_info.description_ = std::string(node->value(), node->value_size());
             else if (name == "url")

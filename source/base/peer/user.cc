@@ -17,6 +17,7 @@
 //
 
 #include "base/peer/user.h"
+#include "base/optional.hpp"
 
 #include "base/logging.h"
 #include "base/crypto/random.h"
@@ -57,7 +58,7 @@ const User User::kInvalidUser;
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool User::isValidUserName(std::u16string_view username)
+bool User::isValidUserName(std::u16string username)
 {
     size_t length = username.length();
 
@@ -75,7 +76,7 @@ bool User::isValidUserName(std::u16string_view username)
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool User::isValidPassword(std::u16string_view password)
+bool User::isValidPassword(std::u16string password)
 {
     size_t length = password.length();
 
@@ -87,7 +88,7 @@ bool User::isValidPassword(std::u16string_view password)
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool User::isSafePassword(std::u16string_view password)
+bool User::isSafePassword(std::u16string password)
 {
     size_t length = password.length();
 
@@ -117,7 +118,7 @@ bool User::isSafePassword(std::u16string_view password)
 
 //--------------------------------------------------------------------------------------------------
 // static
-User User::create(std::u16string_view name, std::u16string_view password)
+User User::create(std::u16string name, std::u16string password)
 {
     if (name.empty() || password.empty())
     {
@@ -125,7 +126,7 @@ User User::create(std::u16string_view name, std::u16string_view password)
         return User();
     }
 
-    std::optional<SrpNgPair> Ng_pair = pairByGroup(kDefaultGroup);
+    tl::optional<SrpNgPair> Ng_pair = pairByGroup(kDefaultGroup);
     if (!Ng_pair.has_value())
     {
         LOG(LS_WARNING) << "Pair not found for group: " << kDefaultGroup;

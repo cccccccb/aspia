@@ -35,7 +35,7 @@ void memZero(std::string* str)
     if (!str)
         return;
 
-    memZero(str->data(), str->length() * sizeof(char));
+    memZero((void *)str->data(), str->length() * sizeof(char));
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ void memZero(std::u16string* str)
     if (!str)
         return;
 
-    memZero(str->data(), str->length() * sizeof(char16_t));
+    memZero((void *)str->data(), str->length() * sizeof(char16_t));
 }
 
 //--------------------------------------------------------------------------------------------------

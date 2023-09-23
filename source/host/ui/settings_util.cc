@@ -18,6 +18,7 @@
 
 #include "host/ui/settings_util.h"
 
+#include "base/filesystem.hpp"
 #include "base/settings/json_settings.h"
 #include "base/logging.h"
 #include "host/system_settings.h"
@@ -29,9 +30,9 @@ namespace host {
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool SettingsUtil::importFromFile(const std::filesystem::path& path, bool silent, QWidget* parent)
+bool SettingsUtil::importFromFile(const ghc::filesystem::path& path, bool silent, QWidget* parent)
 {
-    std::filesystem::path target_path = SystemSettings().filePath();
+    ghc::filesystem::path target_path = SystemSettings().filePath();
 
     LOG(LS_INFO) << "Import settings from '" << path << "' to '" << target_path << "'";
 
@@ -50,9 +51,9 @@ bool SettingsUtil::importFromFile(const std::filesystem::path& path, bool silent
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool SettingsUtil::exportToFile(const std::filesystem::path& path, bool silent, QWidget* parent)
+bool SettingsUtil::exportToFile(const ghc::filesystem::path& path, bool silent, QWidget* parent)
 {
-    std::filesystem::path source_path = SystemSettings().filePath();
+    ghc::filesystem::path source_path = SystemSettings().filePath();
 
     LOG(LS_INFO) << "Export settings from '" << source_path << "' to '" << path << "'";
 
@@ -71,13 +72,13 @@ bool SettingsUtil::exportToFile(const std::filesystem::path& path, bool silent, 
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool SettingsUtil::copySettings(const std::filesystem::path& source_path,
-                                const std::filesystem::path& target_path,
+bool SettingsUtil::copySettings(const ghc::filesystem::path& source_path,
+                                const ghc::filesystem::path& target_path,
                                 bool silent,
                                 QWidget* parent)
 {
     std::error_code error_code;
-    if (!std::filesystem::exists(source_path, error_code))
+    if (!ghc::filesystem::exists(source_path, error_code))
     {
         LOG(LS_WARNING) << "Source settings file does't exist ("
                         << base::utf16FromLocal8Bit(error_code.message()) << ")";
@@ -94,7 +95,7 @@ bool SettingsUtil::copySettings(const std::filesystem::path& source_path,
     }
     else
     {
-        uintmax_t file_size = std::filesystem::file_size(source_path, error_code);
+        uintmax_t file_size = ghc::filesystem::file_size(source_path, error_code);
         if (error_code)
         {
             LOG(LS_WARNING) << "Failed to get settings file size ("
@@ -125,7 +126,7 @@ bool SettingsUtil::copySettings(const std::filesystem::path& source_path,
         LOG(LS_INFO) << "File read successfully: " << source_path;
     }
 
-    if (std::filesystem::exists(target_path, error_code))
+    if (ghc::filesystem::exists(target_path, error_code))
     {
         if (!silent)
         {

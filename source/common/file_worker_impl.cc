@@ -18,6 +18,7 @@
 
 #include "common/file_worker_impl.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/files/base_paths.h"
 #include "build/build_config.h"
@@ -145,7 +146,7 @@ void FileWorkerImpl::doDriveListRequest(proto::FileReply* reply)
     root_directory->set_free_space(-1);
 #endif
 
-    std::filesystem::path desktop_path;
+    ghc::filesystem::path desktop_path;
     if (base::BasePaths::userDesktop(&desktop_path))
     {
         LOG(LS_INFO) << "User desktop path: " << desktop_path.u8string();
@@ -158,7 +159,7 @@ void FileWorkerImpl::doDriveListRequest(proto::FileReply* reply)
         item->set_free_space(-1);
     }
 
-    std::filesystem::path home_path;
+    ghc::filesystem::path home_path;
     if (base::BasePaths::userHome(&home_path))
     {
         LOG(LS_INFO) << "Home path: " << home_path.u8string();
@@ -181,18 +182,18 @@ void FileWorkerImpl::doDriveListRequest(proto::FileReply* reply)
 void FileWorkerImpl::doFileListRequest(
     const proto::FileListRequest& request, proto::FileReply* reply)
 {
-    std::filesystem::path path = std::filesystem::u8path(request.path());
+    ghc::filesystem::path path = ghc::filesystem::u8path(request.path());
 
     std::error_code ignored_code;
-    std::filesystem::file_status status = std::filesystem::status(path, ignored_code);
+    ghc::filesystem::file_status status = ghc::filesystem::status(path, ignored_code);
 
-    if (!std::filesystem::exists(status))
+    if (!ghc::filesystem::exists(status))
     {
         reply->set_error_code(proto::FILE_ERROR_PATH_NOT_FOUND);
         return;
     }
 
-    if (!std::filesystem::is_directory(status))
+    if (!ghc::filesystem::is_directory(status))
     {
         reply->set_error_code(proto::FILE_ERROR_INVALID_PATH_NAME);
         return;
@@ -221,16 +222,16 @@ void FileWorkerImpl::doFileListRequest(
 void FileWorkerImpl::doCreateDirectoryRequest(
     const proto::CreateDirectoryRequest& request, proto::FileReply* reply)
 {
-    std::filesystem::path directory_path = std::filesystem::u8path(request.path());
+    ghc::filesystem::path directory_path = ghc::filesystem::u8path(request.path());
 
     std::error_code ignored_code;
-    if (std::filesystem::exists(directory_path, ignored_code))
+    if (ghc::filesystem::exists(directory_path, ignored_code))
     {
         reply->set_error_code(proto::FILE_ERROR_PATH_ALREADY_EXISTS);
         return;
     }
 
-    if (!std::filesystem::create_directory(directory_path, ignored_code))
+    if (!ghc::filesystem::create_directory(directory_path, ignored_code))
     {
         reply->set_error_code(proto::FILE_ERROR_ACCESS_DENIED);
         return;
@@ -243,8 +244,8 @@ void FileWorkerImpl::doCreateDirectoryRequest(
 void FileWorkerImpl::doRenameRequest(
     const proto::RenameRequest& request, proto::FileReply* reply)
 {
-    std::filesystem::path old_name = std::filesystem::u8path(request.old_name());
-    std::filesystem::path new_name = std::filesystem::u8path(request.new_name());
+    ghc::filesystem::path old_name = ghc::filesystem::u8path(request.old_name());
+    ghc::filesystem::path new_name = ghc::filesystem::u8path(request.new_name());
 
     if (old_name == new_name)
     {
@@ -253,7 +254,7 @@ void FileWorkerImpl::doRenameRequest(
     }
 
     std::error_code error_code;
-    if (!std::filesystem::exists(old_name, error_code))
+    if (!ghc::filesystem::exists(old_name, error_code))
     {
         if (error_code)
             reply->set_error_code(proto::FILE_ERROR_ACCESS_DENIED);
@@ -263,7 +264,7 @@ void FileWorkerImpl::doRenameRequest(
         return;
     }
 
-    if (std::filesystem::exists(new_name, error_code))
+    if (ghc::filesystem::exists(new_name, error_code))
     {
         reply->set_error_code(proto::FILE_ERROR_PATH_ALREADY_EXISTS);
         return;
@@ -277,7 +278,7 @@ void FileWorkerImpl::doRenameRequest(
         }
     }
 
-    std::filesystem::rename(old_name, new_name, error_code);
+    ghc::filesystem::rename(old_name, new_name, error_code);
     if (error_code)
     {
         reply->set_error_code(proto::FILE_ERROR_ACCESS_DENIED);
@@ -292,10 +293,10 @@ void FileWorkerImpl::doRenameRequest(
 void FileWorkerImpl::doRemoveRequest(
     const proto::RemoveRequest& request, proto::FileReply* reply)
 {
-    std::filesystem::path path = std::filesystem::u8path(request.path());
+    ghc::filesystem::path path = ghc::filesystem::u8path(request.path());
 
     std::error_code error_code;
-    if (!std::filesystem::exists(path, error_code))
+    if (!ghc::filesystem::exists(path, error_code))
     {
         if (error_code)
             reply->set_error_code(proto::FILE_ERROR_ACCESS_DENIED);
@@ -306,13 +307,13 @@ void FileWorkerImpl::doRemoveRequest(
     }
 
     std::error_code ignored_code;
-    std::filesystem::permissions(
+    ghc::filesystem::permissions(
         path,
-        std::filesystem::perms::owner_all | std::filesystem::perms::group_all,
-        std::filesystem::perm_options::add,
+        ghc::filesystem::perms::owner_all | ghc::filesystem::perms::group_all,
+        ghc::filesystem::perm_options::add,
         ignored_code);
 
-    if (!std::filesystem::remove(path, ignored_code))
+    if (!ghc::filesystem::remove(path, ignored_code))
     {
         reply->set_error_code(proto::FILE_ERROR_ACCESS_DENIED);
         return;
@@ -325,7 +326,7 @@ void FileWorkerImpl::doRemoveRequest(
 void FileWorkerImpl::doDownloadRequest(
     const proto::DownloadRequest& request, proto::FileReply* reply)
 {
-    packetizer_ = FilePacketizer::create(std::filesystem::u8path(request.path()));
+    packetizer_ = FilePacketizer::create(ghc::filesystem::u8path(request.path()));
     if (!packetizer_)
         reply->set_error_code(proto::FILE_ERROR_FILE_OPEN_ERROR);
     else
@@ -336,14 +337,14 @@ void FileWorkerImpl::doDownloadRequest(
 void FileWorkerImpl::doUploadRequest(
     const proto::UploadRequest& request, proto::FileReply* reply)
 {
-    std::filesystem::path file_path = std::filesystem::u8path(request.path());
+    ghc::filesystem::path file_path = ghc::filesystem::u8path(request.path());
 
     do
     {
         if (!request.overwrite())
         {
             std::error_code ignored_code;
-            if (std::filesystem::exists(file_path, ignored_code))
+            if (ghc::filesystem::exists(file_path, ignored_code))
             {
                 reply->set_error_code(proto::FILE_ERROR_PATH_ALREADY_EXISTS);
                 break;

@@ -18,6 +18,7 @@
 
 #include "base/settings/json_settings.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/crypto/os_crypt.h"
 #include "base/files/base_paths.h"
@@ -35,7 +36,7 @@ namespace base {
 namespace {
 
 //--------------------------------------------------------------------------------------------------
-std::string createKey(const std::vector<std::string_view>& segments)
+std::string createKey(const std::vector<std::string>& segments)
 {
     std::string key;
 
@@ -51,7 +52,7 @@ std::string createKey(const std::vector<std::string_view>& segments)
 
 //--------------------------------------------------------------------------------------------------
 template <class T>
-void parseObject(const T& object, std::vector<std::string_view>* segments, Settings::Map* map)
+void parseObject(const T& object, std::vector<std::string>* segments, Settings::Map* map)
 {
     for (auto it = object.MemberBegin(); it != object.MemberEnd(); ++it)
     {
@@ -64,7 +65,7 @@ void parseObject(const T& object, std::vector<std::string_view>* segments, Setti
         {
             case rapidjson::kObjectType:
             {
-                parseObject(value.GetObject(), segments, map);
+                parseObject(value.GetObj(), segments, map);
             }
             break;
 
@@ -95,7 +96,7 @@ void parseObject(const T& object, std::vector<std::string_view>* segments, Setti
 } // namespace
 
 //--------------------------------------------------------------------------------------------------
-JsonSettings::JsonSettings(std::string_view file_name, Encrypted encrypted)
+JsonSettings::JsonSettings(std::string file_name, Encrypted encrypted)
     : encrypted_(encrypted)
 {
     path_ = filePath(file_name);
@@ -107,8 +108,8 @@ JsonSettings::JsonSettings(std::string_view file_name, Encrypted encrypted)
 
 //--------------------------------------------------------------------------------------------------
 JsonSettings::JsonSettings(Scope scope,
-                           std::string_view application_name,
-                           std::string_view file_name,
+                           std::string application_name,
+                           std::string file_name,
                            Encrypted encrypted)
     : encrypted_(encrypted)
 {
@@ -130,7 +131,7 @@ bool JsonSettings::isWritable() const
 {
     std::error_code error_code;
 
-    if (std::filesystem::exists(path_, error_code))
+    if (ghc::filesystem::exists(path_, error_code))
     {
         std::ofstream stream;
         stream.open(path_, std::ofstream::binary | std::ofstream::app);
@@ -138,7 +139,7 @@ bool JsonSettings::isWritable() const
     }
     else
     {
-        if (!std::filesystem::create_directories(path_.parent_path(), error_code))
+        if (!ghc::filesystem::create_directories(path_.parent_path(), error_code))
         {
             if (error_code)
                 return false;
@@ -183,14 +184,14 @@ bool JsonSettings::flush()
 
 //--------------------------------------------------------------------------------------------------
 // static
-std::filesystem::path JsonSettings::filePath(std::string_view file_name)
+ghc::filesystem::path JsonSettings::filePath(std::string file_name)
 {
     if (file_name.empty())
-        return std::filesystem::path();
+        return ghc::filesystem::path();
 
-    std::filesystem::path file_path;
+    ghc::filesystem::path file_path;
     if (!BasePaths::currentExecDir(&file_path))
-        return std::filesystem::path();
+        return ghc::filesystem::path();
 
     file_path.append(file_name);
     file_path.replace_extension("json");
@@ -200,14 +201,14 @@ std::filesystem::path JsonSettings::filePath(std::string_view file_name)
 
 //--------------------------------------------------------------------------------------------------
 // static
-std::filesystem::path JsonSettings::filePath(Scope scope,
-                                             std::string_view application_name,
-                                             std::string_view file_name)
+ghc::filesystem::path JsonSettings::filePath(Scope scope,
+                                             std::string application_name,
+                                             std::string file_name)
 {
     if (application_name.empty() || file_name.empty())
-        return std::filesystem::path();
+        return ghc::filesystem::path();
 
-    std::filesystem::path file_path;
+    ghc::filesystem::path file_path;
 
     switch (scope)
     {
@@ -225,7 +226,7 @@ std::filesystem::path JsonSettings::filePath(Scope scope,
     }
 
     if (file_path.empty())
-        return std::filesystem::path();
+        return ghc::filesystem::path();
 
     file_path.append(application_name);
     file_path.append(file_name);
@@ -236,14 +237,14 @@ std::filesystem::path JsonSettings::filePath(Scope scope,
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool JsonSettings::readFile(const std::filesystem::path& file, Map& map, Encrypted encrypted)
+bool JsonSettings::readFile(const ghc::filesystem::path& file, Map& map, Encrypted encrypted)
 {
     map.clear();
 
     std::error_code ignored_code;
-    std::filesystem::file_status status = std::filesystem::status(file, ignored_code);
+    ghc::filesystem::file_status status = ghc::filesystem::status(file, ignored_code);
 
-    if (!std::filesystem::exists(status))
+    if (!ghc::filesystem::exists(status))
     {
         // If the configuration file does not yet exist, then we write an empty file.
         writeFile(file, map, encrypted);
@@ -252,13 +253,13 @@ bool JsonSettings::readFile(const std::filesystem::path& file, Map& map, Encrypt
         return true;
     }
 
-    if (!std::filesystem::is_regular_file(status))
+    if (!ghc::filesystem::is_regular_file(status))
     {
         LOG(LS_ERROR) << "Specified configuration file is not a file: '" << file << "'";
         return false;
     }
 
-    if (std::filesystem::is_empty(file, ignored_code))
+    if (ghc::filesystem::is_empty(file, ignored_code))
     {
         // The configuration file may be empty.
         return true;
@@ -266,7 +267,7 @@ bool JsonSettings::readFile(const std::filesystem::path& file, Map& map, Encrypt
 
     static const uintmax_t kMaxFileSize = 5 * 1024 * 2024; // 5 Mb.
 
-    uintmax_t file_size = std::filesystem::file_size(file, ignored_code);
+    uintmax_t file_size = ghc::filesystem::file_size(file, ignored_code);
     if (file_size > kMaxFileSize)
     {
         LOG(LS_ERROR) << "Too big settings file: '" << file << "' (" << file_size << " bytes)";
@@ -303,7 +304,7 @@ bool JsonSettings::readFile(const std::filesystem::path& file, Map& map, Encrypt
         return false;
     }
 
-    std::vector<std::string_view> segments;
+    std::vector<std::string> segments;
     parseObject(doc, &segments, &map);
 
     return true;
@@ -311,10 +312,10 @@ bool JsonSettings::readFile(const std::filesystem::path& file, Map& map, Encrypt
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool JsonSettings::writeFile(const std::filesystem::path& file, const Map& map, Encrypted encrypted)
+bool JsonSettings::writeFile(const ghc::filesystem::path& file, const Map& map, Encrypted encrypted)
 {
     std::error_code error_code;
-    if (!std::filesystem::create_directories(file.parent_path(), error_code))
+    if (!ghc::filesystem::create_directories(file.parent_path(), error_code))
     {
         if (error_code)
         {
@@ -330,11 +331,11 @@ bool JsonSettings::writeFile(const std::filesystem::path& file, const Map& map, 
     // Start JSON document.
     json.StartObject();
 
-    std::vector<std::string_view> prev;
+    std::vector<std::string> prev;
 
     for (const auto& map_item : map)
     {
-        std::vector<std::string_view> segments =
+        std::vector<std::string> segments =
             splitStringView(map_item.first, "/", TRIM_WHITESPACE, SPLIT_WANT_NONEMPTY);
         size_t count = 0;
 
@@ -348,13 +349,13 @@ bool JsonSettings::writeFile(const std::filesystem::path& file, const Map& map, 
         {
             if (i != segments.size() - 1)
             {
-                std::string_view& segment = segments[i];
+                std::string& segment = segments[i];
                 json.Key(segment.data(), static_cast<rapidjson::SizeType>(segment.length()));
                 json.StartObject();
             }
         }
 
-        std::string_view& segment = segments.back();
+        std::string& segment = segments.back();
         json.Key(segment.data(), static_cast<rapidjson::SizeType>(segment.length()));
         json.String(map_item.second.data(), static_cast<rapidjson::SizeType>(map_item.second.length()));
 
@@ -377,7 +378,7 @@ bool JsonSettings::writeFile(const std::filesystem::path& file, const Map& map, 
         return false;
     }
 
-    std::string_view source_buffer(buffer.GetString(), buffer.GetSize());
+    std::string source_buffer(buffer.GetString(), buffer.GetSize());
 
     if (encrypted == Encrypted::YES)
     {

@@ -20,8 +20,8 @@
 #define BASE_DESKTOP_WIN_DESKTOP_ENVIRONMENT_H
 
 #include "base/macros_magic.h"
+#include "base/optional.hpp"
 
-#include <optional>
 #include <memory>
 
 namespace base {
@@ -49,9 +49,9 @@ protected:
 private:
     void applyNewSettings();
 
-    std::optional<bool> wallpaper_;
-    std::optional<bool> font_smoothing_;
-    std::optional<bool> effects_;
+    tl::optional<bool> wallpaper_;
+    tl::optional<bool> font_smoothing_;
+    tl::optional<bool> effects_;
 
     DISALLOW_COPY_AND_ASSIGN(DesktopEnvironment);
 };

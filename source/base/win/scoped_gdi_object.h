@@ -23,72 +23,74 @@
 
 #include <Windows.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-// Like ScopedHandle but for GDI objects.
-template<class T, class Traits>
-class ScopedGDIObject
-{
-public:
-    ScopedGDIObject() = default;
+		// Like ScopedHandle but for GDI objects.
+		template<class T, class Traits>
+		class ScopedGDIObject
+		{
+		public:
+			ScopedGDIObject() = default;
 
-    explicit ScopedGDIObject(T object)
-        : object_(object)
-    {
-        // Nothing
-    }
+			explicit ScopedGDIObject(T object)
+				: object_(object)
+			{
+				// Nothing
+			}
 
-    ~ScopedGDIObject() { Traits::close(object_); }
+			~ScopedGDIObject() { Traits::close(object_); }
 
-    T get() { return object_; }
+			T get() { return object_; }
 
-    void reset(T object = nullptr)
-    {
-        if (object_ && object != object_)
-            Traits::close(object_);
-        object_ = object;
-    }
+			void reset(T object = nullptr)
+			{
+				if (object_ && object != object_)
+					Traits::close(object_);
+				object_ = object;
+			}
 
-    ScopedGDIObject& operator=(T object)
-    {
-        reset(object);
-        return *this;
-    }
+			ScopedGDIObject& operator=(T object)
+			{
+				reset(object);
+				return *this;
+			}
 
-    T release()
-    {
-        T object = object_;
-        object_ = nullptr;
-        return object;
-    }
+			T release()
+			{
+				T object = object_;
+				object_ = nullptr;
+				return object;
+			}
 
-    operator T() { return object_; }
+			operator T() { return object_; }
 
-private:
-    T object_ = nullptr;
+		private:
+			T object_ = nullptr;
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedGDIObject);
-};
+			DISALLOW_COPY_AND_ASSIGN(ScopedGDIObject);
+		};
 
-// The traits class that uses DeleteObject() to close a handle.
-template <typename T>
-class DeleteObjectTraits
-{
-public:
-    // Closes the handle.
-    static void close(T handle)
-    {
-        if (handle)
-            DeleteObject(handle);
-    }
-};
+		// The traits class that uses DeleteObject() to close a handle.
+		template <typename T>
+		class DeleteObjectTraits
+		{
+		public:
+			// Closes the handle.
+			static void close(T handle)
+			{
+				if (handle)
+					DeleteObject(handle);
+			}
+		};
 
-// Typedefs for some common use cases.
-using ScopedHBITMAP = ScopedGDIObject<HBITMAP, DeleteObjectTraits<HBITMAP>>;
-using ScopedHRGN = ScopedGDIObject<HRGN, DeleteObjectTraits<HRGN>>;
-using ScopedHFONT = ScopedGDIObject<HFONT, DeleteObjectTraits<HFONT>>;
-using ScopedHBRUSH = ScopedGDIObject<HBRUSH, DeleteObjectTraits<HBRUSH>>;
+		// Typedefs for some common use cases.
+		using ScopedHBITMAP = ScopedGDIObject<HBITMAP, DeleteObjectTraits<HBITMAP>>;
+		using ScopedHRGN = ScopedGDIObject<HRGN, DeleteObjectTraits<HRGN>>;
+		using ScopedHFONT = ScopedGDIObject<HFONT, DeleteObjectTraits<HFONT>>;
+		using ScopedHBRUSH = ScopedGDIObject<HBRUSH, DeleteObjectTraits<HBRUSH>>;
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SCOPED_GDI_OBJECT_H

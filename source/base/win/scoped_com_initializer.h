@@ -23,41 +23,43 @@
 
 #include <objbase.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-// Initializes COM in the constructor (STA or MTA), and uninitializes COM in the
-// destructor.
-//
-// WARNING: This should only be used once per thread, ideally scoped to a
-// similar lifetime as the thread itself.  You should not be using this in
-// random utility functions that make COM calls -- instead ensure these
-// functions are running on a COM-supporting thread!
-class ScopedCOMInitializer
-{
-public:
-    // Enum value provided to initialize the thread as an MTA instead of STA.
-    enum SelectMTA { kMTA };
+		// Initializes COM in the constructor (STA or MTA), and uninitializes COM in the
+		// destructor.
+		//
+		// WARNING: This should only be used once per thread, ideally scoped to a
+		// similar lifetime as the thread itself.  You should not be using this in
+		// random utility functions that make COM calls -- instead ensure these
+		// functions are running on a COM-supporting thread!
+		class ScopedCOMInitializer
+		{
+		public:
+			// Enum value provided to initialize the thread as an MTA instead of STA.
+			enum SelectMTA { kMTA };
 
-    // Constructor for STA initialization.
-    ScopedCOMInitializer();
+			// Constructor for STA initialization.
+			ScopedCOMInitializer();
 
-    // Constructor for MTA initialization.
-    explicit ScopedCOMInitializer(SelectMTA mta);
+			// Constructor for MTA initialization.
+			explicit ScopedCOMInitializer(SelectMTA mta);
 
-    ~ScopedCOMInitializer();
+			~ScopedCOMInitializer();
 
-    bool isSucceeded() const;
+			bool isSucceeded() const;
 
-private:
-    void initialize(COINIT init);
+		private:
+			void initialize(COINIT init);
 
-    HRESULT hr_;
+			HRESULT hr_;
 
-    THREAD_CHECKER(thread_checker_);
+			THREAD_CHECKER(thread_checker_);
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedCOMInitializer);
-};
+			DISALLOW_COPY_AND_ASSIGN(ScopedCOMInitializer);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SCOPED_COM_INITIALIZER_H

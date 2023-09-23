@@ -39,10 +39,10 @@ public:
            std::shared_ptr<base::TaskRunner> io_task_runner);
     ~Router() override;
 
-    void setUserName(std::u16string_view user_name);
-    void setPassword(std::u16string_view password);
+    void setUserName(std::u16string user_name);
+    void setPassword(std::u16string password);
 
-    void connectToRouter(std::u16string_view address, uint16_t port);
+    void connectToRouter(std::u16string address, uint16_t port);
 
     void refreshSessionList();
     void stopSession(int64_t session_id);

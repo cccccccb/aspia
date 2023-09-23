@@ -125,7 +125,7 @@ static int GetDataType(uint8_t* descriptor)
 // static
 std::unique_ptr<Edid> Edid::create(std::unique_ptr<uint8_t[]> data, size_t data_size)
 {
-    static_assert(sizeof(Data) == kMinEdidSize);
+    static_assert(sizeof(Data) == kMinEdidSize, "");
 
     if (data && data_size >= sizeof(Data))
     {

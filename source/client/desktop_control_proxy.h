@@ -20,12 +20,13 @@
 #define CLIENT_DESKTOP_CONTROL_PROXY_H
 
 #include "base/macros_magic.h"
+#include "base/filesystem.hpp"
+
 #include "proto/desktop.pb.h"
 #include "proto/desktop_extensions.pb.h"
 #include "proto/system_info.pb.h"
 #include "proto/task_manager.pb.h"
 
-#include <filesystem>
 
 namespace base {
 class TaskRunner;
@@ -49,7 +50,7 @@ public:
     void setPreferredSize(int width, int height);
     void setVideoPause(bool enable);
     void setAudioPause(bool enable);
-    void setVideoRecording(bool enable, const std::filesystem::path& file_path);
+    void setVideoRecording(bool enable, const ghc::filesystem::path& file_path);
     void onKeyEvent(const proto::KeyEvent& event);
     void onTextEvent(const proto::TextEvent& event);
     void onMouseEvent(const proto::MouseEvent& event);

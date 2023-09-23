@@ -62,28 +62,28 @@ HostId stringToHostIdT(T str)
 
 const HostId kInvalidHostId = 0;
 
-static_assert(sizeof(HostId) == 8);
+static_assert(sizeof(HostId) == 8, "");
 
 //--------------------------------------------------------------------------------------------------
-bool isHostId(std::u16string_view str)
+bool isHostId(std::u16string str)
 {
     return isHostIdT(str);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool isHostId(std::string_view str)
+bool isHostId(std::string str)
 {
     return isHostIdT(str);
 }
 
 //--------------------------------------------------------------------------------------------------
-HostId stringToHostId(std::u16string_view str)
+HostId stringToHostId(std::u16string str)
 {
     return stringToHostIdT(str);
 }
 
 //--------------------------------------------------------------------------------------------------
-HostId stringToHostId(std::string_view str)
+HostId stringToHostId(std::string str)
 {
     return stringToHostIdT(str);
 }

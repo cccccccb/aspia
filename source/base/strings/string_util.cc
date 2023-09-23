@@ -132,7 +132,7 @@ bool isUnicodeWhitespace(char16_t c)
 //--------------------------------------------------------------------------------------------------
 template<typename CharType>
 std::basic_string<CharType> collapseWhitespaceT(
-    std::basic_string_view<CharType> text, bool trim_sequences_with_line_breaks)
+    std::basic_string<CharType> text, bool trim_sequences_with_line_breaks)
 {
     std::basic_string<CharType> result;
     result.resize(text.size());
@@ -143,7 +143,7 @@ std::basic_string<CharType> collapseWhitespaceT(
     bool already_trimmed = true;
 
     int chars_written = 0;
-    for (typename std::basic_string_view<CharType>::const_iterator i(text.begin());
+    for (typename std::basic_string<CharType>::const_iterator i(text.begin());
          i != text.end(); ++i)
     {
         if (isUnicodeWhitespace(static_cast<char16_t>(*i)))
@@ -183,7 +183,7 @@ std::basic_string<CharType> collapseWhitespaceT(
 
 //--------------------------------------------------------------------------------------------------
 template<typename StringType>
-void removeCharsT(StringType* str, std::basic_string_view<typename StringType::value_type> substr)
+void removeCharsT(StringType* str, std::basic_string<typename StringType::value_type> substr)
 {
     size_t pos;
 
@@ -255,7 +255,7 @@ std::string replaceCrLfByLf(const std::string& in)
 }
 
 //--------------------------------------------------------------------------------------------------
-bool isStringUTF8(std::string_view str)
+bool isStringUTF8(std::string str)
 {
     const char* ptr = str.data();
     const char* ptr_end = str.data() + str.length();
@@ -297,33 +297,33 @@ bool isStringUTF8(std::string_view str)
 }
 
 //--------------------------------------------------------------------------------------------------
-bool isStringASCII(std::string_view string)
+bool isStringASCII(std::string string)
 {
     return doIsStringASCII(string.data(), string.length());
 }
 
 //--------------------------------------------------------------------------------------------------
-bool isStringASCII(std::u16string_view string)
+bool isStringASCII(std::u16string string)
 {
     return doIsStringASCII(string.data(), string.length());
 }
 
 //--------------------------------------------------------------------------------------------------
-std::u16string collapseWhitespace(std::u16string_view text, bool trim_sequences_with_line_breaks)
+std::u16string collapseWhitespace(std::u16string text, bool trim_sequences_with_line_breaks)
 {
     return collapseWhitespaceT<char16_t>(text, trim_sequences_with_line_breaks);
 }
 
 #if defined(OS_WIN)
 //--------------------------------------------------------------------------------------------------
-std::wstring collapseWhitespace(std::wstring_view text, bool trim_sequences_with_line_breaks)
+std::wstring collapseWhitespace(std::wstring text, bool trim_sequences_with_line_breaks)
 {
     return collapseWhitespaceT<wchar_t>(text, trim_sequences_with_line_breaks);
 }
 #endif // defined(OS_WIN)
 
 //--------------------------------------------------------------------------------------------------
-std::string collapseWhitespaceASCII(std::string_view text, bool trim_sequences_with_line_breaks)
+std::string collapseWhitespaceASCII(std::string text, bool trim_sequences_with_line_breaks)
 {
     return collapseWhitespaceT<char>(text, trim_sequences_with_line_breaks);
 }
@@ -332,8 +332,8 @@ namespace {
 
 //--------------------------------------------------------------------------------------------------
 template <class CharType>
-int compareCaseInsensitiveASCIIT(std::basic_string_view<CharType> a,
-                                 std::basic_string_view<CharType> b)
+int compareCaseInsensitiveASCIIT(std::basic_string<CharType> a,
+                                 std::basic_string<CharType> b)
 {
     // Find the first characters that aren't equal and compare them.  If the end of one of the
     // strings is found before a nonequal character, the lengths of the strings are compared.
@@ -365,20 +365,20 @@ int compareCaseInsensitiveASCIIT(std::basic_string_view<CharType> a,
 } // namespace
 
 //--------------------------------------------------------------------------------------------------
-int compareCaseInsensitiveASCII(std::string_view first, std::string_view second)
+int compareCaseInsensitiveASCII(std::string first, std::string second)
 {
     return compareCaseInsensitiveASCIIT<char>(first, second);
 }
 
 //--------------------------------------------------------------------------------------------------
-int compareCaseInsensitiveASCII(std::u16string_view first, std::u16string_view second)
+int compareCaseInsensitiveASCII(std::u16string first, std::u16string second)
 {
     return compareCaseInsensitiveASCIIT<char16_t>(first, second);
 }
 
 //--------------------------------------------------------------------------------------------------
 template<typename CharType>
-bool startsWithT(std::basic_string_view<CharType> str, std::basic_string_view<CharType> search_for)
+bool startsWithT(std::basic_string<CharType> str, std::basic_string<CharType> search_for)
 {
     if (search_for.size() > str.size())
         return false;
@@ -387,20 +387,20 @@ bool startsWithT(std::basic_string_view<CharType> str, std::basic_string_view<Ch
 }
 
 //--------------------------------------------------------------------------------------------------
-bool startsWith(std::string_view str, std::string_view search_for)
+bool startsWith(std::string str, std::string search_for)
 {
     return startsWithT<char>(str, search_for);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool startsWith(std::u16string_view str, std::u16string_view search_for)
+bool startsWith(std::u16string str, std::u16string search_for)
 {
     return startsWithT<char16_t>(str, search_for);
 }
 
 #if defined(OS_WIN)
 //--------------------------------------------------------------------------------------------------
-bool startsWith(std::wstring_view str, std::wstring_view search_for)
+bool startsWith(std::wstring str, std::wstring search_for)
 {
     return startsWithT<wchar_t>(str, search_for);
 }
@@ -408,32 +408,32 @@ bool startsWith(std::wstring_view str, std::wstring_view search_for)
 
 //--------------------------------------------------------------------------------------------------
 template <typename CharType>
-bool endsWithT(std::basic_string_view<CharType> str, std::basic_string_view<CharType> search_for)
+bool endsWithT(std::basic_string<CharType> str, std::basic_string<CharType> search_for)
 {
     if (search_for.size() > str.size())
         return false;
 
-    std::basic_string_view<CharType> source =
+    std::basic_string<CharType> source =
         str.substr(str.size() - search_for.size(), search_for.size());
 
     return source == search_for;
 }
 
 //--------------------------------------------------------------------------------------------------
-bool endsWith(std::string_view str, std::string_view search_for)
+bool endsWith(std::string str, std::string search_for)
 {
     return endsWithT<char>(str, search_for);
 }
 
 //--------------------------------------------------------------------------------------------------
-bool endsWith(std::u16string_view str, std::u16string_view search_for)
+bool endsWith(std::u16string str, std::u16string search_for)
 {
     return endsWithT<char16_t>(str, search_for);
 }
 
 #if defined(OS_WIN)
 //--------------------------------------------------------------------------------------------------
-bool endsWith(std::wstring_view str, std::wstring_view search_for)
+bool endsWith(std::wstring str, std::wstring search_for)
 {
     return endsWithT<wchar_t>(str, search_for);
 }
@@ -443,8 +443,8 @@ namespace {
 
 //--------------------------------------------------------------------------------------------------
 template <typename CharType>
-TrimPositions trimStringT(std::basic_string_view<CharType> input,
-                          std::basic_string_view<CharType> trim_chars,
+TrimPositions trimStringT(std::basic_string<CharType> input,
+                          std::basic_string<CharType> trim_chars,
                           TrimPositions positions,
                           std::basic_string<CharType>* output)
 {
@@ -462,8 +462,8 @@ TrimPositions trimStringT(std::basic_string_view<CharType> input,
     // from whichever position the caller was interested in. For empty input, we
     // stripped no characters, but we still need to clear |output|.
     if (input.empty() ||
-        first_good_char == std::basic_string_view<CharType>::npos ||
-        last_good_char == std::basic_string_view<CharType>::npos)
+        first_good_char == std::basic_string<CharType>::npos ||
+        last_good_char == std::basic_string<CharType>::npos)
     {
         bool input_was_empty = input.empty();  // in case output == &input
         output->clear();
@@ -498,69 +498,69 @@ StringType trimStringViewT(StringType input, StringType trim_chars, TrimPosition
 } // namespace
 
 //--------------------------------------------------------------------------------------------------
-bool trimString(std::string_view input, std::string_view trim_chars, std::string* output)
+bool trimString(std::string input, std::string trim_chars, std::string* output)
 {
     return trimStringT(input, trim_chars, TRIM_ALL, output) != TRIM_NONE;
 }
 
 //--------------------------------------------------------------------------------------------------
-bool trimString(std::u16string_view input, std::u16string_view trim_chars, std::u16string* output)
+bool trimString(std::u16string input, std::u16string trim_chars, std::u16string* output)
 {
     return trimStringT(input, trim_chars, TRIM_ALL, output) != TRIM_NONE;
 }
 
 //--------------------------------------------------------------------------------------------------
-std::u16string_view trimString(std::u16string_view input,
-                               std::u16string_view trim_chars,
+std::u16string trimString(std::u16string input,
+                               std::u16string trim_chars,
                                TrimPositions positions)
 {
     return trimStringViewT(input, trim_chars, positions);
 }
 
 //--------------------------------------------------------------------------------------------------
-std::string_view trimString(std::string_view input,
-                            std::string_view trim_chars,
+std::string trimString(std::string input,
+                            std::string trim_chars,
                             TrimPositions positions)
 {
     return trimStringViewT(input, trim_chars, positions);
 }
 
 //--------------------------------------------------------------------------------------------------
-TrimPositions trimWhitespace(std::u16string_view input,
+TrimPositions trimWhitespace(std::u16string input,
                              TrimPositions positions,
                              std::u16string* output)
 {
-    return trimStringT(input, std::u16string_view(kWhitespaceUtf16), positions, output);
+    return trimStringT(input, std::u16string(kWhitespaceUtf16), positions, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-std::u16string_view trimWhitespace(std::u16string_view input, TrimPositions positions)
+std::u16string trimWhitespace(std::u16string input, TrimPositions positions)
 {
-    return trimStringViewT(input, std::u16string_view(kWhitespaceUtf16), positions);
+    return trimStringViewT(input, std::u16string(kWhitespaceUtf16), positions);
 }
 
 //--------------------------------------------------------------------------------------------------
-TrimPositions trimWhitespaceASCII(std::string_view input,
+TrimPositions trimWhitespaceASCII(std::string input,
                                   TrimPositions positions,
                                   std::string* output)
 {
-    return trimStringT(input, std::string_view(kWhitespaceASCII), positions, output);
+    return trimStringT(input, std::string(kWhitespaceASCII), positions, output);
 }
 
 //--------------------------------------------------------------------------------------------------
-std::string_view trimWhitespaceASCII(std::string_view input, TrimPositions positions)
+std::string trimWhitespaceASCII(std::string input, TrimPositions positions)
 {
-    return trimStringViewT(input, std::string_view(kWhitespaceASCII), positions);
+    return trimStringViewT(input, std::string(kWhitespaceASCII), positions);
 }
 
 //--------------------------------------------------------------------------------------------------
-void removeChars(std::string* str, std::string_view substr)
+void removeChars(std::string* str, std::string substr)
 {
     removeCharsT(str, substr);
 }
 
 //--------------------------------------------------------------------------------------------------
-void removeChars(std::wstring* str, std::wstring_view substr)
+void removeChars(std::wstring* str, std::wstring substr)
 {
     removeCharsT(str, substr);
 }
@@ -569,7 +569,7 @@ namespace {
 
 //--------------------------------------------------------------------------------------------------
 template <typename CharType>
-std::basic_string<CharType> toLowerASCIIT(std::basic_string_view<CharType> str)
+std::basic_string<CharType> toLowerASCIIT(std::basic_string<CharType> str)
 {
     std::basic_string<CharType> ret;
     ret.reserve(str.size());
@@ -582,7 +582,7 @@ std::basic_string<CharType> toLowerASCIIT(std::basic_string_view<CharType> str)
 
 //--------------------------------------------------------------------------------------------------
 template <typename CharType>
-std::basic_string<CharType> toUpperASCIIT(std::basic_string_view<CharType> str)
+std::basic_string<CharType> toUpperASCIIT(std::basic_string<CharType> str)
 {
     std::basic_string<CharType> ret;
     ret.reserve(str.size());
@@ -596,25 +596,25 @@ std::basic_string<CharType> toUpperASCIIT(std::basic_string_view<CharType> str)
 }  // namespace
 
 //--------------------------------------------------------------------------------------------------
-std::u16string toUpperASCII(std::u16string_view in)
+std::u16string toUpperASCII(std::u16string in)
 {
     return toUpperASCIIT<char16_t>(in);
 }
 
 //--------------------------------------------------------------------------------------------------
-std::u16string toLowerASCII(std::u16string_view in)
+std::u16string toLowerASCII(std::u16string in)
 {
     return toLowerASCIIT<char16_t>(in);
 }
 
 //--------------------------------------------------------------------------------------------------
-std::string toUpperASCII(std::string_view in)
+std::string toUpperASCII(std::string in)
 {
     return toUpperASCIIT<char>(in);
 }
 
 //--------------------------------------------------------------------------------------------------
-std::string toLowerASCII(std::string_view in)
+std::string toLowerASCII(std::string in)
 {
     return toLowerASCIIT<char>(in);
 }

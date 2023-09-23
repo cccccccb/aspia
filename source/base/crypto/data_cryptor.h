@@ -28,8 +28,8 @@ class DataCryptor
 public:
     virtual ~DataCryptor() = default;
 
-    virtual bool encrypt(std::string_view in, std::string* out) = 0;
-    virtual bool decrypt(std::string_view in, std::string* out) = 0;
+    virtual bool encrypt(std::string in, std::string* out) = 0;
+    virtual bool decrypt(std::string in, std::string* out) = 0;
 };
 
 } // namespace base

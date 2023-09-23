@@ -38,7 +38,7 @@ void TcpChannelProxy::send(uint8_t channel_id, ByteArray&& buffer)
     bool schedule_write;
 
     {
-        std::scoped_lock lock(incoming_queue_lock_);
+        std::lock_guard<std::mutex> lock(incoming_queue_lock_);
 
         schedule_write = incoming_queue_.empty();
         incoming_queue_.emplace(WriteTask::Type::USER_DATA, channel_id, std::move(buffer));
@@ -74,7 +74,7 @@ bool TcpChannelProxy::reloadWriteQueue(std::queue<WriteTask>* work_queue)
     if (!work_queue->empty())
         return false;
 
-    std::scoped_lock lock(incoming_queue_lock_);
+    std::lock_guard<std::mutex> lock(incoming_queue_lock_);
 
     if (incoming_queue_.empty())
         return false;

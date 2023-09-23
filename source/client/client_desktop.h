@@ -20,6 +20,8 @@
 #define CLIENT_CLIENT_DESKTOP_H
 
 #include "base/macros_magic.h"
+#include "base/filesystem.hpp"
+
 #include "client/client.h"
 #include "client/desktop_control.h"
 #include "client/input_event_filter.h"
@@ -60,7 +62,7 @@ public:
     void setPreferredSize(int width, int height) override;
     void setVideoPause(bool enable) override;
     void setAudioPause(bool enable) override;
-    void setVideoRecording(bool enable, const std::filesystem::path& file_path) override;
+    void setVideoRecording(bool enable, const ghc::filesystem::path& file_path) override;
     void onKeyEvent(const proto::KeyEvent& event) override;
     void onTextEvent(const proto::TextEvent& event) override;
     void onMouseEvent(const proto::MouseEvent& event) override;

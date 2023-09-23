@@ -24,61 +24,63 @@
 
 #include <string>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class SessionInfo
-{
-public:
-    explicit SessionInfo(SessionId session_id);
-    ~SessionInfo();
+		class SessionInfo
+		{
+		public:
+			explicit SessionInfo(SessionId session_id);
+			~SessionInfo();
 
-    bool isValid() const;
+			bool isValid() const;
 
-    SessionId sessionId() const;
+			SessionId sessionId() const;
 
-    enum class ConnectState
-    {
-        ACTIVE        = WTSActive,       // User logged on to WinStation.
-        CONNECTED     = WTSConnected,    // WinStation connected to client.
-        CONNECT_QUERY = WTSConnectQuery, // In the process of connecting to client.
-        SHADOW        = WTSShadow,       // Shadowing another WinStation.
-        DISCONNECTED  = WTSDisconnected, // WinStation logged on without client.
-        IDLE          = WTSIdle,         // Waiting for client to connect.
-        LISTEN        = WTSListen,       // WinStation is listening for connection.
-        RESET         = WTSReset,        // WinStation is being reset.
-        DOWN          = WTSDown,         // WinStation is down due to error.
-        INIT          = WTSInit,         // WinStation in initialization.
-    };
+			enum class ConnectState
+			{
+				ACTIVE = WTSActive,       // User logged on to WinStation.
+				CONNECTED = WTSConnected,    // WinStation connected to client.
+				CONNECT_QUERY = WTSConnectQuery, // In the process of connecting to client.
+				SHADOW = WTSShadow,       // Shadowing another WinStation.
+				DISCONNECTED = WTSDisconnected, // WinStation logged on without client.
+				IDLE = WTSIdle,         // Waiting for client to connect.
+				LISTEN = WTSListen,       // WinStation is listening for connection.
+				RESET = WTSReset,        // WinStation is being reset.
+				DOWN = WTSDown,         // WinStation is down due to error.
+				INIT = WTSInit,         // WinStation in initialization.
+			};
 
-    ConnectState connectState() const;
-    static const char* connectStateToString(ConnectState connect_state);
+			ConnectState connectState() const;
+			static const char* connectStateToString(ConnectState connect_state);
 
-    std::string winStationName() const;
-    std::u16string winStationName16() const;
+			std::string winStationName() const;
+			std::u16string winStationName16() const;
 
-    std::string domain() const;
-    std::u16string domain16() const;
+			std::string domain() const;
+			std::u16string domain16() const;
 
-    std::string userName() const;
-    std::u16string userName16() const;
+			std::string userName() const;
+			std::u16string userName16() const;
 
-    std::string clientName() const;
-    std::u16string clientName16() const;
+			std::string clientName() const;
+			std::u16string clientName16() const;
 
-    int64_t connectTime() const;
-    int64_t disconnectTime() const;
-    int64_t lastInputTime() const;
-    int64_t logonTime() const;
-    int64_t currentTime() const;
+			int64_t connectTime() const;
+			int64_t disconnectTime() const;
+			int64_t lastInputTime() const;
+			int64_t logonTime() const;
+			int64_t currentTime() const;
 
-    bool isUserLocked() const;
+			bool isUserLocked() const;
 
-private:
-    ScopedWtsMemory<WTSINFOEXW> info_;
+		private:
+			ScopedWtsMemory<WTSINFOEXW> info_;
 
-    DISALLOW_COPY_AND_ASSIGN(SessionInfo);
-};
+			DISALLOW_COPY_AND_ASSIGN(SessionInfo);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SESSION_INFO_H

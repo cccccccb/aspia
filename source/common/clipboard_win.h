@@ -24,8 +24,11 @@
 
 #include <Windows.h>
 
-namespace base::win {
-class MessageWindow;
+namespace base {
+	namespace win {
+
+		class MessageWindow;
+	}
 } // namespace base::win
 
 namespace common {

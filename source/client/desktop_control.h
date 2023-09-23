@@ -19,12 +19,13 @@
 #ifndef CLIENT_DESKTOP_CONTROL_H
 #define CLIENT_DESKTOP_CONTROL_H
 
+#include "base/filesystem.hpp"
+
 #include "proto/desktop.pb.h"
 #include "proto/desktop_extensions.pb.h"
 #include "proto/system_info.pb.h"
 #include "proto/task_manager.pb.h"
 
-#include <filesystem>
 
 namespace client {
 
@@ -38,7 +39,7 @@ public:
     virtual void setPreferredSize(int width, int height) = 0;
     virtual void setVideoPause(bool enable) = 0;
     virtual void setAudioPause(bool enable) = 0;
-    virtual void setVideoRecording(bool enable, const std::filesystem::path& file_path) = 0;
+    virtual void setVideoRecording(bool enable, const ghc::filesystem::path& file_path) = 0;
 
     virtual void onKeyEvent(const proto::KeyEvent& event) = 0;
     virtual void onTextEvent(const proto::TextEvent& event) = 0;

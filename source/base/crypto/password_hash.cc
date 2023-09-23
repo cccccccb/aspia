@@ -28,7 +28,7 @@ namespace {
 
 //--------------------------------------------------------------------------------------------------
 template <typename InputT, typename OutputT>
-OutputT hashT(PasswordHash::Type type, std::string_view password, InputT salt)
+OutputT hashT(PasswordHash::Type type, std::string password, InputT salt)
 {
     DCHECK_EQ(type, PasswordHash::Type::SCRYPT);
 
@@ -51,7 +51,7 @@ OutputT hashT(PasswordHash::Type type, std::string_view password, InputT salt)
     int ret = EVP_PBE_scrypt(password.data(), password.size(),
                              reinterpret_cast<const uint8_t*>(salt.data()), salt.size(),
                              N, r, p, max_mem,
-                             reinterpret_cast<uint8_t*>(result.data()), result.size());
+                             const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(result.data())), result.size());
     CHECK_EQ(ret, 1) << "EVP_PBE_scrypt failed";
 
     return result;
@@ -61,16 +61,16 @@ OutputT hashT(PasswordHash::Type type, std::string_view password, InputT salt)
 
 //--------------------------------------------------------------------------------------------------
 // static
-ByteArray PasswordHash::hash(Type type, std::string_view password, const ByteArray& salt)
+ByteArray PasswordHash::hash(Type type, std::string password, const ByteArray& salt)
 {
     return hashT<const ByteArray, ByteArray>(type, password, salt);
 }
 
 //--------------------------------------------------------------------------------------------------
 // static
-std::string PasswordHash::hash(Type type, std::string_view password, std::string_view salt)
+std::string PasswordHash::hash(Type type, std::string password, std::string salt)
 {
-    return hashT<std::string_view, std::string>(type, password, salt);
+    return hashT<std::string, std::string>(type, password, salt);
 }
 
 } // namespace base

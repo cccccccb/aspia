@@ -19,12 +19,12 @@
 #ifndef BASE_DESKTOP_WIN_DXGI_FRAME_H
 #define BASE_DESKTOP_WIN_DXGI_FRAME_H
 
+#include "base/optional.hpp"
 #include "base/desktop/screen_capturer.h"
 #include "base/desktop/shared_frame.h"
 #include "base/desktop/win/dxgi_context.h"
 
 #include <memory>
-#include <optional>
 #include <vector>
 
 namespace base {
@@ -58,7 +58,7 @@ private:
     Context* context();
 
     SharedMemoryFactory* const shared_memory_factory_;
-    std::optional<Size> last_frame_size_;
+    tl::optional<Size> last_frame_size_;
     ScreenCapturer::ScreenId source_id_ = ScreenCapturer::kFullDesktopScreenId;
     std::unique_ptr<SharedFrame> frame_;
     Context context_;

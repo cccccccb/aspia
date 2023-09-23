@@ -44,13 +44,13 @@ public:
         virtual void onNewConnection(std::unique_ptr<TcpChannel> channel) = 0;
     };
 
-    void start(std::u16string_view listen_interface, uint16_t port, Delegate* delegate);
+    void start(std::u16string listen_interface, uint16_t port, Delegate* delegate);
     void stop();
 
     std::u16string listenInterface() const;
     uint16_t port() const;
 
-    static bool isValidListenInterface(std::u16string_view interface);
+    static bool isValidListenInterface(std::u16string interface);
 
 private:
     class Impl;

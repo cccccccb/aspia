@@ -19,6 +19,7 @@
 #include "console/main_window.h"
 
 #include "base/strings/unicode.h"
+#include "base/optional.hpp"
 #include "build/build_config.h"
 #include "client/ui/desktop/qt_desktop_window.h"
 #include "client/ui/file_transfer/qt_file_manager_window.h"
@@ -1344,7 +1345,7 @@ bool MainWindow::hasUnpinnedTabs() const
 
 //--------------------------------------------------------------------------------------------------
 void MainWindow::connectToComputer(const proto::address_book::Computer& computer,
-                                   const std::optional<client::RouterConfig>& router_config)
+                                   const tl::optional<client::RouterConfig>& router_config)
 {
     QString address = QString::fromStdString(computer.address());
     bool host_id_entered = true;
@@ -1431,7 +1432,7 @@ void MainWindow::connectToRouter()
         return;
     }
 
-    std::optional<client::RouterConfig> router_config = tab->routerConfig();
+    tl::optional<client::RouterConfig> router_config = tab->routerConfig();
     if (!router_config.has_value())
     {
         LOG(LS_ERROR) << "No config for router";

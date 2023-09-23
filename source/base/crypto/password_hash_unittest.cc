@@ -26,9 +26,9 @@ TEST(PasswordHashTest, Scrypt)
 {
     struct TestData
     {
-        std::string_view password;
-        std::string_view salt;
-        std::string_view expected;
+        std::string password;
+        std::string salt;
+        std::string expected;
     } const kTestTable[] =
     {
         {

@@ -25,21 +25,21 @@ namespace base {
 //--------------------------------------------------------------------------------------------------
 void ScreenCapturerHelper::clearInvalidRegion()
 {
-    std::scoped_lock scoped_invalid_region_lock(invalid_region_mutex_);
+    std::lock_guard<std::mutex> scoped_invalid_region_lock(invalid_region_mutex_);
     invalid_region_.clear();
 }
 
 //--------------------------------------------------------------------------------------------------
 void ScreenCapturerHelper::invalidateRegion(const Region& invalid_region)
 {
-    std::scoped_lock scoped_invalid_region_lock(invalid_region_mutex_);
+    std::lock_guard<std::mutex> scoped_invalid_region_lock(invalid_region_mutex_);
     invalid_region_.addRegion(invalid_region);
 }
 
 //--------------------------------------------------------------------------------------------------
 void ScreenCapturerHelper::invalidateScreen(const Size& size)
 {
-    std::scoped_lock scoped_invalid_region_lock(invalid_region_mutex_);
+    std::lock_guard<std::mutex> scoped_invalid_region_lock(invalid_region_mutex_);
     invalid_region_.addRect(Rect::makeSize(size));
 }
 
@@ -49,7 +49,7 @@ void ScreenCapturerHelper::takeInvalidRegion(Region* invalid_region)
     invalid_region->clear();
 
     {
-        std::scoped_lock scoped_invalid_region_lock(invalid_region_mutex_);
+        std::lock_guard<std::mutex> scoped_invalid_region_lock(invalid_region_mutex_);
         invalid_region->swap(&invalid_region_);
     }
 

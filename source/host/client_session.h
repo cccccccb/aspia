@@ -71,10 +71,10 @@ public:
     void setVersion(const base::Version& version);
     const base::Version& version() const { return version_; }
 
-    void setUserName(std::string_view username);
+    void setUserName(std::string username);
     const std::string& userName() const { return username_; }
 
-    void setComputerName(std::string_view computer_name);
+    void setComputerName(std::string computer_name);
     std::string computerName() const;
 
     proto::SessionType sessionType() const { return session_type_; }

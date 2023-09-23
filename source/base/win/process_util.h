@@ -21,32 +21,35 @@
 
 #include "base/command_line.h"
 #include "base/win/scoped_object.h"
+#include "base/filesystem.hpp"
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-bool isProcessElevated();
+		bool isProcessElevated();
 
-enum class ProcessExecuteMode
-{
-    NORMAL, ELEVATE
-};
+		enum class ProcessExecuteMode
+		{
+			NORMAL, ELEVATE
+		};
 
-bool createProcess(
-    const CommandLine& command_line,
-    ProcessExecuteMode mode = ProcessExecuteMode::NORMAL);
+		bool createProcess(
+			const CommandLine& command_line,
+			ProcessExecuteMode mode = ProcessExecuteMode::NORMAL);
 
-bool createProcess(
-    const std::filesystem::path& program,
-    std::u16string_view arguments,
-    ProcessExecuteMode mode = ProcessExecuteMode::NORMAL);
+		bool createProcess(
+			const ghc::filesystem::path& program,
+			std::u16string arguments,
+			ProcessExecuteMode mode = ProcessExecuteMode::NORMAL);
 
-bool copyProcessToken(DWORD desired_access, ScopedHandle* token_out);
+		bool copyProcessToken(DWORD desired_access, ScopedHandle* token_out);
 
-// Creates a copy of the current process with SE_TCB_NAME privilege enabled.
-bool createPrivilegedToken(ScopedHandle* token_out);
+		// Creates a copy of the current process with SE_TCB_NAME privilege enabled.
+		bool createPrivilegedToken(ScopedHandle* token_out);
 
-bool isProcessStartedFromService();
+		bool isProcessStartedFromService();
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_PROCESS_UTIL_H

@@ -19,9 +19,8 @@
 #ifndef RELAY_SHARED_POOL_H
 #define RELAY_SHARED_POOL_H
 
+#include "base/optional.hpp"
 #include "relay/session_key.h"
-
-#include <optional>
 
 namespace relay {
 
@@ -46,7 +45,7 @@ public:
     uint32_t addKey(SessionKey&& session_key);
     bool removeKey(uint32_t key_id);
     void setKeyExpired(uint32_t key_id);
-    std::optional<Key> key(uint32_t key_id, std::string_view peer_public_key) const;
+    tl::optional<Key> key(uint32_t key_id, std::string peer_public_key) const;
     void clear();
 
 private:

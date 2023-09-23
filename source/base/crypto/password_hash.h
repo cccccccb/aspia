@@ -33,8 +33,8 @@ public:
     static const size_t kBitsSize = 256;
     static const size_t kBytesSize = kBitsSize / kBitsPerByte;
 
-    static ByteArray hash(Type type, std::string_view password, const ByteArray& salt);
-    static std::string hash(Type type, std::string_view password, std::string_view salt);
+    static ByteArray hash(Type type, std::string password, const ByteArray& salt);
+    static std::string hash(Type type, std::string password, std::string salt);
 
 private:
     DISALLOW_COPY_AND_ASSIGN(PasswordHash);

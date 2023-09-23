@@ -40,18 +40,18 @@ class Environment
 public:
     // Gets an environment variable's value and stores it in |result|.
     // Returns false if the key is unset.
-    static bool get(std::string_view variable_name, std::string* result);
+    static bool get(std::string variable_name, std::string* result);
 
     // Syntactic sugar for GetVar(variable_name, nullptr);
-    static bool has(std::string_view variable_name);
+    static bool has(std::string variable_name);
 
     // Returns true on success, otherwise returns false. This method should not
     // be called in a multi-threaded process.
-    static bool set(std::string_view variable_name, const std::string& new_value);
+    static bool set(std::string variable_name, const std::string& new_value);
 
     // Returns true on success, otherwise returns false. This method should not
     // be called in a multi-threaded process.
-    static bool unSet(std::string_view variable_name);
+    static bool unSet(std::string variable_name);
 
     // Returns a list of the environment variables.
     static std::vector<std::pair<std::string, std::string>> list();

@@ -18,6 +18,7 @@
 
 #include "host/win/updater_launcher.h"
 
+#include "base/filesystem.hpp"
 #include "base/command_line.h"
 #include "base/logging.h"
 #include "base/files/base_paths.h"
@@ -158,7 +159,7 @@ bool launchUpdater(base::SessionId session_id)
         return false;
     }
 
-    std::filesystem::path file_path;
+    ghc::filesystem::path file_path;
     if (!base::BasePaths::currentExecDir(&file_path))
     {
         LOG(LS_WARNING) << "currentExecDir failed";
@@ -176,7 +177,7 @@ bool launchUpdater(base::SessionId session_id)
 //--------------------------------------------------------------------------------------------------
 bool launchSilentUpdater()
 {
-    std::filesystem::path file_path;
+    ghc::filesystem::path file_path;
     if (!base::BasePaths::currentExecDir(&file_path))
     {
         LOG(LS_WARNING) << "currentExecDir failed";

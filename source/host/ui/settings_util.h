@@ -19,9 +19,8 @@
 #ifndef HOST_UI_SETTINGS_UTIL_H
 #define HOST_UI_SETTINGS_UTIL_H
 
+#include "base/filesystem.hpp"
 #include "base/macros_magic.h"
-
-#include <filesystem>
 
 #include <QCoreApplication>
 
@@ -33,13 +32,13 @@ class SettingsUtil
 
 public:
     static bool importFromFile(
-        const std::filesystem::path& path, bool silent, QWidget* parent = nullptr);
+        const ghc::filesystem::path& path, bool silent, QWidget* parent = nullptr);
     static bool exportToFile(
-        const std::filesystem::path& path, bool silent, QWidget* parent = nullptr);
+        const ghc::filesystem::path& path, bool silent, QWidget* parent = nullptr);
 
 private:
-    static bool copySettings(const std::filesystem::path& source_path,
-                             const std::filesystem::path& target_path,
+    static bool copySettings(const ghc::filesystem::path& source_path,
+                             const ghc::filesystem::path& target_path,
                              bool silent,
                              QWidget* parent);
 

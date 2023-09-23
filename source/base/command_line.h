@@ -20,8 +20,8 @@
 #define BASE_COMMAND_LINE_H
 
 #include "build/build_config.h"
+#include "base/filesystem.hpp"
 
-#include <filesystem>
 #include <map>
 #include <string>
 #include <vector>
@@ -39,7 +39,7 @@ public:
     explicit CommandLine(NoProgram no_program);
 
     // Construct a new command line with |program| as argv[0].
-    explicit CommandLine(const std::filesystem::path& program);
+    explicit CommandLine(const ghc::filesystem::path& program);
 
     // Construct a new command line from an argument list.
     CommandLine(int argc, const char16_t* const* argv);
@@ -76,7 +76,7 @@ public:
     static bool isInitializedForCurrentProcess();
 
 #if defined(OS_WIN)
-    static CommandLine fromString(std::u16string_view command_line);
+    static CommandLine fromString(std::u16string command_line);
 #endif // defined(OS_WIN)
 
     // Initialize from an argv vector.
@@ -96,8 +96,8 @@ public:
     }
 
     // Get and Set the program part of the command line string (the first item).
-    std::filesystem::path program() const;
-    void setProgram(const std::filesystem::path& program);
+    ghc::filesystem::path program() const;
+    void setProgram(const ghc::filesystem::path& program);
 
     bool isEmpty() const;
 
@@ -105,32 +105,32 @@ public:
     // Switch names must be lowercase.
     // The second override provides an optimized version to avoid inlining codegen at every
     // callsite to find the length of the constant and construct a string.
-    bool hasSwitch(std::u16string_view switch_string) const;
+    bool hasSwitch(std::u16string switch_string) const;
 
     // Returns the value associated with the given switch. If the switch has no value or isn't
     // present, this method returns the empty string. Switch names must be lowercase.
-    std::filesystem::path switchValuePath(std::u16string_view switch_string) const;
-    const std::u16string& switchValue(std::u16string_view switch_string) const;
+    ghc::filesystem::path switchValuePath(std::u16string switch_string) const;
+    const std::u16string& switchValue(std::u16string switch_string) const;
 
-    void appendSwitch(std::u16string_view switch_string);
-    void appendSwitchPath(std::u16string_view switch_string, const std::filesystem::path& path);
-    void appendSwitch(std::u16string_view switch_string, std::u16string_view value);
+    void appendSwitch(std::u16string switch_string);
+    void appendSwitchPath(std::u16string switch_string, const ghc::filesystem::path& path);
+    void appendSwitch(std::u16string switch_string, std::u16string value);
 
     // Removes a switch.
-    void removeSwitch(std::u16string_view switch_string);
+    void removeSwitch(std::u16string switch_string);
 
     // Get the remaining arguments to the command.
     StringVector args() const;
 
     // Append an argument to the command line. Note that the argument is quoted properly such that
     // it is interpreted as one argument to the target command.
-    void appendArgPath(const std::filesystem::path& value);
-    void appendArg(std::u16string_view value);
+    void appendArgPath(const ghc::filesystem::path& value);
+    void appendArg(std::u16string value);
 
 #if defined(OS_WIN)
     // Initialize by parsing the given command line string.
     // The program name is assumed to be the first item in the string.
-    void parseFromString(std::u16string_view command_line);
+    void parseFromString(std::u16string command_line);
 #endif // defined(OS_WIN)
 
 private:

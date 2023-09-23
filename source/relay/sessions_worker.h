@@ -31,7 +31,7 @@ class SessionsWorker
       public SessionManager::Delegate
 {
 public:
-    SessionsWorker(std::u16string_view listen_interface,
+    SessionsWorker(std::u16string listen_interface,
                    uint16_t peer_port,
                    const std::chrono::minutes& peer_idle_timeout,
                    bool statistics_enabled,

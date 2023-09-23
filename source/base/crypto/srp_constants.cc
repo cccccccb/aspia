@@ -16,6 +16,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 //
 
+#include "base/optional.hpp"
 #include "base/crypto/srp_constants.h"
 
 namespace base {
@@ -261,13 +262,13 @@ const uint8_t kSrpGroup_8192[] =
     0x60, 0xC9, 0x80, 0xDD, 0x98, 0xED, 0xD3, 0xDF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF
 };
 
-static_assert(sizeof(kSrpGroup_1024) == 1024 / 8);
-static_assert(sizeof(kSrpGroup_1536) == 1536 / 8);
-static_assert(sizeof(kSrpGroup_2048) == 2048 / 8);
-static_assert(sizeof(kSrpGroup_3072) == 3072 / 8);
-static_assert(sizeof(kSrpGroup_4096) == 4096 / 8);
-static_assert(sizeof(kSrpGroup_6144) == 6144 / 8);
-static_assert(sizeof(kSrpGroup_8192) == 8192 / 8);
+static_assert(sizeof(kSrpGroup_1536) == 1536 / 8, "");
+static_assert(sizeof(kSrpGroup_1024) == 1024 / 8, "");
+static_assert(sizeof(kSrpGroup_2048) == 2048 / 8, "");
+static_assert(sizeof(kSrpGroup_3072) == 3072 / 8, "");
+static_assert(sizeof(kSrpGroup_4096) == 4096 / 8, "");
+static_assert(sizeof(kSrpGroup_6144) == 6144 / 8, "");
+static_assert(sizeof(kSrpGroup_8192) == 8192 / 8, "");
 
 const uint8_t kSrpGenerator_2[] = { 2 };
 const uint8_t kSrpGenerator_5[] = { 5 };
@@ -318,7 +319,7 @@ const SrpNgPair kSrpNgPair_8192 =
 };
 
 //--------------------------------------------------------------------------------------------------
-std::optional<SrpNgPair> pairByGroup(std::string_view group)
+tl::optional<SrpNgPair> pairByGroup(std::string group)
 {
     if (group == "8192")
         return kSrpNgPair_8192;
@@ -335,7 +336,7 @@ std::optional<SrpNgPair> pairByGroup(std::string_view group)
     else if (group == "1024")
         return kSrpNgPair_1024;
     else
-        return std::nullopt;
+        return tl::nullopt;
 }
 
 } // namespace base

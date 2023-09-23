@@ -19,6 +19,7 @@
 #include "host/client_session_file_transfer.h"
 
 #include "build/build_config.h"
+#include "base/filesystem.hpp"
 #include "base/command_line.h"
 #include "base/logging.h"
 #include "base/stl_util.h"
@@ -167,13 +168,13 @@ bool startProcessWithToken(HANDLE token,
 }
 #endif // defined(OS_WIN)
 
-std::filesystem::path agentFilePath()
+ghc::filesystem::path agentFilePath()
 {
-    std::filesystem::path file_path;
+    ghc::filesystem::path file_path;
     if (!base::BasePaths::currentExecDir(&file_path))
     {
             LOG(LS_WARNING) << "currentExecDir failed";
-            return std::filesystem::path();
+            return ghc::filesystem::path();
     }
 
     file_path.append(kFileTransferAgentFile);
@@ -232,8 +233,8 @@ void ClientSessionFileTransfer::onStarted()
     }
 #elif defined(OS_LINUX)
     std::error_code ignored_error;
-    std::filesystem::directory_iterator it("/usr/share/xsessions/", ignored_error);
-    if (it == std::filesystem::end(it))
+    ghc::filesystem::directory_iterator it("/usr/share/xsessions/", ignored_error);
+    if (it == ghc::filesystem::end(it))
     {
         LOG(LS_WARNING) << "No X11 sessions";
         return;
@@ -253,7 +254,7 @@ void ClientSessionFileTransfer::onStarted()
         if (!base::contains(line, u":0"))
             continue;
 
-        std::vector<std::u16string_view> splitted = base::splitStringView(
+        std::vector<std::u16string> splitted = base::splitStringView(
             line, u" ", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
         if (splitted.empty())
             continue;

@@ -49,7 +49,7 @@ public:
     ByteArray toByteArray() const;
 
     static BigNum create();
-    static BigNum fromStdString(std::string_view string);
+    static BigNum fromStdString(std::string string);
     static BigNum fromByteArray(const ByteArray& array);
 
     operator bignum_st*() const { return num_.get(); }

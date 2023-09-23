@@ -20,8 +20,8 @@
 #define BASE_NET_FIREWALL_MANAGER_H
 
 #include "base/macros_magic.h"
+#include "base/filesystem.hpp"
 
-#include <filesystem>
 #include <vector>
 
 #include <wrl/client.h>
@@ -32,7 +32,7 @@ namespace base {
 class FirewallManager
 {
 public:
-    explicit FirewallManager(const std::filesystem::path& application_path);
+    explicit FirewallManager(const ghc::filesystem::path& application_path);
     ~FirewallManager() = default;
 
     // Returns true if firewall manager is valid.
@@ -46,18 +46,18 @@ public:
 
     // Adds a firewall rule allowing inbound connections to the application on
     // TCP port |port|. Replaces the rule if it already exists. Needs elevation.
-    bool addTcpRule(std::wstring_view rule_name,
-                    std::wstring_view description,
+    bool addTcpRule(std::wstring rule_name,
+                    std::wstring description,
                     uint16_t port);
 
     // Adds a firewall rule allowing inbound connections to the application on
     // UDP port |port|. Replaces the rule if it already exists. Needs elevation.
-    bool addUdpRule(std::wstring_view rule_name,
-                    std::wstring_view description,
+    bool addUdpRule(std::wstring rule_name,
+                    std::wstring description,
                     uint16_t port);
 
     // Deletes all rules with specified name. Needs elevation.
-    void deleteRuleByName(std::wstring_view rule_name);
+    void deleteRuleByName(std::wstring rule_name);
 
     // Deletes all rules for current app. Needs elevation.
     void deleteAllRules();
@@ -72,7 +72,7 @@ private:
     Microsoft::WRL::ComPtr<INetFwPolicy2> firewall_policy_;
     Microsoft::WRL::ComPtr<INetFwRules> firewall_rules_;
 
-    std::filesystem::path application_path_;
+    ghc::filesystem::path application_path_;
 
     DISALLOW_COPY_AND_ASSIGN(FirewallManager);
 };

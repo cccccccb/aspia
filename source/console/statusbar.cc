@@ -126,7 +126,7 @@ void StatusBar::setUpdateState(bool enable)
 
     if (enable)
     {
-        animation_timer_->start(std::chrono::milliseconds(200));
+        animation_timer_->start(200);
     }
     else
     {

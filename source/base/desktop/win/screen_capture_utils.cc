@@ -143,8 +143,15 @@ bool ScreenCaptureUtils::screenList(ScreenCapturer::ScreenList* screen_list)
             static_cast<int32_t>(device_mode.dmPelsHeight));
         Point dpi = dpiByRect(rect);
 
-        screen_list->screens.push_back(
-            {device_index, device_name, rect.topLeft(), rect.size(), dpi, is_primary });
+        ScreenCapturer::Screen screen;
+        screen.id = device_index;
+        screen.title = device_name;
+        screen.position = rect.topLeft();
+        screen.resolution = rect.size();
+        screen.dpi = dpi;
+        screen.is_primary = is_primary;
+
+        screen_list->screens.push_back(screen);
     }
 
     return true;

@@ -22,7 +22,6 @@
 #include "base/macros_magic.h"
 #include "proto/file_transfer.pb.h"
 
-#include <filesystem>
 #include <memory>
 
 namespace base {

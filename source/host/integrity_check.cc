@@ -21,6 +21,7 @@
 #include "base/logging.h"
 #include "base/files/base_paths.h"
 #include "base/strings/unicode.h"
+#include "base/filesystem.hpp"
 
 namespace host {
 
@@ -36,14 +37,14 @@ bool integrityCheck()
     };
     static const size_t kMinFileSize = 5 * 1024; // 5 kB.
 
-    std::filesystem::path current_dir;
+    ghc::filesystem::path current_dir;
     if (!base::BasePaths::currentExecDir(&current_dir))
     {
         LOG(LS_ERROR) << "Failed to get the directory of the current executable file";
         return false;
     }
 
-    std::filesystem::path current_file;
+    ghc::filesystem::path current_file;
     if (!base::BasePaths::currentExecFile(&current_file))
     {
         LOG(LS_ERROR) << "Failed to get the path to the current executable file";
@@ -54,14 +55,14 @@ bool integrityCheck()
 
     for (size_t i = 0; i < std::size(kFiles); ++i)
     {
-        std::filesystem::path file_path(current_dir);
+        ghc::filesystem::path file_path(current_dir);
         file_path.append(kFiles[i]);
 
         if (file_path == current_file)
             current_file_found = true;
 
         std::error_code error_code;
-        std::filesystem::file_status status = std::filesystem::status(file_path, error_code);
+        ghc::filesystem::file_status status = ghc::filesystem::status(file_path, error_code);
         if (error_code)
         {
             LOG(LS_ERROR) << "Failed to get file status '" << file_path << "': "
@@ -69,19 +70,19 @@ bool integrityCheck()
             return false;
         }
 
-        if (!std::filesystem::exists(status))
+        if (!ghc::filesystem::exists(status))
         {
             LOG(LS_ERROR) << "File '" << file_path << "' does not exist";
             return false;
         }
 
-        if (!std::filesystem::is_regular_file(status))
+        if (!ghc::filesystem::is_regular_file(status))
         {
             LOG(LS_ERROR) << "File '" << file_path << "' is not a file";
             return false;
         }
 
-        uintmax_t file_size = std::filesystem::file_size(file_path, error_code);
+        uintmax_t file_size = ghc::filesystem::file_size(file_path, error_code);
         if (file_size < kMinFileSize)
         {
             LOG(LS_ERROR) << "File '" << file_path << "' is not the correct size: " << file_size;

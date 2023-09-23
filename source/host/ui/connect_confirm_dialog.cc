@@ -74,7 +74,7 @@ ConnectConfirmDialog::ConnectConfirmDialog(const proto::internal::ConnectConfirm
 
     updateMessage();
 
-    timer_->start(std::chrono::seconds(1));
+    timer_->start(1000);
 
     QTimer::singleShot(0, this, [this]()
     {

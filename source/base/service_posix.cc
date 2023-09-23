@@ -55,7 +55,7 @@ const char* sigToString(int sig)
 } // namespace
 
 //--------------------------------------------------------------------------------------------------
-Service::Service(std::u16string_view name, MessageLoop::Type type)
+Service::Service(std::u16string name, MessageLoop::Type type)
     : type_(type),
       name_(name)
 {

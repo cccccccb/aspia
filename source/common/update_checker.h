@@ -39,8 +39,8 @@ public:
     UpdateChecker();
     ~UpdateChecker();
 
-    void setUpdateServer(std::string_view update_server);
-    void setPackageName(std::string_view package_name);
+    void setUpdateServer(std::string update_server);
+    void setPackageName(std::string package_name);
 
     void start(std::shared_ptr<base::TaskRunner> owner_task_runner, Delegate* delegate);
 

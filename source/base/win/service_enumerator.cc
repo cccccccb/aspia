@@ -21,311 +21,313 @@
 #include "base/logging.h"
 #include "base/strings/unicode.h"
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-//--------------------------------------------------------------------------------------------------
-ServiceEnumerator::ServiceEnumerator(Type type)
-{
-    manager_handle_.reset(OpenSCManagerW(nullptr, nullptr, SC_MANAGER_ENUMERATE_SERVICE));
-    if (!manager_handle_.isValid())
-    {
-        PLOG(LS_WARNING) << "OpenSCManagerW failed";
-        return;
-    }
+		//--------------------------------------------------------------------------------------------------
+		ServiceEnumerator::ServiceEnumerator(Type type)
+		{
+			manager_handle_.reset(OpenSCManagerW(nullptr, nullptr, SC_MANAGER_ENUMERATE_SERVICE));
+			if (!manager_handle_.isValid())
+			{
+				PLOG(LS_WARNING) << "OpenSCManagerW failed";
+				return;
+			}
 
-    DWORD bytes_needed = 0;
-    DWORD resume_handle = 0;
+			DWORD bytes_needed = 0;
+			DWORD resume_handle = 0;
 
-    if (EnumServicesStatusExW(manager_handle_,
-                              SC_ENUM_PROCESS_INFO,
-                              type == Type::SERVICES ? SERVICE_WIN32 : SERVICE_DRIVER,
-                              SERVICE_STATE_ALL,
-                              nullptr,
-                              0,
-                              &bytes_needed,
-                              &services_count_,
-                              &resume_handle,
-                              nullptr)
-        || GetLastError() != ERROR_MORE_DATA)
-    {
-        PLOG(LS_ERROR) << "Unexpected return value";
-        return;
-    }
+			if (EnumServicesStatusExW(manager_handle_,
+				SC_ENUM_PROCESS_INFO,
+				type == Type::SERVICES ? SERVICE_WIN32 : SERVICE_DRIVER,
+				SERVICE_STATE_ALL,
+				nullptr,
+				0,
+				&bytes_needed,
+				&services_count_,
+				&resume_handle,
+				nullptr)
+				|| GetLastError() != ERROR_MORE_DATA)
+			{
+				PLOG(LS_ERROR) << "Unexpected return value";
+				return;
+			}
 
-    services_buffer_ = std::make_unique<uint8_t[]>(bytes_needed);
+			services_buffer_ = std::make_unique<uint8_t[]>(bytes_needed);
 
-    if (!EnumServicesStatusExW(manager_handle_,
-                               SC_ENUM_PROCESS_INFO,
-                               type == Type::SERVICES ? SERVICE_WIN32 : SERVICE_DRIVER,
-                               SERVICE_STATE_ALL,
-                               services_buffer_.get(),
-                               bytes_needed,
-                               &bytes_needed,
-                               &services_count_,
-                               &resume_handle,
-                               nullptr))
-    {
-        PLOG(LS_ERROR) << "EnumServicesStatusExW failed";
-        services_buffer_.reset();
-        services_count_ = 0;
-    }
-}
+			if (!EnumServicesStatusExW(manager_handle_,
+				SC_ENUM_PROCESS_INFO,
+				type == Type::SERVICES ? SERVICE_WIN32 : SERVICE_DRIVER,
+				SERVICE_STATE_ALL,
+				services_buffer_.get(),
+				bytes_needed,
+				&bytes_needed,
+				&services_count_,
+				&resume_handle,
+				nullptr))
+			{
+				PLOG(LS_ERROR) << "EnumServicesStatusExW failed";
+				services_buffer_.reset();
+				services_count_ = 0;
+			}
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool ServiceEnumerator::isAtEnd() const
-{
-    return current_service_index_ >= services_count_;
-}
+		//--------------------------------------------------------------------------------------------------
+		bool ServiceEnumerator::isAtEnd() const
+		{
+			return current_service_index_ >= services_count_;
+		}
 
-//--------------------------------------------------------------------------------------------------
-void ServiceEnumerator::advance()
-{
-    current_service_handle_.reset();
-    current_service_config_.reset();
-    ++current_service_index_;
-}
+		//--------------------------------------------------------------------------------------------------
+		void ServiceEnumerator::advance()
+		{
+			current_service_handle_.reset();
+			current_service_config_.reset();
+			++current_service_index_;
+		}
 
-//--------------------------------------------------------------------------------------------------
-ENUM_SERVICE_STATUS_PROCESS* ServiceEnumerator::currentService() const
-{
-    if (!services_buffer_ || !services_count_ || isAtEnd())
-        return nullptr;
+		//--------------------------------------------------------------------------------------------------
+		ENUM_SERVICE_STATUS_PROCESS* ServiceEnumerator::currentService() const
+		{
+			if (!services_buffer_ || !services_count_ || isAtEnd())
+				return nullptr;
 
-    ENUM_SERVICE_STATUS_PROCESS* services =
-        reinterpret_cast<ENUM_SERVICE_STATUS_PROCESS*>(services_buffer_.get());
+			ENUM_SERVICE_STATUS_PROCESS* services =
+				reinterpret_cast<ENUM_SERVICE_STATUS_PROCESS*>(services_buffer_.get());
 
-    return &services[current_service_index_];
-}
+			return &services[current_service_index_];
+		}
 
-//--------------------------------------------------------------------------------------------------
-SC_HANDLE ServiceEnumerator::currentServiceHandle() const
-{
-    if (!current_service_handle_.isValid())
-    {
-        ENUM_SERVICE_STATUS_PROCESS* services =
-            reinterpret_cast<ENUM_SERVICE_STATUS_PROCESS*>(services_buffer_.get());
+		//--------------------------------------------------------------------------------------------------
+		SC_HANDLE ServiceEnumerator::currentServiceHandle() const
+		{
+			if (!current_service_handle_.isValid())
+			{
+				ENUM_SERVICE_STATUS_PROCESS* services =
+					reinterpret_cast<ENUM_SERVICE_STATUS_PROCESS*>(services_buffer_.get());
 
-        const DWORD desired_access =
-            SERVICE_QUERY_CONFIG | SERVICE_QUERY_STATUS | SERVICE_ENUMERATE_DEPENDENTS;
+				const DWORD desired_access =
+					SERVICE_QUERY_CONFIG | SERVICE_QUERY_STATUS | SERVICE_ENUMERATE_DEPENDENTS;
 
-        current_service_handle_.reset(OpenServiceW(manager_handle_,
-                                                   services[current_service_index_].lpServiceName,
-                                                   desired_access));
-    }
+				current_service_handle_.reset(OpenServiceW(manager_handle_,
+					services[current_service_index_].lpServiceName,
+					desired_access));
+			}
 
-    return current_service_handle_;
-}
+			return current_service_handle_;
+		}
 
-//--------------------------------------------------------------------------------------------------
-LPQUERY_SERVICE_CONFIG ServiceEnumerator::currentServiceConfig() const
-{
-    if (!current_service_config_)
-    {
-        SC_HANDLE service_handle = currentServiceHandle();
+		//--------------------------------------------------------------------------------------------------
+		LPQUERY_SERVICE_CONFIG ServiceEnumerator::currentServiceConfig() const
+		{
+			if (!current_service_config_)
+			{
+				SC_HANDLE service_handle = currentServiceHandle();
 
-        DWORD bytes_needed = 0;
+				DWORD bytes_needed = 0;
 
-        if (QueryServiceConfigW(service_handle,
-                                nullptr,
-                                0,
-                                &bytes_needed)
-            || GetLastError() != ERROR_INSUFFICIENT_BUFFER)
-        {
-            PLOG(LS_ERROR) << "QueryServiceConfigW failed";
-            return nullptr;
-        }
+				if (QueryServiceConfigW(service_handle,
+					nullptr,
+					0,
+					&bytes_needed)
+					|| GetLastError() != ERROR_INSUFFICIENT_BUFFER)
+				{
+					PLOG(LS_ERROR) << "QueryServiceConfigW failed";
+					return nullptr;
+				}
 
-        current_service_config_ = std::make_unique<uint8_t[]>(bytes_needed);
+				current_service_config_ = std::make_unique<uint8_t[]>(bytes_needed);
 
-        if (!QueryServiceConfigW(service_handle,
-                                 reinterpret_cast<LPQUERY_SERVICE_CONFIG>(
-                                     current_service_config_.get()),
-                                 bytes_needed,
-                                 &bytes_needed))
-        {
-            PLOG(LS_ERROR) << "QueryServiceConfigW failed";
-            return nullptr;
-        }
-    }
+				if (!QueryServiceConfigW(service_handle,
+					reinterpret_cast<LPQUERY_SERVICE_CONFIG>(
+						current_service_config_.get()),
+					bytes_needed,
+					&bytes_needed))
+				{
+					PLOG(LS_ERROR) << "QueryServiceConfigW failed";
+					return nullptr;
+				}
+			}
 
-    return reinterpret_cast<LPQUERY_SERVICE_CONFIG>(current_service_config_.get());
-}
+			return reinterpret_cast<LPQUERY_SERVICE_CONFIG>(current_service_config_.get());
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::wstring ServiceEnumerator::nameW() const
-{
-    ENUM_SERVICE_STATUS_PROCESS* service = currentService();
+		//--------------------------------------------------------------------------------------------------
+		std::wstring ServiceEnumerator::nameW() const
+		{
+			ENUM_SERVICE_STATUS_PROCESS* service = currentService();
 
-    if (!service || !service->lpServiceName)
-        return std::wstring();
+			if (!service || !service->lpServiceName)
+				return std::wstring();
 
-    return service->lpServiceName;
-}
+			return service->lpServiceName;
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::string ServiceEnumerator::name() const
-{
-    return utf8FromWide(nameW());
-}
+		//--------------------------------------------------------------------------------------------------
+		std::string ServiceEnumerator::name() const
+		{
+			return utf8FromWide(nameW());
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::wstring ServiceEnumerator::displayNameW() const
-{
-    ENUM_SERVICE_STATUS_PROCESS* service = currentService();
+		//--------------------------------------------------------------------------------------------------
+		std::wstring ServiceEnumerator::displayNameW() const
+		{
+			ENUM_SERVICE_STATUS_PROCESS* service = currentService();
 
-    if (!service || !service->lpDisplayName)
-        return std::wstring();
+			if (!service || !service->lpDisplayName)
+				return std::wstring();
 
-    return service->lpDisplayName;
-}
+			return service->lpDisplayName;
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::string ServiceEnumerator::displayName() const
-{
-    return utf8FromWide(displayNameW());
-}
+		//--------------------------------------------------------------------------------------------------
+		std::string ServiceEnumerator::displayName() const
+		{
+			return utf8FromWide(displayNameW());
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::wstring ServiceEnumerator::descriptionW() const
-{
-    SC_HANDLE service_handle = currentServiceHandle();
+		//--------------------------------------------------------------------------------------------------
+		std::wstring ServiceEnumerator::descriptionW() const
+		{
+			SC_HANDLE service_handle = currentServiceHandle();
 
-    DWORD bytes_needed = 0;
+			DWORD bytes_needed = 0;
 
-    if (QueryServiceConfig2W(service_handle,
-                             SERVICE_CONFIG_DESCRIPTION,
-                             nullptr,
-                             0,
-                             &bytes_needed)
-        || GetLastError() != ERROR_INSUFFICIENT_BUFFER)
-    {
-        PLOG(LS_WARNING) << "QueryServiceConfig2W failed";
-        return std::wstring();
-    }
+			if (QueryServiceConfig2W(service_handle,
+				SERVICE_CONFIG_DESCRIPTION,
+				nullptr,
+				0,
+				&bytes_needed)
+				|| GetLastError() != ERROR_INSUFFICIENT_BUFFER)
+			{
+				PLOG(LS_WARNING) << "QueryServiceConfig2W failed";
+				return std::wstring();
+			}
 
-    std::unique_ptr<uint8_t[]> result = std::make_unique<uint8_t[]>(bytes_needed);
+			std::unique_ptr<uint8_t[]> result = std::make_unique<uint8_t[]>(bytes_needed);
 
-    if (!QueryServiceConfig2W(service_handle,
-                              SERVICE_CONFIG_DESCRIPTION,
-                              result.get(),
-                              bytes_needed,
-                              &bytes_needed))
-    {
-        PLOG(LS_WARNING) << "QueryServiceConfig2W failed";
-        return std::wstring();
-    }
+			if (!QueryServiceConfig2W(service_handle,
+				SERVICE_CONFIG_DESCRIPTION,
+				result.get(),
+				bytes_needed,
+				&bytes_needed))
+			{
+				PLOG(LS_WARNING) << "QueryServiceConfig2W failed";
+				return std::wstring();
+			}
 
-    SERVICE_DESCRIPTION* description = reinterpret_cast<SERVICE_DESCRIPTION*>(result.get());
-    if (!description->lpDescription)
-        return std::wstring();
+			SERVICE_DESCRIPTION* description = reinterpret_cast<SERVICE_DESCRIPTION*>(result.get());
+			if (!description->lpDescription)
+				return std::wstring();
 
-    return description->lpDescription;
-}
+			return description->lpDescription;
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::string ServiceEnumerator::description() const
-{
-    return utf8FromWide(descriptionW());
-}
+		//--------------------------------------------------------------------------------------------------
+		std::string ServiceEnumerator::description() const
+		{
+			return utf8FromWide(descriptionW());
+		}
 
-//--------------------------------------------------------------------------------------------------
-ServiceEnumerator::Status ServiceEnumerator::status() const
-{
-    ENUM_SERVICE_STATUS_PROCESS* service = currentService();
+		//--------------------------------------------------------------------------------------------------
+		ServiceEnumerator::Status ServiceEnumerator::status() const
+		{
+			ENUM_SERVICE_STATUS_PROCESS* service = currentService();
 
-    if (!service)
-        return Status::UNKNOWN;
+			if (!service)
+				return Status::UNKNOWN;
 
-    switch (service->ServiceStatusProcess.dwCurrentState)
-    {
-        case SERVICE_CONTINUE_PENDING:
-            return Status::CONTINUE_PENDING;
+			switch (service->ServiceStatusProcess.dwCurrentState)
+			{
+			case SERVICE_CONTINUE_PENDING:
+				return Status::CONTINUE_PENDING;
 
-        case SERVICE_PAUSE_PENDING:
-            return Status::PAUSE_PENDING;
+			case SERVICE_PAUSE_PENDING:
+				return Status::PAUSE_PENDING;
 
-        case SERVICE_PAUSED:
-            return Status::PAUSED;
+			case SERVICE_PAUSED:
+				return Status::PAUSED;
 
-        case SERVICE_RUNNING:
-            return Status::RUNNING;
+			case SERVICE_RUNNING:
+				return Status::RUNNING;
 
-        case SERVICE_START_PENDING:
-            return Status::START_PENDING;
+			case SERVICE_START_PENDING:
+				return Status::START_PENDING;
 
-        case SERVICE_STOP_PENDING:
-            return Status::STOP_PENDING;
+			case SERVICE_STOP_PENDING:
+				return Status::STOP_PENDING;
 
-        case SERVICE_STOPPED:
-            return Status::STOPPED;
+			case SERVICE_STOPPED:
+				return Status::STOPPED;
 
-        default:
-            return Status::UNKNOWN;
-    }
-}
+			default:
+				return Status::UNKNOWN;
+			}
+		}
 
-//--------------------------------------------------------------------------------------------------
-ServiceEnumerator::StartupType ServiceEnumerator::startupType() const
-{
-    LPQUERY_SERVICE_CONFIG config = currentServiceConfig();
+		//--------------------------------------------------------------------------------------------------
+		ServiceEnumerator::StartupType ServiceEnumerator::startupType() const
+		{
+			LPQUERY_SERVICE_CONFIG config = currentServiceConfig();
 
-    if (!config)
-        return StartupType::UNKNOWN;
+			if (!config)
+				return StartupType::UNKNOWN;
 
-    switch (config->dwStartType)
-    {
-        case SERVICE_AUTO_START:
-            return StartupType::AUTO_START;
+			switch (config->dwStartType)
+			{
+			case SERVICE_AUTO_START:
+				return StartupType::AUTO_START;
 
-        case SERVICE_DEMAND_START:
-            return StartupType::DEMAND_START;
+			case SERVICE_DEMAND_START:
+				return StartupType::DEMAND_START;
 
-        case SERVICE_DISABLED:
-            return StartupType::DISABLED;
+			case SERVICE_DISABLED:
+				return StartupType::DISABLED;
 
-        case SERVICE_BOOT_START:
-            return StartupType::BOOT_START;
+			case SERVICE_BOOT_START:
+				return StartupType::BOOT_START;
 
-        case SERVICE_SYSTEM_START:
-            return StartupType::SYSTEM_START;
+			case SERVICE_SYSTEM_START:
+				return StartupType::SYSTEM_START;
 
-        default:
-            return StartupType::UNKNOWN;
-    }
-}
+			default:
+				return StartupType::UNKNOWN;
+			}
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::wstring ServiceEnumerator::binaryPathW() const
-{
-    LPQUERY_SERVICE_CONFIG config = currentServiceConfig();
+		//--------------------------------------------------------------------------------------------------
+		std::wstring ServiceEnumerator::binaryPathW() const
+		{
+			LPQUERY_SERVICE_CONFIG config = currentServiceConfig();
 
-    if (!config || !config->lpBinaryPathName)
-        return std::wstring();
+			if (!config || !config->lpBinaryPathName)
+				return std::wstring();
 
-    return config->lpBinaryPathName;
-}
+			return config->lpBinaryPathName;
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::string ServiceEnumerator::binaryPath() const
-{
-    return utf8FromWide(binaryPathW());
-}
+		//--------------------------------------------------------------------------------------------------
+		std::string ServiceEnumerator::binaryPath() const
+		{
+			return utf8FromWide(binaryPathW());
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::wstring ServiceEnumerator::startNameW() const
-{
-    LPQUERY_SERVICE_CONFIG config = currentServiceConfig();
+		//--------------------------------------------------------------------------------------------------
+		std::wstring ServiceEnumerator::startNameW() const
+		{
+			LPQUERY_SERVICE_CONFIG config = currentServiceConfig();
 
-    if (!config || !config->lpServiceStartName)
-        return std::wstring();
+			if (!config || !config->lpServiceStartName)
+				return std::wstring();
 
-    return config->lpServiceStartName;
-}
+			return config->lpServiceStartName;
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::string ServiceEnumerator::startName() const
-{
-    return utf8FromWide(startNameW());
-}
+		//--------------------------------------------------------------------------------------------------
+		std::string ServiceEnumerator::startName() const
+		{
+			return utf8FromWide(startNameW());
+		}
 
+	}
 } // namespace base::win

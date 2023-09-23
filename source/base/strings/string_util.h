@@ -28,9 +28,9 @@ namespace base {
 std::string replaceLfByCrLf(const std::string& in);
 std::string replaceCrLfByLf(const std::string& in);
 
-bool isStringUTF8(std::string_view str);
-bool isStringASCII(std::string_view str);
-bool isStringASCII(std::u16string_view str);
+bool isStringUTF8(std::string str);
+bool isStringASCII(std::string str);
+bool isStringASCII(std::u16string str);
 
 // Searches for CR or LF characters. Removes all contiguous whitespace strings that contain them.
 // This is useful when trying to deal with text copied from terminals.
@@ -39,31 +39,31 @@ bool isStringASCII(std::u16string_view str);
 // (2) If |trim_sequences_with_line_breaks| is true, any other whitespace
 //     sequences containing a CR or LF are trimmed.
 // (3) All other whitespace sequences are converted to single spaces.
-std::u16string collapseWhitespace(std::u16string_view text,
+std::u16string collapseWhitespace(std::u16string text,
                                   bool trim_sequences_with_line_breaks);
 
 #if defined(OS_WIN)
-std::wstring collapseWhitespace(std::wstring_view text,
+std::wstring collapseWhitespace(std::wstring text,
                                 bool trim_sequences_with_line_breaks);
 #endif // defined(OS_WIN)
 
-std::string collapseWhitespaceASCII(std::string_view text,
+std::string collapseWhitespaceASCII(std::string text,
                                     bool trim_sequences_with_line_breaks);
 
-int compareCaseInsensitiveASCII(std::string_view first, std::string_view second);
-int compareCaseInsensitiveASCII(std::u16string_view first, std::u16string_view second);
-int compareCaseInsensitive(std::u16string_view first, std::u16string_view second);
+int compareCaseInsensitiveASCII(std::string first, std::string second);
+int compareCaseInsensitiveASCII(std::u16string first, std::u16string second);
+int compareCaseInsensitive(std::u16string first, std::u16string second);
 
-bool startsWith(std::string_view str, std::string_view search_for);
-bool startsWith(std::u16string_view str, std::u16string_view search_for);
+bool startsWith(std::string str, std::string search_for);
+bool startsWith(std::u16string str, std::u16string search_for);
 #if defined(OS_WIN)
-bool startsWith(std::wstring_view str, std::wstring_view search_for);
+bool startsWith(std::wstring str, std::wstring search_for);
 #endif // defined(OS_WIN)
 
-bool endsWith(std::string_view str, std::string_view search_for);
-bool endsWith(std::u16string_view str, std::u16string_view search_for);
+bool endsWith(std::string str, std::string search_for);
+bool endsWith(std::u16string str, std::u16string search_for);
 #if defined(OS_WIN)
-bool endsWith(std::wstring_view str, std::wstring_view search_for);
+bool endsWith(std::wstring str, std::wstring search_for);
 #endif // defined(OS_WIN)
 
 enum TrimPositions
@@ -80,15 +80,15 @@ enum TrimPositions
 //
 // It is safe to use the same variable for both |input| and |output| (this is
 // the normal usage to trim in-place).
-bool trimString(std::string_view input, std::string_view trim_chars, std::string* output);
-bool trimString(std::u16string_view input, std::u16string_view trim_chars, std::u16string* output);
+bool trimString(std::string input, std::string trim_chars, std::string* output);
+bool trimString(std::u16string input, std::u16string trim_chars, std::u16string* output);
 
-// string_view versions of the above. The returned pieces refer to the original buffer.
-std::u16string_view trimString(std::u16string_view input,
-                               std::u16string_view trim_chars,
+// string versions of the above. The returned pieces refer to the original buffer.
+std::u16string trimString(std::u16string input,
+                               std::u16string trim_chars,
                                TrimPositions positions);
-std::string_view trimString(std::string_view input,
-                            std::string_view trim_chars,
+std::string trimString(std::string input,
+                            std::string trim_chars,
                             TrimPositions positions);
 
 // Trims any whitespace from either end of the input string.
@@ -98,18 +98,18 @@ std::string_view trimString(std::string_view input,
 //
 // The std::string versions return where whitespace was found.
 // NOTE: Safe to use the same variable for both input and output.
-TrimPositions trimWhitespace(std::u16string_view input,
+TrimPositions trimWhitespace(std::u16string input,
                              TrimPositions positions,
                              std::u16string* output);
-std::u16string_view trimWhitespace(std::u16string_view input, TrimPositions positions);
+std::u16string trimWhitespace(std::u16string input, TrimPositions positions);
 
-TrimPositions trimWhitespaceASCII(std::string_view input,
+TrimPositions trimWhitespaceASCII(std::string input,
                                   TrimPositions positions,
                                   std::string* output);
-std::string_view trimWhitespaceASCII(std::string_view input, TrimPositions positions);
+std::string trimWhitespaceASCII(std::string input, TrimPositions positions);
 
-void removeChars(std::string* str, std::string_view substr);
-void removeChars(std::wstring* str, std::wstring_view substr);
+void removeChars(std::string* str, std::string substr);
+void removeChars(std::wstring* str, std::wstring substr);
 
 // ASCII-specific tolower.  The standard library's tolower is locale sensitive, so we don't want to
 // use it here.
@@ -147,14 +147,14 @@ inline char16_t toUpperASCII(char16_t c)
     return (c >= 'a' && c <= 'z') ? (c + ('A' - 'a')) : c;
 }
 
-std::u16string toUpperASCII(std::u16string_view in);
-std::u16string toLowerASCII(std::u16string_view in);
+std::u16string toUpperASCII(std::u16string in);
+std::u16string toLowerASCII(std::u16string in);
 
-std::string toUpperASCII(std::string_view in);
-std::string toLowerASCII(std::string_view in);
+std::string toUpperASCII(std::string in);
+std::string toLowerASCII(std::string in);
 
-std::u16string toUpper(std::u16string_view in);
-std::u16string toLower(std::u16string_view in);
+std::u16string toUpper(std::u16string in);
+std::u16string toLower(std::u16string in);
 
 const std::string& emptyString();
 const std::wstring& emptyStringW();
@@ -168,7 +168,7 @@ inline wchar_t* asWritableWide(char16_t* str)
 
 inline wchar_t* asWritableWide(std::u16string& str)
 {
-    return reinterpret_cast<wchar_t*>(str.data());
+    return const_cast<wchar_t *>(reinterpret_cast<const wchar_t*>(str.data()));
 }
 
 inline const wchar_t* asWide(const char16_t* str)
@@ -176,12 +176,7 @@ inline const wchar_t* asWide(const char16_t* str)
     return reinterpret_cast<const wchar_t*>(str);
 }
 
-inline const wchar_t* asWide(const std::u16string& str)
-{
-    return reinterpret_cast<const wchar_t*>(str.data());
-}
-
-inline const wchar_t* asWide(std::u16string_view str)
+inline const wchar_t* asWide(std::u16string str)
 {
     return reinterpret_cast<const wchar_t*>(str.data());
 }
@@ -193,7 +188,7 @@ inline char16_t* asWritableUtf16(wchar_t* str)
 
 inline char16_t* asWritableUtf16(std::wstring& str)
 {
-    return reinterpret_cast<char16_t*>(str.data());
+    return const_cast<char16_t *>(reinterpret_cast<const char16_t*>(str.data()));
 }
 
 inline const char16_t* asUtf16(const wchar_t* str)
@@ -206,7 +201,7 @@ inline const char16_t* asUtf16(const std::wstring& str)
     return reinterpret_cast<const char16_t*>(str.data());
 }
 
-inline const char16_t* asUtf16(std::wstring_view str)
+inline const char16_t* asUtf16(std::wstring str)
 {
     return reinterpret_cast<const char16_t*>(str.data());
 }

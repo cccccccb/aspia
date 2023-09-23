@@ -26,7 +26,7 @@ namespace base {
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool MirrorHelper::findDisplayDevice(std::wstring_view device_string,
+bool MirrorHelper::findDisplayDevice(std::wstring device_string,
                                      std::wstring* device_name,
                                      std::wstring* device_key)
 {
@@ -44,12 +44,12 @@ bool MirrorHelper::findDisplayDevice(std::wstring_view device_string,
     {
         if (device_string == device_info.DeviceString)
         {
-            std::wstring_view device_key_view(device_info.DeviceKey);
-            std::wstring_view prefix(L"\\Registry\\Machine\\");
+            std::wstring device_key_view(device_info.DeviceKey);
+            std::wstring prefix(L"\\Registry\\Machine\\");
 
             if (base::startsWith(device_key_view, prefix))
             {
-                device_key_view.remove_prefix(prefix.size());
+                device_key_view = device_key_view.substr(prefix.size() - 1, device_key_view.length() - prefix.size());
                 device_key->assign(device_key_view);
             }
 
@@ -65,7 +65,7 @@ bool MirrorHelper::findDisplayDevice(std::wstring_view device_string,
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool MirrorHelper::attachToDesktop(std::wstring_view key_path, bool attach)
+bool MirrorHelper::attachToDesktop(std::wstring key_path, bool attach)
 {
     base::win::RegistryKey device_key;
 

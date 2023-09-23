@@ -27,7 +27,7 @@ namespace {
 #if defined(OS_WIN)
 
 //--------------------------------------------------------------------------------------------------
-HANDLE createPowerRequest(POWER_REQUEST_TYPE type, const std::wstring_view& description)
+HANDLE createPowerRequest(POWER_REQUEST_TYPE type, const std::wstring& description)
 {
     REASON_CONTEXT context;
     memset(&context, 0, sizeof(context));

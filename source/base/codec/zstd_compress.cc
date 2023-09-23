@@ -57,9 +57,9 @@ T compressT(const T& source, int compress_level)
     target.resize(output_size + sizeof(uint32_t));
 
     source_data_size = EndianUtil::toBig(source_data_size);
-    memcpy(target.data(), &source_data_size, sizeof(uint32_t));
+    memcpy((void*)target.data(), &source_data_size, sizeof(uint32_t));
 
-    uint8_t* output_data = reinterpret_cast<uint8_t*>(target.data() + sizeof(uint32_t));
+    uint8_t* output_data = const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(target.data() + sizeof(uint32_t)));
 
     ZSTD_inBuffer input = { input_data, input_size, 0 };
     ZSTD_outBuffer output = { output_data, output_size, 0 };
@@ -116,7 +116,7 @@ T decompressT(const T& source)
     }
 
     ZSTD_inBuffer input = { source.data() + sizeof(uint32_t), source.size() - sizeof(uint32_t), 0 };
-    ZSTD_outBuffer output = { target.data(), target.size(), 0 };
+    ZSTD_outBuffer output = { (void *)target.data(), target.size(), 0 };
 
     while (input.pos < input.size)
     {

@@ -26,7 +26,7 @@
 #include "base/win/session_status.h"
 #endif // defined(OS_WIN)
 
-#include <string_view>
+#include <string>
 #include <string>
 
 namespace base {
@@ -38,7 +38,7 @@ class ServiceThread;
 class Service
 {
 public:
-    Service(std::u16string_view name, MessageLoop::Type type);
+    Service(std::u16string name, MessageLoop::Type type);
     virtual ~Service();
 
     void exec();

@@ -30,131 +30,133 @@
 #include <typeinfo>
 #include <memory>
 
-namespace base::detail {
+namespace base {
+	namespace detail {
 
-template <class X>
-class sp_counted_impl_p : public sp_counted_base
-{
-private:
-    X* px_;
+		template <class X>
+		class sp_counted_impl_p : public sp_counted_base
+		{
+		private:
+			X* px_;
 
-    sp_counted_impl_p(sp_counted_impl_p const&);
-    sp_counted_impl_p &operator=(sp_counted_impl_p const&);
+			sp_counted_impl_p(sp_counted_impl_p const&);
+			sp_counted_impl_p &operator=(sp_counted_impl_p const&);
 
-    typedef sp_counted_impl_p<X> this_type;
+			typedef sp_counted_impl_p<X> this_type;
 
-public:
-    explicit sp_counted_impl_p(X* px)
-        : px_(px)
-    {
-        // Nothing
-    }
+		public:
+			explicit sp_counted_impl_p(X* px)
+				: px_(px)
+			{
+				// Nothing
+			}
 
-    virtual void dispose() // nothrow
-    {
-        base::checked_delete(px_);
-    }
+			virtual void dispose() // nothrow
+			{
+				base::checked_delete(px_);
+			}
 
-    virtual void* get_deleter(std::type_info const&) { return nullptr; }
-    virtual void* get_untyped_deleter() { return nullptr; }
-};
+			virtual void* get_deleter(std::type_info const&) { return nullptr; }
+			virtual void* get_untyped_deleter() { return nullptr; }
+		};
 
-template <class P, class D>
-class sp_counted_impl_pd : public sp_counted_base
-{
-private:
-    P ptr; // copy constructor must not throw
-    D del; // copy constructor must not throw
+		template <class P, class D>
+		class sp_counted_impl_pd : public sp_counted_base
+		{
+		private:
+			P ptr; // copy constructor must not throw
+			D del; // copy constructor must not throw
 
-    sp_counted_impl_pd(sp_counted_impl_pd const&);
-    sp_counted_impl_pd &operator=(sp_counted_impl_pd const&);
+			sp_counted_impl_pd(sp_counted_impl_pd const&);
+			sp_counted_impl_pd &operator=(sp_counted_impl_pd const&);
 
-    typedef sp_counted_impl_pd<P, D> this_type;
+			typedef sp_counted_impl_pd<P, D> this_type;
 
-public:
-    // pre: d(p) must not throw
+		public:
+			// pre: d(p) must not throw
 
-    sp_counted_impl_pd(P p, D &d)
-        : ptr(p), del(d)
-    {
-        // Nothing
-    }
+			sp_counted_impl_pd(P p, D &d)
+				: ptr(p), del(d)
+			{
+				// Nothing
+			}
 
-    sp_counted_impl_pd(P p)
-        : ptr(p), del()
-    {
-        // Nothing
-    }
+			sp_counted_impl_pd(P p)
+				: ptr(p), del()
+			{
+				// Nothing
+			}
 
-    virtual void dispose() // nothrow
-    {
-        del(ptr);
-    }
+			virtual void dispose() // nothrow
+			{
+				del(ptr);
+			}
 
-    virtual void* get_deleter(std::type_info const& ti)
-    {
-        return ti == typeid(D) ? &reinterpret_cast<char&>(del) : nullptr;
-    }
+			virtual void* get_deleter(std::type_info const& ti)
+			{
+				return ti == typeid(D) ? &reinterpret_cast<char&>(del) : nullptr;
+			}
 
-    virtual void* get_untyped_deleter()
-    {
-        return &reinterpret_cast<char&>(del);
-    }
-};
+			virtual void* get_untyped_deleter()
+			{
+				return &reinterpret_cast<char&>(del);
+			}
+		};
 
-template <class P, class D, class A>
-class sp_counted_impl_pda : public sp_counted_base
-{
-private:
-    P p_; // copy constructor must not throw
-    D d_; // copy constructor must not throw
-    A a_; // copy constructor must not throw
+		template <class P, class D, class A>
+		class sp_counted_impl_pda : public sp_counted_base
+		{
+		private:
+			P p_; // copy constructor must not throw
+			D d_; // copy constructor must not throw
+			A a_; // copy constructor must not throw
 
-    sp_counted_impl_pda(sp_counted_impl_pda const&);
-    sp_counted_impl_pda &operator=(sp_counted_impl_pda const&);
+			sp_counted_impl_pda(sp_counted_impl_pda const&);
+			sp_counted_impl_pda &operator=(sp_counted_impl_pda const&);
 
-    typedef sp_counted_impl_pda<P, D, A> this_type;
+			typedef sp_counted_impl_pda<P, D, A> this_type;
 
-public:
-    // pre: d( p ) must not throw
+		public:
+			// pre: d( p ) must not throw
 
-    sp_counted_impl_pda(P p, D& d, A a)
-        : p_(p), d_(d), a_(a)
-    {
-        // Nothing
-    }
+			sp_counted_impl_pda(P p, D& d, A a)
+				: p_(p), d_(d), a_(a)
+			{
+				// Nothing
+			}
 
-    sp_counted_impl_pda(P p, A a)
-        : p_(p), d_(a), a_(a)
-    {
-        // Nothing
-    }
+			sp_counted_impl_pda(P p, A a)
+				: p_(p), d_(a), a_(a)
+			{
+				// Nothing
+			}
 
-    virtual void dispose() // nothrow
-    {
-        d_(p_);
-    }
+			virtual void dispose() // nothrow
+			{
+				d_(p_);
+			}
 
-    virtual void destroy() // nothrow
-    {
-        typedef typename std::allocator_traits<A>::template rebind_alloc<this_type> A2;
+			virtual void destroy() // nothrow
+			{
+				typedef typename std::allocator_traits<A>::template rebind_alloc<this_type> A2;
 
-        A2 a2(a_);
-        std::allocator_traits<A2>::destroy(a2, this);
-        a2.deallocate(this, 1);
-    }
+				A2 a2(a_);
+				std::allocator_traits<A2>::destroy(a2, this);
+				a2.deallocate(this, 1);
+			}
 
-    virtual void* get_deleter(std::type_info const& ti)
-    {
-        return ti == typeid(D) ? &reinterpret_cast<char&>(d_) : nullptr;
-    }
+			virtual void* get_deleter(std::type_info const& ti)
+			{
+				return ti == typeid(D) ? &reinterpret_cast<char&>(d_) : nullptr;
+			}
 
-    virtual void* get_untyped_deleter()
-    {
-        return &reinterpret_cast<char&>(d_);
-    }
-};
+			virtual void* get_untyped_deleter()
+			{
+				return &reinterpret_cast<char&>(d_);
+			}
+		};
 
-} // namespace base::detail
+}  // namespace detail
+} // namespace base
 
 #endif // BASE_MEMORY_LOCAL_MEMORY_IMPL_SP_COUNTED_IMPL_H

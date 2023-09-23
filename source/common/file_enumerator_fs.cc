@@ -19,6 +19,7 @@
 #include "common/file_enumerator.h"
 
 #include "base/logging.h"
+#include "base/filesystem.hpp"
 
 namespace common {
 
@@ -35,7 +36,7 @@ bool FileEnumerator::FileInfo::isDirectory() const
 }
 
 //--------------------------------------------------------------------------------------------------
-std::filesystem::path FileEnumerator::FileInfo::name() const
+ghc::filesystem::path FileEnumerator::FileInfo::name() const
 {
     return it_->path().filename();
 }
@@ -57,7 +58,7 @@ int64_t FileEnumerator::FileInfo::size() const
 time_t FileEnumerator::FileInfo::lastWriteTime() const
 {
     auto current_system_time = std::chrono::system_clock::now();
-    auto current_file_time = std::filesystem::file_time_type::clock::now();
+    auto current_file_time = ghc::filesystem::file_time_type::clock::now();
 
     std::error_code ignored_error;
     auto file_time = it_->last_write_time(ignored_error);
@@ -71,10 +72,10 @@ time_t FileEnumerator::FileInfo::lastWriteTime() const
 // FileEnumerator --------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
-FileEnumerator::FileEnumerator(const std::filesystem::path& root_path)
+FileEnumerator::FileEnumerator(const ghc::filesystem::path& root_path)
 {
     std::error_code ignored_code;
-    file_info_.it_ = std::filesystem::directory_iterator(root_path, ignored_code);
+    file_info_.it_ = ghc::filesystem::directory_iterator(root_path, ignored_code);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -83,7 +84,7 @@ FileEnumerator::~FileEnumerator() = default;
 //--------------------------------------------------------------------------------------------------
 bool FileEnumerator::isAtEnd() const
 {
-    return file_info_.it_ == std::filesystem::directory_iterator();
+    return file_info_.it_ == ghc::filesystem::directory_iterator();
 }
 
 //--------------------------------------------------------------------------------------------------

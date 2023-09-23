@@ -86,7 +86,7 @@ ByteArray GenericHash::hash(Type type, const void* data, size_t size)
 
 //--------------------------------------------------------------------------------------------------
 // static
-ByteArray GenericHash::hash(Type type, std::string_view data)
+ByteArray GenericHash::hash(Type type, std::string data)
 {
     return hash(type, data.data(), data.size());
 }
@@ -107,7 +107,7 @@ void GenericHash::addData(const void* data, size_t size)
 }
 
 //--------------------------------------------------------------------------------------------------
-void GenericHash::addData(std::string_view data)
+void GenericHash::addData(std::string data)
 {
     addData(data.data(), data.size());
 }

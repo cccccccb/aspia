@@ -37,7 +37,7 @@ std::string readSmbiosDump()
     std::string buffer;
     buffer.resize(buffer_size);
 
-    if (!GetSystemFirmwareTable('RSMB', 'PCAF', buffer.data(), buffer_size))
+    if (!GetSystemFirmwareTable('RSMB', 'PCAF', (PVOID)buffer.data(), buffer_size))
     {
         PLOG(LS_WARNING) << "GetSystemFirmwareTable failed";
         return std::string();

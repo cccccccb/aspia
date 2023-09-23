@@ -189,11 +189,11 @@ set_target_properties(aspia_host_core PROPERTIES COMPILE_DEFINITIONS "HOST_IMPLE
 set_property(TARGET aspia_host_core PROPERTY AUTOMOC ON)
 set_property(TARGET aspia_host_core PROPERTY AUTOUIC ON)
 set_property(TARGET aspia_host_core PROPERTY AUTORCC ON)
-qt5_import_plugins(aspia_host_core
-    INCLUDE ""
-    EXCLUDE ""
-    INCLUDE_BY_TYPE ""
-    EXCLUDE_BY_TYPE imageformats)
+# qt5_import_plugins(aspia_host_core
+#     INCLUDE ""
+#     EXCLUDE ""
+#     INCLUDE_BY_TYPE ""
+#     EXCLUDE_BY_TYPE imageformats)
 
 if(Qt5LinguistTools_FOUND)
     # Get the list of translation files.

@@ -23,52 +23,54 @@
 #include "base/session_id.h"
 #include "base/win/object_watcher.h"
 #include "base/win/scoped_object.h"
+#include "base/filesystem.hpp"
 
-#include <filesystem>
 #include <functional>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class Process : public ObjectWatcher::Delegate
-{
-public:
-    Process(std::shared_ptr<TaskRunner> task_runner, ProcessId process_id);
-    Process(std::shared_ptr<TaskRunner> task_runner, HANDLE process, HANDLE thread);
-    ~Process() override;
+		class Process : public ObjectWatcher::Delegate
+		{
+		public:
+			Process(std::shared_ptr<TaskRunner> task_runner, ProcessId process_id);
+			Process(std::shared_ptr<TaskRunner> task_runner, HANDLE process, HANDLE thread);
+			~Process() override;
 
-    using ExitCallback = std::function<void(int exit_code)>;
+			using ExitCallback = std::function<void(int exit_code)>;
 
-    void startWatching(const ExitCallback& callback);
-    void stopWatching();
+			void startWatching(const ExitCallback& callback);
+			void stopWatching();
 
-    bool isValid() const;
+			bool isValid() const;
 
-    std::filesystem::path filePath() const;
-    std::u16string fileName() const;
-    ProcessId processId() const;
-    SessionId sessionId() const;
+			ghc::filesystem::path filePath() const;
+			std::u16string fileName() const;
+			ProcessId processId() const;
+			SessionId sessionId() const;
 
-    int exitCode() const;
+			int exitCode() const;
 
-    void kill();
-    void terminate();
+			void kill();
+			void terminate();
 
-    HANDLE native() const { return process_.get(); }
+			HANDLE native() const { return process_.get(); }
 
-protected:
-    // ObjectWatcher::Delegate implementation.
-    void onObjectSignaled(HANDLE object) override;
+		protected:
+			// ObjectWatcher::Delegate implementation.
+			void onObjectSignaled(HANDLE object) override;
 
-private:
-    ObjectWatcher watcher_;
-    ExitCallback callback_;
+		private:
+			ObjectWatcher watcher_;
+			ExitCallback callback_;
 
-    ScopedHandle process_;
-    ScopedHandle thread_;
+			ScopedHandle process_;
+			ScopedHandle thread_;
 
-    DISALLOW_COPY_AND_ASSIGN(Process);
-};
+			DISALLOW_COPY_AND_ASSIGN(Process);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_PROCESS_H

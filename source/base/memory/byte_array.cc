@@ -59,7 +59,7 @@ ByteArray fromData(const void* data, size_t size)
 }
 
 //--------------------------------------------------------------------------------------------------
-ByteArray fromStdString(std::string_view in)
+ByteArray fromStdString(std::string in)
 {
     return fromData(in.data(), in.size());
 }
@@ -73,12 +73,12 @@ std::string toStdString(const ByteArray& in)
     std::string out;
     out.resize(in.size());
 
-    memcpy(out.data(), in.data(), in.size());
+    memcpy((void *)out.data(), in.data(), in.size());
     return out;
 }
 
 //--------------------------------------------------------------------------------------------------
-ByteArray fromHex(std::string_view in)
+ByteArray fromHex(std::string in)
 {
     if (in.empty())
         return ByteArray();
@@ -116,7 +116,7 @@ std::string toHex(const ByteArray& in)
     std::string out;
     out.resize(in.size() * 2);
 
-    char *dst = out.data();
+    char *dst = const_cast<char *>(out.data());
 
     for (const auto& hex : in)
     {

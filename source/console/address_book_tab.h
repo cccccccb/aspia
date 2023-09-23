@@ -19,13 +19,13 @@
 #ifndef CONSOLE_ADDRESS_BOOK_TAB_H
 #define CONSOLE_ADDRESS_BOOK_TAB_H
 
+#include "base/optional.hpp"
 #include "base/macros_magic.h"
 #include "client/router_config.h"
 #include "client/online_checker/online_checker.h"
 #include "proto/address_book.pb.h"
 #include "ui_address_book_tab.h"
 
-#include <optional>
 #include <memory>
 
 namespace console {
@@ -59,7 +59,7 @@ public:
     bool saveAs();
 
     bool isRouterEnabled() const;
-    std::optional<client::RouterConfig> routerConfig() const;
+    tl::optional<client::RouterConfig> routerConfig() const;
 
     void retranslateUi();
 

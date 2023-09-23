@@ -74,8 +74,15 @@ bool screenListFromDeviceNames(const std::vector<std::wstring>& device_names,
 
             // devices_names[i] has not been found in gdi_names, so use max_screen_id.
             ++max_screen_id;
-            screen_list->screens.push_back(
-                { max_screen_id, std::string(), Point(), Size(), Point(), false });
+            ScreenCapturer::Screen screen;
+            screen.id = max_screen_id;
+            screen.title = std::string();
+            screen.position = Point();
+            screen.resolution = Size();
+            screen.dpi = Point();
+            screen.is_primary = false;
+
+            screen_list->screens.push_back(screen);
         }
         else
         {

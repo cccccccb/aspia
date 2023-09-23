@@ -222,8 +222,6 @@ int hostMain(int argc, char* argv[])
 
     host::Application::setAttribute(Qt::AA_EnableHighDpiScaling, true);
     host::Application::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-    host::Application::setHighDpiScaleFactorRoundingPolicy(
-        Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
     host::Application application(argc, argv);
     host::Application::setQuitOnLastWindowClosed(false);

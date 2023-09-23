@@ -20,61 +20,63 @@
 #define BASE_WIN_DRIVE_ENUMERATOR_H
 
 #include "base/macros_magic.h"
+#include "base/filesystem.hpp"
 
-#include <filesystem>
 #include <vector>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class DriveEnumerator
-{
-public:
-    DriveEnumerator();
-    ~DriveEnumerator() = default;
+		class DriveEnumerator
+		{
+		public:
+			DriveEnumerator();
+			~DriveEnumerator() = default;
 
-    class DriveInfo
-    {
-    public:
-        ~DriveInfo() = default;
+			class DriveInfo
+			{
+			public:
+				~DriveInfo() = default;
 
-        enum class Type
-        {
-            UNKNOWN,
-            REMOVABLE, // Floppy, flash drives.
-            FIXED,     // Hard or flash drives.
-            REMOTE,    // Network drives.
-            CDROM,     // CD, DVD drives.
-            RAM        // RAM drives.
-        };
+				enum class Type
+				{
+					UNKNOWN,
+					REMOVABLE, // Floppy, flash drives.
+					FIXED,     // Hard or flash drives.
+					REMOTE,    // Network drives.
+					CDROM,     // CD, DVD drives.
+					RAM        // RAM drives.
+				};
 
-        const std::filesystem::path& path() const { return path_; }
-        Type type() const;
-        uint64_t totalSpace() const;
-        uint64_t freeSpace() const;
-        std::string fileSystem() const;
-        std::string volumeName() const;
-        std::string volumeSerial() const;
+				const ghc::filesystem::path& path() const { return path_; }
+				Type type() const;
+				uint64_t totalSpace() const;
+				uint64_t freeSpace() const;
+				std::string fileSystem() const;
+				std::string volumeName() const;
+				std::string volumeSerial() const;
 
-    private:
-        friend class DriveEnumerator;
-        DriveInfo() = default;
+			private:
+				friend class DriveEnumerator;
+				DriveInfo() = default;
 
-        std::filesystem::path path_;
-    };
+				ghc::filesystem::path path_;
+			};
 
-    const DriveInfo& driveInfo() const;
-    bool isAtEnd() const;
-    void advance();
+			const DriveInfo& driveInfo() const;
+			bool isAtEnd() const;
+			void advance();
 
-private:
-    std::vector<wchar_t> buffer_;
-    wchar_t* current_ = nullptr;
+		private:
+			std::vector<wchar_t> buffer_;
+			wchar_t* current_ = nullptr;
 
-    mutable DriveInfo drive_info_;
+			mutable DriveInfo drive_info_;
 
-    DISALLOW_COPY_AND_ASSIGN(DriveEnumerator);
-};
+			DISALLOW_COPY_AND_ASSIGN(DriveEnumerator);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_DRIVE_ENUMERATOR_H

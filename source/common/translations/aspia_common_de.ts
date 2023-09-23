@@ -6,12 +6,12 @@
     <message>
         <location filename="../ui/about_dialog.ui" line="14"/>
         <source>About</source>
-        <translation>Über das Programm</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.ui" line="60"/>
         <source>General</source>
-        <translation type="unfinished">Allgemeines</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.ui" line="90"/>
@@ -21,12 +21,12 @@
     <message>
         <location filename="../ui/about_dialog.ui" line="105"/>
         <source>Donate!</source>
-        <translation>Spenden!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.ui" line="129"/>
         <source>Close</source>
-        <translation>Schließen</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -157,7 +157,7 @@
     <message>
         <location filename="../ui/update_dialog.ui" line="188"/>
         <source>Close</source>
-        <translation type="unfinished">Schließen</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -165,52 +165,52 @@
     <message>
         <location filename="../ui/about_dialog.cc" line="116"/>
         <source>Version: %1</source>
-        <translation type="unfinished">Version: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="120"/>
         <source>Aspia is free software released under GNU General Public License 3.</source>
-        <translation type="unfinished">Aspia ist eine freie Software, die unter der GNU General Public License 3 veröffentlicht wurde.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="121"/>
         <source>You can get a copy of license here:</source>
-        <translation type="unfinished">Sie können eine Kopie der Lizenz hier erhalten:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="126"/>
         <source>You can also get a translation of GNU GPL license here:</source>
-        <translation type="unfinished">Sie können auch eine Übersetzung der GNU GPL-Lizenz hier erhalten:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="130"/>
         <source>Links:</source>
-        <translation type="unfinished">Links:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="131"/>
         <source>Home page:</source>
-        <translation type="unfinished">Webseite:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="132"/>
         <source>GitHub page:</source>
-        <translation type="unfinished">GitHub-Seite:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="135"/>
         <source>Developers:</source>
-        <translation type="unfinished">Entwickler:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="137"/>
         <source>Translators:</source>
-        <translation type="unfinished">Übersetzer:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="139"/>
         <source>Third-party components:</source>
-        <translation type="unfinished">Komponenten von Drittanbietern:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="160"/>
@@ -336,7 +336,7 @@
     <message>
         <location filename="../ui/status_dialog.cc" line="40"/>
         <source>Close</source>
-        <translation type="unfinished">Schließen</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -26,9 +26,9 @@ TEST(GenericHashTest, Blake2b512)
 {
     struct TestData
     {
-        std::string_view data1;
-        std::string_view data2;
-        std::string_view expected;
+        std::string data1;
+        std::string data2;
+        std::string expected;
     } const kTestTable[] =
     {
         {
@@ -71,9 +71,9 @@ TEST(GenericHashTest, Blake2s256)
 {
     struct TestData
     {
-        std::string_view data1;
-        std::string_view data2;
-        std::string_view expected;
+        std::string data1;
+        std::string data2;
+        std::string expected;
     } const kTestTable[] =
     {
         {

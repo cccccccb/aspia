@@ -19,26 +19,28 @@
 #ifndef BASE_WIN_SESSION_STATUS_H
 #define BASE_WIN_SESSION_STATUS_H
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-enum class SessionStatus
-{
-    UNKNOWN                = 0x0,
-    CONSOLE_CONNECT        = 0x1,
-    CONSOLE_DISCONNECT     = 0x2,
-    REMOTE_CONNECT         = 0x3,
-    REMOTE_DISCONNECT      = 0x4,
-    SESSION_LOGON          = 0x5,
-    SESSION_LOGOFF         = 0x6,
-    SESSION_LOCK           = 0x7,
-    SESSION_UNLOCK         = 0x8,
-    SESSION_REMOTE_CONTROL = 0x9,
-    SESSION_CREATE         = 0xA,
-    SESSION_TERMINATE      = 0xB
-};
+		enum class SessionStatus
+		{
+			UNKNOWN = 0x0,
+			CONSOLE_CONNECT = 0x1,
+			CONSOLE_DISCONNECT = 0x2,
+			REMOTE_CONNECT = 0x3,
+			REMOTE_DISCONNECT = 0x4,
+			SESSION_LOGON = 0x5,
+			SESSION_LOGOFF = 0x6,
+			SESSION_LOCK = 0x7,
+			SESSION_UNLOCK = 0x8,
+			SESSION_REMOTE_CONTROL = 0x9,
+			SESSION_CREATE = 0xA,
+			SESSION_TERMINATE = 0xB
+		};
 
-const char* sessionStatusToString(SessionStatus status);
+		const char* sessionStatusToString(SessionStatus status);
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SESSION_STATUS_H

@@ -76,7 +76,7 @@ TEST(ByteArray, StringConvert)
         std::string source;
 
         source.resize(sizeof(uint64_t));
-        memcpy(source.data(), &random_number, sizeof(uint64_t));
+        memcpy((void *)source.data(), &random_number, sizeof(uint64_t));
 
         base::ByteArray array = fromStdString(source);
         EXPECT_EQ(array.size(), sizeof(uint64_t));

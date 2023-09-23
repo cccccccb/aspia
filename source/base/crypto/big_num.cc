@@ -73,7 +73,7 @@ std::string BigNum::toStdString() const
     std::string result;
     result.resize(static_cast<std::string::size_type>(length));
 
-    BN_bn2bin(num_.get(), reinterpret_cast<uint8_t*>(result.data()));
+    BN_bn2bin(num_.get(), const_cast< unsigned char*>(reinterpret_cast<const unsigned char*>(result.data())));
     return result;
 }
 
@@ -103,7 +103,7 @@ BigNum BigNum::create()
 
 //--------------------------------------------------------------------------------------------------
 // static
-BigNum BigNum::fromStdString(std::string_view string)
+BigNum BigNum::fromStdString(std::string string)
 {
     return BigNum(reinterpret_cast<const uint8_t*>(string.data()), string.size());
 }

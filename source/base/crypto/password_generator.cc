@@ -48,9 +48,9 @@ void PasswordGenerator::setLength(size_t value)
 //--------------------------------------------------------------------------------------------------
 std::string PasswordGenerator::result() const
 {
-    constexpr std::string_view lower_case = "abcdefghijklmnopqrstuvwxyz";
-    constexpr std::string_view upper_case = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    constexpr std::string_view digits = "0123456789";
+    const std::string lower_case = "abcdefghijklmnopqrstuvwxyz";
+    const std::string upper_case = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const std::string digits = "0123456789";
 
     size_t table_length = 0;
 

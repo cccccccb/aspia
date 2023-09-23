@@ -19,13 +19,13 @@
 #ifndef ROUTER_SHARED_KEY_POOL_H
 #define ROUTER_SHARED_KEY_POOL_H
 
+#include "base/optional.hpp"
 #include "base/macros_magic.h"
 #include "base/memory/local_memory.h"
 #include "proto/router_common.pb.h"
 #include "router/session.h"
 
 #include <cstdint>
-#include <optional>
 #include <memory>
 
 namespace router {
@@ -53,7 +53,7 @@ public:
     };
 
     void addKey(Session::SessionId session_id, const proto::RelayKey& key);
-    std::optional<Credentials> takeCredentials();
+    tl::optional<Credentials> takeCredentials();
     void removeKeysForRelay(Session::SessionId session_id);
     void clear();
     size_t countForRelay(Session::SessionId session_id) const;

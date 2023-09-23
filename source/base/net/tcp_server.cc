@@ -34,7 +34,7 @@ public:
     explicit Impl(asio::io_context& io_context);
     ~Impl();
 
-    void start(std::u16string_view listen_interface, uint16_t port, Delegate* delegate);
+    void start(std::u16string listen_interface, uint16_t port, Delegate* delegate);
     void stop();
 
     std::u16string listenInterface() const;
@@ -71,7 +71,7 @@ TcpServer::Impl::~Impl()
 }
 
 //--------------------------------------------------------------------------------------------------
-void TcpServer::Impl::start(std::u16string_view listen_interface, uint16_t port, Delegate* delegate)
+void TcpServer::Impl::start(std::u16string listen_interface, uint16_t port, Delegate* delegate)
 {
     delegate_ = delegate;
     listen_interface_ = listen_interface;
@@ -194,7 +194,7 @@ TcpServer::~TcpServer()
 }
 
 //--------------------------------------------------------------------------------------------------
-void TcpServer::start(std::u16string_view listen_interface, uint16_t port, Delegate* delegate)
+void TcpServer::start(std::u16string listen_interface, uint16_t port, Delegate* delegate)
 {
     impl_->start(listen_interface, port, delegate);
 }
@@ -219,7 +219,7 @@ uint16_t TcpServer::port() const
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool TcpServer::isValidListenInterface(std::u16string_view interface)
+bool TcpServer::isValidListenInterface(std::u16string interface)
 {
     asio::error_code error_code;
     asio::ip::make_address_v4(base::local8BitFromUtf16(interface), error_code);

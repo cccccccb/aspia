@@ -18,6 +18,7 @@
 
 #include "base/files/base_paths.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/mac/nsstring_conversions.h"
 
@@ -30,7 +31,7 @@ namespace {
 //--------------------------------------------------------------------------------------------------
 bool searchPathDirectory(NSSearchPathDirectory directory,
                          NSSearchPathDomainMask domain_mask,
-                         std::filesystem::path* result)
+                         ghc::filesystem::path* result)
 {
     DCHECK(result);
     NSArray<NSString*>* dirs = NSSearchPathForDirectoriesInDomains(directory, domain_mask, YES);
@@ -42,7 +43,7 @@ bool searchPathDirectory(NSSearchPathDirectory directory,
 }
 
 //--------------------------------------------------------------------------------------------------
-bool userDirectory(NSSearchPathDirectory directory, std::filesystem::path* result)
+bool userDirectory(NSSearchPathDirectory directory, ghc::filesystem::path* result)
 {
     return searchPathDirectory(directory, NSUserDomainMask, result);
 }
@@ -51,28 +52,28 @@ bool userDirectory(NSSearchPathDirectory directory, std::filesystem::path* resul
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::userAppData(std::filesystem::path* result)
+bool BasePaths::userAppData(ghc::filesystem::path* result)
 {
     return userDirectory(NSDesktopDirectory, result);
 }
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::userDesktop(std::filesystem::path* result)
+bool BasePaths::userDesktop(ghc::filesystem::path* result)
 {
     return userDirectory(NSDesktopDirectory, result);
 }
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::commonAppData(std::filesystem::path* result)
+bool BasePaths::commonAppData(ghc::filesystem::path* result)
 {
     return userDirectory(NSApplicationSupportDirectory, result);
 }
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::commonDesktop(std::filesystem::path* result)
+bool BasePaths::commonDesktop(ghc::filesystem::path* result)
 {
     return userDirectory(NSDesktopDirectory, result);
 }

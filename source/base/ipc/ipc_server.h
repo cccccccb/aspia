@@ -49,7 +49,7 @@ public:
         virtual void onErrorOccurred() = 0;
     };
 
-    bool start(std::u16string_view channel_id, Delegate* delegate);
+    bool start(std::u16string channel_id, Delegate* delegate);
     void stop();
 
 private:

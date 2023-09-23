@@ -18,6 +18,7 @@
 
 #include "common/file_enumerator.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/strings/unicode.h"
 
@@ -37,7 +38,7 @@ time_t fileTimeToUnixTime(const FILETIME& file_time)
 }
 
 //--------------------------------------------------------------------------------------------------
-bool shouldSkip(std::wstring_view file_name)
+bool shouldSkip(std::wstring file_name)
 {
     return file_name == L"." || file_name == L"..";
 }
@@ -59,9 +60,9 @@ bool FileEnumerator::FileInfo::isDirectory() const
 }
 
 //--------------------------------------------------------------------------------------------------
-std::filesystem::path FileEnumerator::FileInfo::name() const
+ghc::filesystem::path FileEnumerator::FileInfo::name() const
 {
-    return std::filesystem::path(find_data_.cFileName);
+    return ghc::filesystem::path(find_data_.cFileName);
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -88,9 +89,9 @@ time_t FileEnumerator::FileInfo::lastWriteTime() const
 // FileEnumerator --------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
-FileEnumerator::FileEnumerator(const std::filesystem::path& root_path)
+FileEnumerator::FileEnumerator(const ghc::filesystem::path& root_path)
 {
-    std::filesystem::path filter(root_path);
+    ghc::filesystem::path filter(root_path);
     filter.append(L"*");
 
     // Start a new find operation.

@@ -20,17 +20,17 @@
 #define BASE_FILES_FILE_UTIL_H
 
 #include "base/memory/byte_array.h"
+#include "base/filesystem.hpp"
 
-#include <filesystem>
 
 namespace base {
 
-bool writeFile(const std::filesystem::path& filename, const void* data, size_t size);
-bool writeFile(const std::filesystem::path& filename, const ByteArray& buffer);
-bool writeFile(const std::filesystem::path& filename, std::string_view buffer);
+bool writeFile(const ghc::filesystem::path& filename, const void* data, size_t size);
+bool writeFile(const ghc::filesystem::path& filename, const ByteArray& buffer);
+bool writeFile(const ghc::filesystem::path& filename, std::string buffer);
 
-bool readFile(const std::filesystem::path& filename, ByteArray* buffer);
-bool readFile(const std::filesystem::path& filename, std::string* buffer);
+bool readFile(const ghc::filesystem::path& filename, ByteArray* buffer);
+bool readFile(const ghc::filesystem::path& filename, std::string* buffer);
 
 } // namespace base
 

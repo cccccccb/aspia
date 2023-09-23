@@ -24,55 +24,57 @@
 
 #include <cstddef>
 
-namespace base::detail {
+namespace base {
+	namespace detail {
 
-template <class Y, class T>
-struct sp_convertible
-{
-    typedef char (&yes)[1];
-    typedef char (&no)[2];
+		template <class Y, class T>
+		struct sp_convertible
+		{
+			typedef char(&yes)[1];
+			typedef char(&no)[2];
 
-    static yes f(T*);
-    static no f(...);
+			static yes f(T*);
+			static no f(...);
 
-    enum _vt { value = sizeof((f)(static_cast<Y *>(nullptr))) == sizeof(yes) };
-};
+			enum _vt { value = sizeof((f)(static_cast<Y *>(nullptr))) == sizeof(yes) };
+		};
 
-template <class Y, class T>
-struct sp_convertible<Y, T[]>
-{
-    enum _vt { value = false };
-};
+		template <class Y, class T>
+		struct sp_convertible<Y, T[]>
+		{
+			enum _vt { value = false };
+		};
 
-template <class Y, class T>
-struct sp_convertible<Y[], T[]>
-{
-    enum _vt { value = sp_convertible<Y[1], T[1]>::value };
-};
+		template <class Y, class T>
+		struct sp_convertible<Y[], T[]>
+		{
+			enum _vt { value = sp_convertible<Y[1], T[1]>::value };
+		};
 
-template <class Y, std::size_t N, class T>
-struct sp_convertible<Y[N], T[]>
-{
-    enum _vt { value = sp_convertible<Y[1], T[1]>::value };
-};
+		template <class Y, std::size_t N, class T>
+		struct sp_convertible<Y[N], T[]>
+		{
+			enum _vt { value = sp_convertible<Y[1], T[1]>::value };
+		};
 
-struct sp_empty {};
+		struct sp_empty {};
 
-template <bool>
-struct sp_enable_if_convertible_impl;
+		template <bool>
+		struct sp_enable_if_convertible_impl;
 
-template <>
-struct sp_enable_if_convertible_impl<true>
-{
-    typedef sp_empty type;
-};
+		template <>
+		struct sp_enable_if_convertible_impl<true>
+		{
+			typedef sp_empty type;
+		};
 
-template <>
-struct sp_enable_if_convertible_impl<false> {};
+		template <>
+		struct sp_enable_if_convertible_impl<false> {};
 
-template <class Y, class T>
-struct sp_enable_if_convertible : public sp_enable_if_convertible_impl<sp_convertible<Y, T>::value> {};
+		template <class Y, class T>
+		struct sp_enable_if_convertible : public sp_enable_if_convertible_impl<sp_convertible<Y, T>::value> {};
 
-} // namespace base::detail
+	}  // namespace detail
+} // namespace base
 
 #endif // BASE_MEMORY_LOCAL_MEMORY_IMPL_SP_CONVERTIBLE_H

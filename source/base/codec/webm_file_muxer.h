@@ -45,21 +45,21 @@ public:
 
     // Adds an audio track with the specified |codec_id| to |ptr_segment_|. Returns |false| when
     // adding the track to the segment fails.
-    bool addAudioTrack(int sample_rate, int channels, std::string_view codec_id);
+    bool addAudioTrack(int sample_rate, int channels, std::string codec_id);
 
     // Adds a video track with the specified |codec_id| to |segment_|. Returns |false| when adding
     // the track to the segment fails.
-    bool addVideoTrack(int width, int height, std::string_view codec_id);
+    bool addVideoTrack(int width, int height, std::string codec_id);
 
     // Flushes any queued frames. Users MUST call this method to ensure that all buffered frames
     // are flushed out of libwebm.
     bool finalize();
 
     // Writes |data| to the audio Track.
-    bool writeAudioFrame(std::string_view frame, const std::chrono::nanoseconds& timestamp);
+    bool writeAudioFrame(std::string frame, const std::chrono::nanoseconds& timestamp);
 
     // Writes |data| to the video Track.
-    bool writeVideoFrame(std::string_view frame,
+    bool writeVideoFrame(std::string frame,
                          const std::chrono::nanoseconds& timestamp,
                          bool is_key);
 
@@ -70,7 +70,7 @@ private:
     // Writes |data| to the muxer. |size| is the size in bytes of |data|. |timestamp| is the
     // timestamp of the frame in nanoseconds. |track_num| is the Track number to add the frame.
     // |is_key| flag telling if the frame is a key frame.
-    bool writeFrame(std::string_view frame,
+    bool writeFrame(std::string frame,
                     const std::chrono::nanoseconds& timestamp,
                     uint64_t track_num, bool is_key);
 

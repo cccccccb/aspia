@@ -22,43 +22,45 @@
 
 #include <devguid.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-//--------------------------------------------------------------------------------------------------
-VideoAdapterEnumarator::VideoAdapterEnumarator()
-    : DeviceEnumerator(&GUID_DEVCLASS_DISPLAY, DIGCF_PROFILE | DIGCF_PRESENT)
-{
-    // Nothing
-}
+		//--------------------------------------------------------------------------------------------------
+		VideoAdapterEnumarator::VideoAdapterEnumarator()
+			: DeviceEnumerator(&GUID_DEVCLASS_DISPLAY, DIGCF_PROFILE | DIGCF_PRESENT)
+		{
+			// Nothing
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::string VideoAdapterEnumarator::adapterString() const
-{
-    return utf8FromWide(driverRegistryString(L"HardwareInformation.AdapterString"));
-}
+		//--------------------------------------------------------------------------------------------------
+		std::string VideoAdapterEnumarator::adapterString() const
+		{
+			return utf8FromWide(driverRegistryString(L"HardwareInformation.AdapterString"));
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::string VideoAdapterEnumarator::biosString() const
-{
-    return utf8FromWide(driverRegistryString(L"HardwareInformation.BiosString"));
-}
+		//--------------------------------------------------------------------------------------------------
+		std::string VideoAdapterEnumarator::biosString() const
+		{
+			return utf8FromWide(driverRegistryString(L"HardwareInformation.BiosString"));
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::string VideoAdapterEnumarator::chipString() const
-{
-    return utf8FromWide(driverRegistryString(L"HardwareInformation.ChipType"));
-}
+		//--------------------------------------------------------------------------------------------------
+		std::string VideoAdapterEnumarator::chipString() const
+		{
+			return utf8FromWide(driverRegistryString(L"HardwareInformation.ChipType"));
+		}
 
-//--------------------------------------------------------------------------------------------------
-std::string VideoAdapterEnumarator::dacType() const
-{
-    return utf8FromWide(driverRegistryString(L"HardwareInformation.DacType"));
-}
+		//--------------------------------------------------------------------------------------------------
+		std::string VideoAdapterEnumarator::dacType() const
+		{
+			return utf8FromWide(driverRegistryString(L"HardwareInformation.DacType"));
+		}
 
-//--------------------------------------------------------------------------------------------------
-uint64_t VideoAdapterEnumarator::memorySize() const
-{
-    return driverRegistryDW(L"HardwareInformation.MemorySize");
-}
+		//--------------------------------------------------------------------------------------------------
+		uint64_t VideoAdapterEnumarator::memorySize() const
+		{
+			return driverRegistryDW(L"HardwareInformation.MemorySize");
+		}
 
+	}
 } // namespace base::win

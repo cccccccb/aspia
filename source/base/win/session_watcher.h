@@ -27,36 +27,38 @@
 
 #include <Windows.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class MessageWindow;
+		class MessageWindow;
 
-class SessionWatcher
-{
-public:
-    SessionWatcher();
-    ~SessionWatcher();
+		class SessionWatcher
+		{
+		public:
+			SessionWatcher();
+			~SessionWatcher();
 
-    class Delegate
-    {
-    public:
-        virtual ~Delegate() = default;
+			class Delegate
+			{
+			public:
+				virtual ~Delegate() = default;
 
-        virtual void onSessionEvent(SessionStatus status, SessionId session_id) = 0;
-    };
+				virtual void onSessionEvent(SessionStatus status, SessionId session_id) = 0;
+			};
 
-    bool start(Delegate* delegate);
-    void stop();
+			bool start(Delegate* delegate);
+			void stop();
 
-private:
-    bool onMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& result);
+		private:
+			bool onMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& result);
 
-    std::unique_ptr<MessageWindow> window_;
-    Delegate* delegate_ = nullptr;
+			std::unique_ptr<MessageWindow> window_;
+			Delegate* delegate_ = nullptr;
 
-    DISALLOW_COPY_AND_ASSIGN(SessionWatcher);
-};
+			DISALLOW_COPY_AND_ASSIGN(SessionWatcher);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SESSION_WATCHER_H

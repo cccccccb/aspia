@@ -35,7 +35,7 @@ static const size_t kTagSize = 16; // 128 bits, 16 bytes.
 static const size_t kHeaderSize = kIVSize + kTagSize;
 
 //--------------------------------------------------------------------------------------------------
-EVP_CIPHER_CTX_ptr createCipher(std::string_view key, const char* iv, int type)
+EVP_CIPHER_CTX_ptr createCipher(std::string key, const char* iv, int type)
 {
     if (key.size() != kKeySize)
     {
@@ -84,7 +84,7 @@ EVP_CIPHER_CTX_ptr createCipher(std::string_view key, const char* iv, int type)
 } // namespace
 
 //--------------------------------------------------------------------------------------------------
-DataCryptorChaCha20Poly1305::DataCryptorChaCha20Poly1305(std::string_view key)
+DataCryptorChaCha20Poly1305::DataCryptorChaCha20Poly1305(std::string key)
     : key_(key)
 {
     // Nothing
@@ -97,7 +97,7 @@ DataCryptorChaCha20Poly1305::~DataCryptorChaCha20Poly1305()
 }
 
 //--------------------------------------------------------------------------------------------------
-bool DataCryptorChaCha20Poly1305::encrypt(std::string_view in, std::string* out)
+bool DataCryptorChaCha20Poly1305::encrypt(std::string in, std::string* out)
 {
     if (in.empty())
     {
@@ -107,7 +107,7 @@ bool DataCryptorChaCha20Poly1305::encrypt(std::string_view in, std::string* out)
 
     out->resize(in.size() + kHeaderSize);
 
-    if (!Random::fillBuffer(out->data(), kIVSize))
+    if (!Random::fillBuffer(const_cast<char *>(out->data()), kIVSize))
     {
         LOG(LS_WARNING) << "Random::fillBuffer failed";
         return false;
@@ -123,7 +123,7 @@ bool DataCryptorChaCha20Poly1305::encrypt(std::string_view in, std::string* out)
     int length;
 
     if (EVP_EncryptUpdate(cipher.get(),
-                          reinterpret_cast<uint8_t*>(out->data()) + kHeaderSize,
+                          const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(out->data())) + kHeaderSize,
                           &length,
                           reinterpret_cast<const uint8_t*>(in.data()),
                           static_cast<int>(in.size())) != 1)
@@ -133,7 +133,7 @@ bool DataCryptorChaCha20Poly1305::encrypt(std::string_view in, std::string* out)
     }
 
     if (EVP_EncryptFinal_ex(cipher.get(),
-                            reinterpret_cast<uint8_t*>(out->data()) + kHeaderSize + length,
+		const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(out->data())) + kHeaderSize + length,
                             &length) != 1)
     {
         LOG(LS_WARNING) << "EVP_EncryptFinal_ex failed";
@@ -143,7 +143,7 @@ bool DataCryptorChaCha20Poly1305::encrypt(std::string_view in, std::string* out)
     if (EVP_CIPHER_CTX_ctrl(cipher.get(),
                             EVP_CTRL_AEAD_GET_TAG,
                             kTagSize,
-                            reinterpret_cast<uint8_t*>(out->data()) + kIVSize) != 1)
+		const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(out->data())) + kIVSize) != 1)
     {
         LOG(LS_WARNING) << "EVP_CIPHER_CTX_ctrl failed";
         return false;
@@ -153,7 +153,7 @@ bool DataCryptorChaCha20Poly1305::encrypt(std::string_view in, std::string* out)
 }
 
 //--------------------------------------------------------------------------------------------------
-bool DataCryptorChaCha20Poly1305::decrypt(std::string_view in, std::string* out)
+bool DataCryptorChaCha20Poly1305::decrypt(std::string in, std::string* out)
 {
     if (in.size() <= kHeaderSize)
     {
@@ -173,7 +173,7 @@ bool DataCryptorChaCha20Poly1305::decrypt(std::string_view in, std::string* out)
     int length;
 
     if (EVP_DecryptUpdate(cipher.get(),
-                          reinterpret_cast<uint8_t*>(out->data()),
+		const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(out->data())),
                           &length,
                           reinterpret_cast<const uint8_t*>(in.data()) + kHeaderSize,
                           static_cast<int>(in.size() - kHeaderSize)) != 1)
@@ -193,7 +193,7 @@ bool DataCryptorChaCha20Poly1305::decrypt(std::string_view in, std::string* out)
     }
 
     if (EVP_DecryptFinal_ex(cipher.get(),
-                            reinterpret_cast<uint8_t*>(out->data()) + length,
+		const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(out->data())) + length,
                             &length) <= 0)
     {
         LOG(LS_WARNING) << "EVP_DecryptFinal_ex failed";

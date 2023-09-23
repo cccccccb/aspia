@@ -28,13 +28,13 @@ using HostId = unsigned long long;
 extern const HostId kInvalidHostId;
 
 // Checks if a string is a host ID.
-bool isHostId(std::u16string_view str);
-bool isHostId(std::string_view str);
+bool isHostId(std::u16string str);
+bool isHostId(std::string str);
 
 // Converts a string to a host ID.
 // If the string is empty or the conversion failed, then |kInvalidHostId| is returned.
-HostId stringToHostId(std::u16string_view str);
-HostId stringToHostId(std::string_view str);
+HostId stringToHostId(std::u16string str);
+HostId stringToHostId(std::string str);
 
 // Converts a host ID to a string.
 // If the host ID is |kInvalidHostId|, an empty string is returned.

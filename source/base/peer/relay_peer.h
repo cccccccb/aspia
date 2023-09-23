@@ -20,14 +20,13 @@
 #define BASE_PEER_RELAY_PEER_H
 
 #include "base/macros_magic.h"
+#include "base/optional.hpp"
 #include "base/peer/host_id.h"
 #include "base/memory/byte_array.h"
 #include "proto/router_common.pb.h"
 #include "proto/router_peer.pb.h"
 
 #include <asio/ip/tcp.hpp>
-
-#include <optional>
 
 namespace base {
 

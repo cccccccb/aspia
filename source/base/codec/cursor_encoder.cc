@@ -41,7 +41,7 @@ constexpr uint32_t kHashingSeed = 5381;
 uint8_t* outputBuffer(proto::CursorShape* cursor_shape, size_t size)
 {
     cursor_shape->mutable_data()->resize(size);
-    return reinterpret_cast<uint8_t*>(cursor_shape->mutable_data()->data());
+    return const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(cursor_shape->mutable_data()->data()));
 }
 
 } // namespace
@@ -52,8 +52,8 @@ CursorEncoder::CursorEncoder()
 {
     LOG(LS_INFO) << "Ctor";
 
-    static_assert(kCacheSize >= 2 && kCacheSize <= 30);
-    static_assert(kCompressionRatio >= 1 && kCompressionRatio <= 22);
+    static_assert(kCacheSize >= 2 && kCacheSize <= 30, "");
+    static_assert(kCompressionRatio >= 1 && kCompressionRatio <= 22, "");
 
     // Reserve memory for the maximum number of elements in the cache.
     cache_.reserve(kCacheSize);

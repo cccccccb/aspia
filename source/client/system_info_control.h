@@ -19,9 +19,11 @@
 #ifndef CLIENT_SYSTEM_INFO_CONTROL_H
 #define CLIENT_SYSTEM_INFO_CONTROL_H
 
-namespace proto::system_info {
-class SystemInfoRequest;
-} // namespace proto::system_info
+namespace proto {
+	namespace system_info {
+		class SystemInfoRequest;
+	}  // namespace system_info
+} // namespace proto
 
 namespace client {
 

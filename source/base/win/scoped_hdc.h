@@ -23,87 +23,89 @@
 
 #include <Windows.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-// Like ScopedHandle but for HDC. Only use this on HDCs returned from GetDC.
-class ScopedGetDC
-{
-public:
-    ScopedGetDC() = default;
+		// Like ScopedHandle but for HDC. Only use this on HDCs returned from GetDC.
+		class ScopedGetDC
+		{
+		public:
+			ScopedGetDC() = default;
 
-    explicit ScopedGetDC(HWND hwnd)
-    {
-        getDC(hwnd);
-    }
+			explicit ScopedGetDC(HWND hwnd)
+			{
+				getDC(hwnd);
+			}
 
-    ~ScopedGetDC() { close(); }
+			~ScopedGetDC() { close(); }
 
-    void close()
-    {
-        if (hdc_)
-            ReleaseDC(hwnd_, hdc_);
+			void close()
+			{
+				if (hdc_)
+					ReleaseDC(hwnd_, hdc_);
 
-        hdc_ = nullptr;
-        hwnd_ = nullptr;
-    }
+				hdc_ = nullptr;
+				hwnd_ = nullptr;
+			}
 
-    void getDC(HWND hwnd)
-    {
-        close();
+			void getDC(HWND hwnd)
+			{
+				close();
 
-        hwnd_ = hwnd;
-        hdc_ = GetDC(hwnd);
-    }
+				hwnd_ = hwnd;
+				hdc_ = GetDC(hwnd);
+			}
 
-    bool isValid() const { return hdc_ != nullptr; }
-    operator HDC() const { return hdc_; }
+			bool isValid() const { return hdc_ != nullptr; }
+			operator HDC() const { return hdc_; }
 
-private:
-    HWND hwnd_ = nullptr;
-    HDC hdc_ = nullptr;
+		private:
+			HWND hwnd_ = nullptr;
+			HDC hdc_ = nullptr;
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedGetDC);
-};
+			DISALLOW_COPY_AND_ASSIGN(ScopedGetDC);
+		};
 
-// Like ScopedHandle but for HDC.  Only use this on HDCs returned from
-// CreateCompatibleDC, CreateDC and CreateIC.
-class ScopedCreateDC
-{
-public:
-    ScopedCreateDC() = default;
+		// Like ScopedHandle but for HDC.  Only use this on HDCs returned from
+		// CreateCompatibleDC, CreateDC and CreateIC.
+		class ScopedCreateDC
+		{
+		public:
+			ScopedCreateDC() = default;
 
-    explicit ScopedCreateDC(HDC h)
-        : hdc_(h)
-    {
-        // Nothing
-    }
+			explicit ScopedCreateDC(HDC h)
+				: hdc_(h)
+			{
+				// Nothing
+			}
 
-    ~ScopedCreateDC() { close(); }
+			~ScopedCreateDC() { close(); }
 
-    HDC get() { return hdc_; }
+			HDC get() { return hdc_; }
 
-    void reset(HDC h = nullptr)
-    {
-        close();
-        hdc_ = h;
-    }
+			void reset(HDC h = nullptr)
+			{
+				close();
+				hdc_ = h;
+			}
 
-    bool isValid() const { return hdc_ != nullptr; }
+			bool isValid() const { return hdc_ != nullptr; }
 
-    operator HDC() { return hdc_; }
+			operator HDC() { return hdc_; }
 
-private:
-    void close()
-    {
-        if (hdc_)
-            DeleteDC(hdc_);
-    }
+		private:
+			void close()
+			{
+				if (hdc_)
+					DeleteDC(hdc_);
+			}
 
-    HDC hdc_ = nullptr;
+			HDC hdc_ = nullptr;
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedCreateDC);
-};
+			DISALLOW_COPY_AND_ASSIGN(ScopedCreateDC);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SCOPED_HDC_H

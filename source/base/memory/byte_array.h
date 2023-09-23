@@ -31,10 +31,10 @@ using ByteArray = std::vector<uint8_t>;
 
 ByteArray fromData(const void* data, size_t size);
 
-ByteArray fromStdString(std::string_view in);
+ByteArray fromStdString(std::string in);
 std::string toStdString(const ByteArray& in);
 
-ByteArray fromHex(std::string_view in);
+ByteArray fromHex(std::string in);
 std::string toHex(const ByteArray& in);
 
 void append(ByteArray* in, const void* data, size_t size);

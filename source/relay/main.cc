@@ -17,6 +17,7 @@
 //
 
 #include "base/command_line.h"
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/files/base_paths.h"
 #include "build/version.h"
@@ -39,10 +40,10 @@ namespace {
 //--------------------------------------------------------------------------------------------------
 void createConfig()
 {
-    std::filesystem::path settings_file_path = relay::Settings::filePath();
+    ghc::filesystem::path settings_file_path = relay::Settings::filePath();
 
     std::error_code error_code;
-    if (std::filesystem::exists(settings_file_path, error_code))
+    if (ghc::filesystem::exists(settings_file_path, error_code))
     {
         std::cout << "Settings file already exists. Continuation is impossible." << std::endl;
         return;

@@ -27,6 +27,7 @@
 #include "base/message_loop/message_pump_asio.h"
 #include "base/net/tcp_channel_proxy.h"
 #include "base/strings/unicode.h"
+#include "base/optional.hpp"
 
 #include <asio/connect.hpp>
 #include <asio/read.hpp>
@@ -105,7 +106,7 @@ std::u16string TcpChannel::peerAddress() const
 }
 
 //--------------------------------------------------------------------------------------------------
-void TcpChannel::connect(std::u16string_view address, uint16_t port)
+void TcpChannel::connect(std::u16string address, uint16_t port)
 {
     if (connected_ || !resolver_)
         return;
@@ -551,7 +552,7 @@ void TcpChannel::onReadSize(const std::error_code& error_code, size_t bytes_tran
     // Update RX statistics.
     addRxBytes(bytes_transferred);
 
-    std::optional<size_t> size = variable_size_reader_.messageSize();
+    tl::optional<size_t> size = variable_size_reader_.messageSize();
     if (size.has_value())
     {
         size_t message_size = *size;

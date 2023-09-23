@@ -37,7 +37,7 @@ void IpcChannelProxy::send(ByteArray&& buffer)
     bool schedule_write;
 
     {
-        std::scoped_lock lock(incoming_queue_lock_);
+        std::lock_guard<std::mutex> lock(incoming_queue_lock_);
 
         schedule_write = incoming_queue_.empty();
         incoming_queue_.emplace(std::move(buffer));
@@ -73,7 +73,7 @@ bool IpcChannelProxy::reloadWriteQueue(std::queue<ByteArray>* work_queue)
     if (!work_queue->empty())
         return false;
 
-    std::scoped_lock lock(incoming_queue_lock_);
+    std::lock_guard<std::mutex> lock(incoming_queue_lock_);
 
     if (incoming_queue_.empty())
         return false;

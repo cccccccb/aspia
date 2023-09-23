@@ -77,7 +77,7 @@ std::unique_ptr<Client> QtFileManagerWindow::createClient()
 void QtFileManagerWindow::start(std::shared_ptr<FileControlProxy> file_control_proxy)
 {
     file_control_proxy_ = std::move(file_control_proxy);
-    DCHECK(file_control_proxy_);
+    //! DCHECK(file_control_proxy_);
 
     show();
     activateWindow();
@@ -104,7 +104,7 @@ void QtFileManagerWindow::onDriveList(
     }
     else
     {
-        DCHECK_EQ(target, common::FileTask::Target::REMOTE);
+        //! DCHECK_EQ(target, common::FileTask::Target::REMOTE);
         ui->remote_panel->onDriveList(error_code, drive_list);
     }
 }
@@ -119,7 +119,7 @@ void QtFileManagerWindow::onFileList(
     }
     else
     {
-        DCHECK_EQ(target, common::FileTask::Target::REMOTE);
+        //! DCHECK_EQ(target, common::FileTask::Target::REMOTE);
         ui->remote_panel->onFileList(error_code, file_list);
     }
 }
@@ -134,7 +134,7 @@ void QtFileManagerWindow::onCreateDirectory(
     }
     else
     {
-        DCHECK_EQ(target, common::FileTask::Target::REMOTE);
+        //! DCHECK_EQ(target, common::FileTask::Target::REMOTE);
         ui->remote_panel->onCreateDirectory(error_code);
     }
 }
@@ -148,7 +148,7 @@ void QtFileManagerWindow::onRename(common::FileTask::Target target, proto::FileE
     }
     else
     {
-        DCHECK_EQ(target, common::FileTask::Target::REMOTE);
+        //! DCHECK_EQ(target, common::FileTask::Target::REMOTE);
         ui->remote_panel->onRename(error_code);
     }
 }
@@ -232,7 +232,7 @@ void QtFileManagerWindow::removeItems(FilePanel* sender, const FileRemover::Task
     }
     else
     {
-        DCHECK_EQ(sender, ui->remote_panel);
+        //! DCHECK_EQ(sender, ui->remote_panel);
         target = common::FileTask::Target::REMOTE;
     }
 
@@ -251,7 +251,7 @@ void QtFileManagerWindow::sendItems(FilePanel* sender, const std::vector<FileTra
     }
     else
     {
-        DCHECK(sender == ui->remote_panel);
+        //! DCHECK(sender == ui->remote_panel);
 
         transferItems(FileTransfer::Type::DOWNLOADER,
                       ui->remote_panel->currentPath(),
@@ -274,7 +274,7 @@ void QtFileManagerWindow::receiveItems(FilePanel* sender,
     }
     else
     {
-        DCHECK(sender == ui->remote_panel);
+        //! DCHECK(sender == ui->remote_panel);
 
         transferItems(FileTransfer::Type::UPLOADER,
                       ui->local_panel->currentPath(),
@@ -318,7 +318,7 @@ void QtFileManagerWindow::onPathChanged(FilePanel* sender, const QString& path)
     }
     else
     {
-        DCHECK(sender == ui->remote_panel);
+        //! DCHECK(sender == ui->remote_panel);
         ui->local_panel->setTransferAllowed(allow);
 
     }

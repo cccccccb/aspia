@@ -278,7 +278,8 @@ void AboutDialog::onServiceContextMenu(const QPoint& pos)
         for (int i = 0; i < list->count(); ++i)
         {
             QListWidgetItem* item = list->item(i);
-            stream << item->text() << Qt::endl;
+            stream << item->text();
+            endl(stream);
         }
     }
 }

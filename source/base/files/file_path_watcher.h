@@ -20,8 +20,8 @@
 #define BASE_FILES_FILE_PATH_WATCHER_H
 
 #include "base/macros_magic.h"
+#include "base/filesystem.hpp"
 
-#include <filesystem>
 #include <functional>
 #include <memory>
 
@@ -29,8 +29,8 @@ namespace base {
 
 class TaskRunner;
 
-// This class lets you register interest in changes on a std::filesystem::path. The callback will
-// get called whenever the file or directory referenced by the std::filesystem::path is changed,
+// This class lets you register interest in changes on a ghc::filesystem::path. The callback will
+// get called whenever the file or directory referenced by the ghc::filesystem::path is changed,
 // including created or deleted. Due to limitations in the underlying OS APIs, FilePathWatcher has
 // slightly different semantics on OS X than on Windows or Linux. FilePathWatcher on Linux and
 // Windows will detect modifications to files in a watched directory. FilePathWatcher on Mac will
@@ -44,7 +44,7 @@ public:
     // Callback type for watch(). |path| points to the file that was updated, and |error| is true
     // if the platform specific code detected an error. In that case, the callback won't be invoked
     // again.
-    using Callback = std::function<void(const std::filesystem::path& path, bool error)>;
+    using Callback = std::function<void(const ghc::filesystem::path& path, bool error)>;
 
     // Used internally to encapsulate different members on different platforms.
     class PlatformDelegate
@@ -54,7 +54,7 @@ public:
         virtual ~PlatformDelegate();
 
         // Start watching for the given |path| and notify |delegate| about changes.
-        virtual bool watch(const std::filesystem::path& path,
+        virtual bool watch(const ghc::filesystem::path& path,
                            bool recursive,
                            const Callback& callback) = 0;
 
@@ -102,7 +102,7 @@ public:
     //
     // Recursive watch is not supported on all platforms and file systems. Watch() will return
     // false in the case of failure.
-    bool watch(const std::filesystem::path& path, bool recursive, const Callback& callback);
+    bool watch(const ghc::filesystem::path& path, bool recursive, const Callback& callback);
 
 private:
     std::shared_ptr<PlatformDelegate> impl_;

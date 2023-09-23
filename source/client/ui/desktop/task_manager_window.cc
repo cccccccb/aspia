@@ -497,7 +497,7 @@ TaskManagerWindow::TaskManagerWindow(QWidget* parent)
     else if (update_speed == std::chrono::milliseconds(0))
         ui.action_disable_update->setChecked(true);
 
-    update_timer_->start(update_speed);
+    update_timer_->start(update_speed.count());
 
     QTimer::singleShot(0, this, [this]()
     {
@@ -974,11 +974,11 @@ void TaskManagerWindow::addUpdateItems(QMenu* parent_menu)
     connect(update_group, &QActionGroup::triggered, this, [this](QAction* action)
     {
         if (action == ui.action_high_speed)
-            update_timer_->start(std::chrono::milliseconds(500));
+            update_timer_->start(500);
         else if (action == ui.action_medium_speed)
-            update_timer_->start(std::chrono::milliseconds(1000));
+            update_timer_->start(1000);
         else if (action == ui.action_low_speed)
-            update_timer_->start(std::chrono::milliseconds(3000));
+            update_timer_->start(3000);
         else if (action == ui.action_disable_update)
             update_timer_->stop();
     });

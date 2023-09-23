@@ -27,11 +27,11 @@ namespace base {
 class DataCryptorChaCha20Poly1305 : public DataCryptor
 {
 public:
-    explicit DataCryptorChaCha20Poly1305(std::string_view key);
+    explicit DataCryptorChaCha20Poly1305(std::string key);
     ~DataCryptorChaCha20Poly1305() override;
 
-    bool encrypt(std::string_view in, std::string* out) override;
-    bool decrypt(std::string_view in, std::string* out) override;
+    bool encrypt(std::string in, std::string* out) override;
+    bool decrypt(std::string in, std::string* out) override;
 
 private:
     std::string key_;

@@ -388,7 +388,7 @@ RouterManagerWindow::RouterManagerWindow(QWidget* parent)
     {
         refreshSessionList();
     });
-    update_timer->start(std::chrono::seconds(3));
+    update_timer->start(3000);
 }
 
 //--------------------------------------------------------------------------------------------------

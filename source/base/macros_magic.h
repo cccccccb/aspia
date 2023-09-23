@@ -39,4 +39,6 @@
     TypeName() = delete;                         \
     DISALLOW_COPY_AND_ASSIGN(TypeName)
 
+#include <memory>
+
 #endif // BASE_MACROS_MAGIC_H

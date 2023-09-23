@@ -227,7 +227,7 @@ void MessageLoop::addToIncomingQueue(
     bool empty;
 
     {
-        std::scoped_lock lock(incoming_queue_lock_);
+        std::lock_guard<std::mutex> lock(incoming_queue_lock_);
 
         empty = incoming_queue_.empty();
 
@@ -249,7 +249,7 @@ void MessageLoop::reloadWorkQueue()
     if (!work_queue_.empty())
         return;
 
-    std::scoped_lock lock(incoming_queue_lock_);
+    std::lock_guard<std::mutex> lock(incoming_queue_lock_);
 
     if (incoming_queue_.empty())
         return;

@@ -20,35 +20,36 @@
 #define BASE_WIN_DEVICE_H
 
 #include "base/win/scoped_object.h"
+#include "base/filesystem.hpp"
 
-#include <filesystem>
+namespace base {
+	namespace win {
 
-namespace base::win {
+		class Device
+		{
+		public:
+			Device() = default;
+			virtual ~Device();
 
-class Device
-{
-public:
-    Device() = default;
-    virtual ~Device();
+			bool open(const ghc::filesystem::path& device_path,
+				DWORD desired_access,
+				DWORD share_mode);
+			bool open(const ghc::filesystem::path& device_path);
+			void close();
+			bool ioControl(DWORD io_control_code,
+				LPVOID input_buffer,
+				DWORD input_buffer_size,
+				LPVOID output_buffer,
+				DWORD output_buffer_size,
+				LPDWORD bytes_returned);
 
-    bool open(const std::filesystem::path& device_path,
-              DWORD desired_access,
-              DWORD share_mode);
-    bool open(const std::filesystem::path& device_path);
-    void close();
-    bool ioControl(DWORD io_control_code,
-                   LPVOID input_buffer,
-                   DWORD input_buffer_size,
-                   LPVOID output_buffer,
-                   DWORD output_buffer_size,
-                   LPDWORD bytes_returned);
+		private:
+			ScopedHandle device_;
 
-private:
-    ScopedHandle device_;
+			DISALLOW_COPY_AND_ASSIGN(Device);
+		};
 
-    DISALLOW_COPY_AND_ASSIGN(Device);
-};
-
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_DEVICE_H

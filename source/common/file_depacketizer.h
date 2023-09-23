@@ -20,9 +20,9 @@
 #define COMMON_FILE_DEPACKETIZER_H
 
 #include "base/macros_magic.h"
+#include "base/filesystem.hpp"
 #include "proto/file_transfer.pb.h"
 
-#include <filesystem>
 #include <fstream>
 #include <memory>
 
@@ -33,16 +33,16 @@ class FileDepacketizer
 public:
     ~FileDepacketizer();
 
-    static std::unique_ptr<FileDepacketizer> create(const std::filesystem::path& file_path,
+    static std::unique_ptr<FileDepacketizer> create(const ghc::filesystem::path& file_path,
                                                     bool overwrite);
 
     // Reads the packet and writes its contents to a file.
     bool writeNextPacket(const proto::FilePacket& packet);
 
 private:
-    FileDepacketizer(const std::filesystem::path& file_path, std::ofstream&& file_stream);
+    FileDepacketizer(const ghc::filesystem::path& file_path, std::ofstream&& file_stream);
 
-    std::filesystem::path file_path_;
+    ghc::filesystem::path file_path_;
     std::ofstream file_stream_;
 
     uint64_t file_size_ = 0;

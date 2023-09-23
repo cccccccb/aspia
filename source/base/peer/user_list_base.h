@@ -29,7 +29,7 @@ public:
     virtual ~UserListBase() = default;
 
     virtual void add(const User& user) = 0;
-    virtual User find(std::u16string_view username) const = 0;
+    virtual User find(std::u16string username) const = 0;
     virtual const ByteArray& seedKey() const = 0;
     virtual void setSeedKey(const ByteArray& seed_key) = 0;
     virtual std::vector<User> list() const = 0;

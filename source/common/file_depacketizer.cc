@@ -18,12 +18,14 @@
 
 #include "common/file_depacketizer.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
+#include "base/filesystem.hpp"
 
 namespace common {
 
 //--------------------------------------------------------------------------------------------------
-FileDepacketizer::FileDepacketizer(const std::filesystem::path& file_path,
+FileDepacketizer::FileDepacketizer(const ghc::filesystem::path& file_path,
                                    std::ofstream&& file_stream)
     : file_path_(file_path),
       file_stream_(std::move(file_stream))
@@ -41,14 +43,14 @@ FileDepacketizer::~FileDepacketizer()
 
         // The transfer of files was canceled. Delete the file.
         std::error_code ignored_error;
-        std::filesystem::remove(file_path_, ignored_error);
+        ghc::filesystem::remove(file_path_, ignored_error);
     }
 }
 
 //--------------------------------------------------------------------------------------------------
 // static
 std::unique_ptr<FileDepacketizer> FileDepacketizer::create(
-    const std::filesystem::path& file_path, bool overwrite)
+    const ghc::filesystem::path& file_path, bool overwrite)
 {
     std::ofstream::openmode mode = std::ofstream::binary;
 

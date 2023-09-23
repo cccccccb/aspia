@@ -29,7 +29,7 @@ void MessagePumpForAsio::run(Delegate* delegate)
 {
     DCHECK(keep_running_) << "Quit must have been called outside of run!";
 
-    asio::executor_work_guard work_guard = asio::make_work_guard(io_context_);
+    auto work_guard = asio::make_work_guard(io_context_);
 
     for (;;)
     {

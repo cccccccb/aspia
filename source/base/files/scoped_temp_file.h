@@ -20,8 +20,8 @@
 #define BASE_FILES_SCOPED_TEMP_FILE_H
 
 #include "base/macros_magic.h"
+#include "base/filesystem.hpp"
 
-#include <filesystem>
 #include <fstream>
 
 namespace base {
@@ -29,14 +29,14 @@ namespace base {
 class ScopedTempFile
 {
 public:
-    explicit ScopedTempFile(const std::filesystem::path& file_path);
+    explicit ScopedTempFile(const ghc::filesystem::path& file_path);
     ~ScopedTempFile();
 
-    const std::filesystem::path& filePath() const;
+    const ghc::filesystem::path& filePath() const;
     std::fstream& stream();
 
 private:
-    std::filesystem::path file_path_;
+    ghc::filesystem::path file_path_;
     std::fstream stream_;
 
     DISALLOW_COPY_AND_ASSIGN(ScopedTempFile);

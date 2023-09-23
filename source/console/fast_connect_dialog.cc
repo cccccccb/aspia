@@ -18,6 +18,7 @@
 
 #include "console/fast_connect_dialog.h"
 
+#include "base/optional.hpp"
 #include "base/logging.h"
 #include "base/net/address.h"
 #include "build/build_config.h"
@@ -43,7 +44,7 @@ namespace console {
 FastConnectDialog::FastConnectDialog(QWidget* parent,
                                      const QString& address_book_guid,
                                      const proto::address_book::ComputerGroupConfig& default_config,
-                                     const std::optional<client::RouterConfig>& router_config)
+                                     const tl::optional<client::RouterConfig>& router_config)
     : QDialog(parent),
       address_book_guid_(address_book_guid),
       default_config_(default_config),

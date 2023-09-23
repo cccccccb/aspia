@@ -18,6 +18,7 @@
 
 #include "client/ui/desktop/qt_desktop_window.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/stl_util.h"
 #include "base/desktop/mouse_cursor.h"
@@ -244,7 +245,7 @@ QtDesktopWindow::QtDesktopWindow(proto::SessionType session_type,
 
     connect(toolbar_, &DesktopToolBar::sig_recordingStateChanged, this, [this](bool enable)
     {
-        std::filesystem::path file_path;
+        ghc::filesystem::path file_path;
 
         if (enable)
         {
@@ -329,7 +330,7 @@ void QtDesktopWindow::setCapabilities(const proto::DesktopCapabilities& capabili
     video_encodings_ = capabilities.video_encodings();
 
     // The list of extensions is passed as a string. Extensions are separated by a semicolon.
-    std::vector<std::string_view> extensions_list = base::splitStringView(
+    std::vector<std::string> extensions_list = base::splitStringView(
         capabilities.extensions(), ";", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
 
     // By default, remote update is disabled.
@@ -519,11 +520,14 @@ void QtDesktopWindow::setMouseCursor(std::shared_ptr<base::MouseCursor> mouse_cu
     QWidget* current_window = window();
     if (current_window)
     {
-        QScreen* current_screen = current_window->screen();
-        if (current_screen)
+        if (QWindow *currentWindowHandle = current_window->windowHandle())
         {
-            local_dpi.setX(static_cast<int32_t>(current_screen->logicalDotsPerInchX()));
-            local_dpi.setY(static_cast<int32_t>(current_screen->logicalDotsPerInchY()));
+            QScreen* current_screen = currentWindowHandle->screen();
+            if (current_screen)
+            {
+                local_dpi.setX(static_cast<int32_t>(current_screen->logicalDotsPerInchX()));
+                local_dpi.setY(static_cast<int32_t>(current_screen->logicalDotsPerInchY()));
+            }
         }
     }
 
@@ -695,7 +699,7 @@ bool QtDesktopWindow::eventFilter(QObject* object, QEvent* event)
         if (event->type() == QEvent::Wheel)
         {
             QWheelEvent* wheel_event = static_cast<QWheelEvent*>(event);
-            QPoint pos = desktop_->mapFromGlobal(wheel_event->globalPosition().toPoint());
+            QPoint pos = desktop_->mapFromGlobal(wheel_event->globalPos());
 
             desktop_->doMouseEvent(wheel_event->type(),
                                    wheel_event->buttons(),
@@ -816,7 +820,7 @@ void QtDesktopWindow::onMouseEvent(const proto::MouseEvent& event)
         if (!scroll_delta_.isNull())
         {
             if (!scroll_timer_->isActive())
-                scroll_timer_->start(std::chrono::milliseconds(15));
+                scroll_timer_->start(15);
         }
         else if (scroll_timer_->isActive())
         {
@@ -902,7 +906,15 @@ void QtDesktopWindow::autosizeWindow()
     if (screen_size_.isEmpty())
         return;
 
-    QScreen* current_screen = window()->screen();
+    QWidget *window  = this->window();
+    if (!window)
+        return;
+
+    QWindow *windowHandle = window->windowHandle();
+    if (!windowHandle)
+        return;
+
+    QScreen* current_screen = windowHandle->screen();
     QRect local_screen_rect = current_screen->availableGeometry();
     QSize window_size = screen_size_ + frameSize() - size();
 
@@ -915,7 +927,7 @@ void QtDesktopWindow::autosizeWindow()
 
         resize(remote_screen_size);
         move(local_screen_rect.x() + (local_screen_rect.width() / 2 - window_size.width() / 2),
-             local_screen_rect.y() + (local_screen_rect.height() / 2 - window_size.height() / 2));
+            local_screen_rect.y() + (local_screen_rect.height() / 2 - window_size.height() / 2));
     }
     else
     {
@@ -975,7 +987,7 @@ void QtDesktopWindow::scaleDesktop()
         resize_timer_->stop();
 
     LOG(LS_INFO) << "Starting resize timer";
-    resize_timer_->start(std::chrono::milliseconds(500));
+    resize_timer_->start(500);
 }
 
 //--------------------------------------------------------------------------------------------------

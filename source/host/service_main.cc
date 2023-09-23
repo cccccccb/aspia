@@ -18,7 +18,9 @@
 
 #include "host/service_main.h"
 
+#include "base/filesystem.hpp"
 #include "base/command_line.h"
+#include "base/optional.hpp"
 #include "base/environment.h"
 #include "base/scoped_logging.h"
 #include "base/sys_info.h"
@@ -95,7 +97,7 @@ void stopService()
 //--------------------------------------------------------------------------------------------------
 void installService()
 {
-    std::filesystem::path file_path;
+    ghc::filesystem::path file_path;
 
     if (!base::BasePaths::currentExecFile(&file_path))
     {
@@ -139,12 +141,12 @@ void removeService()
 #endif // defined(OS_WIN)
 
 //--------------------------------------------------------------------------------------------------
-std::optional<std::string> currentSessionName()
+tl::optional<std::string> currentSessionName()
 {
 #if defined(OS_WIN)
     DWORD process_session_id = 0;
     if (!ProcessIdToSessionId(GetCurrentProcessId(), &process_session_id))
-        return std::nullopt;
+        return tl::nullopt;
 
     DWORD console_session_id = WTSGetActiveConsoleSessionId();
     if (console_session_id == process_session_id)
@@ -152,13 +154,13 @@ std::optional<std::string> currentSessionName()
 
     base::win::SessionInfo current_session_info(process_session_id);
     if (!current_session_info.isValid())
-        return std::nullopt;
+        return tl::nullopt;
 
     std::u16string user_name = base::toLower(current_session_info.userName16());
     std::u16string domain = base::toLower(current_session_info.domain16());
 
     if (user_name.empty())
-        return std::nullopt;
+        return tl::nullopt;
 
     using TimeInfo = std::pair<base::SessionId, int64_t>;
     using TimeInfoList = std::vector<TimeInfo>;
@@ -205,7 +207,7 @@ std::optional<std::string> currentSessionName()
 
     return std::move(session_name);
 #else
-    return std::nullopt;
+    return tl::nullopt;
 #endif
 }
 
@@ -251,7 +253,7 @@ int hostServiceMain(int argc, char* argv[])
     }
     else if (command_line->hasSwitch(u"host-id"))
     {
-        std::optional<std::string> session_name = currentSessionName();
+        tl::optional<std::string> session_name = currentSessionName();
         if (!session_name.has_value())
             return 0;
 
@@ -395,7 +397,7 @@ int hostServiceMain(int argc, wchar_t* argv[])
         }
         else if (command_line->hasSwitch(u"host-id"))
         {
-            std::optional<std::string> session_name = currentSessionName();
+            tl::optional<std::string> session_name = currentSessionName();
             if (!session_name.has_value())
                 return 0;
 

@@ -64,7 +64,7 @@ void strAppendT(DestString* dest, std::initializer_list<InputString> pieces)
 }  // namespace
 
 //--------------------------------------------------------------------------------------------------
-std::string strCat(std::initializer_list<std::string_view> pieces)
+std::string strCat(std::initializer_list<std::string> pieces)
 {
     std::string result;
     strAppendT(&result, pieces);
@@ -72,7 +72,7 @@ std::string strCat(std::initializer_list<std::string_view> pieces)
 }
 
 //--------------------------------------------------------------------------------------------------
-std::u16string strCat(std::initializer_list<std::u16string_view> pieces)
+std::u16string strCat(std::initializer_list<std::u16string> pieces)
 {
     std::u16string result;
     strAppendT(&result, pieces);
@@ -80,13 +80,13 @@ std::u16string strCat(std::initializer_list<std::u16string_view> pieces)
 }
 
 //--------------------------------------------------------------------------------------------------
-void strAppend(std::string* dest, std::initializer_list<std::string_view> pieces)
+void strAppend(std::string* dest, std::initializer_list<std::string> pieces)
 {
     strAppendT(dest, pieces);
 }
 
 //--------------------------------------------------------------------------------------------------
-void strAppend(std::u16string* dest, std::initializer_list<std::u16string_view> pieces)
+void strAppend(std::u16string* dest, std::initializer_list<std::u16string> pieces)
 {
     strAppendT(dest, pieces);
 }

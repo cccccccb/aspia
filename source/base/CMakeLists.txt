@@ -74,7 +74,9 @@ list(APPEND SOURCE_BASE
     waitable_event.cc
     waitable_event.h
     waitable_timer.cc
-    waitable_timer.h)
+    waitable_timer.h
+    optional.hpp
+    filesystem.hpp)
 
 if (WIN32)
     list(APPEND SOURCE_BASE
@@ -760,6 +762,7 @@ endif()
 
 add_library(aspia_base STATIC
     ${SOURCE_BASE}
+    ${SOURCE_BASE_STANDARD}
     ${SOURCE_BASE_AUDIO}
     ${SOURCE_BASE_AUDIO_LINUX}
     ${SOURCE_BASE_AUDIO_WIN}

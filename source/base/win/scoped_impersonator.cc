@@ -19,74 +19,76 @@
 #include "base/win/scoped_impersonator.h"
 #include "base/logging.h"
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-//--------------------------------------------------------------------------------------------------
-ScopedImpersonator::ScopedImpersonator() = default;
+		//--------------------------------------------------------------------------------------------------
+		ScopedImpersonator::ScopedImpersonator() = default;
 
-//--------------------------------------------------------------------------------------------------
-ScopedImpersonator::~ScopedImpersonator()
-{
-    revertToSelf();
-}
+		//--------------------------------------------------------------------------------------------------
+		ScopedImpersonator::~ScopedImpersonator()
+		{
+			revertToSelf();
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool ScopedImpersonator::loggedOnUser(HANDLE user_token)
-{
-    DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
+		//--------------------------------------------------------------------------------------------------
+		bool ScopedImpersonator::loggedOnUser(HANDLE user_token)
+		{
+			DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
 
-    if (!ImpersonateLoggedOnUser(user_token))
-    {
-        PLOG(LS_ERROR) << "ImpersonateLoggedOnUser failed";
-        return false;
-    }
+			if (!ImpersonateLoggedOnUser(user_token))
+			{
+				PLOG(LS_ERROR) << "ImpersonateLoggedOnUser failed";
+				return false;
+			}
 
-    impersonated_ = true;
-    return true;
-}
+			impersonated_ = true;
+			return true;
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool ScopedImpersonator::anonymous()
-{
-    DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
+		//--------------------------------------------------------------------------------------------------
+		bool ScopedImpersonator::anonymous()
+		{
+			DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
 
-    if (!ImpersonateAnonymousToken(GetCurrentThread()))
-    {
-        PLOG(LS_ERROR) << "ImpersonateAnonymousToken failed";
-        return false;
-    }
+			if (!ImpersonateAnonymousToken(GetCurrentThread()))
+			{
+				PLOG(LS_ERROR) << "ImpersonateAnonymousToken failed";
+				return false;
+			}
 
-    impersonated_ = true;
-    return true;
-}
+			impersonated_ = true;
+			return true;
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool ScopedImpersonator::namedPipeClient(HANDLE named_pipe)
-{
-    DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
+		//--------------------------------------------------------------------------------------------------
+		bool ScopedImpersonator::namedPipeClient(HANDLE named_pipe)
+		{
+			DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
 
-    if (!ImpersonateNamedPipeClient(named_pipe))
-    {
-        PLOG(LS_ERROR) << "ImpersonateNamedPipeClient failed";
-        return false;
-    }
+			if (!ImpersonateNamedPipeClient(named_pipe))
+			{
+				PLOG(LS_ERROR) << "ImpersonateNamedPipeClient failed";
+				return false;
+			}
 
-    impersonated_ = true;
-    return true;
-}
+			impersonated_ = true;
+			return true;
+		}
 
-//--------------------------------------------------------------------------------------------------
-void ScopedImpersonator::revertToSelf()
-{
-    DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
+		//--------------------------------------------------------------------------------------------------
+		void ScopedImpersonator::revertToSelf()
+		{
+			DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
 
-    if (!impersonated_)
-        return;
+			if (!impersonated_)
+				return;
 
-    BOOL ret = RevertToSelf();
-    CHECK(ret);
+			BOOL ret = RevertToSelf();
+			CHECK(ret);
 
-    impersonated_ = false;
-}
+			impersonated_ = false;
+		}
 
+	}
 } // namespace base::win

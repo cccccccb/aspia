@@ -30,8 +30,8 @@ public:
     DataCryptorFake() = default;
     ~DataCryptorFake() override = default;
 
-    bool encrypt(std::string_view in, std::string* out) override;
-    bool decrypt(std::string_view in, std::string* out) override;
+    bool encrypt(std::string in, std::string* out) override;
+    bool decrypt(std::string in, std::string* out) override;
 
 private:
     DISALLOW_COPY_AND_ASSIGN(DataCryptorFake);

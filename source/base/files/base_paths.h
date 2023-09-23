@@ -20,9 +20,10 @@
 #define BASE_FILES_BASE_PATHS_H
 
 #include "base/macros_magic.h"
+#include "base/filesystem.hpp"
+
 #include "build/build_config.h"
 
-#include <filesystem>
 
 namespace base {
 
@@ -31,32 +32,32 @@ class BasePaths
 public:
 #if defined(OS_WIN)
     // Windows directory, usually "c:\windows".
-    static bool windowsDir(std::filesystem::path* result);
+    static bool windowsDir(ghc::filesystem::path* result);
 
     // Usually c:\windows\system32".
-    static bool systemDir(std::filesystem::path* result);
+    static bool systemDir(ghc::filesystem::path* result);
 #endif // defined(OS_WIN)
 
     // Application Data directory under the user profile.
-    static bool userAppData(std::filesystem::path* result);
+    static bool userAppData(ghc::filesystem::path* result);
 
     // The current user's Desktop.
-    static bool userDesktop(std::filesystem::path* result);
+    static bool userDesktop(ghc::filesystem::path* result);
 
     // The current user's Home.
-    static bool userHome(std::filesystem::path* result);
+    static bool userHome(ghc::filesystem::path* result);
 
     // Usually "C:\ProgramData".
-    static bool commonAppData(std::filesystem::path* result);
+    static bool commonAppData(ghc::filesystem::path* result);
 
     // Directory for the common desktop (visible on all user's Desktop).
-    static bool commonDesktop(std::filesystem::path* result);
+    static bool commonDesktop(ghc::filesystem::path* result);
 
     // Directory of the current executable.
-    static bool currentExecDir(std::filesystem::path* result);
+    static bool currentExecDir(ghc::filesystem::path* result);
 
     // The path to the current executable file.
-    static bool currentExecFile(std::filesystem::path* result);
+    static bool currentExecFile(ghc::filesystem::path* result);
 
 private:
     DISALLOW_COPY_AND_ASSIGN(BasePaths);

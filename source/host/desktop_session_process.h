@@ -22,14 +22,14 @@
 #include "build/build_config.h"
 #include "base/macros_magic.h"
 #include "base/session_id.h"
+#include "base/filesystem.hpp"
 
 #if defined(OS_WIN)
 #include "base/win/scoped_object.h"
 #endif // defined(OS_WIN)
 
-#include <filesystem>
 #include <memory>
-#include <string_view>
+#include <string>
 
 namespace ipc {
 class Channel;
@@ -43,8 +43,8 @@ public:
     ~DesktopSessionProcess();
 
     static std::unique_ptr<DesktopSessionProcess> create(
-        base::SessionId session_id, std::u16string_view channel_id);
-    static std::filesystem::path filePath();
+        base::SessionId session_id, std::u16string channel_id);
+    static ghc::filesystem::path filePath();
 
     void kill();
 

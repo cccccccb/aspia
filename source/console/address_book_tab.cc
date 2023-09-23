@@ -18,6 +18,7 @@
 
 #include "console/address_book_tab.h"
 
+#include "base/optional.hpp"
 #include "base/logging.h"
 #include "base/crypto/data_cryptor_chacha20_poly1305.h"
 #include "base/crypto/data_cryptor_fake.h"
@@ -370,10 +371,10 @@ bool AddressBookTab::isRouterEnabled() const
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<client::RouterConfig> AddressBookTab::routerConfig() const
+tl::optional<client::RouterConfig> AddressBookTab::routerConfig() const
 {
     if (!data_.enable_router())
-        return std::nullopt;
+        return tl::nullopt;
 
     const proto::address_book::Router& router = data_.router();
     client::RouterConfig router_config;

@@ -18,6 +18,8 @@
 
 #include "host/user_session_manager.h"
 
+#include "base/filesystem.hpp"
+#include "base/optional.hpp"
 #include "base/command_line.h"
 #include "base/location.h"
 #include "base/logging.h"
@@ -344,7 +346,7 @@ void UserSessionManager::onHostIdChanged(const std::string& session_name, base::
     // Send an event of each session.
     for (const auto& session : sessions_)
     {
-        std::optional<std::string> name = session->sessionName();
+        tl::optional<std::string> name = session->sessionName();
         if (name.has_value() && name == session_name)
         {
             LOG(LS_INFO) << "Session '" << session_name << "' found. Host ID assigned";
@@ -508,7 +510,7 @@ void UserSessionManager::onNewConnection(std::unique_ptr<base::IpcChannel> chann
     LOG(LS_INFO) << "New IPC connection";
 
 #if defined(OS_WIN)
-    std::filesystem::path reference_path;
+    ghc::filesystem::path reference_path;
     if (!base::BasePaths::currentExecDir(&reference_path))
     {
         LOG(LS_WARNING) << "currentExecDir failed";
@@ -647,7 +649,7 @@ void UserSessionManager::startSessionProcess(
         LOG(LS_INFO) << "Session has UNLOCKED user (sid: " << session_id << ")";
     }
 
-    std::filesystem::path file_path;
+    ghc::filesystem::path file_path;
     if (!base::BasePaths::currentExecDir(&file_path))
     {
         LOG(LS_WARNING) << "Failed to get current exec directory (sid: " << session_id << ")";
@@ -666,8 +668,8 @@ void UserSessionManager::startSessionProcess(
     }
 #elif defined(OS_LINUX)
     std::error_code ignored_error;
-    std::filesystem::directory_iterator it("/usr/share/xsessions/", ignored_error);
-    if (it == std::filesystem::end(it))
+    ghc::filesystem::directory_iterator it("/usr/share/xsessions/", ignored_error);
+    if (it == ghc::filesystem::end(it))
     {
         LOG(LS_WARNING) << "No X11 sessions";
         return;
@@ -687,14 +689,14 @@ void UserSessionManager::startSessionProcess(
 
         if (base::contains(line, u":0") || base::contains(line, u"tty2"))
         {
-            std::vector<std::u16string_view> splitted = base::splitStringView(
+            std::vector<std::u16string> splitted = base::splitStringView(
                 line, u" ", base::TRIM_WHITESPACE, base::SPLIT_WANT_NONEMPTY);
 
             if (!splitted.empty())
             {
                 std::string user_name = base::local8BitFromUtf16(splitted.front());
 
-                std::filesystem::path file_path;
+                ghc::filesystem::path file_path;
                 if (!base::BasePaths::currentExecDir(&file_path))
                 {
                     LOG(LS_WARNING) << "Failed to get current exec directory (sid: " << session_id << ")";

@@ -23,40 +23,42 @@
 
 #include <string>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class DeviceEnumerator
-{
-public:
-    DeviceEnumerator();
-    virtual ~DeviceEnumerator();
+		class DeviceEnumerator
+		{
+		public:
+			DeviceEnumerator();
+			virtual ~DeviceEnumerator();
 
-    bool isAtEnd() const;
-    void advance();
+			bool isAtEnd() const;
+			void advance();
 
-    std::string friendlyName() const;
-    std::string description() const;
-    std::string driverVersion() const;
-    std::string driverDate() const;
-    std::string driverVendor() const;
-    std::string deviceID() const;
+			std::string friendlyName() const;
+			std::string description() const;
+			std::string driverVersion() const;
+			std::string driverDate() const;
+			std::string driverVendor() const;
+			std::string deviceID() const;
 
-protected:
-    DeviceEnumerator(const GUID* class_guid, DWORD flags);
+		protected:
+			DeviceEnumerator(const GUID* class_guid, DWORD flags);
 
-    std::wstring driverRegistryString(const wchar_t* key_name) const;
-    DWORD driverRegistryDW(const wchar_t* key_name) const;
+			std::wstring driverRegistryString(const wchar_t* key_name) const;
+			DWORD driverRegistryDW(const wchar_t* key_name) const;
 
-private:
-    std::wstring driverKeyPath() const;
+		private:
+			std::wstring driverKeyPath() const;
 
-    ScopedDeviceInfo device_info_;
-    mutable SP_DEVINFO_DATA device_info_data_;
-    DWORD device_index_ = 0;
+			ScopedDeviceInfo device_info_;
+			mutable SP_DEVINFO_DATA device_info_data_;
+			DWORD device_index_ = 0;
 
-    DISALLOW_COPY_AND_ASSIGN(DeviceEnumerator);
-};
+			DISALLOW_COPY_AND_ASSIGN(DeviceEnumerator);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_DEVICE_ENUMERATOR_H

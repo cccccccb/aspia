@@ -19,13 +19,12 @@
 #ifndef CONSOLE_MAIN_WINDOW_H
 #define CONSOLE_MAIN_WINDOW_H
 
+#include "base/optional.hpp"
 #include "client/router_config.h"
 #include "common/update_checker.h"
 #include "console/mru.h"
 #include "proto/address_book.pb.h"
 #include "ui_main_window.h"
-
-#include <optional>
 
 class QSystemTrayIcon;
 
@@ -107,7 +106,7 @@ private:
     bool hasChangedTabs() const;
     bool hasUnpinnedTabs() const;
     void connectToComputer(const proto::address_book::Computer& computer,
-                           const std::optional<client::RouterConfig>& router_config);
+                           const tl::optional<client::RouterConfig>& router_config);
     void connectToRouter();
 
     Ui::ConsoleMainWindow ui;

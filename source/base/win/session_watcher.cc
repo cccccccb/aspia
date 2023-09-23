@@ -23,75 +23,77 @@
 
 #include <WtsApi32.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-//--------------------------------------------------------------------------------------------------
-SessionWatcher::SessionWatcher() = default;
+		//--------------------------------------------------------------------------------------------------
+		SessionWatcher::SessionWatcher() = default;
 
-//--------------------------------------------------------------------------------------------------
-SessionWatcher::~SessionWatcher()
-{
-    stop();
-}
+		//--------------------------------------------------------------------------------------------------
+		SessionWatcher::~SessionWatcher()
+		{
+			stop();
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool SessionWatcher::start(Delegate* delegate)
-{
-    if (window_)
-        return false;
+		//--------------------------------------------------------------------------------------------------
+		bool SessionWatcher::start(Delegate* delegate)
+		{
+			if (window_)
+				return false;
 
-    delegate_ = delegate;
-    DCHECK(delegate_);
+			delegate_ = delegate;
+			DCHECK(delegate_);
 
-    std::unique_ptr<MessageWindow> window = std::make_unique<MessageWindow>();
+			std::unique_ptr<MessageWindow> window = std::make_unique<MessageWindow>();
 
-    if (!window->create(std::bind(&SessionWatcher::onMessage,
-                                  this,
-                                  std::placeholders::_1, std::placeholders::_2,
-                                  std::placeholders::_3, std::placeholders::_4)))
-    {
-        LOG(LS_ERROR) << "Unable to create window";
-        return false;
-    }
+			if (!window->create(std::bind(&SessionWatcher::onMessage,
+				this,
+				std::placeholders::_1, std::placeholders::_2,
+				std::placeholders::_3, std::placeholders::_4)))
+			{
+				LOG(LS_ERROR) << "Unable to create window";
+				return false;
+			}
 
-    if (!WTSRegisterSessionNotification(window->hwnd(), NOTIFY_FOR_ALL_SESSIONS))
-    {
-        PLOG(LS_ERROR) << "WTSRegisterSessionNotification failed";
-        return false;
-    }
+			if (!WTSRegisterSessionNotification(window->hwnd(), NOTIFY_FOR_ALL_SESSIONS))
+			{
+				PLOG(LS_ERROR) << "WTSRegisterSessionNotification failed";
+				return false;
+			}
 
-    window_ = std::move(window);
-    return true;
-}
+			window_ = std::move(window);
+			return true;
+		}
 
-//--------------------------------------------------------------------------------------------------
-void SessionWatcher::stop()
-{
-    if (!window_)
-        return;
+		//--------------------------------------------------------------------------------------------------
+		void SessionWatcher::stop()
+		{
+			if (!window_)
+				return;
 
-    if (!WTSUnRegisterSessionNotification(window_->hwnd()))
-    {
-        PLOG(LS_ERROR) << "WTSUnRegisterSessionNotification failed";
-    }
+			if (!WTSUnRegisterSessionNotification(window_->hwnd()))
+			{
+				PLOG(LS_ERROR) << "WTSUnRegisterSessionNotification failed";
+			}
 
-    window_.reset();
-    delegate_ = nullptr;
-}
+			window_.reset();
+			delegate_ = nullptr;
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool SessionWatcher::onMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& result)
-{
-    if (message == WM_WTSSESSION_CHANGE)
-    {
-        delegate_->onSessionEvent(
-            static_cast<SessionStatus>(wParam), static_cast<SessionId>(lParam));
+		//--------------------------------------------------------------------------------------------------
+		bool SessionWatcher::onMessage(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& result)
+		{
+			if (message == WM_WTSSESSION_CHANGE)
+			{
+				delegate_->onSessionEvent(
+					static_cast<SessionStatus>(wParam), static_cast<SessionId>(lParam));
 
-        result = 0;
-        return true;
-    }
+				result = 0;
+				return true;
+			}
 
-    return false;
-}
+			return false;
+		}
 
+	}
 } // namespace base::win

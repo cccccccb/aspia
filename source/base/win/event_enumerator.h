@@ -26,41 +26,43 @@
 #include <memory>
 #include <string>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class EventEnumerator
-{
-public:
-    EventEnumerator(std::wstring_view log_name, uint32_t start, uint32_t count);
-    ~EventEnumerator();
+		class EventEnumerator
+		{
+		public:
+			EventEnumerator(std::wstring log_name, uint32_t start, uint32_t count);
+			~EventEnumerator();
 
-    uint32_t count() const;
-    bool isAtEnd() const;
-    void advance();
+			uint32_t count() const;
+			bool isAtEnd() const;
+			void advance();
 
-    enum class Type { UNKNOWN, ERR, WARN, INFO, AUDIT_SUCCESS, AUDIT_FAILURE, SUCCESS };
+			enum class Type { UNKNOWN, ERR, WARN, INFO, AUDIT_SUCCESS, AUDIT_FAILURE, SUCCESS };
 
-    Type type() const;
-    int64_t time() const;
-    std::string category() const;
-    uint32_t eventId() const;
-    std::string source() const;
-    std::string description() const;
+			Type type() const;
+			int64_t time() const;
+			std::string category() const;
+			uint32_t eventId() const;
+			std::string source() const;
+			std::string description() const;
 
-private:
-    EVENTLOGRECORD* record() const;
+		private:
+			EVENTLOGRECORD* record() const;
 
-    std::wstring log_name_;
-    ScopedEventLog event_log_;
-    uint32_t records_count_ = 0;
-    int end_record_ = 0;
+			std::wstring log_name_;
+			ScopedEventLog event_log_;
+			uint32_t records_count_ = 0;
+			int end_record_ = 0;
 
-    mutable int current_pos_ = 0;
-    mutable ByteArray record_buffer_;
+			mutable int current_pos_ = 0;
+			mutable ByteArray record_buffer_;
 
-    DISALLOW_COPY_AND_ASSIGN(EventEnumerator);
-};
+			DISALLOW_COPY_AND_ASSIGN(EventEnumerator);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_EVENT_ENUMERATOR_H

@@ -18,12 +18,13 @@
 
 #include "router/database_sqlite.h"
 
+#include "base/filesystem.hpp"
+#include "base/optional.hpp"
 #include "base/logging.h"
+#include "base/optional.hpp"
 #include "base/files/base_paths.h"
 #include "base/strings/unicode.h"
 #include "build/build_config.h"
-
-#include <optional>
 
 namespace router {
 
@@ -113,135 +114,135 @@ bool writeInt64(sqlite3_stmt* statement, int64_t number, int column)
 
 //--------------------------------------------------------------------------------------------------
 template <typename T>
-std::optional<T> readInteger(sqlite3_stmt* statement, int column)
+tl::optional<T> readInteger(sqlite3_stmt* statement, int column)
 {
     int column_type = sqlite3_column_type(statement, column);
     if (column_type != SQLITE_INTEGER)
     {
         LOG(LS_ERROR) << "Type is not SQLITE_INTEGER: " << columnTypeToString(column_type)
                       << " (" << column_type << ")";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     return static_cast<T>(sqlite3_column_int64(statement, column));
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<base::ByteArray> readBlob(sqlite3_stmt* statement, int column)
+tl::optional<base::ByteArray> readBlob(sqlite3_stmt* statement, int column)
 {
     int column_type = sqlite3_column_type(statement, column);
     if (column_type != SQLITE_BLOB)
     {
         LOG(LS_ERROR) << "Type is not SQLITE_BLOB: " << columnTypeToString(column_type)
                       << " (" << column_type << ")";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     int blob_size = sqlite3_column_bytes(statement, column);
     if (blob_size <= 0)
     {
         LOG(LS_ERROR) << "Field has an invalid size: " << blob_size;
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     const void* blob = sqlite3_column_blob(statement, column);
     if (!blob)
     {
         LOG(LS_ERROR) << "Failed to get the pointer to the field";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     return base::fromData(blob, static_cast<size_t>(blob_size));
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<std::string> readText(sqlite3_stmt* statement, int column)
+tl::optional<std::string> readText(sqlite3_stmt* statement, int column)
 {
     int column_type = sqlite3_column_type(statement, column);
     if (column_type != SQLITE_TEXT)
     {
         LOG(LS_ERROR) << "Type is not SQLITE_TEXT: " << columnTypeToString(column_type)
                       << " (" << column_type << ")";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     int string_size = sqlite3_column_bytes(statement, column);
     if (string_size <= 0)
     {
         LOG(LS_ERROR) << "Field has an invalid size: " << string_size;
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     const uint8_t* string = sqlite3_column_text(statement, column);
     if (!string)
     {
         LOG(LS_ERROR) << "Failed to get the pointer to the field";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     return std::string(reinterpret_cast<const char*>(string), static_cast<size_t>(string_size));
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<std::u16string> readText16(sqlite3_stmt* statement, int column)
+tl::optional<std::u16string> readText16(sqlite3_stmt* statement, int column)
 {
-    std::optional<std::string> str = readText(statement, column);
+    tl::optional<std::string> str = readText(statement, column);
     if (!str.has_value())
-        return std::nullopt;
+        return tl::nullopt;
 
     return base::utf16FromUtf8(*str);
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<base::User> readUser(sqlite3_stmt* statement)
+tl::optional<base::User> readUser(sqlite3_stmt* statement)
 {
-    std::optional<int64_t> entry_id = readInteger<int64_t>(statement, 0);
+    tl::optional<int64_t> entry_id = readInteger<int64_t>(statement, 0);
     if (!entry_id.has_value())
     {
         LOG(LS_ERROR) << "Failed to get field 'id'";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
-    std::optional<std::u16string> name = readText16(statement, 1);
+    tl::optional<std::u16string> name = readText16(statement, 1);
     if (!name.has_value())
     {
         LOG(LS_ERROR) << "Failed to get field 'name'";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
-    std::optional<std::string> group = readText(statement, 2);
+    tl::optional<std::string> group = readText(statement, 2);
     if (!group.has_value())
     {
         LOG(LS_ERROR) << "Failed to get field 'group'";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
-    std::optional<base::ByteArray> salt = readBlob(statement, 3);
+    tl::optional<base::ByteArray> salt = readBlob(statement, 3);
     if (!salt.has_value())
     {
         LOG(LS_ERROR) << "Failed to get field 'salt'";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
-    std::optional<base::ByteArray> verifier = readBlob(statement, 4);
+    tl::optional<base::ByteArray> verifier = readBlob(statement, 4);
     if (!verifier.has_value())
     {
         LOG(LS_ERROR) << "Failed to get field 'verifier'";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
-    std::optional<uint32_t> sessions = readInteger<uint32_t>(statement, 5);
+    tl::optional<uint32_t> sessions = readInteger<uint32_t>(statement, 5);
     if (!sessions.has_value())
     {
         LOG(LS_ERROR) << "Failed to get field 'sessions'";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
-    std::optional<uint32_t> flags = readInteger<uint32_t>(statement, 6);
+    tl::optional<uint32_t> flags = readInteger<uint32_t>(statement, 6);
     if (!flags.has_value())
     {
         LOG(LS_ERROR) << "Failed to get field 'flags'";
-        return std::nullopt;
+        return tl::nullopt;
     }
 
     base::User user;
@@ -276,7 +277,7 @@ DatabaseSqlite::~DatabaseSqlite()
 // static
 std::unique_ptr<DatabaseSqlite> DatabaseSqlite::create()
 {
-    std::filesystem::path dir_path = databaseDirectory();
+    ghc::filesystem::path dir_path = databaseDirectory();
     if (dir_path.empty())
     {
         LOG(LS_WARNING) << "Invalid directory path";
@@ -284,10 +285,10 @@ std::unique_ptr<DatabaseSqlite> DatabaseSqlite::create()
     }
 
     std::error_code error_code;
-    std::filesystem::file_status dir_status = std::filesystem::status(dir_path, error_code);
-    if (std::filesystem::exists(dir_status))
+    ghc::filesystem::file_status dir_status = ghc::filesystem::status(dir_path, error_code);
+    if (ghc::filesystem::exists(dir_status))
     {
-        if (!std::filesystem::is_directory(dir_status))
+        if (!ghc::filesystem::is_directory(dir_status))
         {
             LOG(LS_WARNING) << "Unable to create directory for database. Need to delete file '"
                             << dir_path << "'";
@@ -296,7 +297,7 @@ std::unique_ptr<DatabaseSqlite> DatabaseSqlite::create()
     }
     else
     {
-        if (!std::filesystem::create_directories(dir_path, error_code))
+        if (!ghc::filesystem::create_directories(dir_path, error_code))
         {
             LOG(LS_WARNING) << "Unable to create directory for database: "
                             << base::utf16FromLocal8Bit(error_code.message());
@@ -304,14 +305,14 @@ std::unique_ptr<DatabaseSqlite> DatabaseSqlite::create()
         }
     }
 
-    std::filesystem::path file_path = filePath();
+    ghc::filesystem::path file_path = filePath();
     if (file_path.empty())
     {
         LOG(LS_WARNING) << "Invalid file path";
         return nullptr;
     }
 
-    if (std::filesystem::exists(file_path, error_code))
+    if (ghc::filesystem::exists(file_path, error_code))
     {
         LOG(LS_WARNING) << "Database file already exists";
         return nullptr;
@@ -352,7 +353,7 @@ std::unique_ptr<DatabaseSqlite> DatabaseSqlite::create()
 // static
 std::unique_ptr<DatabaseSqlite> DatabaseSqlite::open()
 {
-    std::filesystem::path file_path = filePath();
+    ghc::filesystem::path file_path = filePath();
     if (file_path.empty())
     {
         LOG(LS_WARNING) << "Invalid file path";
@@ -377,11 +378,11 @@ std::unique_ptr<DatabaseSqlite> DatabaseSqlite::open()
 
 //--------------------------------------------------------------------------------------------------
 // static
-std::filesystem::path DatabaseSqlite::filePath()
+ghc::filesystem::path DatabaseSqlite::filePath()
 {
-    std::filesystem::path file_path = databaseDirectory();
+    ghc::filesystem::path file_path = databaseDirectory();
     if (file_path.empty())
-        return std::filesystem::path();
+        return ghc::filesystem::path();
 
     file_path.append(u"router.db3");
     return file_path;
@@ -408,7 +409,7 @@ std::vector<base::User> DatabaseSqlite::userList() const
         if (error_code != SQLITE_ROW)
             break;
 
-        std::optional<base::User> user = readUser(statement);
+        tl::optional<base::User> user = readUser(statement);
         if (user.has_value())
             users.emplace_back(std::move(*user));
     }
@@ -579,7 +580,7 @@ bool DatabaseSqlite::removeUser(int64_t entry_id)
 }
 
 //--------------------------------------------------------------------------------------------------
-base::User DatabaseSqlite::findUser(std::u16string_view username)
+base::User DatabaseSqlite::findUser(std::u16string username)
 {
     const char kQuery[] = "SELECT * FROM users WHERE name=?";
 
@@ -593,7 +594,7 @@ base::User DatabaseSqlite::findUser(std::u16string_view username)
     }
 
     std::string username_utf8 = base::utf8FromUtf16(username);
-    std::optional<base::User> user;
+    tl::optional<base::User> user;
 
     do
     {
@@ -656,7 +657,7 @@ Database::ErrorCode DatabaseSqlite::hostId(
             break;
         }
 
-        std::optional<int64_t> entry_id = readInteger<int64_t>(statement, 0);
+        tl::optional<int64_t> entry_id = readInteger<int64_t>(statement, 0);
         if (!entry_id.has_value())
         {
             LOG(LS_ERROR) << "Failed to get field 'id'";
@@ -717,13 +718,13 @@ bool DatabaseSqlite::addHost(const base::ByteArray& keyHash)
 
 //--------------------------------------------------------------------------------------------------
 // static
-std::filesystem::path DatabaseSqlite::databaseDirectory()
+ghc::filesystem::path DatabaseSqlite::databaseDirectory()
 {
-    std::filesystem::path dir_path;
+    ghc::filesystem::path dir_path;
 
 #if defined(OS_WIN)
     if (!base::BasePaths::commonAppData(&dir_path))
-        return std::filesystem::path();
+        return ghc::filesystem::path();
 
     dir_path.append(u"aspia");
 #elif (OS_LINUX)

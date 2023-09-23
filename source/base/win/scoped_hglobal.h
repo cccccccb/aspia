@@ -23,52 +23,54 @@
 
 #include <Windows.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-template<class T>
-class ScopedHGLOBAL
-{
-public:
-    explicit ScopedHGLOBAL(HGLOBAL glob) : glob_(glob)
-    {
-        data_ = static_cast<T*>(GlobalLock(glob_));
-    }
+		template<class T>
+		class ScopedHGLOBAL
+		{
+		public:
+			explicit ScopedHGLOBAL(HGLOBAL glob) : glob_(glob)
+			{
+				data_ = static_cast<T*>(GlobalLock(glob_));
+			}
 
-    ~ScopedHGLOBAL()
-    {
-        GlobalUnlock(glob_);
-    }
+			~ScopedHGLOBAL()
+			{
+				GlobalUnlock(glob_);
+			}
 
-    T* get()
-    {
-        return data_;
-    }
+			T* get()
+			{
+				return data_;
+			}
 
-    size_t size() const
-    {
-        return GlobalSize(glob_);
-    }
+			size_t size() const
+			{
+				return GlobalSize(glob_);
+			}
 
-    T* operator->() const
-    {
-        assert(data_ != 0);
-        return data_;
-    }
+			T* operator->() const
+			{
+				assert(data_ != 0);
+				return data_;
+			}
 
-    T* release()
-    {
-        T* data = data_;
-        data_ = nullptr;
-        return data;
-    }
+			T* release()
+			{
+				T* data = data_;
+				data_ = nullptr;
+				return data;
+			}
 
-private:
-    HGLOBAL glob_;
-    T* data_;
+		private:
+			HGLOBAL glob_;
+			T* data_;
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedHGLOBAL);
-};
+			DISALLOW_COPY_AND_ASSIGN(ScopedHGLOBAL);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SCOPED_HGLOBAL_H

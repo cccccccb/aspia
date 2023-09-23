@@ -38,8 +38,8 @@ class UpdateDialog
     Q_OBJECT
 
 public:
-    UpdateDialog(std::string_view update_server,
-                 std::string_view package_name,
+    UpdateDialog(std::string update_server,
+                 std::string package_name,
                  QWidget* parent = nullptr);
     UpdateDialog(const UpdateInfo& update_info, QWidget* parent = nullptr);
     ~UpdateDialog() override;

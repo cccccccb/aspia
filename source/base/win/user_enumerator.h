@@ -27,39 +27,41 @@
 
 struct _USER_INFO_3;
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class UserEnumerator
-{
-public:
-    UserEnumerator();
-    ~UserEnumerator();
+		class UserEnumerator
+		{
+		public:
+			UserEnumerator();
+			~UserEnumerator();
 
-    void advance();
-    bool isAtEnd() const;
+			void advance();
+			bool isAtEnd() const;
 
-    std::string name() const;
-    std::string fullName() const;
-    std::string comment() const;
-    std::string homeDir() const;
-    std::vector<std::pair<std::string, std::string>> groups() const;
-    bool isDisabled() const;
-    bool isPasswordCantChange() const;
-    bool isPasswordExpired() const;
-    bool isDontExpirePassword() const;
-    bool isLockout() const;
-    uint32_t numberLogons() const;
-    uint32_t badPasswordCount() const;
-    uint64_t lastLogonTime() const;
+			std::string name() const;
+			std::string fullName() const;
+			std::string comment() const;
+			std::string homeDir() const;
+			std::vector<std::pair<std::string, std::string>> groups() const;
+			bool isDisabled() const;
+			bool isPasswordCantChange() const;
+			bool isPasswordExpired() const;
+			bool isDontExpirePassword() const;
+			bool isLockout() const;
+			uint32_t numberLogons() const;
+			uint32_t badPasswordCount() const;
+			uint64_t lastLogonTime() const;
 
-private:
-    _USER_INFO_3* user_info_ = nullptr;
-    unsigned long total_entries_ = 0;
-    unsigned long current_entry_ = 0;
+		private:
+			_USER_INFO_3* user_info_ = nullptr;
+			unsigned long total_entries_ = 0;
+			unsigned long current_entry_ = 0;
 
-    DISALLOW_COPY_AND_ASSIGN(UserEnumerator);
-};
+			DISALLOW_COPY_AND_ASSIGN(UserEnumerator);
+		};
 
+	}
 } // base::win
 
 #endif // BASE_WIN_USER_ENUMERATOR_H

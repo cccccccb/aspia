@@ -37,7 +37,7 @@ FileTransferAgent::~FileTransferAgent()
     LOG(LS_INFO) << "Dtor";
 }
 
-void FileTransferAgent::start(std::u16string_view channel_id)
+void FileTransferAgent::start(std::u16string channel_id)
 {
     LOG(LS_INFO) << "Starting with channel id: " << channel_id.data();
 

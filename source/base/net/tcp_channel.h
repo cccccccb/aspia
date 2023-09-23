@@ -72,7 +72,7 @@ public:
     std::u16string peerAddress() const;
 
     // Connects to a host at the specified address and port.
-    void connect(std::u16string_view address, uint16_t port);
+    void connect(std::u16string address, uint16_t port);
 
     // Returns true if the channel is connected and false if not connected.
     bool isConnected() const;

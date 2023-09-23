@@ -47,8 +47,8 @@ QString makeUrl(const QUrl& url)
 } // namespace
 
 //--------------------------------------------------------------------------------------------------
-UpdateDialog::UpdateDialog(std::string_view update_server,
-                           std::string_view package_name,
+UpdateDialog::UpdateDialog(std::string update_server,
+                           std::string package_name,
                            QWidget* parent)
     : QDialog(parent),
       ui(std::make_unique<Ui::UpdateDialog>())

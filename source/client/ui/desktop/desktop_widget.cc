@@ -179,7 +179,7 @@ void DesktopWidget::setDesktopFrameError(proto::VideoErrorCode error_code)
         update();
     });
 
-    error_timer_->start(std::chrono::milliseconds(1500));
+    error_timer_->start(1500);
 }
 
 //--------------------------------------------------------------------------------------------------

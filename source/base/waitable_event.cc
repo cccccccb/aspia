@@ -34,14 +34,14 @@ WaitableEvent::~WaitableEvent() = default;
 //--------------------------------------------------------------------------------------------------
 void WaitableEvent::reset()
 {
-    std::scoped_lock lock(signal_lock_);
+    std::lock_guard<std::mutex> lock(signal_lock_);
     signal_ = false;
 }
 
 //--------------------------------------------------------------------------------------------------
 void WaitableEvent::signal()
 {
-    std::scoped_lock lock(signal_lock_);
+    std::lock_guard<std::mutex> lock(signal_lock_);
     signal_ = true;
     signal_condition_.notify_all();
 }
@@ -49,14 +49,14 @@ void WaitableEvent::signal()
 //--------------------------------------------------------------------------------------------------
 bool WaitableEvent::isSignaled()
 {
-    std::scoped_lock lock(signal_lock_);
+    std::lock_guard<std::mutex> lock(signal_lock_);
     return signal_;
 }
 
 //--------------------------------------------------------------------------------------------------
 bool WaitableEvent::wait(const std::chrono::milliseconds& timeout)
 {
-    std::unique_lock lock(signal_lock_);
+    std::unique_lock<std::mutex> lock(signal_lock_);
 
     while (!signal_)
     {
@@ -74,7 +74,7 @@ bool WaitableEvent::wait(const std::chrono::milliseconds& timeout)
 //--------------------------------------------------------------------------------------------------
 void WaitableEvent::wait()
 {
-    std::unique_lock lock(signal_lock_);
+    std::unique_lock<std::mutex> lock(signal_lock_);
 
     while (!signal_)
     {

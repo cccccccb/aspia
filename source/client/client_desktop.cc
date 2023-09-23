@@ -18,8 +18,10 @@
 
 #include "client/client_desktop.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/task_runner.h"
+#include "base/optional.hpp"
 #include "base/audio/audio_player.h"
 #include "base/codec/audio_decoder_opus.h"
 #include "base/codec/cursor_decoder.h"
@@ -155,7 +157,7 @@ void ClientDesktop::onSessionMessageWritten(uint8_t /* channel_id */, size_t pen
 //--------------------------------------------------------------------------------------------------
 void ClientDesktop::onClipboardEvent(const proto::ClipboardEvent& event)
 {
-    std::optional<proto::ClipboardEvent> out_event = input_event_filter_.sendClipboardEvent(event);
+    tl::optional<proto::ClipboardEvent> out_event = input_event_filter_.sendClipboardEvent(event);
     if (!out_event.has_value())
         return;
 
@@ -286,7 +288,7 @@ void ClientDesktop::setAudioPause(bool enable)
 }
 
 //--------------------------------------------------------------------------------------------------
-void ClientDesktop::setVideoRecording(bool enable, const std::filesystem::path& file_path)
+void ClientDesktop::setVideoRecording(bool enable, const ghc::filesystem::path& file_path)
 {
     proto::VideoRecording video_recording;
 
@@ -331,7 +333,7 @@ void ClientDesktop::setVideoRecording(bool enable, const std::filesystem::path& 
 //--------------------------------------------------------------------------------------------------
 void ClientDesktop::onKeyEvent(const proto::KeyEvent& event)
 {
-    std::optional<proto::KeyEvent> out_event = input_event_filter_.keyEvent(event);
+    tl::optional<proto::KeyEvent> out_event = input_event_filter_.keyEvent(event);
     if (!out_event.has_value())
         return;
 
@@ -344,7 +346,7 @@ void ClientDesktop::onKeyEvent(const proto::KeyEvent& event)
 //--------------------------------------------------------------------------------------------------
 void ClientDesktop::onTextEvent(const proto::TextEvent& event)
 {
-    std::optional<proto::TextEvent> out_event = input_event_filter_.textEvent(event);
+    tl::optional<proto::TextEvent> out_event = input_event_filter_.textEvent(event);
     if (!out_event.has_value())
         return;
 
@@ -357,7 +359,7 @@ void ClientDesktop::onTextEvent(const proto::TextEvent& event)
 //--------------------------------------------------------------------------------------------------
 void ClientDesktop::onMouseEvent(const proto::MouseEvent& event)
 {
-    std::optional<proto::MouseEvent> out_event = input_event_filter_.mouseEvent(event);
+    tl::optional<proto::MouseEvent> out_event = input_event_filter_.mouseEvent(event);
     if (!out_event.has_value())
         return;
 
@@ -684,7 +686,7 @@ void ClientDesktop::readClipboardEvent(const proto::ClipboardEvent& event)
         return;
     }
 
-    std::optional<proto::ClipboardEvent> out_event = input_event_filter_.readClipboardEvent(event);
+    tl::optional<proto::ClipboardEvent> out_event = input_event_filter_.readClipboardEvent(event);
     if (!out_event.has_value())
         return;
 

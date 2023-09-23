@@ -18,6 +18,7 @@
 
 #include "base/audio/linux/audio_pipe_reader.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/posix/eintr_wrapper.h"
 
@@ -57,7 +58,7 @@ int readAtCurrentPos(int fd, char* data, int size)
 
 //--------------------------------------------------------------------------------------------------
 AudioPipeReader::AudioPipeReader(std::shared_ptr<TaskRunner> task_runner,
-                                 const std::filesystem::path& pipe_path,
+                                 const ghc::filesystem::path& pipe_path,
                                  Delegate* delegate)
     : task_runner_(task_runner),
       pipe_path_(pipe_path),
@@ -77,7 +78,7 @@ AudioPipeReader::~AudioPipeReader()
 //--------------------------------------------------------------------------------------------------
 // static
 local_shared_ptr<AudioPipeReader> AudioPipeReader::create(std::shared_ptr<TaskRunner> task_runner,
-                                                          const std::filesystem::path& pipe_path,
+                                                          const ghc::filesystem::path& pipe_path,
                                                           Delegate* delegate)
 {
     DCHECK(task_runner);
@@ -107,7 +108,7 @@ void AudioPipeReader::start()
 }
 
 //--------------------------------------------------------------------------------------------------
-void AudioPipeReader::onDirectoryChanged(const std::filesystem::path& path, bool error)
+void AudioPipeReader::onDirectoryChanged(const ghc::filesystem::path& path, bool error)
 {
     DCHECK(task_runner_->belongsToCurrentThread());
 

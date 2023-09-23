@@ -19,13 +19,14 @@
 #ifndef BASE_CRYPTO_SRP_CONSTANTS_H
 #define BASE_CRYPTO_SRP_CONSTANTS_H
 
+#include "base/optional.hpp"
+
 #include <cstdint>
-#include <optional>
-#include <string_view>
+#include <string>
 
 namespace base {
 
-using SrpNgPair = std::pair<std::string_view, std::string_view>;
+using SrpNgPair = std::pair<std::string, std::string>;
 
 extern const SrpNgPair kSrpNgPair_1024;
 extern const SrpNgPair kSrpNgPair_1536;
@@ -35,7 +36,7 @@ extern const SrpNgPair kSrpNgPair_4096;
 extern const SrpNgPair kSrpNgPair_6144;
 extern const SrpNgPair kSrpNgPair_8192;
 
-std::optional<SrpNgPair> pairByGroup(std::string_view group);
+tl::optional<SrpNgPair> pairByGroup(std::string group);
 
 } // namespace base
 

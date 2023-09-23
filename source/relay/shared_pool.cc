@@ -18,6 +18,7 @@
 
 #include "relay/shared_pool.h"
 
+#include "base/optional.hpp"
 #include "base/logging.h"
 
 #include <map>
@@ -36,7 +37,7 @@ public:
     uint32_t addKey(SessionKey&& session_key);
     bool removeKey(uint32_t key_id);
     void setKeyExpired(uint32_t key_id);
-    std::optional<Key> key(uint32_t key_id, std::string_view peer_public_key) const;
+    tl::optional<Key> key(uint32_t key_id, std::string peer_public_key) const;
     void clear();
 
 private:
@@ -65,7 +66,7 @@ void SharedPool::Pool::dettach()
 //--------------------------------------------------------------------------------------------------
 uint32_t SharedPool::Pool::addKey(SessionKey&& session_key)
 {
-    std::scoped_lock lock(pool_lock_);
+    std::lock_guard<std::mutex> lock(pool_lock_);
 
     uint32_t key_id = current_key_id_++;
     map_.emplace(key_id, std::move(session_key));
@@ -77,7 +78,7 @@ uint32_t SharedPool::Pool::addKey(SessionKey&& session_key)
 //--------------------------------------------------------------------------------------------------
 bool SharedPool::Pool::removeKey(uint32_t key_id)
 {
-    std::scoped_lock lock(pool_lock_);
+    std::lock_guard<std::mutex> lock(pool_lock_);
 
     auto result = map_.find(key_id);
     if (result != map_.end())
@@ -104,14 +105,14 @@ void SharedPool::Pool::setKeyExpired(uint32_t key_id)
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<SharedPool::Key> SharedPool::Pool::key(
-    uint32_t key_id, std::string_view peer_public_key) const
+tl::optional<SharedPool::Key> SharedPool::Pool::key(
+    uint32_t key_id, std::string peer_public_key) const
 {
-    std::scoped_lock lock(pool_lock_);
+    std::lock_guard<std::mutex> lock(pool_lock_);
 
     auto result = map_.find(key_id);
     if (result == map_.end())
-        return std::nullopt;
+        return tl::nullopt;
 
     const SessionKey& session_key = result->second;
     return std::make_pair(session_key.sessionKey(peer_public_key), session_key.iv());
@@ -120,7 +121,7 @@ std::optional<SharedPool::Key> SharedPool::Pool::key(
 //--------------------------------------------------------------------------------------------------
 void SharedPool::Pool::clear()
 {
-    std::scoped_lock lock(pool_lock_);
+    std::lock_guard<std::mutex> lock(pool_lock_);
 
     LOG(LS_INFO) << "Key pool cleared";
     map_.clear();
@@ -174,8 +175,8 @@ void SharedPool::setKeyExpired(uint32_t key_id)
 }
 
 //--------------------------------------------------------------------------------------------------
-std::optional<SharedPool::Key> SharedPool::key(
-    uint32_t key_id, std::string_view peer_public_key) const
+tl::optional<SharedPool::Key> SharedPool::key(
+    uint32_t key_id, std::string peer_public_key) const
 {
     return pool_->key(key_id, peer_public_key);
 }

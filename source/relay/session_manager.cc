@@ -18,6 +18,7 @@
 
 #include "relay/session_manager.h"
 
+#include "base/optional.hpp"
 #include "base/logging.h"
 #include "base/task_runner.h"
 #include "base/message_loop/message_loop.h"
@@ -174,7 +175,7 @@ void SessionManager::onPendingSessionReady(
     LOG(LS_INFO) << "Pending session ready for key_id: " << message.key_id();
 
     // Looking for a key with the specified identifier.
-    std::optional<SharedPool::Key> key = shared_pool_->key(message.key_id(), message.public_key());
+    tl::optional<SharedPool::Key> key = shared_pool_->key(message.key_id(), message.public_key());
     if (key.has_value())
     {
         // Decrypt the identifiers of peers.

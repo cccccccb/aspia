@@ -68,7 +68,7 @@ bool WebmFileMuxer::init(FILE* file)
 }
 
 //--------------------------------------------------------------------------------------------------
-bool WebmFileMuxer::addAudioTrack(int sample_rate, int channels, std::string_view codec_id)
+bool WebmFileMuxer::addAudioTrack(int sample_rate, int channels, std::string codec_id)
 {
     if (audio_track_num_ != 0)
     {
@@ -102,7 +102,7 @@ bool WebmFileMuxer::addAudioTrack(int sample_rate, int channels, std::string_vie
 }
 
 //--------------------------------------------------------------------------------------------------
-bool WebmFileMuxer::addVideoTrack(int width, int height, std::string_view codec_id)
+bool WebmFileMuxer::addVideoTrack(int width, int height, std::string codec_id)
 {
     if (video_track_num_ != 0)
     {
@@ -148,7 +148,7 @@ bool WebmFileMuxer::finalize()
 }
 
 //--------------------------------------------------------------------------------------------------
-bool WebmFileMuxer::writeAudioFrame(std::string_view frame,
+bool WebmFileMuxer::writeAudioFrame(std::string frame,
                                     const std::chrono::nanoseconds& timestamp)
 {
     if (audio_track_num_ == 0)
@@ -161,7 +161,7 @@ bool WebmFileMuxer::writeAudioFrame(std::string_view frame,
 }
 
 //--------------------------------------------------------------------------------------------------
-bool WebmFileMuxer::writeVideoFrame(std::string_view frame,
+bool WebmFileMuxer::writeVideoFrame(std::string frame,
                                     const std::chrono::nanoseconds& timestamp,
                                     bool is_key)
 {
@@ -175,7 +175,7 @@ bool WebmFileMuxer::writeVideoFrame(std::string_view frame,
 }
 
 //--------------------------------------------------------------------------------------------------
-bool WebmFileMuxer::writeFrame(std::string_view frame,
+bool WebmFileMuxer::writeFrame(std::string frame,
                                const std::chrono::nanoseconds& timestamp,
                                uint64_t track_num, bool is_key)
 {

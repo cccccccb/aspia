@@ -252,7 +252,7 @@ bool AudioEncoderOpus::encode(
         data->resize(kFrameSamples * kBytesPerSample * size_t(channels_));
 
         // Encode.
-        unsigned char* buffer = reinterpret_cast<unsigned char*>(std::data(*data));
+        unsigned char* buffer = const_cast<unsigned char*>(reinterpret_cast<const unsigned char*>(std::data(*data)));
         int result = opus_encode(encoder_, pcm_buffer, kFrameSamples, buffer,
                                  opus_int32(data->length()));
         if (result < 0)

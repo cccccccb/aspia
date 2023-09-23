@@ -64,7 +64,7 @@ void UserList::merge(const UserList& user_list)
 }
 
 //--------------------------------------------------------------------------------------------------
-User UserList::find(std::u16string_view username) const
+User UserList::find(std::u16string username) const
 {
     const User* user = &User::kInvalidUser;
 

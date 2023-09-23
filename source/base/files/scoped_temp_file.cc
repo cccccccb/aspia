@@ -17,11 +17,12 @@
 //
 
 #include "base/files/scoped_temp_file.h"
+#include "base/filesystem.hpp"
 
 namespace base {
 
 //--------------------------------------------------------------------------------------------------
-ScopedTempFile::ScopedTempFile(const std::filesystem::path& file_path)
+ScopedTempFile::ScopedTempFile(const ghc::filesystem::path& file_path)
     : file_path_(file_path)
 {
     const std::ios_base::openmode mode =
@@ -36,11 +37,11 @@ ScopedTempFile::~ScopedTempFile()
     stream_.close();
 
     std::error_code ignored_code;
-    std::filesystem::remove(file_path_, ignored_code);
+    ghc::filesystem::remove(file_path_, ignored_code);
 }
 
 //--------------------------------------------------------------------------------------------------
-const std::filesystem::path& ScopedTempFile::filePath() const
+const ghc::filesystem::path& ScopedTempFile::filePath() const
 {
     return file_path_;
 }

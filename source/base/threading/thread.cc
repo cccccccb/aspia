@@ -42,7 +42,7 @@ void Thread::start(MessageLoop::Type message_loop_type, Delegate* delegate)
 
     thread_ = std::thread(&Thread::threadMain, this, message_loop_type);
 
-    std::unique_lock lock(running_lock_);
+    std::unique_lock<std::mutex> lock(running_lock_);
     while (!running_)
         running_event_.wait(lock);
 
@@ -125,7 +125,7 @@ void Thread::threadMain(MessageLoop::Type message_loop_type)
         delegate_->onBeforeThreadRunning();
 
     {
-        std::unique_lock lock(running_lock_);
+        std::unique_lock<std::mutex> lock(running_lock_);
         running_ = true;
     }
 
@@ -141,7 +141,7 @@ void Thread::threadMain(MessageLoop::Type message_loop_type)
     }
 
     {
-        std::unique_lock lock(running_lock_);
+        std::unique_lock<std::mutex> lock(running_lock_);
         running_ = false;
     }
 

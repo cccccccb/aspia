@@ -109,15 +109,15 @@ TEST(srp_math_test, test_vector)
         0x6D, 0x40, 0xFC, 0xBD, 0x14, 0xBC, 0xED, 0x40
     };
 
-    static_assert(sizeof(a_buf) == 32);
-    static_assert(sizeof(b_buf) == 32);
-    static_assert(sizeof(s_buf) == 16);
-    static_assert(sizeof(x_ref_buf) == 64);
-    static_assert(sizeof(u_ref_buf) == 64);
-    static_assert(sizeof(v_ref_buf) == 128);
-    static_assert(sizeof(A_ref_buf) == 128);
-    static_assert(sizeof(B_ref_buf) == 128);
-    static_assert(sizeof(key_ref_buf) == 128);
+    static_assert(sizeof(a_buf) == 32, "");
+    static_assert(sizeof(b_buf) == 32, "");
+    static_assert(sizeof(s_buf) == 16, "");
+    static_assert(sizeof(x_ref_buf) == 64, "");
+    static_assert(sizeof(u_ref_buf) == 64, "");
+    static_assert(sizeof(v_ref_buf) == 128, "");
+    static_assert(sizeof(A_ref_buf) == 128, "");
+    static_assert(sizeof(B_ref_buf) == 128, "");
+    static_assert(sizeof(key_ref_buf) == 128, "");
 
     BigNum N = BigNum::fromStdString(kSrpNgPair_1024.first);
     BigNum g = BigNum::fromStdString(kSrpNgPair_1024.second);

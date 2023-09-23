@@ -6,31 +6,27 @@
     <message>
         <location filename="../ui/about_dialog.ui" line="14"/>
         <source>About</source>
-        <translation>Over</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.ui" line="60"/>
         <source>General</source>
-        <translation>Basis</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation type="vanished">Licentie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.ui" line="90"/>
         <source>Service Information</source>
-        <translation>Service Informatie</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.ui" line="105"/>
         <source>Donate!</source>
-        <translation>Doneer!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.ui" line="129"/>
         <source>Close</source>
-        <translation>Sluiten</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -38,12 +34,12 @@
     <message>
         <location filename="../ui/download_dialog.ui" line="14"/>
         <source>Downloading</source>
-        <translation>Downloaden</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/download_dialog.ui" line="26"/>
         <source>Downloading update in progress...</source>
-        <translation>De update wordt gedownload...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -51,17 +47,17 @@
     <message>
         <location filename="../ui/session_type.cc" line="31"/>
         <source>Desktop Manage</source>
-        <translation>Bureaublad Beheer</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_type.cc" line="34"/>
         <source>Desktop View</source>
-        <translation>Bureaublad Weergave</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_type.cc" line="37"/>
         <source>File Transfer</source>
-        <translation>Bestands Overdracht</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/session_type.cc" line="40"/>
@@ -79,7 +75,7 @@
     <message>
         <location filename="../ui/status_dialog.ui" line="14"/>
         <source>Connection Status</source>
-        <translation>Verbindings Status</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -126,42 +122,42 @@
     <message>
         <location filename="../ui/update_dialog.ui" line="14"/>
         <source>Update</source>
-        <translation>Update</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="44"/>
         <source>Checking for updates</source>
-        <translation>Controleren op updates</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="59"/>
         <source>Current version:</source>
-        <translation>Huidige versie:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="66"/>
         <source>Available version:</source>
-        <translation>Beschikbare versie:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="75"/>
         <source>URL:</source>
-        <translation>URL:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="136"/>
         <source>Update description:</source>
-        <translation>Update beschrijving:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="181"/>
         <source>Update now!</source>
-        <translation>Update nu!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.ui" line="188"/>
         <source>Close</source>
-        <translation>Sluiten</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -169,67 +165,67 @@
     <message>
         <location filename="../ui/about_dialog.cc" line="116"/>
         <source>Version: %1</source>
-        <translation>Versie: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="120"/>
         <source>Aspia is free software released under GNU General Public License 3.</source>
-        <translation>Aspia is gratis software verspreid onder de GNU General Public License 3.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="121"/>
         <source>You can get a copy of license here:</source>
-        <translation>Download een kopie van de licentie:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="126"/>
         <source>You can also get a translation of GNU GPL license here:</source>
-        <translation>Download hier een vertaling van de GNU GPL:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="130"/>
         <source>Links:</source>
-        <translation>Links:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="131"/>
         <source>Home page:</source>
-        <translation>Website:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="132"/>
         <source>GitHub page:</source>
-        <translation>GitHub pagina:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="135"/>
         <source>Developers:</source>
-        <translation>Ontwikkelaars:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="137"/>
         <source>Translators:</source>
-        <translation>Vertalingen:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="139"/>
         <source>Third-party components:</source>
-        <translation>Third-party componenten:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="160"/>
         <source>Path: %1</source>
-        <translation>Pad: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="161"/>
         <source>Compilation date: %1</source>
-        <translation>Compilatie datum: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="162"/>
         <source>Compilation time: %1</source>
-        <translation>Compilatie tijd: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="165"/>
@@ -289,7 +285,7 @@
     <message>
         <location filename="../ui/about_dialog.cc" line="203"/>
         <source>%1 version: %2</source>
-        <translation>%1 versie: %2</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="252"/>
@@ -309,7 +305,7 @@
     <message>
         <location filename="../ui/about_dialog.cc" line="269"/>
         <source>Warning</source>
-        <translation type="unfinished">Waarschuwing</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/about_dialog.cc" line="270"/>
@@ -327,12 +323,12 @@
     <message>
         <location filename="../ui/download_dialog.cc" line="55"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/download_dialog.cc" line="56"/>
         <source>An error occurred while downloading the update: %1</source>
-        <translation>Er is een probleem opgetreden bij het downloaden van de update: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -340,7 +336,7 @@
     <message>
         <location filename="../ui/status_dialog.cc" line="40"/>
         <source>Close</source>
-        <translation type="unfinished">Sluiten</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -384,7 +380,7 @@
         <location filename="../ui/text_chat_widget.cc" line="242"/>
         <location filename="../ui/text_chat_widget.cc" line="298"/>
         <source>Warning</source>
-        <translation type="unfinished">Waarschuwing</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
         <location filename="../ui/text_chat_widget.cc" line="243"/>
@@ -411,63 +407,56 @@
     </message>
 </context>
 <context>
-    <name>common::TextChatWindow</name>
-    <message>
-        <source>Warning</source>
-        <translation type="obsolete">Waarschuwing</translation>
-    </message>
-</context>
-<context>
     <name>common::UpdateDialog</name>
     <message>
         <location filename="../ui/update_dialog.cc" line="59"/>
         <source>Receiving information...</source>
-        <translation>Informatie verkrijgen...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="106"/>
         <source>Cancel checking for updates. Please wait.</source>
-        <translation>Annuleer update controle. Een ogenblik geduld aub.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="120"/>
         <source>Unknown</source>
-        <translation>Onbekend</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="121"/>
         <source>Error retrieving update information.</source>
-        <translation>Er is een probleem opgetreden bij het downloaden van de update informatie.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="142"/>
         <source>No updates available.</source>
-        <translation>Geen updates beschikbaar.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="158"/>
         <source>An update will be downloaded. After the download is complete, the application will automatically close.</source>
-        <translation>De update wordt gedownload. Nadat de download voltooid is zal de applicatie automatisch sluiten.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="160"/>
         <source>All connected sessions will be terminated. You cannot establish a connection until the update is complete.</source>
-        <translation>Alle verbonden sessies worden afgesloten. Er kan geen verbinding gemaakt worden tot de update voltooid is.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="162"/>
         <source>All unsaved data will be lost.</source>
-        <translation>Alle onopgeslagen data zal verloren gaan.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="163"/>
         <source>Continue?</source>
-        <translation>Doorgaan?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="166"/>
         <source>Confirmation</source>
-        <translation>Bevestiging</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="171"/>
@@ -482,12 +471,12 @@
     <message>
         <location filename="../ui/update_dialog.cc" line="180"/>
         <source>Warning</source>
-        <translation>Waarschuwing</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/update_dialog.cc" line="181"/>
         <source>An error occurred while installing the update: %1</source>
-        <translation>Er is een probleem opgetreden bij het installeren van de update: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

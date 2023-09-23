@@ -19,10 +19,10 @@
 #ifndef COMMON_FILE_PACKETIZER_H
 #define COMMON_FILE_PACKETIZER_H
 
+#include "base/filesystem.hpp"
 #include "base/macros_magic.h"
 #include "proto/file_transfer.pb.h"
 
-#include <filesystem>
 #include <fstream>
 #include <memory>
 
@@ -36,7 +36,7 @@ public:
     // Creates an instance of the class.
     // Parameter |file_path| contains the full path to the file.
     // If the specified file can not be opened for reading, then returns nullptr.
-    static std::unique_ptr<FilePacketizer> create(const std::filesystem::path& file_path);
+    static std::unique_ptr<FilePacketizer> create(const ghc::filesystem::path& file_path);
 
     // Creates a packet for transferring.
     std::unique_ptr<proto::FilePacket> readNextPacket(const proto::FilePacketRequest& request);

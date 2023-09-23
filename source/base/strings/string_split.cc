@@ -27,18 +27,18 @@ namespace {
 
 // Returns either the ASCII or UTF-16 whitespace.
 template <typename CharType>
-std::basic_string_view<CharType> whitespaceForType();
+std::basic_string<CharType> whitespaceForType();
 
 //--------------------------------------------------------------------------------------------------
 template <>
-std::u16string_view whitespaceForType<char16_t>()
+std::u16string whitespaceForType<char16_t>()
 {
     return kWhitespaceUtf16;
 }
 
 //--------------------------------------------------------------------------------------------------
 template <>
-std::string_view whitespaceForType<char>()
+std::string whitespaceForType<char>()
 {
     return kWhitespaceASCII;
 }
@@ -50,25 +50,25 @@ std::string_view whitespaceForType<char>()
 //
 // There is no corresponding FindFirstNotOf because StringPiece already implements these different
 // versions that do the optimized searching.
-size_t findFirstOf(std::string_view piece, char c, size_t pos)
+size_t findFirstOf(std::string piece, char c, size_t pos)
 {
     return piece.find(c, pos);
 }
 
 //--------------------------------------------------------------------------------------------------
-size_t findFirstOf(std::u16string_view piece, char16_t c, size_t pos)
+size_t findFirstOf(std::u16string piece, char16_t c, size_t pos)
 {
     return piece.find(c, pos);
 }
 
 //--------------------------------------------------------------------------------------------------
-size_t findFirstOf(std::string_view piece, std::string_view one_of, size_t pos)
+size_t findFirstOf(std::string piece, std::string one_of, size_t pos)
 {
     return piece.find_first_of(one_of, pos);
 }
 
 //--------------------------------------------------------------------------------------------------
-size_t findFirstOf(std::u16string_view piece, std::u16string_view one_of, size_t pos)
+size_t findFirstOf(std::u16string piece, std::u16string one_of, size_t pos)
 {
     return piece.find_first_of(one_of, pos);
 }
@@ -125,66 +125,66 @@ std::vector<OutputStringType> splitStringT(InputStringType str,
 } // namespace
 
 //--------------------------------------------------------------------------------------------------
-std::vector<std::string> splitString(std::string_view input,
-                                     std::string_view separators,
+std::vector<std::string> splitString(std::string input,
+                                     std::string separators,
                                      WhitespaceHandling whitespace,
                                      SplitResult result_type)
 {
     if (separators.size() == 1)
     {
-        return splitStringT<std::string_view, std::string, char>(
+        return splitStringT<std::string, std::string, char>(
             input, separators[0], whitespace, result_type);
     }
 
-    return splitStringT<std::string_view, std::string, std::string_view>(
+    return splitStringT<std::string, std::string, std::string>(
         input, separators, whitespace, result_type);
 }
 
 //--------------------------------------------------------------------------------------------------
-std::vector<std::u16string> splitString(std::u16string_view input,
-                                        std::u16string_view separators,
+std::vector<std::u16string> splitString(std::u16string input,
+                                        std::u16string separators,
                                         WhitespaceHandling whitespace,
                                         SplitResult result_type)
 {
     if (separators.size() == 1)
     {
-        return splitStringT<std::u16string_view, std::u16string, char16_t>(
+        return splitStringT<std::u16string, std::u16string, char16_t>(
             input, separators[0], whitespace, result_type);
     }
 
-    return splitStringT<std::u16string_view, std::u16string, std::u16string_view>(
+    return splitStringT<std::u16string, std::u16string, std::u16string>(
         input, separators, whitespace, result_type);
 }
 
 //--------------------------------------------------------------------------------------------------
-std::vector<std::string_view> splitStringView(std::string_view input,
-                                              std::string_view separators,
+std::vector<std::string> splitStringView(std::string input,
+                                              std::string separators,
                                               WhitespaceHandling whitespace,
                                               SplitResult result_type)
 {
     if (separators.size() == 1)
     {
-        return splitStringT<std::string_view, std::string_view, char>(
+        return splitStringT<std::string, std::string, char>(
             input, separators[0], whitespace, result_type);
     }
 
-    return splitStringT<std::string_view, std::string_view, std::string_view>(
+    return splitStringT<std::string, std::string, std::string>(
         input, separators, whitespace, result_type);
 }
 
 //--------------------------------------------------------------------------------------------------
-std::vector<std::u16string_view> splitStringView(std::u16string_view input,
-                                                 std::u16string_view separators,
+std::vector<std::u16string> splitStringView(std::u16string input,
+                                                 std::u16string separators,
                                                  WhitespaceHandling whitespace,
                                                  SplitResult result_type)
 {
     if (separators.size() == 1)
     {
-        return splitStringT<std::u16string_view, std::u16string_view, char16_t>(
+        return splitStringT<std::u16string, std::u16string, char16_t>(
             input, separators[0], whitespace, result_type);
     }
 
-    return splitStringT<std::u16string_view, std::u16string_view, std::u16string_view>(
+    return splitStringT<std::u16string, std::u16string, std::u16string>(
         input, separators, whitespace, result_type);
 }
 

@@ -48,7 +48,7 @@ public:
         virtual void onStunErrorOccurred() = 0;
     };
 
-    void start(std::u16string_view stun_host, uint16_t stun_port, Delegate* delegate);
+    void start(std::u16string stun_host, uint16_t stun_port, Delegate* delegate);
 
 private:
     void doStart();

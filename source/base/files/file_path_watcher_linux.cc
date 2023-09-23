@@ -18,6 +18,7 @@
 
 #include "base/files/file_path_watcher.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/posix/eintr_wrapper.h"
 #include "base/stl_util.h"
@@ -66,7 +67,7 @@ constexpr size_t kDefaultInotifyMaxUserWatches = 8192u;
 // Used by test to override inotify watcher limit.
 size_t g_override_max_inotify_watches = 0u;
 
-bool isLink(const std::filesystem::path& file_path)
+bool isLink(const ghc::filesystem::path& file_path)
 {
     struct stat st;
     // If we can't lstat the file, it's safe to assume that the file won't at
@@ -76,7 +77,7 @@ bool isLink(const std::filesystem::path& file_path)
     return S_ISLNK(st.st_mode);
 }
 
-bool readSymbolicLink(const std::filesystem::path& symlink_path, std::filesystem::path* target_path)
+bool readSymbolicLink(const ghc::filesystem::path& symlink_path, ghc::filesystem::path* target_path)
 {
     char buf[256];
     ssize_t count = ::readlink(symlink_path.c_str(), buf, std::size(buf));
@@ -86,14 +87,14 @@ bool readSymbolicLink(const std::filesystem::path& symlink_path, std::filesystem
         return false;
     }
 
-    *target_path = std::filesystem::path(std::filesystem::path::string_type(buf, count));
+    *target_path = ghc::filesystem::path(ghc::filesystem::path::string_type(buf, count));
     return true;
 }
 
-bool isPathExists(const std::filesystem::path& path)
+bool isPathExists(const ghc::filesystem::path& path)
 {
     std::error_code ignored_error;
-    return std::filesystem::exists(path, ignored_error);
+    return ghc::filesystem::exists(path, ignored_error);
 }
 
 // Get the maximum number of inotify watches can be used by a FilePathWatcher instance. This is
@@ -151,7 +152,7 @@ public:
 
     // Watch directory |path| for changes. |watcher| will be notified on each change. Returns
     // |kInvalidWatch| on failure.
-    Watch addWatch(const std::filesystem::path& path, FilePathWatcherImpl* watcher);
+    Watch addWatch(const ghc::filesystem::path& path, FilePathWatcherImpl* watcher);
 
     // Remove |watch| if it's valid.
     void removeWatch(Watch watch, FilePathWatcherImpl* watcher);
@@ -210,12 +211,12 @@ public:
     // |deleted| is true if the object disappears.
     // |is_dir| is true if the object is a directory.
     void onFilePathChanged(InotifyReader::Watch fired_watch,
-                           const std::filesystem::path::string_type& child,
+                           const ghc::filesystem::path::string_type& child,
                            bool created,
                            bool deleted,
                            bool is_dir);
 
-    bool watch(const std::filesystem::path& path,
+    bool watch(const ghc::filesystem::path& path,
                bool recursive,
                const FilePathWatcher::Callback& callback) override;
     void cancel() override;
@@ -233,7 +234,7 @@ public:
     //   - Only if the target being watched is a symbolic link.
     struct WatchEntry
     {
-        explicit WatchEntry(const std::filesystem::path& dirname)
+        explicit WatchEntry(const ghc::filesystem::path& dirname)
             : watch(InotifyReader::kInvalidWatch),
               subdir(dirname)
         {
@@ -241,8 +242,8 @@ public:
         }
 
         InotifyReader::Watch watch;
-        std::filesystem::path::string_type subdir;
-        std::filesystem::path::string_type linkname;
+        ghc::filesystem::path::string_type subdir;
+        ghc::filesystem::path::string_type linkname;
     };
 
 private:
@@ -263,11 +264,11 @@ private:
 
     // Enumerate recursively through |path| and add / update watches.
     // Returns true if watch limit is not hit. Otherwise, returns false.
-    bool updateRecursiveWatchesForPath(const std::filesystem::path& path);
+    bool updateRecursiveWatchesForPath(const ghc::filesystem::path& path);
 
     // Do internal bookkeeping to update mappings between |watch| and its
     // associated full path |path|.
-    void trackWatchForRecursion(InotifyReader::Watch watch, const std::filesystem::path& path);
+    void trackWatchForRecursion(InotifyReader::Watch watch, const ghc::filesystem::path& path);
 
     // Remove all the recursive watches.
     void removeRecursiveWatches();
@@ -275,7 +276,7 @@ private:
     // |path| is a symlink to a non-existent target. Attempt to add a watch to the link target's
     // parent directory. Update |watch_entry| on success.
     // Returns true if watch limit is not hit. Otherwise, returns false.
-    bool addWatchForBrokenSymlink(const std::filesystem::path& path, WatchEntry* watch_entry);
+    bool addWatchForBrokenSymlink(const ghc::filesystem::path& path, WatchEntry* watch_entry);
 
     bool hasValidWatchVector() const;
 
@@ -283,7 +284,7 @@ private:
     FilePathWatcher::Callback callback_;
 
     // Path we're supposed to watch (passed to callback).
-    std::filesystem::path target_;
+    ghc::filesystem::path target_;
 
     // Set to true to watch the sub trees of the specified directory file path.
     bool recursive_watch_ = false;
@@ -293,8 +294,8 @@ private:
     // next component name in |subdir|.
     std::vector<WatchEntry> watches_;
 
-    std::unordered_map<InotifyReader::Watch, std::filesystem::path> recursive_paths_by_watch_;
-    std::map<std::filesystem::path, InotifyReader::Watch> recursive_watches_by_path_;
+    std::unordered_map<InotifyReader::Watch, ghc::filesystem::path> recursive_paths_by_watch_;
+    std::map<ghc::filesystem::path, InotifyReader::Watch> recursive_watches_by_path_;
 };
 
 void InotifyReaderThreadDelegate::startReader()
@@ -371,7 +372,7 @@ InotifyReader& InotifyReader::instance()
 
 //--------------------------------------------------------------------------------------------------
 InotifyReader::Watch InotifyReader::addWatch(
-    const std::filesystem::path& path, FilePathWatcherImpl* watcher)
+    const ghc::filesystem::path& path, FilePathWatcherImpl* watcher)
 {
     if (!valid_)
         return kInvalidWatch;
@@ -423,7 +424,7 @@ void InotifyReader::onInotifyEvent(const inotify_event* event)
     if (event->mask & IN_IGNORED)
         return;
 
-    std::filesystem::path::string_type child(event->len ? event->name : "");
+    ghc::filesystem::path::string_type child(event->len ? event->name : "");
     std::lock_guard auto_lock(lock_);
 
     // In racing conditions, RemoveWatch() could grab `lock_` first and remove the entry for `event->wd`.
@@ -477,7 +478,7 @@ FilePathWatcherImpl::~FilePathWatcherImpl()
 
 //--------------------------------------------------------------------------------------------------
 void FilePathWatcherImpl::onFilePathChanged(InotifyReader::Watch fired_watch,
-                                            const std::filesystem::path::string_type& child,
+                                            const ghc::filesystem::path::string_type& child,
                                             bool created,
                                             bool deleted,
                                             bool is_dir)
@@ -599,7 +600,7 @@ void FilePathWatcherImpl::onFilePathChanged(InotifyReader::Watch fired_watch,
 }
 
 //--------------------------------------------------------------------------------------------------
-bool FilePathWatcherImpl::watch(const std::filesystem::path& path,
+bool FilePathWatcherImpl::watch(const ghc::filesystem::path& path,
                                 bool recursive,
                                 const FilePathWatcher::Callback& callback)
 {
@@ -612,7 +613,7 @@ bool FilePathWatcherImpl::watch(const std::filesystem::path& path,
     for (auto it = target_.begin(); it != target_.end(); ++it)
         watches_.emplace_back(it->native());
 
-    watches_.emplace_back(std::filesystem::path::string_type());
+    watches_.emplace_back(ghc::filesystem::path::string_type());
 
     if (!updateWatches())
     {
@@ -670,7 +671,7 @@ bool FilePathWatcherImpl::updateWatches()
     DCHECK(hasValidWatchVector());
 
     // Walk the list of watches and update them as we go.
-    std::filesystem::path path("/");
+    ghc::filesystem::path path("/");
     for (WatchEntry& watch_entry : watches_)
     {
         InotifyReader::Watch old_watch = watch_entry.watch;
@@ -728,7 +729,7 @@ bool FilePathWatcherImpl::updateRecursiveWatches(InotifyReader::Watch fired_watc
     if (!is_dir)
         return true;
 
-    const std::filesystem::path& changed_dir = contains(recursive_paths_by_watch_, fired_watch)
+    const ghc::filesystem::path& changed_dir = contains(recursive_paths_by_watch_, fired_watch)
         ? recursive_paths_by_watch_[fired_watch] : target_;
 
     auto start_it = recursive_watches_by_path_.lower_bound(changed_dir);
@@ -736,7 +737,7 @@ bool FilePathWatcherImpl::updateRecursiveWatches(InotifyReader::Watch fired_watc
 
     for (; end_it != recursive_watches_by_path_.end(); ++end_it)
     {
-        const std::filesystem::path& cur_path = end_it->first;
+        const ghc::filesystem::path& cur_path = end_it->first;
         if (changed_dir != cur_path.parent_path())
             break;
 
@@ -761,16 +762,16 @@ bool FilePathWatcherImpl::updateRecursiveWatches(InotifyReader::Watch fired_watc
 }
 
 //--------------------------------------------------------------------------------------------------
-bool FilePathWatcherImpl::updateRecursiveWatchesForPath(const std::filesystem::path& path)
+bool FilePathWatcherImpl::updateRecursiveWatchesForPath(const ghc::filesystem::path& path)
 {
     // Note: SHOW_SYM_LINKS exposes symlinks as symlinks, so they are ignored
     // rather than followed. Following symlinks can easily lead to the undesirable
     // situation where the entire file system is being watched.
     std::error_code ignored_error;
-    std::filesystem::recursive_directory_iterator iterator(
-        path, std::filesystem::directory_options::follow_directory_symlink, ignored_error);
+    ghc::filesystem::recursive_directory_iterator iterator(
+        path, ghc::filesystem::directory_options::follow_directory_symlink, ignored_error);
 
-    for (const std::filesystem::directory_entry& current : iterator)
+    for (const ghc::filesystem::directory_entry& current : iterator)
     {
         if (!current.is_directory())
             continue;
@@ -808,7 +809,7 @@ bool FilePathWatcherImpl::updateRecursiveWatchesForPath(const std::filesystem::p
 
 //--------------------------------------------------------------------------------------------------
 void FilePathWatcherImpl::trackWatchForRecursion(InotifyReader::Watch watch,
-                                                 const std::filesystem::path& path)
+                                                 const ghc::filesystem::path& path)
 {
     if (watch == InotifyReader::kInvalidWatch)
         return;
@@ -831,23 +832,23 @@ void FilePathWatcherImpl::removeRecursiveWatches()
 }
 
 //--------------------------------------------------------------------------------------------------
-bool FilePathWatcherImpl::addWatchForBrokenSymlink(const std::filesystem::path& path,
+bool FilePathWatcherImpl::addWatchForBrokenSymlink(const ghc::filesystem::path& path,
                                                    WatchEntry* watch_entry)
 {
     DCHECK_EQ(InotifyReader::kInvalidWatch, watch_entry->watch);
-    std::filesystem::path link;
+    ghc::filesystem::path link;
     if (!readSymbolicLink(path, &link))
         return true;
 
     if (!link.is_absolute())
     {
-        std::filesystem::path temp(path);
+        ghc::filesystem::path temp(path);
         temp.remove_filename();
         temp += link;
         link = temp;
     }
 
-    std::filesystem::path dir_name(link);
+    ghc::filesystem::path dir_name(link);
     dir_name.remove_filename();
 
     // Try watching symlink target directory. If the link target is "/", then we shouldn't get here

@@ -23,83 +23,85 @@
 
 #include <Windows.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-template <typename T>
-class ScopedLocal
-{
-public:
-    ScopedLocal() = default;
+		template <typename T>
+		class ScopedLocal
+		{
+		public:
+			ScopedLocal() = default;
 
-    ScopedLocal(ScopedLocal&& other) noexcept
-    {
-        local_ = other.local_;
-        other.local_ = nullptr;
-    }
+			ScopedLocal(ScopedLocal&& other) noexcept
+			{
+				local_ = other.local_;
+				other.local_ = nullptr;
+			}
 
-    explicit ScopedLocal(T local) : local_(local)
-    {
-        // Nothing
-    }
+			explicit ScopedLocal(T local) : local_(local)
+			{
+				// Nothing
+			}
 
-    explicit ScopedLocal(SIZE_T length)
-    {
-        local_ = reinterpret_cast<T>(LocalAlloc(LHND, length));
-    }
+			explicit ScopedLocal(SIZE_T length)
+			{
+				local_ = reinterpret_cast<T>(LocalAlloc(LHND, length));
+			}
 
-    ~ScopedLocal() { close(); }
+			~ScopedLocal() { close(); }
 
-    T get() { return local_; }
+			T get() { return local_; }
 
-    void reset(T local = nullptr)
-    {
-        close();
-        local_ = local;
-    }
+			void reset(T local = nullptr)
+			{
+				close();
+				local_ = local;
+			}
 
-    T release()
-    {
-        T local = local_;
-        local_ = nullptr;
-        return local;
-    }
+			T release()
+			{
+				T local = local_;
+				local_ = nullptr;
+				return local;
+			}
 
-    T* recieve()
-    {
-        close();
-        return &local_;
-    }
+			T* recieve()
+			{
+				close();
+				return &local_;
+			}
 
-    bool isValid() const
-    {
-        return (local_ != nullptr);
-    }
+			bool isValid() const
+			{
+				return (local_ != nullptr);
+			}
 
-    ScopedLocal& operator=(ScopedLocal&& other) noexcept
-    {
-        close();
-        local_ = other.local_;
-        other.local_ = nullptr;
-        return *this;
-    }
+			ScopedLocal& operator=(ScopedLocal&& other) noexcept
+			{
+				close();
+				local_ = other.local_;
+				other.local_ = nullptr;
+				return *this;
+			}
 
-    operator T() { return local_; }
+			operator T() { return local_; }
 
-private:
-    void close()
-    {
-        if (isValid())
-        {
-            LocalFree(local_);
-            local_ = nullptr;
-        }
-    }
+		private:
+			void close()
+			{
+				if (isValid())
+				{
+					LocalFree(local_);
+					local_ = nullptr;
+				}
+			}
 
-    T local_ = nullptr;
+			T local_ = nullptr;
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedLocal);
-};
+			DISALLOW_COPY_AND_ASSIGN(ScopedLocal);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SCOPED_LOCAL_H

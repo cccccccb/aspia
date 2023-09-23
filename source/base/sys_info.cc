@@ -69,7 +69,7 @@ std::string SysInfo::processorName()
     removeChars(&result, "Six-Core Processor");
     removeChars(&result, "Eight-Core Processor");
 
-    std::string_view at("@");
+    std::string at("@");
     auto sub = find_end(result.begin(), result.end(), at.begin(), at.end());
     if (sub != result.end())
         result.erase(sub - 1, result.end());

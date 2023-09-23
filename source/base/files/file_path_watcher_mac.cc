@@ -18,6 +18,7 @@
 
 #include "base/files/file_path_watcher.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 
 namespace base {
@@ -30,7 +31,7 @@ public:
     FilePathWatcherImpl(std::shared_ptr<TaskRunner> task_runner);
     ~FilePathWatcherImpl() override;
 
-    bool watch(const std::filesystem::path& path,
+    bool watch(const ghc::filesystem::path& path,
                bool recursive,
                const FilePathWatcher::Callback& callback) override;
     void cancel() override;
@@ -50,7 +51,7 @@ FilePathWatcherImpl::FilePathWatcherImpl(std::shared_ptr<TaskRunner> task_runner
 FilePathWatcherImpl::~FilePathWatcherImpl() = default;
 
 //--------------------------------------------------------------------------------------------------
-bool FilePathWatcherImpl::watch(const std::filesystem::path& /* path */,
+bool FilePathWatcherImpl::watch(const ghc::filesystem::path& /* path */,
                                 bool /* recursive */,
                                 const FilePathWatcher::Callback& /* callback */)
 {

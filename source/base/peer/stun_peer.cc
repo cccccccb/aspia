@@ -52,7 +52,7 @@ StunPeer::~StunPeer()
     doStop();
 }
 
-void StunPeer::start(std::u16string_view stun_host, uint16_t stun_port, Delegate* delegate)
+void StunPeer::start(std::u16string stun_host, uint16_t stun_port, Delegate* delegate)
 {
     delegate_ = delegate;
     DCHECK(delegate_);

@@ -24,67 +24,68 @@
 #include <Windows.h>
 #include <SetupAPI.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class ScopedDeviceInfo
-{
-public:
-    ScopedDeviceInfo() = default;
+		class ScopedDeviceInfo
+		{
+		public:
+			ScopedDeviceInfo() = default;
 
-    explicit ScopedDeviceInfo(HDEVINFO device_info)
-        : device_info_(device_info)
-    {
-        // Nothing
-    }
+			explicit ScopedDeviceInfo(HDEVINFO device_info)
+				: device_info_(device_info)
+			{
+				// Nothing
+			}
 
-    ~ScopedDeviceInfo()
-    {
-        close();
-    }
+			~ScopedDeviceInfo()
+			{
+				close();
+			}
 
-    HDEVINFO get() const
-    {
-        return device_info_;
-    }
+			HDEVINFO get() const
+			{
+				return device_info_;
+			}
 
-    operator HDEVINFO()
-    {
-        return device_info_;
-    }
+			operator HDEVINFO()
+			{
+				return device_info_;
+			}
 
-    void reset(HDEVINFO device_info = INVALID_HANDLE_VALUE)
-    {
-        close();
-        device_info_ = device_info;
-    }
+			void reset(HDEVINFO device_info = INVALID_HANDLE_VALUE)
+			{
+				close();
+				device_info_ = device_info;
+			}
 
-    HDEVINFO release()
-    {
-        HDEVINFO device_info = device_info_;
-        device_info_ = INVALID_HANDLE_VALUE;
-        return device_info;
-    }
+			HDEVINFO release()
+			{
+				HDEVINFO device_info = device_info_;
+				device_info_ = INVALID_HANDLE_VALUE;
+				return device_info;
+			}
 
-    bool isValid() const
-    {
-        return device_info_ != INVALID_HANDLE_VALUE;
-    }
+			bool isValid() const
+			{
+				return device_info_ != INVALID_HANDLE_VALUE;
+			}
 
-private:
-    void close()
-    {
-        if (isValid())
-        {
-            SetupDiDestroyDeviceInfoList(device_info_);
-            device_info_ = INVALID_HANDLE_VALUE;
-        }
-    }
+		private:
+			void close()
+			{
+				if (isValid())
+				{
+					SetupDiDestroyDeviceInfoList(device_info_);
+					device_info_ = INVALID_HANDLE_VALUE;
+				}
+			}
 
-    HDEVINFO device_info_ = INVALID_HANDLE_VALUE;
+			HDEVINFO device_info_ = INVALID_HANDLE_VALUE;
 
-    DISALLOW_COPY_AND_ASSIGN(ScopedDeviceInfo);
-};
-
+			DISALLOW_COPY_AND_ASSIGN(ScopedDeviceInfo);
+		};
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SCOPED_DEVICE_INFO_H

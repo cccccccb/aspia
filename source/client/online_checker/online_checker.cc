@@ -18,6 +18,7 @@
 
 #include "client/online_checker/online_checker.h"
 
+#include "base/optional.hpp"
 #include "base/logging.h"
 #include "base/net/address.h"
 #include "base/peer/host_id.h"
@@ -39,7 +40,7 @@ OnlineChecker::~OnlineChecker()
 }
 
 //--------------------------------------------------------------------------------------------------
-void OnlineChecker::checkComputers(const std::optional<RouterConfig>& router_config,
+void OnlineChecker::checkComputers(const tl::optional<RouterConfig>& router_config,
                                    const ComputerList& computers,
                                    Delegate* delegate)
 {

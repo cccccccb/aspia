@@ -18,6 +18,7 @@
 
 #include "base/logging.h"
 
+#include "base/filesystem.hpp"
 #include "base/debug.h"
 #include "base/endian_util.h"
 #include "base/environment.h"
@@ -30,6 +31,7 @@
 #include <mutex>
 #include <ostream>
 #include <thread>
+#include <algorithm>
 
 #if defined(OS_WIN)
 #include <Windows.h>
@@ -60,8 +62,8 @@ size_t g_max_log_file_size = kDefaultMaxLogFileSize;
 size_t g_max_log_file_age = kDefaultMaxLogFileAge;
 int g_log_file_number = -1;
 
-std::filesystem::path g_log_dir_path;
-std::filesystem::path g_log_file_path;
+ghc::filesystem::path g_log_dir_path;
+ghc::filesystem::path g_log_file_path;
 std::ofstream g_log_file;
 std::mutex g_log_file_lock;
 
@@ -70,7 +72,7 @@ const char* severityName(LoggingSeverity severity)
 {
     static const char* const kLogSeverityNames[] = { "I", "W", "E", "F" };
 
-    static_assert(LOG_LS_NUMBER == std::size(kLogSeverityNames));
+    static_assert(LOG_LS_NUMBER == std::size(kLogSeverityNames), "");
 
     if (severity >= 0 && severity < LOG_LS_NUMBER)
         return kLogSeverityNames[severity];
@@ -79,31 +81,32 @@ const char* severityName(LoggingSeverity severity)
 }
 
 //--------------------------------------------------------------------------------------------------
-void removeOldFiles(const std::filesystem::path& path,
-                    const std::filesystem::file_time_type& current_time,
+void removeOldFiles(const ghc::filesystem::path& path,
+                    const ghc::filesystem::file_time_type& current_time,
                     size_t max_file_age)
 {
-    std::filesystem::file_time_type time = current_time - std::chrono::hours(24U * max_file_age);
+    ghc::filesystem::file_time_type time = current_time - std::chrono::hours(24U * max_file_age);
 
     std::error_code ignored_code;
-    for (const auto& item : std::filesystem::directory_iterator(path, ignored_code))
+    for (const auto& item : ghc::filesystem::directory_iterator(path, ignored_code))
     {
-        if (item.is_directory())
+        std::error_code error_code;
+        if (item.is_directory(error_code))
             continue;
 
-        if (item.last_write_time() < time)
-            std::filesystem::remove(item.path(), ignored_code);
+        if (item.last_write_time(error_code) < time)
+            ghc::filesystem::remove(item.path(), ignored_code);
     }
 }
 
 //--------------------------------------------------------------------------------------------------
-std::filesystem::path defaultLogFileDir()
+ghc::filesystem::path defaultLogFileDir()
 {
     std::error_code error_code;
 
-    std::filesystem::path path = std::filesystem::temp_directory_path(error_code);
+    ghc::filesystem::path path = ghc::filesystem::temp_directory_path(error_code);
     if (error_code)
-        return std::filesystem::path();
+        return ghc::filesystem::path();
 
     path.append("aspia");
     return path;
@@ -120,7 +123,7 @@ bool initLoggingUnlocked(const std::string& prefix)
     // The next log file must have a number higher than the current one.
     ++g_log_file_number;
 
-    std::filesystem::path file_dir = g_log_dir_path;
+    ghc::filesystem::path file_dir = g_log_dir_path;
     if (file_dir.empty())
         file_dir = defaultLogFileDir();
 
@@ -128,12 +131,12 @@ bool initLoggingUnlocked(const std::string& prefix)
         return false;
 
     std::error_code error_code;
-    if (!std::filesystem::exists(file_dir, error_code))
+    if (!ghc::filesystem::exists(file_dir, error_code))
     {
         if (error_code)
             return false;
 
-        if (!std::filesystem::create_directories(file_dir, error_code))
+        if (!ghc::filesystem::create_directories(file_dir, error_code))
             return false;
     }
 
@@ -155,7 +158,7 @@ bool initLoggingUnlocked(const std::string& prefix)
                      << g_log_file_number
                      << ".log";
 
-    std::filesystem::path file_path(file_dir);
+    ghc::filesystem::path file_path(file_dir);
     file_path.append(file_name_stream.str());
 
     g_log_file.open(file_path);
@@ -164,8 +167,8 @@ bool initLoggingUnlocked(const std::string& prefix)
 
     if (g_max_log_file_age != 0)
     {
-        std::filesystem::file_time_type file_time =
-            std::filesystem::last_write_time(file_path, error_code);
+        ghc::filesystem::file_time_type file_time =
+            ghc::filesystem::last_write_time(file_path, error_code);
         if (!error_code)
             removeOldFiles(file_dir, file_time, g_max_log_file_age);
     }
@@ -258,9 +261,9 @@ LoggingSettings::LoggingSettings()
 }
 
 //--------------------------------------------------------------------------------------------------
-std::filesystem::path execFilePath()
+ghc::filesystem::path execFilePath()
 {
-    std::filesystem::path exec_file_path;
+    ghc::filesystem::path exec_file_path;
 
 #if defined(OS_WIN)
     wchar_t buffer[MAX_PATH] = { 0 };
@@ -285,8 +288,8 @@ std::filesystem::path execFilePath()
 //--------------------------------------------------------------------------------------------------
 std::string logFilePrefix()
 {
-    std::filesystem::path exec_file_path = execFilePath();
-    std::filesystem::path exec_file_name = exec_file_path.filename();
+    ghc::filesystem::path exec_file_path = execFilePath();
+    ghc::filesystem::path exec_file_name = exec_file_path.filename();
     exec_file_name.replace_extension();
     return exec_file_name.string();
 }
@@ -295,7 +298,7 @@ std::string logFilePrefix()
 bool initLogging(const LoggingSettings& settings)
 {
     {
-        std::scoped_lock lock(g_log_file_lock);
+        std::lock_guard<std::mutex> lock(g_log_file_lock);
 
         g_logging_destination = settings.destination;
         g_min_log_level = settings.min_log_level;
@@ -332,7 +335,7 @@ void shutdownLogging()
 {
     LOG(LS_INFO) << "Logging finished";
 
-    std::scoped_lock lock(g_log_file_lock);
+    std::lock_guard<std::mutex> lock(g_log_file_lock);
     g_log_file.close();
 }
 
@@ -399,9 +402,9 @@ std::string* makeCheckOpString(const std::string& v1, const std::string& v2, con
 }
 
 //--------------------------------------------------------------------------------------------------
-LogMessage::LogMessage(std::string_view file,
+LogMessage::LogMessage(std::string file,
                        int line,
-                       std::string_view function,
+                       std::string function,
                        LoggingSeverity severity)
     : severity_(severity)
 {
@@ -409,9 +412,9 @@ LogMessage::LogMessage(std::string_view file,
 }
 
 //--------------------------------------------------------------------------------------------------
-LogMessage::LogMessage(std::string_view file,
+LogMessage::LogMessage(std::string file,
                        int line,
-                       std::string_view function,
+                       std::string function,
                        const char* condition)
     : severity_(LOG_LS_FATAL)
 {
@@ -420,9 +423,9 @@ LogMessage::LogMessage(std::string_view file,
 }
 
 //--------------------------------------------------------------------------------------------------
-LogMessage::LogMessage(std::string_view file,
+LogMessage::LogMessage(std::string file,
                        int line,
-                       std::string_view function,
+                       std::string function,
                        std::string* result)
     : severity_(LOG_LS_FATAL)
 {
@@ -432,9 +435,9 @@ LogMessage::LogMessage(std::string_view file,
 }
 
 //--------------------------------------------------------------------------------------------------
-LogMessage::LogMessage(std::string_view file,
+LogMessage::LogMessage(std::string file,
                        int line,
-                       std::string_view function,
+                       std::string function,
                        LoggingSeverity severity,
                        std::string* result)
     : severity_(severity)
@@ -470,7 +473,7 @@ LogMessage::~LogMessage()
     // Write to log file.
     if ((g_logging_destination & LOG_TO_FILE) != 0)
     {
-        std::scoped_lock lock(g_log_file_lock);
+        std::lock_guard<std::mutex> lock(g_log_file_lock);
 
         if (g_log_file.tellp() >= g_max_log_file_size)
         {
@@ -492,11 +495,11 @@ LogMessage::~LogMessage()
 
 //--------------------------------------------------------------------------------------------------
 // Writes the common header info to the stream.
-void LogMessage::init(std::string_view file, int line, std::string_view function)
+void LogMessage::init(std::string file, int line, std::string function)
 {
     size_t last_slash_pos = file.find_last_of("\\/");
-    if (last_slash_pos != std::string_view::npos)
-        file.remove_prefix(last_slash_pos + 1);
+    if (last_slash_pos != std::string::npos)
+        file = file.substr(last_slash_pos, file.length() - last_slash_pos - 1);
 
     SystemTime time = SystemTime::now();
 
@@ -513,9 +516,9 @@ void LogMessage::init(std::string_view file, int line, std::string_view function
 }
 
 //--------------------------------------------------------------------------------------------------
-ErrorLogMessage::ErrorLogMessage(std::string_view file,
+ErrorLogMessage::ErrorLogMessage(std::string file,
                                  int line,
-                                 std::string_view function,
+                                 std::string function,
                                  LoggingSeverity severity,
                                  SystemError error)
     : error_(error),

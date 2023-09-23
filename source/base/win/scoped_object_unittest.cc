@@ -20,32 +20,34 @@
 
 #include <gtest/gtest.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-TEST(ScopedHandleTest, ScopedHandle)
-{
-    // Any illegal error code will do. We just need to test that it is preserved
-    // by ScopedHandle to avoid bug 528394.
-    const DWORD magic_error = 0x12345678;
+		TEST(ScopedHandleTest, ScopedHandle)
+		{
+			// Any illegal error code will do. We just need to test that it is preserved
+			// by ScopedHandle to avoid bug 528394.
+			const DWORD magic_error = 0x12345678;
 
-    HANDLE handle = CreateMutexW(nullptr, false, nullptr);
-    // Call SetLastError after creating the handle.
-    SetLastError(magic_error);
-    base::win::ScopedHandle handle_holder(handle);
-    EXPECT_EQ(magic_error, GetLastError());
+			HANDLE handle = CreateMutexW(nullptr, false, nullptr);
+			// Call SetLastError after creating the handle.
+			SetLastError(magic_error);
+			base::win::ScopedHandle handle_holder(handle);
+			EXPECT_EQ(magic_error, GetLastError());
 
-    // Create a new handle and then set LastError again.
-    handle = CreateMutexW(nullptr, false, nullptr);
-    SetLastError(magic_error);
-    handle_holder.reset(handle);
-    EXPECT_EQ(magic_error, GetLastError());
+			// Create a new handle and then set LastError again.
+			handle = CreateMutexW(nullptr, false, nullptr);
+			SetLastError(magic_error);
+			handle_holder.reset(handle);
+			EXPECT_EQ(magic_error, GetLastError());
 
-    // Create a new handle and then set LastError again.
-    handle = CreateMutexW(nullptr, false, nullptr);
-    base::win::ScopedHandle handle_source(handle);
-    SetLastError(magic_error);
-    handle_holder = std::move(handle_source);
-    EXPECT_EQ(magic_error, GetLastError());
-}
+			// Create a new handle and then set LastError again.
+			handle = CreateMutexW(nullptr, false, nullptr);
+			base::win::ScopedHandle handle_source(handle);
+			SetLastError(magic_error);
+			handle_holder = std::move(handle_source);
+			EXPECT_EQ(magic_error, GetLastError());
+		}
 
+	}
 } // namespace base::win

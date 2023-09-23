@@ -603,7 +603,7 @@ void DesktopToolBar::onMenuHide()
 {
     allow_hide_ = true;
 
-    QTimer::singleShot(std::chrono::milliseconds(500), this, [=]()
+    QTimer::singleShot(500, this, [=]()
     {
         if (!allow_hide_)
             return;
@@ -807,7 +807,7 @@ void DesktopToolBar::updateSize()
 void DesktopToolBar::delayedHide()
 {
     if (!ui.action_pin->isChecked() && !hide_timer_->isActive())
-        hide_timer_->start(std::chrono::seconds(1));
+        hide_timer_->start(1000);
 }
 
 } // namespace client

@@ -27,45 +27,47 @@
 
 struct _PRINTER_INFO_2W;
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class PrinterEnumerator
-{
-public:
-    PrinterEnumerator();
-    ~PrinterEnumerator();
+		class PrinterEnumerator
+		{
+		public:
+			PrinterEnumerator();
+			~PrinterEnumerator();
 
-    bool isAtEnd() const;
-    void advance();
+			bool isAtEnd() const;
+			void advance();
 
-    bool isDefault() const;
-    bool isShared() const;
-    std::string name() const;
-    std::string shareName() const;
-    std::string portName() const;
-    std::string driverName() const;
-    std::string deviceName() const;
-    int paperWidth() const;
-    int paperHeight() const;
-    int printQuality() const;
-    std::string printProcessor() const;
-    std::string dataType() const;
-    std::string serverName() const;
-    std::string location() const;
-    std::string comment() const;
-    int jobsCount() const;
+			bool isDefault() const;
+			bool isShared() const;
+			std::string name() const;
+			std::string shareName() const;
+			std::string portName() const;
+			std::string driverName() const;
+			std::string deviceName() const;
+			int paperWidth() const;
+			int paperHeight() const;
+			int printQuality() const;
+			std::string printProcessor() const;
+			std::string dataType() const;
+			std::string serverName() const;
+			std::string location() const;
+			std::string comment() const;
+			int jobsCount() const;
 
-private:
-    ByteArray info_buffer_;
-    std::wstring default_printer_;
+		private:
+			ByteArray info_buffer_;
+			std::wstring default_printer_;
 
-    _PRINTER_INFO_2W* info_ = nullptr;
-    int count_ = 0;
-    int current_ = 0;
+			_PRINTER_INFO_2W* info_ = nullptr;
+			int count_ = 0;
+			int current_ = 0;
 
-    DISALLOW_COPY_AND_ASSIGN(PrinterEnumerator);
-};
+			DISALLOW_COPY_AND_ASSIGN(PrinterEnumerator);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_PRINTER_ENUMERATOR_H

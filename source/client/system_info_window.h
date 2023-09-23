@@ -21,8 +21,10 @@
 
 #include <memory>
 
-namespace proto::system_info {
-class SystemInfo;
+namespace proto {
+	namespace system_info {
+		class SystemInfo;
+	}
 } // namespace proto::system_info
 
 namespace client {

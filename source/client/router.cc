@@ -45,19 +45,19 @@ Router::~Router()
 }
 
 //--------------------------------------------------------------------------------------------------
-void Router::setUserName(std::u16string_view user_name)
+void Router::setUserName(std::u16string user_name)
 {
     authenticator_->setUserName(user_name);
 }
 
 //--------------------------------------------------------------------------------------------------
-void Router::setPassword(std::u16string_view password)
+void Router::setPassword(std::u16string password)
 {
     authenticator_->setPassword(password);
 }
 
 //--------------------------------------------------------------------------------------------------
-void Router::connectToRouter(std::u16string_view address, uint16_t port)
+void Router::connectToRouter(std::u16string address, uint16_t port)
 {
     LOG(LS_INFO) << "Connecting to router " << address.data() << ":" << port;
 

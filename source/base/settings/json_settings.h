@@ -21,8 +21,8 @@
 
 #include "base/macros_magic.h"
 #include "base/settings/settings.h"
+#include "base/filesystem.hpp"
 
-#include <filesystem>
 
 namespace base {
 
@@ -32,11 +32,11 @@ public:
     enum class Scope { USER, SYSTEM };
     enum class Encrypted { YES, NO };
 
-    JsonSettings(std::string_view file_name,
+    JsonSettings(std::string file_name,
                  Encrypted encrypted = Encrypted::NO);
     JsonSettings(Scope scope,
-                 std::string_view application_name,
-                 std::string_view file_name,
+                 std::string application_name,
+                 std::string file_name,
                  Encrypted encrypted = Encrypted::NO);
     ~JsonSettings() override;
 
@@ -44,23 +44,23 @@ public:
     void sync();
     bool flush();
 
-    const std::filesystem::path& filePath() const { return path_; }
+    const ghc::filesystem::path& filePath() const { return path_; }
 
-    static std::filesystem::path filePath(std::string_view file_name);
-    static std::filesystem::path filePath(Scope scope,
-                                          std::string_view application_name,
-                                          std::string_view file_name);
+    static ghc::filesystem::path filePath(std::string file_name);
+    static ghc::filesystem::path filePath(Scope scope,
+                                          std::string application_name,
+                                          std::string file_name);
 
-    static bool readFile(const std::filesystem::path& file,
+    static bool readFile(const ghc::filesystem::path& file,
                          Map& map,
                          Encrypted encrypted = Encrypted::NO);
-    static bool writeFile(const std::filesystem::path& file,
+    static bool writeFile(const ghc::filesystem::path& file,
                           const Map& map,
                           Encrypted encrypted = Encrypted::NO);
 
 private:
     const Encrypted encrypted_;
-    std::filesystem::path path_;
+    ghc::filesystem::path path_;
 
     DISALLOW_COPY_AND_ASSIGN(JsonSettings);
 };

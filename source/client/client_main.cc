@@ -19,6 +19,7 @@
 #include "client/client_main.h"
 
 #include "build/version.h"
+#include "base/optional.hpp"
 #include "client/config_factory.h"
 #include "client/router_config_storage.h"
 #include "client/ui/application.h"
@@ -394,8 +395,6 @@ int clientMain(int argc, char* argv[])
 
     client::Application::setAttribute(Qt::AA_EnableHighDpiScaling, true);
     client::Application::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-    client::Application::setHighDpiScaleFactorRoundingPolicy(
-        Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
 
     client::Application application(argc, argv);
 
@@ -535,7 +534,7 @@ int clientMain(int argc, char* argv[])
 
     if (parser.isSet(address_option))
     {
-        std::optional<proto::DesktopConfig> desktop_config;
+        tl::optional<proto::DesktopConfig> desktop_config;
         client::Config config;
 
         config.address_or_id = parser.value(address_option).toStdU16String();

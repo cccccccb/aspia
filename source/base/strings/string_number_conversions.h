@@ -34,35 +34,35 @@ namespace base {
 // nullptr.
 // If it was possible to convert the string to a number, then true is returned, otherwise false.
 
-bool stringToInt(std::string_view input, int* output);
-bool stringToInt(std::u16string_view input, int* output);
+bool stringToInt(std::string input, int* output);
+bool stringToInt(std::u16string input, int* output);
 
-bool stringToUint(std::string_view input, unsigned int* output);
-bool stringToUint(std::u16string_view input, unsigned int* output);
+bool stringToUint(std::string input, unsigned int* output);
+bool stringToUint(std::u16string input, unsigned int* output);
 
-bool stringToChar(std::string_view input, signed char* output);
-bool stringToChar(std::u16string_view input, signed char* output);
+bool stringToChar(std::string input, signed char* output);
+bool stringToChar(std::u16string input, signed char* output);
 
-bool stringToShort(std::string_view input, short* output);
-bool stringToShort(std::u16string_view input, short* output);
+bool stringToShort(std::string input, short* output);
+bool stringToShort(std::u16string input, short* output);
 
-bool stringToUChar(std::string_view input, unsigned char* output);
-bool stringToUChar(std::u16string_view input, unsigned char* output);
+bool stringToUChar(std::string input, unsigned char* output);
+bool stringToUChar(std::u16string input, unsigned char* output);
 
-bool stringToUShort(std::string_view input, unsigned short* output);
-bool stringToUShort(std::u16string_view input, unsigned short* output);
+bool stringToUShort(std::string input, unsigned short* output);
+bool stringToUShort(std::u16string input, unsigned short* output);
 
-bool stringToULong(std::string_view input, unsigned long* output);
-bool stringToULong(std::u16string_view input, unsigned long* output);
+bool stringToULong(std::string input, unsigned long* output);
+bool stringToULong(std::u16string input, unsigned long* output);
 
-bool stringToInt64(std::string_view input, int64_t* output);
-bool stringToInt64(std::u16string_view input, int64_t* output);
+bool stringToInt64(std::string input, int64_t* output);
+bool stringToInt64(std::u16string input, int64_t* output);
 
-bool stringToUint64(std::string_view input, unsigned long int* output);
-bool stringToUint64(std::u16string_view input, unsigned long int* output);
+bool stringToUint64(std::string input, unsigned long int* output);
+bool stringToUint64(std::u16string input, unsigned long int* output);
 
-bool stringToULong64(std::string_view input, unsigned long long* output);
-bool stringToULong64(std::u16string_view input, unsigned long long* output);
+bool stringToULong64(std::string input, unsigned long long* output);
+bool stringToULong64(std::u16string input, unsigned long long* output);
 
 // Functions to convert a number to a string.
 

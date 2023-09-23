@@ -18,6 +18,7 @@
 
 #include "base/audio/audio_capturer_linux.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/message_loop/message_loop_task_runner.h"
 
@@ -42,7 +43,7 @@ bool AudioCapturerLinux::start(const PacketCapturedCallback& callback)
     callback_ = callback;
     DCHECK(callback_);
 
-    std::filesystem::path pipe_path("/etc/pulse/fifo_output"); // Correct way?
+    ghc::filesystem::path pipe_path("/etc/pulse/fifo_output"); // Correct way?
     if (pipe_path.empty())
     {
         LOG(LS_ERROR) << "Empty pipe path";

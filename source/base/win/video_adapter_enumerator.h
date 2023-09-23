@@ -21,23 +21,25 @@
 
 #include "base/win/device_enumerator.h"
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class VideoAdapterEnumarator : public DeviceEnumerator
-{
-public:
-    VideoAdapterEnumarator();
+		class VideoAdapterEnumarator : public DeviceEnumerator
+		{
+		public:
+			VideoAdapterEnumarator();
 
-    std::string adapterString() const;
-    std::string biosString() const;
-    std::string chipString() const;
-    std::string dacType() const;
-    uint64_t memorySize() const;
+			std::string adapterString() const;
+			std::string biosString() const;
+			std::string chipString() const;
+			std::string dacType() const;
+			uint64_t memorySize() const;
 
-private:
-    DISALLOW_COPY_AND_ASSIGN(VideoAdapterEnumarator);
-};
+		private:
+			DISALLOW_COPY_AND_ASSIGN(VideoAdapterEnumarator);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_VIDEO_ADAPTER_ENUMERATOR_H

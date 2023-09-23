@@ -31,7 +31,7 @@ struct StringLess
 {
     using is_transparent = void;
 
-    bool operator()(std::string_view lhs, std::string_view rhs) const
+    bool operator()(std::string lhs, std::string rhs) const
     {
         return lhs < rhs;
     }
@@ -45,7 +45,7 @@ public:
     using Map = std::map<std::string, std::string, internal::StringLess>;
     using Array = std::vector<Settings>;
 
-    static const std::string_view kSeparator;
+    static const std::string kSeparator;
 
     Settings() = default;
     virtual ~Settings() = default;
@@ -73,7 +73,7 @@ public:
     }
 
     template <typename T>
-    T get(std::string_view key, const T& default_value = defaultValue<T>()) const
+    T get(std::string key, const T& default_value = defaultValue<T>()) const
     {
         Map::const_iterator result = map_.find(key);
         if (result == map_.cend())
@@ -83,19 +83,19 @@ public:
     }
 
     template <typename T>
-    void set(std::string_view key, const T& value)
+    void set(std::string key, const T& value)
     {
         map_.insert_or_assign(std::string(key), Converter<T>::set_value(value));
         setChanged(true);
     }
 
-    Array getArray(std::string_view key) const;
-    void setArray(std::string_view key, const Array& array);
+    Array getArray(std::string key) const;
+    void setArray(std::string key, const Array& array);
 
-    Settings getGroup(std::string_view key) const;
-    void setGroup(std::string_view key, const Settings& group);
+    Settings getGroup(std::string key) const;
+    void setGroup(std::string key, const Settings& group);
 
-    void remove(std::string_view key);
+    void remove(std::string key);
 
     const Map& constMap() const { return map_; }
     Map& map() { return map_; }

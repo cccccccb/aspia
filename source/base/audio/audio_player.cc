@@ -53,7 +53,7 @@ std::unique_ptr<AudioPlayer> AudioPlayer::create()
 //--------------------------------------------------------------------------------------------------
 void AudioPlayer::addPacket(std::unique_ptr<proto::AudioPacket> packet)
 {
-    std::scoped_lock lock(incoming_queue_lock_);
+    std::lock_guard<std::mutex> lock(incoming_queue_lock_);
     incoming_queue_.emplace(std::move(packet));
 }
 
@@ -63,7 +63,7 @@ size_t AudioPlayer::onMoreDataRequired(void* data, size_t size)
     if (work_queue_.empty())
     {
         {
-            std::scoped_lock lock(incoming_queue_lock_);
+            std::lock_guard<std::mutex> lock(incoming_queue_lock_);
             work_queue_.swap(incoming_queue_);
         }
 

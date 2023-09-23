@@ -28,14 +28,14 @@ namespace base {
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool OSCrypt::encryptString16(std::u16string_view plaintext, std::string* ciphertext)
+bool OSCrypt::encryptString16(std::u16string plaintext, std::string* ciphertext)
 {
     return encryptString(utf8FromUtf16(plaintext), ciphertext);
 }
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool OSCrypt::decryptString16(std::string_view ciphertext, std::u16string* plaintext)
+bool OSCrypt::decryptString16(std::string ciphertext, std::u16string* plaintext)
 {
     std::string utf8;
 
@@ -48,7 +48,7 @@ bool OSCrypt::decryptString16(std::string_view ciphertext, std::u16string* plain
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool OSCrypt::encryptString(std::string_view plaintext, std::string* ciphertext)
+bool OSCrypt::encryptString(std::string plaintext, std::string* ciphertext)
 {
     DATA_BLOB input;
     input.pbData = const_cast<BYTE*>(reinterpret_cast<const BYTE*>(plaintext.data()));
@@ -69,7 +69,7 @@ bool OSCrypt::encryptString(std::string_view plaintext, std::string* ciphertext)
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool OSCrypt::decryptString(std::string_view ciphertext, std::string* plaintext)
+bool OSCrypt::decryptString(std::string ciphertext, std::string* plaintext)
 {
     DATA_BLOB input;
     input.pbData = const_cast<BYTE*>(reinterpret_cast<const BYTE*>(ciphertext.data()));

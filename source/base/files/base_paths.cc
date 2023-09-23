@@ -17,6 +17,7 @@
 //
 
 #include "base/files/base_paths.h"
+#include "base/filesystem.hpp"
 
 #include "base/logging.h"
 
@@ -45,13 +46,13 @@ namespace {
 
 #if defined(OS_LINUX)
 //--------------------------------------------------------------------------------------------------
-std::filesystem::path xdgUserDirectory(const char* dir_name, const char* fallback_dir)
+ghc::filesystem::path xdgUserDirectory(const char* dir_name, const char* fallback_dir)
 {
-    std::filesystem::path path;
+    ghc::filesystem::path path;
     char* xdg_dir = xdg_user_dir_lookup(dir_name);
     if (xdg_dir)
     {
-        path = std::filesystem::path(xdg_dir);
+        path = ghc::filesystem::path(xdg_dir);
         free(xdg_dir);
     }
     else
@@ -68,7 +69,7 @@ std::filesystem::path xdgUserDirectory(const char* dir_name, const char* fallbac
 #if defined(OS_WIN)
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::windowsDir(std::filesystem::path* result)
+bool BasePaths::windowsDir(ghc::filesystem::path* result)
 {
     DCHECK(result);
 
@@ -86,7 +87,7 @@ bool BasePaths::windowsDir(std::filesystem::path* result)
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::systemDir(std::filesystem::path* result)
+bool BasePaths::systemDir(ghc::filesystem::path* result)
 {
     DCHECK(result);
 
@@ -106,7 +107,7 @@ bool BasePaths::systemDir(std::filesystem::path* result)
 #if !defined(OS_MAC)
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::userAppData(std::filesystem::path* result)
+bool BasePaths::userAppData(ghc::filesystem::path* result)
 {
     DCHECK(result);
 
@@ -145,7 +146,7 @@ bool BasePaths::userAppData(std::filesystem::path* result)
 #if !defined(OS_MAC)
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::userDesktop(std::filesystem::path* result)
+bool BasePaths::userDesktop(ghc::filesystem::path* result)
 {
     DCHECK(result);
 
@@ -174,7 +175,7 @@ bool BasePaths::userDesktop(std::filesystem::path* result)
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::userHome(std::filesystem::path* result)
+bool BasePaths::userHome(ghc::filesystem::path* result)
 {
     DCHECK(result);
 
@@ -206,7 +207,7 @@ bool BasePaths::userHome(std::filesystem::path* result)
 #if !defined(OS_MAC)
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::commonAppData(std::filesystem::path* result)
+bool BasePaths::commonAppData(ghc::filesystem::path* result)
 {
     DCHECK(result);
 
@@ -236,7 +237,7 @@ bool BasePaths::commonAppData(std::filesystem::path* result)
 #if !defined(OS_MAC)
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::commonDesktop(std::filesystem::path* result)
+bool BasePaths::commonDesktop(ghc::filesystem::path* result)
 {
     DCHECK(result);
 
@@ -264,11 +265,11 @@ bool BasePaths::commonDesktop(std::filesystem::path* result)
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::currentExecDir(std::filesystem::path* result)
+bool BasePaths::currentExecDir(ghc::filesystem::path* result)
 {
     DCHECK(result);
 
-    std::filesystem::path exe_path;
+    ghc::filesystem::path exe_path;
 
     if (!currentExecFile(&exe_path))
     {
@@ -282,7 +283,7 @@ bool BasePaths::currentExecDir(std::filesystem::path* result)
 
 //--------------------------------------------------------------------------------------------------
 // static
-bool BasePaths::currentExecFile(std::filesystem::path* result)
+bool BasePaths::currentExecFile(ghc::filesystem::path* result)
 {
     DCHECK(result);
 

@@ -17,6 +17,7 @@
 //
 
 #include "base/settings/json_settings.h"
+#include "base/filesystem.hpp"
 
 #include <gtest/gtest.h>
 
@@ -24,14 +25,14 @@ namespace base {
 
 namespace {
 
-bool removeFile(const std::filesystem::path& file_path)
+bool removeFile(const ghc::filesystem::path& file_path)
 {
     std::error_code ignored_code;
 
-    if (!std::filesystem::remove(file_path, ignored_code))
+    if (!ghc::filesystem::remove(file_path, ignored_code))
         return false;
 
-    return std::filesystem::remove(file_path.parent_path(), ignored_code);
+    return ghc::filesystem::remove(file_path.parent_path(), ignored_code);
 }
 
 } // namespace
@@ -106,7 +107,7 @@ TEST(JsonSettingsTest, SettingsTest)
         }
     }
 
-    std::filesystem::path file_path = settings->filePath();
+    ghc::filesystem::path file_path = settings->filePath();
     settings.reset();
 
     bool ret = removeFile(file_path);
@@ -137,7 +138,7 @@ TEST(JsonSettingsTest, DISABLED_Performance)
         settings->remove("group");
     }
 
-    std::filesystem::path file_path = settings->filePath();
+    ghc::filesystem::path file_path = settings->filePath();
     settings.reset();
 
     bool ret = removeFile(file_path);

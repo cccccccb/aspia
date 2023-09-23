@@ -78,7 +78,7 @@ static StringType CFStringToSTLStringWithEncodingT(CFStringRef cfstring, CFStrin
 // it as a CFStringRef. Returns NULL on failure.
 template <typename CharType>
 static CFStringRef StringPieceToCFStringWithEncodingsT(
-    std::basic_string_view<CharType> in,
+    std::basic_string<CharType> in,
     CFStringEncoding in_encoding)
 {
     const auto in_length = in.length();
@@ -87,7 +87,7 @@ static CFStringRef StringPieceToCFStringWithEncodingsT(
 
     return CFStringCreateWithBytes(
         kCFAllocatorDefault, reinterpret_cast<const UInt8*>(in.data()),
-        in_length * sizeof(typename std::basic_string_view<CharType>::value_type),
+        in_length * sizeof(typename std::basic_string<CharType>::value_type),
         in_encoding, false);
 }
 
@@ -103,25 +103,25 @@ static const CFStringEncoding kMediumStringEncoding = kCFStringEncodingUTF16LE;
 } // namespace
 
 //--------------------------------------------------------------------------------------------------
-CFStringRef utf8ToCFStringRef(std::string_view utf8)
+CFStringRef utf8ToCFStringRef(std::string utf8)
 {
     return StringPieceToCFStringWithEncodingsT<char>(utf8, kNarrowStringEncoding);
 }
 
 //--------------------------------------------------------------------------------------------------
-CFStringRef utf16ToCFStringRef(std::u16string_view utf16)
+CFStringRef utf16ToCFStringRef(std::u16string utf16)
 {
     return StringPieceToCFStringWithEncodingsT<char16_t>(utf16, kMediumStringEncoding);
 }
 
 //--------------------------------------------------------------------------------------------------
-NSString* utf8ToNSString(std::string_view utf8)
+NSString* utf8ToNSString(std::string utf8)
 {
     return [reinterpret_cast<NSString*>(utf8ToCFStringRef(utf8)) autorelease];
 }
 
 //--------------------------------------------------------------------------------------------------
-NSString* utf16ToNSString(std::u16string_view utf16)
+NSString* utf16ToNSString(std::u16string utf16)
 {
     return [reinterpret_cast<NSString*>(utf16ToCFStringRef(utf16)) autorelease];
 }

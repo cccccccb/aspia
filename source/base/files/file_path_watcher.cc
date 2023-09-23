@@ -18,6 +18,7 @@
 
 #include "base/files/file_path_watcher.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "build/build_config.h"
 
@@ -57,7 +58,7 @@ FilePathWatcher::PlatformDelegate::~PlatformDelegate()
 }
 
 //--------------------------------------------------------------------------------------------------
-bool FilePathWatcher::watch(const std::filesystem::path& path,
+bool FilePathWatcher::watch(const ghc::filesystem::path& path,
                             bool recursive,
                             const Callback& callback)
 {

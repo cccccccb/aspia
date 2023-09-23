@@ -24,6 +24,8 @@
 #include "base/desktop/win/mv2.h"
 #include "base/desktop/win/mirror_helper.h"
 
+#include <memory>
+
 namespace base {
 
 class Mv2Helper : public MirrorHelper

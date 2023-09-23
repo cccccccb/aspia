@@ -20,40 +20,42 @@
 
 #include "base/logging.h"
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-//--------------------------------------------------------------------------------------------------
-ScopedCOMInitializer::ScopedCOMInitializer()
-{
-    initialize(COINIT_APARTMENTTHREADED);
-}
+		//--------------------------------------------------------------------------------------------------
+		ScopedCOMInitializer::ScopedCOMInitializer()
+		{
+			initialize(COINIT_APARTMENTTHREADED);
+		}
 
-//--------------------------------------------------------------------------------------------------
-ScopedCOMInitializer::ScopedCOMInitializer(SelectMTA /* mta */)
-{
-    initialize(COINIT_MULTITHREADED);
-}
+		//--------------------------------------------------------------------------------------------------
+		ScopedCOMInitializer::ScopedCOMInitializer(SelectMTA /* mta */)
+		{
+			initialize(COINIT_MULTITHREADED);
+		}
 
-//--------------------------------------------------------------------------------------------------
-ScopedCOMInitializer::~ScopedCOMInitializer()
-{
-    DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
-    if (isSucceeded())
-        CoUninitialize();
-}
+		//--------------------------------------------------------------------------------------------------
+		ScopedCOMInitializer::~ScopedCOMInitializer()
+		{
+			DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
+			if (isSucceeded())
+				CoUninitialize();
+		}
 
-//--------------------------------------------------------------------------------------------------
-bool ScopedCOMInitializer::isSucceeded() const
-{
-    return SUCCEEDED(hr_);
-}
+		//--------------------------------------------------------------------------------------------------
+		bool ScopedCOMInitializer::isSucceeded() const
+		{
+			return SUCCEEDED(hr_);
+		}
 
-//--------------------------------------------------------------------------------------------------
-void ScopedCOMInitializer::initialize(COINIT init)
-{
-    DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
-    hr_ = CoInitializeEx(nullptr, init);
-    DCHECK_NE(hr_, RPC_E_CHANGED_MODE) << "Invalid COM thread model change";
-}
+		//--------------------------------------------------------------------------------------------------
+		void ScopedCOMInitializer::initialize(COINIT init)
+		{
+			DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
+			hr_ = CoInitializeEx(nullptr, init);
+			DCHECK_NE(hr_, RPC_E_CHANGED_MODE) << "Invalid COM thread model change";
+		}
 
+	}
 } // namespace base::win

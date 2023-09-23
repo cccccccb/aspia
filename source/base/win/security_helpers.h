@@ -25,28 +25,30 @@
 
 #include <Windows.h>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-using ScopedAcl = TypedBuffer<ACL>;
-using ScopedSd = TypedBuffer<SECURITY_DESCRIPTOR>;
-using ScopedSid = TypedBuffer<SID>;
+		using ScopedAcl = TypedBuffer<ACL>;
+		using ScopedSd = TypedBuffer<SECURITY_DESCRIPTOR>;
+		using ScopedSid = TypedBuffer<SID>;
 
-// Initializes COM security of the process applying the passed security
-// descriptor.  The function configures the following settings:
-//  - Server authenticates that all data received is from the expected client.
-//  - Server can impersonate clients to check their identity but cannot act on
-//    their behalf.
-//  - Caller's identity is verified on every call (Dynamic cloaking).
-//  - Unless |activate_as_activator| is true, activations where the server
-//    would run under this process's identity are prohibited.
-bool initializeComSecurity(const wchar_t* security_descriptor,
-                           const wchar_t* mandatory_label,
-                           bool activate_as_activator);
+		// Initializes COM security of the process applying the passed security
+		// descriptor.  The function configures the following settings:
+		//  - Server authenticates that all data received is from the expected client.
+		//  - Server can impersonate clients to check their identity but cannot act on
+		//    their behalf.
+		//  - Caller's identity is verified on every call (Dynamic cloaking).
+		//  - Unless |activate_as_activator| is true, activations where the server
+		//    would run under this process's identity are prohibited.
+		bool initializeComSecurity(const wchar_t* security_descriptor,
+			const wchar_t* mandatory_label,
+			bool activate_as_activator);
 
-bool userSidString(std::wstring* user_sid);
+		bool userSidString(std::wstring* user_sid);
 
-ScopedSd convertSddlToSd(const std::wstring& sddl);
+		ScopedSd convertSddlToSd(const std::wstring& sddl);
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_SECURITY_HELPERS_H

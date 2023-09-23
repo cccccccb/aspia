@@ -50,7 +50,7 @@ bool DefaultAudioDeviceChangeDetector::getAndReset()
 {
     bool result = false;
     {
-        std::scoped_lock lock(lock_);
+        std::lock_guard<std::mutex> lock(lock_);
         result = changed_;
         changed_ = false;
     }
@@ -62,7 +62,7 @@ HRESULT DefaultAudioDeviceChangeDetector::OnDefaultDeviceChanged(
     EDataFlow /* flow */, ERole /* role */, LPCWSTR /* pwstrDefaultDevice */)
 {
     {
-        std::scoped_lock lock(lock_);
+        std::lock_guard<std::mutex> lock(lock_);
         changed_ = true;
     }
     return S_OK;

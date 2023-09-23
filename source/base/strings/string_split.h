@@ -53,17 +53,17 @@ enum SplitResult
 //
 //   std::vector<std::string> tokens = base::splitString(
 //       input, ",;", base::KEEP_WHITESPACE, base::SPLIT_WANT_ALL);
-std::vector<std::string> splitString(std::string_view input,
-                                     std::string_view separators,
+std::vector<std::string> splitString(std::string input,
+                                     std::string separators,
                                      WhitespaceHandling whitespace,
                                      SplitResult result_type);
 
-std::vector<std::u16string> splitString(std::u16string_view input,
-                                        std::u16string_view separators,
+std::vector<std::u16string> splitString(std::u16string input,
+                                        std::u16string separators,
                                         WhitespaceHandling whitespace,
                                         SplitResult result_type);
 
-// Like splitString above except it returns a vector of std::*string_view which reference the
+// Like splitString above except it returns a vector of std::*string which reference the
 // original buffer without copying. Although you have to be careful to keep the original string
 // unmodified, this provides an efficient way to iterate through tokens in a string.
 //
@@ -74,13 +74,13 @@ std::vector<std::u16string> splitString(std::u16string_view input,
 //                              base::KEEP_WHITESPACE,
 //                              base::SPLIT_WANT_NONEMPTY)) {
 //     ...
-std::vector<std::string_view> splitStringView(std::string_view input,
-                                              std::string_view separators,
+std::vector<std::string> splitStringView(std::string input,
+                                              std::string separators,
                                               WhitespaceHandling whitespace,
                                               SplitResult result_type);
 
-std::vector<std::u16string_view> splitStringView(std::u16string_view input,
-                                                 std::u16string_view separators,
+std::vector<std::u16string> splitStringView(std::u16string input,
+                                                 std::u16string separators,
                                                  WhitespaceHandling whitespace,
                                                  SplitResult result_type);
 

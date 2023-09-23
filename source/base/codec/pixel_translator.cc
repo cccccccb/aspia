@@ -135,7 +135,7 @@ public:
         : source_format_(source_format),
           target_format_(target_format)
     {
-        static_assert(sizeof(SourceT) == sizeof(uint8_t) || sizeof(SourceT) == sizeof(uint16_t));
+        static_assert(sizeof(SourceT) == sizeof(uint8_t) || sizeof(SourceT) == sizeof(uint16_t), "");
 
         const size_t table_size = std::numeric_limits<SourceT>::max() + 1;
         table_ = std::make_unique<uint32_t[]>(table_size);

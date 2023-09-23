@@ -118,13 +118,13 @@ void ClientSession::setVersion(const base::Version& version)
 }
 
 //--------------------------------------------------------------------------------------------------
-void ClientSession::setUserName(std::string_view username)
+void ClientSession::setUserName(std::string username)
 {
     username_ = username;
 }
 
 //--------------------------------------------------------------------------------------------------
-void ClientSession::setComputerName(std::string_view computer_name)
+void ClientSession::setComputerName(std::string computer_name)
 {
     computer_name_ = computer_name;
 }

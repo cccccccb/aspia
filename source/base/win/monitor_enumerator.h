@@ -24,20 +24,22 @@
 
 #include <memory>
 
-namespace base::win {
+namespace base {
+	namespace win {
 
-class MonitorEnumerator : public DeviceEnumerator
-{
-public:
-    MonitorEnumerator();
-    ~MonitorEnumerator() override = default;
+		class MonitorEnumerator : public DeviceEnumerator
+		{
+		public:
+			MonitorEnumerator();
+			~MonitorEnumerator() override = default;
 
-    std::unique_ptr<Edid> edid() const;
+			std::unique_ptr<Edid> edid() const;
 
-private:
-    DISALLOW_COPY_AND_ASSIGN(MonitorEnumerator);
-};
+		private:
+			DISALLOW_COPY_AND_ASSIGN(MonitorEnumerator);
+		};
 
+	}
 } // namespace base::win
 
 #endif // BASE_WIN_MONITOR_ENUMERATOR_H

@@ -142,8 +142,7 @@ NotifierWindow::NotifierWindow(QWidget* parent)
             this, [this]()
     {
         // The taskbar does not move instantly.
-        QTimer::singleShot(
-            std::chrono::milliseconds(500), this, &NotifierWindow::updateWindowPosition);
+        QTimer::singleShot(500, this, &NotifierWindow::updateWindowPosition);
     });
 
     QTimer* timer = new QTimer(this);
@@ -157,9 +156,9 @@ NotifierWindow::NotifierWindow(QWidget* parent)
             activateWindow();
         }
     });
-    timer->start(std::chrono::seconds(3));
+    timer->start(3000);
 
-    QTimer::singleShot(std::chrono::milliseconds(15), this, &NotifierWindow::updateWindowPosition);
+    QTimer::singleShot(15, this, &NotifierWindow::updateWindowPosition);
 }
 
 //--------------------------------------------------------------------------------------------------

@@ -23,6 +23,8 @@
 #include "base/desktop/win/dfmirage.h"
 #include "base/desktop/win/mirror_helper.h"
 
+#include <memory>
+
 namespace base {
 
 class DFMirageHelper : public MirrorHelper

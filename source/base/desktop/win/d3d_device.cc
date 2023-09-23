@@ -34,9 +34,6 @@ std::string featureLevelToString(D3D_FEATURE_LEVEL feature_level)
 {
     switch (feature_level)
     {
-        case D3D_FEATURE_LEVEL_1_0_CORE:
-            return "D3D_FEATURE_LEVEL_1_0_CORE";
-
         case D3D_FEATURE_LEVEL_9_1:
             return "D3D_FEATURE_LEVEL_9_1";
 

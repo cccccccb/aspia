@@ -37,11 +37,11 @@ namespace base {
 // strCat can see all arguments at once, so it can allocate one return buffer
 // of exactly the right size and copy once, as opposed to a sequence of
 // operator+ which generates a series of temporary strings, copying as it goes.
-// And by using std::string_view arguments, strCat can avoid creating temporary
+// And by using std::string arguments, strCat can avoid creating temporary
 // string objects for char* constants.
 
-std::string strCat(std::initializer_list<std::string_view> pieces);
-std::u16string strCat(std::initializer_list<std::u16string_view> pieces);
+std::string strCat(std::initializer_list<std::string> pieces);
+std::u16string strCat(std::initializer_list<std::u16string> pieces);
 
 // strAppend -------------------------------------------------------------------
 //
@@ -51,8 +51,8 @@ std::u16string strCat(std::initializer_list<std::u16string_view> pieces);
 //   foo += strCat(...);
 // because it avoids a temporary string allocation and copy.
 
-void strAppend(std::string* dest, std::initializer_list<std::string_view> pieces);
-void strAppend(std::u16string* dest, std::initializer_list<std::u16string_view> pieces);
+void strAppend(std::string* dest, std::initializer_list<std::string> pieces);
+void strAppend(std::u16string* dest, std::initializer_list<std::u16string> pieces);
 
 } // namespace base
 

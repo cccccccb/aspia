@@ -49,12 +49,12 @@ public:
     // are in lower case characters, as Version 4 RFC says onput they're
     // case insensitive. (Use isStrictValid for checking if the
     // given string is valid output string)
-    static bool isValidGuidString(std::string_view guid);
+    static bool isValidGuidString(std::string guid);
 
     // Returns true if the input string is valid version 4 GUID output string.
     // This also checks if the hexadecimal values "a" through "f" are in lower
     // case characters.
-    static bool isStrictValidGuidString(std::string_view guid);
+    static bool isStrictValidGuidString(std::string guid);
 
     std::string toStdString() const;
 

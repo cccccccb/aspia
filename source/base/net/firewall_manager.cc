@@ -18,6 +18,7 @@
 
 #include "base/net/firewall_manager.h"
 
+#include "base/filesystem.hpp"
 #include "base/guid.h"
 #include "base/logging.h"
 #include "base/strings/unicode.h"
@@ -28,7 +29,7 @@
 namespace base {
 
 //--------------------------------------------------------------------------------------------------
-FirewallManager::FirewallManager(const std::filesystem::path& application_path)
+FirewallManager::FirewallManager(const ghc::filesystem::path& application_path)
     : application_path_(application_path)
 {
     // Retrieve INetFwPolicy2
@@ -99,8 +100,8 @@ bool FirewallManager::hasAnyRule()
 }
 
 //--------------------------------------------------------------------------------------------------
-bool FirewallManager::addTcpRule(std::wstring_view rule_name,
-                                 std::wstring_view description,
+bool FirewallManager::addTcpRule(std::wstring rule_name,
+                                 std::wstring description,
                                  uint16_t port)
 {
     // Delete the rule. According MDSN |INetFwRules::Add| should replace rule with same
@@ -139,8 +140,8 @@ bool FirewallManager::addTcpRule(std::wstring_view rule_name,
 }
 
 //--------------------------------------------------------------------------------------------------
-bool FirewallManager::addUdpRule(std::wstring_view rule_name,
-                                 std::wstring_view description,
+bool FirewallManager::addUdpRule(std::wstring rule_name,
+                                 std::wstring description,
                                  uint16_t port)
 {
     // Delete the rule. According MDSN |INetFwRules::Add| should replace rule with same
@@ -179,7 +180,7 @@ bool FirewallManager::addUdpRule(std::wstring_view rule_name,
 }
 
 //--------------------------------------------------------------------------------------------------
-void FirewallManager::deleteRuleByName(std::wstring_view rule_name)
+void FirewallManager::deleteRuleByName(std::wstring rule_name)
 {
     std::vector<Microsoft::WRL::ComPtr<INetFwRule>> rules;
     allRules(&rules);

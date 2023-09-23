@@ -18,6 +18,7 @@
 
 #include "host/ui/config_dialog.h"
 
+#include "base/filesystem.hpp"
 #include "base/logging.h"
 #include "base/crypto/password_generator.h"
 #include "base/desktop/screen_capturer.h"
@@ -268,7 +269,8 @@ ConfigDialog::ConfigDialog(QWidget* parent)
         setConfigChanged(true);
     });
 
-    ui.tab_bar->setTabVisible(4, QApplication::keyboardModifiers().testFlag(Qt::ShiftModifier));
+    ///@ todo: 
+    // ui.tab_bar->setTabVisible(4, QApplication::keyboardModifiers().testFlag(Qt::ShiftModifier));
 
     //---------------------------------------------------------------------------------------------
     // Other
@@ -911,7 +913,7 @@ bool ConfigDialog::isServiceStarted()
 bool ConfigDialog::installService()
 {
 #if defined(OS_WIN)
-    std::filesystem::path service_file_path;
+    ghc::filesystem::path service_file_path;
 
     if (!base::BasePaths::currentExecDir(&service_file_path))
         return false;

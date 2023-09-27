@@ -39,7 +39,9 @@ LocaleLoader::LocaleLoader()
     const QStringList qm_file_list =
         QDir(kTranslationsDir).entryList(QStringList("*.qm"), QDir::Files);
 
-    for (const auto& qm_file : qm_file_list)
+	std::cout << qm_file_list;
+
+    for (QString qm_file : qm_file_list)
     {
         QString locale_name = qm_file.chopped(3); // Remove file extension (*.qm).
 
@@ -54,7 +56,7 @@ LocaleLoader::LocaleLoader()
             locale_name = locale_name.right(2);
         }
 
-        LOG(LS_INFO) << "Translation file added: " << qm_file << " (" << locale_name << ")";
+		std::cout << "Translation file added: " << qm_file << " (" << locale_name << ")";
 
         if (locale_list_.contains(locale_name))
             locale_list_[locale_name].push_back(qm_file);

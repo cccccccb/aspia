@@ -21,6 +21,8 @@
 #include "base/logging.h"
 #include "common/file_platform_util.h"
 
+#include <QDebug>
+
 namespace client {
 
 namespace {
@@ -105,8 +107,8 @@ QModelIndex AddressBarModel::setCurrentPath(const QString& path)
 {
     QModelIndex index;
 
-    LOG(LS_INFO) << "Previous path: " << previous_path_.toStdString();
-    LOG(LS_INFO) << "New path: " << path.toStdString();
+    qInfo() << "Previous path: " << previous_path_;
+    qInfo() << "New path: " << path;
 
     previous_path_ = current_path_;
 
@@ -121,7 +123,7 @@ QModelIndex AddressBarModel::setCurrentPath(const QString& path)
 
         if (!common::FilePlatformUtil::isValidPath(normalized_path))
         {
-            LOG(LS_WARNING) << "Invalid path entered: " << normalized_path.toStdString();
+            qWarning() << "Invalid path entered: " << normalized_path;
             emit sig_invalidPathEntered();
             return QModelIndex();
         }

@@ -24,6 +24,8 @@
 #include "base/peer/client_authenticator.h"
 #include "proto/router_peer.pb.h"
 
+#include <QDebug>
+
 namespace client {
 
 namespace {
@@ -39,7 +41,7 @@ OnlineCheckerRouter::OnlineCheckerRouter(const RouterConfig& router_config,
       timer_(base::WaitableTimer::Type::SINGLE_SHOT, task_runner),
       router_config_(router_config)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     DCHECK(task_runner_);
 
     timer_.start(kTimeout, [this]()
@@ -51,7 +53,7 @@ OnlineCheckerRouter::OnlineCheckerRouter(const RouterConfig& router_config,
 //--------------------------------------------------------------------------------------------------
 OnlineCheckerRouter::~OnlineCheckerRouter()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     delegate_ = nullptr;
 }
 
@@ -64,12 +66,12 @@ void OnlineCheckerRouter::start(const ComputerList& computers, Delegate* delegat
 
     if (computers_.empty())
     {
-        LOG(LS_INFO) << "No computers in list";
+        qInfo() << "No computers in list";
         onFinished(FROM_HERE);
         return;
     }
 
-    LOG(LS_INFO) << "Connecting to router...";
+    qInfo() << "Connecting to router...";
 
     channel_ = std::make_unique<base::TcpChannel>();
     channel_->setListener(this);
@@ -79,7 +81,7 @@ void OnlineCheckerRouter::start(const ComputerList& computers, Delegate* delegat
 //--------------------------------------------------------------------------------------------------
 void OnlineCheckerRouter::onTcpConnected()
 {
-    LOG(LS_INFO) << "Connection to the router is established";
+    qInfo() << "Connection to the router is established";
 
     channel_->setKeepAlive(true);
     channel_->setNoDelay(true);
@@ -108,7 +110,7 @@ void OnlineCheckerRouter::onTcpConnected()
         }
         else
         {
-            LOG(LS_WARNING) << "Authentication failed: "
+            qWarning() << "Authentication failed: "
                             << base::ClientAuthenticator::errorToString(error_code);
             onFinished(FROM_HERE);
         }
@@ -121,8 +123,8 @@ void OnlineCheckerRouter::onTcpConnected()
 //--------------------------------------------------------------------------------------------------
 void OnlineCheckerRouter::onTcpDisconnected(base::NetworkChannel::ErrorCode error_code)
 {
-    LOG(LS_INFO) << "Connection to the router is lost ("
-                 << base::NetworkChannel::errorToString(error_code) << ")";
+    qInfo() << "Connection to the router is lost ("
+                 << base::NetworkChannel::errorToString(error_code).c_str() << ")";
     onFinished(FROM_HERE);
 }
 
@@ -136,14 +138,14 @@ void OnlineCheckerRouter::onTcpMessageReceived(
     proto::RouterToPeer message;
     if (!base::parse(buffer, &message))
     {
-        LOG(LS_ERROR) << "Invalid message from router";
+        qWarning() << "Invalid message from router";
         onFinished(FROM_HERE);
         return;
     }
 
     if (!message.has_host_status())
     {
-        LOG(LS_ERROR) << "HostStatus not present in message";
+        qWarning() << "HostStatus not present in message";
         onFinished(FROM_HERE);
         return;
     }
@@ -168,14 +170,14 @@ void OnlineCheckerRouter::checkNextComputer()
 {
     if (computers_.empty())
     {
-        LOG(LS_INFO) << "No more computers";
+        qInfo() << "No more computers";
         onFinished(FROM_HERE);
         return;
     }
 
     const auto& computer = computers_.front();
 
-    LOG(LS_INFO) << "Checking status for host id " << computer.host_id
+    qInfo() << "Checking status for host id " << computer.host_id
                  << " (computer id: " << computer.computer_id << ")";
 
     proto::PeerToRouter message;
@@ -189,7 +191,7 @@ void OnlineCheckerRouter::onFinished(const base::Location& location)
     if (!delegate_)
         return;
 
-    LOG(LS_INFO) << "Finished (from: " << location.toString() << ")";
+    qInfo() << "Finished (from: " << location.toString().c_str() << ")";
 
     if (channel_)
     {

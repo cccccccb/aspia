@@ -30,13 +30,13 @@ ClientSystemInfo::ClientSystemInfo(std::shared_ptr<base::TaskRunner> io_task_run
     : Client(io_task_runner),
       system_info_control_proxy_(std::make_shared<SystemInfoControlProxy>(io_task_runner, this))
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
 }
 
 //--------------------------------------------------------------------------------------------------
 ClientSystemInfo::~ClientSystemInfo()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     system_info_control_proxy_->dettach();
 }
 
@@ -56,7 +56,7 @@ void ClientSystemInfo::onSystemInfoRequest(const proto::system_info::SystemInfoR
 //--------------------------------------------------------------------------------------------------
 void ClientSystemInfo::onSessionStarted(const base::Version& /* peer_version */)
 {
-    LOG(LS_INFO) << "System info session started";
+    qInfo() << "System info session started";
 
     system_info_window_proxy_->start(system_info_control_proxy_);
 }
@@ -69,7 +69,7 @@ void ClientSystemInfo::onSessionMessageReceived(
 
     if (!base::parse(buffer, &system_info))
     {
-        LOG(LS_WARNING) << "Unable to parse system info";
+        qWarning() << "Unable to parse system info";
         return;
     }
 

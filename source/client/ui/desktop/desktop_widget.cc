@@ -24,6 +24,7 @@
 
 #include <QApplication>
 #include <QWheelEvent>
+#include <QDebug>
 
 #if defined(OS_LINUX)
 #include <X11/XKBlib.h>
@@ -53,7 +54,7 @@ bool isNumLockActivated()
     Display* display = XOpenDisplay(nullptr);
     if (!display)
     {
-        LOG(LS_WARNING) << "XOpenDisplay failed";
+        qWarning() << "XOpenDisplay failed";
         return false;
     }
 
@@ -80,7 +81,7 @@ bool isCapsLockActivated()
     Display* display = XOpenDisplay(nullptr);
     if (!display)
     {
-        LOG(LS_WARNING) << "XOpenDisplay failed";
+        qWarning() << "XOpenDisplay failed";
         return false;
     }
 
@@ -122,7 +123,7 @@ DesktopWidget::DesktopWidget(QWidget* parent)
     connect(static_cast<QApplication*>(QApplication::instance()), &QApplication::applicationStateChanged,
             this, [=](Qt::ApplicationState state)
     {
-        LOG(LS_WARNING) << "Application state changed: " << state;
+        qWarning() << "Application state changed: " << state;
         if (state != Qt::ApplicationActive)
         {
             releaseKeyboardButtons();

@@ -33,16 +33,17 @@ if(NOT Qt5LinguistTools_FOUND)
 endif()
 
 if (WIN32)
-    # Target version.
-    add_definitions(-DNTDDI_VERSION=0x06010000
-                    -D_WIN32_WINNT=0x0601
-                    -D_WIN32_WINDOWS=_WIN32_WINNT
-                    -DWINVER=_WIN32_WINNT
-                    -D_WIN32_IE=0x0800
-                    -DPSAPI_VERSION=2)
+    # # Target version.
+    # add_definitions(-DNTDDI_VERSION=0x06010000
+    #                 -D_WIN32_WINNT=0x0601
+    #                 -D_WIN32_WINDOWS=_WIN32_WINNT
+    #                 -DWINVER=_WIN32_WINNT
+    #                 -D_WIN32_IE=0x0800
+    #                 -DPSAPI_VERSION=2)
 
     # Other definitions.
-    add_definitions(-D_UNICODE
+    add_definitions(
+                    # -D_UNICODE
                     -DUNICODE
                     -DWIN32_LEAN_AND_MEAN
                     -DNOMINMAX)

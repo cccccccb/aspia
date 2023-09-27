@@ -23,6 +23,8 @@
 #include "base/peer/client_authenticator.h"
 #include "proto/router_peer.pb.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -31,14 +33,14 @@ RouterController::RouterController(const RouterConfig& router_config,
     : task_runner_(std::move(task_runner)),
       router_config_(router_config)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     DCHECK(task_runner_);
 }
 
 //--------------------------------------------------------------------------------------------------
 RouterController::~RouterController()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -50,7 +52,7 @@ void RouterController::connectTo(base::HostId host_id, Delegate* delegate)
     DCHECK_NE(host_id_, base::kInvalidHostId);
     DCHECK(delegate_);
 
-    LOG(LS_INFO) << "Connecting to router...";
+    qInfo() << "Connecting to router...";
 
     channel_ = std::make_unique<base::TcpChannel>();
     channel_->setListener(this);
@@ -60,7 +62,7 @@ void RouterController::connectTo(base::HostId host_id, Delegate* delegate)
 //--------------------------------------------------------------------------------------------------
 void RouterController::onTcpConnected()
 {
-    LOG(LS_INFO) << "Connection to the router is established";
+    qInfo() << "Connection to the router is established";
 
     channel_->setKeepAlive(true);
     channel_->setNoDelay(true);
@@ -84,11 +86,11 @@ void RouterController::onTcpConnected()
 
             if (authenticator_->peerVersion() >= base::Version(2, 6, 0))
             {
-                LOG(LS_INFO) << "Using channel id support";
+                qInfo() << "Using channel id support";
                 channel_->setChannelIdSupport(true);
             }
 
-            LOG(LS_INFO) << "Sending connection request (host_id: " << host_id_ << ")";
+            qInfo() << "Sending connection request (host_id: " << host_id_ << ")";
 
             // Now the session will receive incoming messages.
             channel_->resume();
@@ -100,7 +102,7 @@ void RouterController::onTcpConnected()
         }
         else
         {
-            LOG(LS_WARNING) << "Authentication failed: "
+            qWarning() << "Authentication failed: "
                             << base::ClientAuthenticator::errorToString(error_code);
 
             if (delegate_)
@@ -121,12 +123,12 @@ void RouterController::onTcpConnected()
 //--------------------------------------------------------------------------------------------------
 void RouterController::onTcpDisconnected(base::NetworkChannel::ErrorCode error_code)
 {
-    LOG(LS_INFO) << "Connection to the router is lost ("
-                 << base::TcpChannel::errorToString(error_code) << ")";
+    qInfo() << "Connection to the router is lost ("
+                 << base::TcpChannel::errorToString(error_code).c_str() << ")";
 
     if (!delegate_)
     {
-        LOG(LS_WARNING) << "Invalid delegate";
+        qWarning() << "Invalid delegate";
         return;
     }
 
@@ -146,7 +148,7 @@ void RouterController::onTcpMessageReceived(uint8_t /* channel_id */, const base
     proto::RouterToPeer message;
     if (!base::parse(buffer, &message))
     {
-        LOG(LS_ERROR) << "Invalid message from router";
+        qWarning() << "Invalid message from router";
 
         error.code.router = ErrorCode::UNKNOWN_ERROR;
         if (delegate_)
@@ -158,7 +160,7 @@ void RouterController::onTcpMessageReceived(uint8_t /* channel_id */, const base
     {
         if (relay_peer_)
         {
-            LOG(LS_ERROR) << "Re-offer connection detected";
+            qWarning() << "Re-offer connection detected";
             return;
         }
 
@@ -192,7 +194,7 @@ void RouterController::onTcpMessageReceived(uint8_t /* channel_id */, const base
             }
             else
             {
-                LOG(LS_WARNING) << "Invalid delegate";
+                qWarning() << "Invalid delegate";
             }
         }
         else
@@ -203,7 +205,7 @@ void RouterController::onTcpMessageReceived(uint8_t /* channel_id */, const base
     }
     else
     {
-        LOG(LS_WARNING) << "Unhandled message from router";
+        qWarning() << "Unhandled message from router";
     }
 }
 
@@ -222,7 +224,7 @@ void RouterController::onRelayConnectionReady(std::unique_ptr<base::TcpChannel> 
     }
     else
     {
-        LOG(LS_WARNING) << "Invalid delegate";
+        qWarning() << "Invalid delegate";
     }
 }
 
@@ -231,7 +233,7 @@ void RouterController::onRelayConnectionError()
 {
     if (!delegate_)
     {
-        LOG(LS_WARNING) << "Invalid delegate";
+        qWarning() << "Invalid delegate";
         return;
     }
 

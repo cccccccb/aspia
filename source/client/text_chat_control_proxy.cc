@@ -22,6 +22,8 @@
 #include "base/task_runner.h"
 #include "proto/text_chat.pb.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -30,7 +32,7 @@ TextChatControlProxy::TextChatControlProxy(std::shared_ptr<base::TaskRunner> io_
     : io_task_runner_(std::move(io_task_runner)),
       text_chat_control_(text_chat_control)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     DCHECK(io_task_runner_);
     DCHECK(text_chat_control_);
 }
@@ -38,14 +40,14 @@ TextChatControlProxy::TextChatControlProxy(std::shared_ptr<base::TaskRunner> io_
 //--------------------------------------------------------------------------------------------------
 TextChatControlProxy::~TextChatControlProxy()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     DCHECK(!text_chat_control_);
 }
 
 //--------------------------------------------------------------------------------------------------
 void TextChatControlProxy::dettach()
 {
-    LOG(LS_INFO) << "Dettach text chat control";
+    qInfo() << "Dettach text chat control";
     DCHECK(io_task_runner_->belongsToCurrentThread());
     text_chat_control_ = nullptr;
 }

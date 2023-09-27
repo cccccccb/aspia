@@ -24,13 +24,15 @@
 #include <QMessageBox>
 #include <QTimer>
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
 AuthorizationDialog::AuthorizationDialog(QWidget* parent)
     : QDialog(parent)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     ui.setupUi(this);
 
     QPushButton* cancel_button = ui.buttonbox->button(QDialogButtonBox::StandardButton::Cancel);
@@ -58,7 +60,7 @@ AuthorizationDialog::AuthorizationDialog(QWidget* parent)
 //--------------------------------------------------------------------------------------------------
 AuthorizationDialog::~AuthorizationDialog()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
 
     ClientSettings settings;
     settings.setOneTimePasswordChecked(ui.checkbox_one_time_password->isChecked());

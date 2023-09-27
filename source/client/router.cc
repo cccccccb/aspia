@@ -23,6 +23,8 @@
 #include "client/router_window_proxy.h"
 #include "proto/router_common.pb.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -32,7 +34,7 @@ Router::Router(std::shared_ptr<RouterWindowProxy> window_proxy,
       authenticator_(std::make_unique<base::ClientAuthenticator>(io_task_runner)),
       window_proxy_(std::move(window_proxy))
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
 
     authenticator_->setIdentify(proto::IDENTIFY_SRP);
     authenticator_->setSessionType(proto::ROUTER_SESSION_ADMIN);
@@ -41,7 +43,7 @@ Router::Router(std::shared_ptr<RouterWindowProxy> window_proxy,
 //--------------------------------------------------------------------------------------------------
 Router::~Router()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -59,7 +61,7 @@ void Router::setPassword(std::u16string password)
 //--------------------------------------------------------------------------------------------------
 void Router::connectToRouter(std::u16string address, uint16_t port)
 {
-    LOG(LS_INFO) << "Connecting to router " << address.data() << ":" << port;
+    qInfo() << "Connecting to router " << address.data() << ":" << port;
 
     channel_ = std::make_unique<base::TcpChannel>();
     channel_->setListener(this);
@@ -69,7 +71,7 @@ void Router::connectToRouter(std::u16string address, uint16_t port)
 //--------------------------------------------------------------------------------------------------
 void Router::refreshSessionList()
 {
-    LOG(LS_INFO) << "Sending session list request";
+    qInfo() << "Sending session list request";
 
     proto::AdminToRouter message;
     message.mutable_session_list_request()->set_dummy(1);
@@ -79,7 +81,7 @@ void Router::refreshSessionList()
 //--------------------------------------------------------------------------------------------------
 void Router::stopSession(int64_t session_id)
 {
-    LOG(LS_INFO) << "Sending disconnect request (session_id: " << session_id << ")";
+    qInfo() << "Sending disconnect request (session_id: " << session_id << ")";
 
     proto::AdminToRouter message;
 
@@ -93,7 +95,7 @@ void Router::stopSession(int64_t session_id)
 //--------------------------------------------------------------------------------------------------
 void Router::refreshUserList()
 {
-    LOG(LS_INFO) << "Sending user list request";
+    qInfo() << "Sending user list request";
 
     proto::AdminToRouter message;
     message.mutable_user_list_request()->set_dummy(1);
@@ -103,7 +105,7 @@ void Router::refreshUserList()
 //--------------------------------------------------------------------------------------------------
 void Router::addUser(const proto::User& user)
 {
-    LOG(LS_INFO) << "Sending user add request (username: " << user.name()
+    qInfo() << "Sending user add request (username: " << user.name().c_str()
                  << ", entry_id: " << user.entry_id() << ")";
 
     proto::AdminToRouter message;
@@ -118,7 +120,7 @@ void Router::addUser(const proto::User& user)
 //--------------------------------------------------------------------------------------------------
 void Router::modifyUser(const proto::User& user)
 {
-    LOG(LS_INFO) << "Sending user modify request (username: " << user.name()
+    qInfo() << "Sending user modify request (username: " << user.name().c_str()
                  << ", entry_id: " << user.entry_id() << ")";
 
     proto::AdminToRouter message;
@@ -133,7 +135,7 @@ void Router::modifyUser(const proto::User& user)
 //--------------------------------------------------------------------------------------------------
 void Router::deleteUser(int64_t entry_id)
 {
-    LOG(LS_INFO) << "Sending user delete request (entry_id: " << entry_id << ")";
+    qInfo() << "Sending user delete request (entry_id: " << entry_id << ")";
 
     proto::AdminToRouter message;
 
@@ -147,7 +149,7 @@ void Router::deleteUser(int64_t entry_id)
 //--------------------------------------------------------------------------------------------------
 void Router::disconnectPeerSession(int64_t relay_session_id, uint64_t peer_session_id)
 {
-    LOG(LS_INFO) << "Sending disconnect for peer session: " << peer_session_id
+    qInfo() << "Sending disconnect for peer session: " << peer_session_id
                  << " (relay: " << relay_session_id << ")";
 
     proto::AdminToRouter message;
@@ -163,7 +165,7 @@ void Router::disconnectPeerSession(int64_t relay_session_id, uint64_t peer_sessi
 //--------------------------------------------------------------------------------------------------
 void Router::onTcpConnected()
 {
-    LOG(LS_INFO) << "Router connected";
+    qInfo() << "Router connected";
 
     channel_->setKeepAlive(true);
     channel_->setNoDelay(true);
@@ -173,7 +175,7 @@ void Router::onTcpConnected()
     {
         if (error_code == base::ClientAuthenticator::ErrorCode::SUCCESS)
         {
-            LOG(LS_INFO) << "Successful authentication";
+            qInfo() << "Successful authentication";
 
             // The authenticator takes the listener on itself, we return the receipt of
             // notifications.
@@ -183,7 +185,7 @@ void Router::onTcpConnected()
             const base::Version& router_version = authenticator_->peerVersion();
             if (router_version >= base::Version(2, 6, 0))
             {
-                LOG(LS_INFO) << "Using channel id support";
+                qInfo() << "Using channel id support";
                 channel_->setChannelIdSupport(true);
             }
 
@@ -191,8 +193,8 @@ void Router::onTcpConnected()
                                          ASPIA_VERSION_PATCH, GIT_COMMIT_COUNT);
             if (router_version > client_version)
             {
-                LOG(LS_WARNING) << "Version mismatch (router: " << router_version.toString()
-                                << " client: " << client_version.toString();
+                qWarning() << "Version mismatch (router: " << router_version.toString().c_str()
+                                << " client: " << client_version.toString().c_str();
                 window_proxy_->onVersionMismatch(router_version, client_version);
             }
             else
@@ -205,7 +207,7 @@ void Router::onTcpConnected()
         }
         else
         {
-            LOG(LS_INFO) << "Failed authentication: "
+            qInfo() << "Failed authentication: "
                          << base::ClientAuthenticator::errorToString(error_code);
             window_proxy_->onAccessDenied(error_code);
         }
@@ -218,7 +220,7 @@ void Router::onTcpConnected()
 //--------------------------------------------------------------------------------------------------
 void Router::onTcpDisconnected(base::NetworkChannel::ErrorCode error_code)
 {
-    LOG(LS_INFO) << "Router disconnected: " << base::NetworkChannel::errorToString(error_code);
+    qInfo() << "Router disconnected: " << base::NetworkChannel::errorToString(error_code).c_str();
     window_proxy_->onDisconnected(error_code);
 }
 
@@ -229,20 +231,20 @@ void Router::onTcpMessageReceived(uint8_t /* channel_id */, const base::ByteArra
 
     if (!base::parse(buffer, &message))
     {
-        LOG(LS_ERROR) << "Failed to read the message from the router";
+        qWarning() << "Failed to read the message from the router";
         return;
     }
 
     if (message.has_session_list())
     {
-        LOG(LS_INFO) << "Session list received";
+        qInfo() << "Session list received";
 
         window_proxy_->onSessionList(
             std::shared_ptr<proto::SessionList>(message.release_session_list()));
     }
     else if (message.has_session_result())
     {
-        LOG(LS_INFO) << "Session result received with code: "
+        qInfo() << "Session result received with code: "
                      << message.session_result().error_code();
 
         window_proxy_->onSessionResult(
@@ -250,21 +252,21 @@ void Router::onTcpMessageReceived(uint8_t /* channel_id */, const base::ByteArra
     }
     else if (message.has_user_list())
     {
-        LOG(LS_INFO) << "User list received";
+        qInfo() << "User list received";
 
         window_proxy_->onUserList(
             std::shared_ptr<proto::UserList>(message.release_user_list()));
     }
     else if (message.has_user_result())
     {
-        LOG(LS_INFO) << "User result received with code: " << message.user_result().error_code();
+        qInfo() << "User result received with code: " << message.user_result().error_code();
 
         window_proxy_->onUserResult(
             std::shared_ptr<proto::UserResult>(message.release_user_result()));
     }
     else
     {
-        LOG(LS_ERROR) << "Unknown message type from the router";
+        qWarning() << "Unknown message type from the router";
     }
 }
 

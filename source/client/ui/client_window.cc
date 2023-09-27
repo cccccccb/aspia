@@ -115,7 +115,7 @@ ClientWindow::ClientWindow(QWidget* parent)
     {
         update_checker_ = std::make_unique<common::UpdateChecker>();
 
-        update_checker_->setUpdateServer(settings.updateServer().toStdString());
+        update_checker_->setUpdateServer(settings.updateServer().toLatin1().data());
         update_checker_->setPackageName("client");
 
         update_checker_->start(Application::uiTaskRunner(), this);
@@ -265,12 +265,13 @@ void ClientWindow::connectToHost()
         }
     }
 
+	std::u16string current_address_u16 = current_address.toStdU16String();
     if (!host_id_entered)
     {
-        LOG(LS_INFO) << "Direct connection selected";
+        qInfo() << "Direct connection selected";
 
         base::Address address = base::Address::fromString(
-            current_address.toStdU16String(), DEFAULT_HOST_TCP_PORT);
+			current_address_u16, DEFAULT_HOST_TCP_PORT);
 
         if (!address.isValid())
         {
@@ -287,7 +288,7 @@ void ClientWindow::connectToHost()
     }
     else
     {
-        LOG(LS_INFO) << "Relay connection selected";
+        qInfo() << "Relay connection selected";
 
         if (!router_config.isValid())
         {
@@ -299,7 +300,7 @@ void ClientWindow::connectToHost()
             return;
         }
 
-        config.address_or_id = current_address.toStdU16String();
+        config.address_or_id = current_address_u16;
     }
 
     int current_index = combo_address->findText(current_address);

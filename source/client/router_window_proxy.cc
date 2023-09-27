@@ -23,6 +23,8 @@
 #include "client/router_window.h"
 #include "proto/router_admin.pb.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -31,21 +33,21 @@ RouterWindowProxy::RouterWindowProxy(std::shared_ptr<base::TaskRunner> ui_task_r
     : ui_task_runner_(std::move(ui_task_runner)),
       router_window_(router_window)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     DCHECK(ui_task_runner_ && router_window_);
 }
 
 //--------------------------------------------------------------------------------------------------
 RouterWindowProxy::~RouterWindowProxy()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     DCHECK(!router_window_);
 }
 
 //--------------------------------------------------------------------------------------------------
 void RouterWindowProxy::dettach()
 {
-    LOG(LS_INFO) << "Dettach router window";
+    qInfo() << "Dettach router window";
     DCHECK(ui_task_runner_->belongsToCurrentThread());
     router_window_ = nullptr;
 }

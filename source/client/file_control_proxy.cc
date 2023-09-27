@@ -20,6 +20,7 @@
 
 #include "base/logging.h"
 #include "base/task_runner.h"
+#include <QDebug>
 
 namespace client {
 
@@ -29,7 +30,7 @@ FileControlProxy::FileControlProxy(
     : io_task_runner_(std::move(io_task_runner)),
       file_control_(file_control)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     DCHECK(io_task_runner_);
     DCHECK(file_control_);
 }
@@ -37,14 +38,14 @@ FileControlProxy::FileControlProxy(
 //--------------------------------------------------------------------------------------------------
 FileControlProxy::~FileControlProxy()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     DCHECK(!file_control_);
 }
 
 //--------------------------------------------------------------------------------------------------
 void FileControlProxy::dettach()
 {
-    LOG(LS_INFO) << "Dettach file control";
+    qInfo() << "Dettach file control";
     DCHECK(io_task_runner_->belongsToCurrentThread());
     file_control_ = nullptr;
 }

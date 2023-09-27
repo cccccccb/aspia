@@ -34,7 +34,7 @@ namespace client {
 Client::Client(std::shared_ptr<base::TaskRunner> io_task_runner)
     : io_task_runner_(std::move(io_task_runner))
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     DCHECK(io_task_runner_);
 
 #if defined(OS_MAC)
@@ -45,7 +45,7 @@ Client::Client(std::shared_ptr<base::TaskRunner> io_task_runner)
 //--------------------------------------------------------------------------------------------------
 Client::~Client()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     DCHECK(io_task_runner_->belongsToCurrentThread());
     stop();
 
@@ -62,7 +62,7 @@ void Client::start(const Config& config)
 
     if (state_ != State::CREATED)
     {
-        LOG(LS_ERROR) << "Client already started before";
+        qWarning() << "Client already started before";
         return;
     }
 
@@ -71,7 +71,7 @@ void Client::start(const Config& config)
 
     if (base::isHostId(config_.address_or_id))
     {
-        LOG(LS_INFO) << "Starting RELAY connection";
+        qInfo() << "Starting RELAY connection";
 
         if (!config_.router_config.has_value())
         {
@@ -88,7 +88,7 @@ void Client::start(const Config& config)
     }
     else
     {
-        LOG(LS_INFO) << "Starting DIRECT connection";
+        qInfo() << "Starting DIRECT connection";
 
         // Show the status window.
         status_window_proxy_->onStarted(
@@ -112,7 +112,7 @@ void Client::stop()
 
     if (state_ != State::STOPPPED)
     {
-        LOG(LS_INFO) << "Stopping client...";
+        qInfo() << "Stopping client...";
         state_ = State::STOPPPED;
 
         router_controller_.reset();
@@ -121,11 +121,11 @@ void Client::stop()
 
         status_window_proxy_->onStopped();
 
-        LOG(LS_INFO) << "Client stopped";
+        qInfo() << "Client stopped";
     }
     else
     {
-        LOG(LS_WARNING) << "Client already stopped";
+        qWarning() << "Client already stopped";
     }
 }
 
@@ -159,7 +159,7 @@ void Client::sendMessage(uint8_t channel_id, const google::protobuf::MessageLite
 {
     if (!channel_)
     {
-        LOG(LS_WARNING) << "sendMessage called but channel not initialized";
+        qWarning() << "sendMessage called but channel not initialized";
         return;
     }
 
@@ -171,7 +171,7 @@ int64_t Client::totalRx() const
 {
     if (!channel_)
     {
-        LOG(LS_WARNING) << "totalRx called but channel not initialized";
+        qWarning() << "totalRx called but channel not initialized";
         return 0;
     }
 
@@ -183,7 +183,7 @@ int64_t Client::totalTx() const
 {
     if (!channel_)
     {
-        LOG(LS_WARNING) << "totalTx called but channel not initialized";
+        qWarning() << "totalTx called but channel not initialized";
         return 0;
     }
 
@@ -195,7 +195,7 @@ int Client::speedRx()
 {
     if (!channel_)
     {
-        LOG(LS_WARNING) << "speedRx called but channel not initialized";
+        qWarning() << "speedRx called but channel not initialized";
         return 0;
     }
 
@@ -207,7 +207,7 @@ int Client::speedTx()
 {
     if (!channel_)
     {
-        LOG(LS_WARNING) << "speedTx called but channel not initialized";
+        qWarning() << "speedTx called but channel not initialized";
         return 0;
     }
 
@@ -217,14 +217,14 @@ int Client::speedTx()
 //--------------------------------------------------------------------------------------------------
 void Client::onTcpConnected()
 {
-    LOG(LS_INFO) << "Connection established";
+    qInfo() << "Connection established";
     startAuthentication();
 }
 
 //--------------------------------------------------------------------------------------------------
 void Client::onTcpDisconnected(base::NetworkChannel::ErrorCode error_code)
 {
-    LOG(LS_INFO) << "Connection terminated: " << base::NetworkChannel::errorToString(error_code);
+    qInfo() << "Connection terminated: " << base::NetworkChannel::errorToString(error_code).c_str();
 
     // Show an error to the user.
     status_window_proxy_->onDisconnected(error_code);
@@ -243,7 +243,7 @@ void Client::onTcpMessageReceived(uint8_t channel_id, const base::ByteArray& buf
     }
     else
     {
-        LOG(LS_WARNING) << "Unhandled incoming message from channel: " << channel_id;
+        qWarning() << "Unhandled incoming message from channel: " << channel_id;
     }
 }
 
@@ -260,14 +260,14 @@ void Client::onTcpMessageWritten(uint8_t channel_id, size_t pending)
     }
     else
     {
-        LOG(LS_WARNING) << "Unhandled outgoing message from channel: " << channel_id;
+        qWarning() << "Unhandled outgoing message from channel: " << channel_id;
     }
 }
 
 //--------------------------------------------------------------------------------------------------
 void Client::onHostConnected(std::unique_ptr<base::TcpChannel> channel)
 {
-    LOG(LS_INFO) << "Host connected";
+    qInfo() << "Host connected";
     DCHECK(channel);
 
     channel_ = std::move(channel);
@@ -288,7 +288,7 @@ void Client::onErrorOccurred(const RouterController::Error& error)
 //--------------------------------------------------------------------------------------------------
 void Client::startAuthentication()
 {
-    LOG(LS_INFO) << "Start authentication for '" << config_.username << "'";
+    qInfo() << "Start authentication for '" << config_.username << "' - '" << config_.password << "'";
 
     static const size_t kReadBufferSize = 2 * 1024 * 1024; // 2 Mb.
 
@@ -308,7 +308,7 @@ void Client::startAuthentication()
     {
         if (error_code == base::ClientAuthenticator::ErrorCode::SUCCESS)
         {
-            LOG(LS_INFO) << "Successful authentication";
+            qInfo() << "Successful authentication";
 
             // The authenticator takes the listener on itself, we return the receipt of
             // notifications.
@@ -318,7 +318,7 @@ void Client::startAuthentication()
             const base::Version& host_version = authenticator_->peerVersion();
             if (host_version >= base::Version(2, 6, 0))
             {
-                LOG(LS_INFO) << "Using channel id support";
+                qInfo() << "Using channel id support";
                 channel_->setChannelIdSupport(true);
             }
 
@@ -326,8 +326,8 @@ void Client::startAuthentication()
                                          ASPIA_VERSION_PATCH, GIT_COMMIT_COUNT);
             if (host_version > client_version)
             {
-                LOG(LS_WARNING) << "Version mismatch (host: " << host_version.toString()
-                                << " client: " << client_version.toString();
+                qWarning() << "Version mismatch (host: " << host_version.toString().c_str()
+                                << " client: " << client_version.toString().c_str();
                 status_window_proxy_->onVersionMismatch(host_version, client_version);
             }
             else
@@ -344,7 +344,7 @@ void Client::startAuthentication()
         }
         else
         {
-            LOG(LS_INFO) << "Failed authentication: "
+            qInfo() << "Failed authentication: "
                          << base::ClientAuthenticator::errorToString(error_code);
             status_window_proxy_->onAccessDenied(error_code);
         }

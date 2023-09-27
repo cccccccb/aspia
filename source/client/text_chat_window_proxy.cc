@@ -23,6 +23,8 @@
 #include "client/text_chat_control_proxy.h"
 #include "proto/text_chat.pb.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -31,20 +33,20 @@ TextChatWindowProxy::TextChatWindowProxy(std::shared_ptr<base::TaskRunner> ui_ta
     : ui_task_runner_(std::move(ui_task_runner)),
       text_chat_window_(text_chat_window)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
 }
 
 //--------------------------------------------------------------------------------------------------
 TextChatWindowProxy::~TextChatWindowProxy()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     DCHECK(!text_chat_window_);
 }
 
 //--------------------------------------------------------------------------------------------------
 void TextChatWindowProxy::dettach()
 {
-    LOG(LS_INFO) << "Dettach text chat window";
+    qInfo() << "Dettach text chat window";
     DCHECK(ui_task_runner_->belongsToCurrentThread());
     text_chat_window_ = nullptr;
 }

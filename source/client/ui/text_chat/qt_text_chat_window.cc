@@ -33,7 +33,7 @@ QtTextChatWindow::QtTextChatWindow(QWidget* parent)
       text_chat_window_proxy_(
           std::make_shared<TextChatWindowProxy>(qt_base::Application::uiTaskRunner(), this))
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     ui->setupUi(this);
 
     connect(ui->text_chat_widget, &common::TextChatWidget::sig_sendMessage,
@@ -47,7 +47,7 @@ QtTextChatWindow::QtTextChatWindow(QWidget* parent)
         }
         else
         {
-            LOG(LS_WARNING) << "Invalid text chat proxy";
+            qWarning() << "Invalid text chat proxy";
         }
     });
 
@@ -62,7 +62,7 @@ QtTextChatWindow::QtTextChatWindow(QWidget* parent)
         }
         else
         {
-            LOG(LS_WARNING) << "Invalid text chat proxy";
+            qWarning() << "Invalid text chat proxy";
         }
     });
 }
@@ -70,7 +70,7 @@ QtTextChatWindow::QtTextChatWindow(QWidget* parent)
 //--------------------------------------------------------------------------------------------------
 QtTextChatWindow::~QtTextChatWindow()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     text_chat_window_proxy_->dettach();
 }
 
@@ -111,7 +111,7 @@ void QtTextChatWindow::onTextChatMessage(const proto::TextChat& text_chat)
     }
     else
     {
-        LOG(LS_WARNING) << "Unhandled text chat message";
+        qWarning() << "Unhandled text chat message";
     }
 }
 

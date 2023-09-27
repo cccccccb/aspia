@@ -30,13 +30,13 @@ ClientTextChat::ClientTextChat(std::shared_ptr<base::TaskRunner> io_task_runner)
     : Client(io_task_runner),
       text_chat_control_proxy_(std::make_shared<TextChatControlProxy>(io_task_runner, this))
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
 }
 
 //--------------------------------------------------------------------------------------------------
 ClientTextChat::~ClientTextChat()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     text_chat_control_proxy_->dettach();
 }
 
@@ -56,7 +56,7 @@ void ClientTextChat::onTextChatMessage(const proto::TextChat& text_chat)
 //--------------------------------------------------------------------------------------------------
 void ClientTextChat::onSessionStarted(const base::Version& /* peer_version */)
 {
-    LOG(LS_INFO) << "Text chat session started";
+    qInfo() << "Text chat session started";
     text_chat_window_proxy_->start(text_chat_control_proxy_);
 }
 
@@ -67,7 +67,7 @@ void ClientTextChat::onSessionMessageReceived(
     proto::TextChat text_chat;
     if (!base::parse(buffer, &text_chat))
     {
-        LOG(LS_WARNING) << "Unable to parse text chat message";
+        qWarning() << "Unable to parse text chat message";
         return;
     }
 

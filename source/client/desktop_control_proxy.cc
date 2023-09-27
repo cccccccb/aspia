@@ -31,7 +31,7 @@ DesktopControlProxy::DesktopControlProxy(std::shared_ptr<base::TaskRunner> io_ta
     : io_task_runner_(std::move(io_task_runner)),
       desktop_control_(desktop_control)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     DCHECK(io_task_runner_);
     DCHECK(desktop_control_);
 }
@@ -39,14 +39,14 @@ DesktopControlProxy::DesktopControlProxy(std::shared_ptr<base::TaskRunner> io_ta
 //--------------------------------------------------------------------------------------------------
 DesktopControlProxy::~DesktopControlProxy()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     DCHECK(!desktop_control_);
 }
 
 //--------------------------------------------------------------------------------------------------
 void DesktopControlProxy::dettach()
 {
-    LOG(LS_INFO) << "Dettach desktop control";
+    qInfo() << "Dettach desktop control";
     DCHECK(io_task_runner_->belongsToCurrentThread());
     desktop_control_ = nullptr;
 }

@@ -23,6 +23,7 @@
 #include "common/system_info_constants.h"
 
 #include <QMenu>
+#include <QDebug>
 
 namespace client {
 
@@ -117,7 +118,7 @@ void SysInfoWidgetNetShares::setSystemInfo(const proto::system_info::SystemInfo&
 
     if (!system_info.has_network_shares())
     {
-        LOG(LS_INFO) << "No network shares";
+        qInfo() << "No network shares";
         ui.tree->setEnabled(false);
         return;
     }

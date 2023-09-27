@@ -23,6 +23,7 @@
 #include "client/ui/client_settings.h"
 
 #include <QPushButton>
+#include <QDebug>
 
 namespace client {
 
@@ -30,7 +31,7 @@ namespace client {
 UpdateSettingsDialog::UpdateSettingsDialog(QWidget* parent)
     : QDialog(parent)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     ui.setupUi(this);
 
     QPushButton* cancel_button = ui.button_box->button(QDialogButtonBox::StandardButton::Cancel);
@@ -77,7 +78,7 @@ UpdateSettingsDialog::UpdateSettingsDialog(QWidget* parent)
 //--------------------------------------------------------------------------------------------------
 UpdateSettingsDialog::~UpdateSettingsDialog()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
 }
 
 } // namespace client

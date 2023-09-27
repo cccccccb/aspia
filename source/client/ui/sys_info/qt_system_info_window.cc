@@ -53,6 +53,7 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QTextDocument>
+#include <QDebug>
 
 namespace client {
 
@@ -375,7 +376,7 @@ QtSystemInfoWindow::QtSystemInfoWindow(QWidget* parent)
 //--------------------------------------------------------------------------------------------------
 QtSystemInfoWindow::~QtSystemInfoWindow()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     system_info_window_proxy_->dettach();
 }
 
@@ -446,7 +447,7 @@ void QtSystemInfoWindow::onCategoryItemClicked(QTreeWidgetItem* item, int /* col
         {
             current_widget_ = i;
 
-            LOG(LS_INFO) << "Current category changed: " << category << " (" << i << ")";
+            qInfo() << "Current category changed: " << category.c_str() << " (" << i << ")";
 
             layout_->addWidget(widget);
             widget->setVisible(true);

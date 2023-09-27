@@ -23,6 +23,8 @@
 #include "base/optional.hpp"
 #include "proto/common.pb.h"
 
+#include <QDebug>
+
 namespace client {
 
 struct Config

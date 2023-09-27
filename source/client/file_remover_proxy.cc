@@ -21,6 +21,8 @@
 #include "base/logging.h"
 #include "base/task_runner.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -29,7 +31,7 @@ FileRemoverProxy::FileRemoverProxy(
     : io_task_runner_(std::move(io_task_runner)),
       remover_(remover)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     DCHECK(io_task_runner_);
     DCHECK(io_task_runner_->belongsToCurrentThread());
     DCHECK(remover_);
@@ -38,13 +40,13 @@ FileRemoverProxy::FileRemoverProxy(
 //--------------------------------------------------------------------------------------------------
 FileRemoverProxy::~FileRemoverProxy()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
 }
 
 //--------------------------------------------------------------------------------------------------
 void FileRemoverProxy::dettach()
 {
-    LOG(LS_INFO) << "Dettach file remover";
+    qInfo() << "Dettach file remover";
     //DCHECK(io_task_runner_->belongsToCurrentThread());
     remover_ = nullptr;
 }

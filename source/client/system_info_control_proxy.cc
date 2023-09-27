@@ -22,6 +22,8 @@
 #include "base/task_runner.h"
 #include "proto/system_info.pb.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -30,7 +32,7 @@ SystemInfoControlProxy::SystemInfoControlProxy(std::shared_ptr<base::TaskRunner>
     : io_task_runner_(std::move(io_task_runner)),
       system_info_control_(system_info_control)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     DCHECK(io_task_runner_);
     DCHECK(system_info_control_);
 }
@@ -38,14 +40,14 @@ SystemInfoControlProxy::SystemInfoControlProxy(std::shared_ptr<base::TaskRunner>
 //--------------------------------------------------------------------------------------------------
 SystemInfoControlProxy::~SystemInfoControlProxy()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     DCHECK(!system_info_control_);
 }
 
 //--------------------------------------------------------------------------------------------------
 void SystemInfoControlProxy::dettach()
 {
-    LOG(LS_INFO) << "Dettach system info control";
+    qInfo() << "Dettach system info control";
     DCHECK(io_task_runner_->belongsToCurrentThread());
     system_info_control_ = nullptr;
 }

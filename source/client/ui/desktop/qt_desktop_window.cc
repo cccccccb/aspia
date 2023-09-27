@@ -52,6 +52,7 @@
 #include <QScrollBar>
 #include <QTimer>
 #include <QWindow>
+#include <QDebug>
 
 namespace client {
 
@@ -402,7 +403,7 @@ void QtDesktopWindow::setCapabilities(const proto::DesktopCapabilities& capabili
         }
         else
         {
-            LOG(LS_WARNING) << "Unknown flag '" << name << "' with value: " << value;
+            qWarning() << "Unknown flag '" << name.c_str() << "' with value: " << value;
         }
     }
 }
@@ -493,7 +494,7 @@ void QtDesktopWindow::setFrame(
 
     if (!has_old_frame)
     {
-        LOG(LS_INFO) << "Resize window (first frame)";
+        qInfo() << "Resize window (first frame)";
         autosizeWindow();
 
         // If the parameters indicate that it is necessary to record the connection session, then we
@@ -607,7 +608,7 @@ void QtDesktopWindow::changeEvent(QEvent* event)
     {
         bool is_minimized = isMinimized();
 
-        LOG(LS_INFO) << "Window minimized: " << is_minimized;
+        qInfo() << "Window minimized: " << is_minimized;
 
         if (is_minimized)
         {
@@ -970,7 +971,7 @@ void QtDesktopWindow::scaleDesktop()
 {
     if (screen_size_.isEmpty())
     {
-        LOG(LS_INFO) << "No screen size";
+        qInfo() << "No screen size";
         return;
     }
 
@@ -986,7 +987,7 @@ void QtDesktopWindow::scaleDesktop()
     if (resize_timer_->isActive())
         resize_timer_->stop();
 
-    LOG(LS_INFO) << "Starting resize timer";
+    qInfo() << "Starting resize timer";
     resize_timer_->start(500);
 }
 
@@ -999,7 +1000,7 @@ void QtDesktopWindow::onResizeTimer()
     if (current_screen)
         desktop_size *= current_screen->devicePixelRatio();
 
-    LOG(LS_INFO) << "Resize timer: " << desktop_size.width() << "x" << desktop_size.height();
+    qInfo() << "Resize timer: " << desktop_size.width() << "x" << desktop_size.height();
 
     desktop_control_proxy_->setPreferredSize(desktop_size.width(), desktop_size.height());
     resize_timer_->stop();
@@ -1042,7 +1043,7 @@ void QtDesktopWindow::onPasteKeystrokes()
         QString text = clipboard->text();
         if (text.isEmpty())
         {
-            LOG(LS_INFO) << "Empty clipboard";
+            qInfo() << "Empty clipboard";
             return;
         }
 
@@ -1053,7 +1054,7 @@ void QtDesktopWindow::onPasteKeystrokes()
     }
     else
     {
-        LOG(LS_WARNING) << "QApplication::clipboard failed";
+        qWarning() << "QApplication::clipboard failed";
     }
 }
 

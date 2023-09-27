@@ -22,6 +22,8 @@
 #include "base/task_runner.h"
 #include "client/file_transfer_window.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -30,7 +32,7 @@ FileTransferWindowProxy::FileTransferWindowProxy(
     : ui_task_runner_(std::move(ui_task_runner)),
       file_transfer_window_(file_transfer_window)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     DCHECK(ui_task_runner_);
     DCHECK(ui_task_runner_->belongsToCurrentThread());
     DCHECK(file_transfer_window_);
@@ -39,14 +41,14 @@ FileTransferWindowProxy::FileTransferWindowProxy(
 //--------------------------------------------------------------------------------------------------
 FileTransferWindowProxy::~FileTransferWindowProxy()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     DCHECK(!file_transfer_window_);
 }
 
 //--------------------------------------------------------------------------------------------------
 void FileTransferWindowProxy::dettach()
 {
-    LOG(LS_INFO) << "Dettach file transfer window";
+    qInfo() << "Dettach file transfer window";
     DCHECK(ui_task_runner_->belongsToCurrentThread());
     file_transfer_window_ = nullptr;
 }

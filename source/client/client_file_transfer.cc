@@ -37,13 +37,13 @@ ClientFileTransfer::ClientFileTransfer(std::shared_ptr<base::TaskRunner> io_task
       local_worker_(std::make_unique<common::FileWorker>(io_task_runner)),
       file_control_proxy_(std::make_shared<FileControlProxy>(io_task_runner, this))
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
 }
 
 //--------------------------------------------------------------------------------------------------
 ClientFileTransfer::~ClientFileTransfer()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
 
     task_consumer_proxy_->dettach();
     task_producer_proxy_->dettach();
@@ -63,7 +63,7 @@ void ClientFileTransfer::setFileManagerWindow(
 //--------------------------------------------------------------------------------------------------
 void ClientFileTransfer::onSessionStarted(const base::Version& /* peer_version */)
 {
-    LOG(LS_INFO) << "File transfer session started";
+    qInfo() << "File transfer session started";
 
     local_task_factory_ = std::make_unique<common::FileTaskFactory>(
         task_producer_proxy_, common::FileTask::Target::LOCAL);
@@ -82,7 +82,7 @@ void ClientFileTransfer::onSessionMessageReceived(
 
     if (!reply->ParseFromArray(buffer.data(), static_cast<int>(buffer.size())))
     {
-        LOG(LS_ERROR) << "Invalid message from host";
+        qWarning() << "Invalid message from host";
         return;
     }
 

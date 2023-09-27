@@ -20,6 +20,8 @@
 
 #include "base/logging.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -65,7 +67,7 @@ void RouterConfigStorage::setRouterConfig(const RouterConfig& config)
 {
     if (!config.isValid())
     {
-        LOG(LS_ERROR) << "Invalid router config";
+        qWarning() << "Invalid router config";
         return;
     }
 

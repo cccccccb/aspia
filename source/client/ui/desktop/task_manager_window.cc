@@ -27,6 +27,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QTimer>
+#include <QDebug>
 
 namespace client {
 
@@ -364,7 +365,7 @@ private:
 TaskManagerWindow::TaskManagerWindow(QWidget* parent)
     : QMainWindow(parent)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     ui.setupUi(this);
 
     ui.tree_processes->header()->setContextMenuPolicy(Qt::CustomContextMenu);
@@ -510,7 +511,7 @@ TaskManagerWindow::TaskManagerWindow(QWidget* parent)
 //--------------------------------------------------------------------------------------------------
 TaskManagerWindow::~TaskManagerWindow()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
 
     TaskManagerSettings settings;
     settings.setWindowState(saveGeometry());
@@ -541,7 +542,7 @@ void TaskManagerWindow::readMessage(const proto::task_manager::HostToClient& mes
     }
     else
     {
-        LOG(LS_WARNING) << "Unhandled task manager message";
+        qWarning() << "Unhandled task manager message";
     }
 }
 
@@ -867,7 +868,7 @@ void TaskManagerWindow::readProcessList(const proto::task_manager::ProcessList& 
 
     if (process_list.process_size() != ui.tree_processes->topLevelItemCount())
     {
-        LOG(LS_WARNING) << "Number of processes mismatch (expected: "
+        qWarning() << "Number of processes mismatch (expected: "
                         << process_list.process_size() << " actual: "
                         << ui.tree_processes->topLevelItemCount() << ")";
     }

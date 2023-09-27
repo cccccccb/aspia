@@ -64,7 +64,9 @@ void messageHandler(QtMsgType type,
 //--------------------------------------------------------------------------------------------------
 void initQtLogging()
 {
+#ifndef QT_DEBUG
     qInstallMessageHandler(messageHandler);
+#endif
 }
 
 } // namespace qt_base
@@ -99,7 +101,7 @@ std::ostream& operator<<(std::ostream& out, const QSize& qsize)
 //--------------------------------------------------------------------------------------------------
 std::ostream& operator<<(std::ostream& out, const QString& qstr)
 {
-    return out << qstr.toStdString();
+    return out << qstr.toLatin1().data();
 }
 
 //--------------------------------------------------------------------------------------------------

@@ -26,6 +26,7 @@
 #include "proto/system_info.pb.h"
 #include "proto/task_manager.pb.h"
 
+#include <QDebug>
 
 namespace client {
 

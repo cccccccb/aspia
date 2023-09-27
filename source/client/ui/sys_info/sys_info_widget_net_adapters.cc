@@ -23,6 +23,7 @@
 #include "common/system_info_constants.h"
 
 #include <QMenu>
+#include <QDebug>
 
 namespace client {
 
@@ -123,7 +124,7 @@ void SysInfoWidgetNetAdapters::setSystemInfo(const proto::system_info::SystemInf
 
     if (!system_info.has_network_adapters())
     {
-        LOG(LS_INFO) << "No network adapters";
+        qInfo() << "No network adapters";
         ui.tree->setEnabled(false);
         return;
     }

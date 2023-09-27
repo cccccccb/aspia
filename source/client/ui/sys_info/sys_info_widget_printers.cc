@@ -23,6 +23,7 @@
 #include "common/system_info_constants.h"
 
 #include <QMenu>
+#include <QDebug>
 
 namespace client {
 
@@ -123,7 +124,7 @@ void SysInfoWidgetPrinters::setSystemInfo(const proto::system_info::SystemInfo& 
 
     if (!system_info.has_printers())
     {
-        LOG(LS_INFO) << "No printers";
+        qInfo() << "No printers";
         ui.tree->setEnabled(false);
         return;
     }

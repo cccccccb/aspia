@@ -32,6 +32,7 @@
 #include <QKeyEvent>
 #include <QMenu>
 #include <QMessageBox>
+#include <QDebug>
 
 namespace client {
 
@@ -369,7 +370,7 @@ void FilePanel::onListContextMenu(const QPoint& point)
 //--------------------------------------------------------------------------------------------------
 void FilePanel::toChildFolder(const QString& child_name)
 {
-    LOG(LS_INFO) << "toChildFolder called: " << child_name.toStdString();
+    qInfo() << "toChildFolder called: " << child_name;
 
     ui.address_bar->setCurrentPath(ui.address_bar->currentPath() + child_name);
     ui.action_up->setEnabled(true);
@@ -378,7 +379,7 @@ void FilePanel::toChildFolder(const QString& child_name)
 //--------------------------------------------------------------------------------------------------
 void FilePanel::toParentFolder()
 {
-    LOG(LS_INFO) << "toParentFolder called";
+    qInfo() << "toParentFolder called";
 
     if (ui.action_up->isEnabled())
     {

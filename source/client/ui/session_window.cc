@@ -34,24 +34,24 @@ SessionWindow::SessionWindow(QWidget* parent)
       status_window_proxy_(
           std::make_shared<StatusWindowProxy>(qt_base::Application::uiTaskRunner(), this))
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
 }
 
 //--------------------------------------------------------------------------------------------------
 SessionWindow::~SessionWindow()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     status_window_proxy_->dettach();
 }
 
 //--------------------------------------------------------------------------------------------------
 bool SessionWindow::connectToHost(Config config)
 {
-    LOG(LS_INFO) << "Connecting to host";
+    qInfo() << "Connecting to host";
 
     if (client_proxy_)
     {
-        LOG(LS_ERROR) << "Attempt to start an already running client";
+        qWarning() << "Attempt to start an already running client";
         return false;
     }
 
@@ -60,29 +60,34 @@ bool SessionWindow::connectToHost(Config config)
 
     if (config.username.empty() || config.password.empty())
     {
-        LOG(LS_INFO) << "Empty user name or password";
+        qInfo() << "Empty user name or password";
 
         AuthorizationDialog auth_dialog(this);
 
         auth_dialog.setOneTimePasswordEnabled(config.router_config.has_value());
-        auth_dialog.setUserName(QString::fromStdU16String(config.username));
+		auth_dialog.setUserName(QString::fromStdU16String(config.username));
         auth_dialog.setPassword(QString::fromStdU16String(config.password));
 
         if (auth_dialog.exec() == AuthorizationDialog::Rejected)
         {
-            LOG(LS_INFO) << "Authorization rejected by user";
+            qInfo() << "Authorization rejected by user";
             return false;
         }
 
-        config.username = auth_dialog.userName().toStdU16String();
-        config.password = auth_dialog.password().toStdU16String();
+		const QString &dialogUserName = auth_dialog.userName();
+		const QString &dialogPassword = auth_dialog.password();
+		std::u16string userName(reinterpret_cast<const char16_t*>(dialogUserName.utf16()));
+		std::u16string password(reinterpret_cast<const char16_t*>(dialogPassword.utf16()));
+
+		config.username = userName;
+        config.password = password;
     }
 
     // When connecting with a one-time password, the username must be in the following format:
     // #host_id.
     if (config.username.empty())
     {
-        LOG(LS_INFO) << "User name is empty. Connection by ID";
+        qInfo() << "User name is empty. Connection by ID";
         config.username = u"#" + config.address_or_id;
     }
 
@@ -95,7 +100,7 @@ bool SessionWindow::connectToHost(Config config)
     client_proxy_ = std::make_unique<ClientProxy>(
         qt_base::Application::ioTaskRunner(), std::move(client), config);
 
-    LOG(LS_INFO) << "Start client proxy";
+    qInfo() << "Start client proxy";
     client_proxy_->start();
     return true;
 }
@@ -109,24 +114,24 @@ Config SessionWindow::config() const
 //--------------------------------------------------------------------------------------------------
 void SessionWindow::closeEvent(QCloseEvent* /* event */)
 {
-    LOG(LS_INFO) << "Close event";
+    qInfo() << "Close event";
 
     if (client_proxy_)
     {
-        LOG(LS_INFO) << "Stopping client proxy";
+        qInfo() << "Stopping client proxy";
         client_proxy_->stop();
         client_proxy_.reset();
     }
     else
     {
-        LOG(LS_INFO) << "No client proxy";
+        qInfo() << "No client proxy";
     }
 }
 
 //--------------------------------------------------------------------------------------------------
 void SessionWindow::onStarted(const std::u16string& address_or_id)
 {
-    LOG(LS_INFO) << "Attempt to establish a connection";
+    qInfo() << "Attempt to establish a connection";
 
     // Create a dialog to display the connection status.
     status_dialog_ = new common::StatusDialog(this);
@@ -141,14 +146,14 @@ void SessionWindow::onStarted(const std::u16string& address_or_id)
 //--------------------------------------------------------------------------------------------------
 void SessionWindow::onStopped()
 {
-    LOG(LS_INFO) << "Connection stopped";
+    qInfo() << "Connection stopped";
     status_dialog_->close();
 }
 
 //--------------------------------------------------------------------------------------------------
 void SessionWindow::onConnected()
 {
-    LOG(LS_INFO) << "Connection established";
+    qInfo() << "Connection established";
 
     status_dialog_->addMessageAndActivate(tr("Connection established."));
     status_dialog_->hide();
@@ -157,7 +162,7 @@ void SessionWindow::onConnected()
 //--------------------------------------------------------------------------------------------------
 void SessionWindow::onDisconnected(base::TcpChannel::ErrorCode error_code)
 {
-    LOG(LS_INFO) << "Network error";
+    qInfo() << "Network error";
     onErrorOccurred(netErrorToString(error_code));
 }
 
@@ -176,14 +181,14 @@ void SessionWindow::onVersionMismatch(const base::Version& host, const base::Ver
 //--------------------------------------------------------------------------------------------------
 void SessionWindow::onAccessDenied(base::ClientAuthenticator::ErrorCode error_code)
 {
-    LOG(LS_INFO) << "Authentication error";
+    qInfo() << "Authentication error";
     onErrorOccurred(authErrorToString(error_code));
 }
 
 //--------------------------------------------------------------------------------------------------
 void SessionWindow::onRouterError(const RouterController::Error& error)
 {
-    LOG(LS_INFO) << "Router error";
+    qInfo() << "Router error";
 
     switch (error.type)
     {
@@ -320,7 +325,7 @@ QString SessionWindow::netErrorToString(base::TcpChannel::ErrorCode error_code)
         {
             if (error_code != base::TcpChannel::ErrorCode::UNKNOWN)
             {
-                LOG(LS_WARNING) << "Unknown error code: " << static_cast<int>(error_code);
+                qWarning() << "Unknown error code: " << static_cast<int>(error_code);
             }
 
             message = QT_TR_NOOP("An unknown error occurred.");

@@ -28,6 +28,8 @@
 #include "proto/desktop.pb.h"
 #include "proto/desktop_extensions.pb.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -36,21 +38,21 @@ DesktopWindowProxy::DesktopWindowProxy(std::shared_ptr<base::TaskRunner> ui_task
     : ui_task_runner_(std::move(ui_task_runner)),
       desktop_window_(desktop_window)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
     frame_factory_ = desktop_window_->frameFactory();
 }
 
 //--------------------------------------------------------------------------------------------------
 DesktopWindowProxy::~DesktopWindowProxy()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     DCHECK(!desktop_window_);
 }
 
 //--------------------------------------------------------------------------------------------------
 void DesktopWindowProxy::dettach()
 {
-    LOG(LS_INFO) << "Dettach desktop window";
+    qInfo() << "Dettach desktop window";
     DCHECK(ui_task_runner_->belongsToCurrentThread());
     desktop_window_ = nullptr;
 }

@@ -23,6 +23,8 @@
 #include "client/system_info_control_proxy.h"
 #include "proto/system_info.pb.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -31,20 +33,20 @@ SystemInfoWindowProxy::SystemInfoWindowProxy(std::shared_ptr<base::TaskRunner> u
     : ui_task_runner_(std::move(ui_task_runner)),
       system_info_window_(system_info_window)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
 }
 
 //--------------------------------------------------------------------------------------------------
 SystemInfoWindowProxy::~SystemInfoWindowProxy()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     DCHECK(!system_info_window_);
 }
 
 //--------------------------------------------------------------------------------------------------
 void SystemInfoWindowProxy::dettach()
 {
-    LOG(LS_INFO) << "Dettach system info window";
+    qInfo() << "Dettach system info window";
     DCHECK(ui_task_runner_->belongsToCurrentThread());
     system_info_window_ = nullptr;
 }

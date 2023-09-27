@@ -38,6 +38,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QTimer>
+#include <QDebug>
 
 namespace client {
 
@@ -101,7 +102,7 @@ public:
         }
         else
         {
-            LOG(LS_WARNING) << "Unable to parse session data";
+            qWarning() << "Unable to parse session data";
         }
 
         setText(3, id);
@@ -494,7 +495,7 @@ void RouterManagerWindow::onDisconnected(base::TcpChannel::ErrorCode error_code)
         {
             if (error_code != base::TcpChannel::ErrorCode::UNKNOWN)
             {
-                LOG(LS_WARNING) << "Unknown error code: " << static_cast<int>(error_code);
+                qWarning() << "Unknown error code: " << static_cast<int>(error_code);
             }
 
             message = QT_TR_NOOP("An unknown error occurred.");
@@ -1096,12 +1097,12 @@ void RouterManagerWindow::updateRelayStatistics()
             }
             else
             {
-                LOG(LS_INFO) << "No relay statistics";
+                qInfo() << "No relay statistics";
             }
         }
         else
         {
-            LOG(LS_WARNING) << "Unable to parse session data";
+            qWarning() << "Unable to parse session data";
         }
     }
 

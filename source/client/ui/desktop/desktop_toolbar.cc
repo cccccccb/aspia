@@ -28,6 +28,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QToolButton>
+#include <QDebug>
 
 namespace client {
 
@@ -233,7 +234,7 @@ void DesktopToolBar::enablePasteAsKeystrokesFeature(bool enable)
 //--------------------------------------------------------------------------------------------------
 void DesktopToolBar::setScreenList(const proto::ScreenList& screen_list)
 {
-    LOG(LS_INFO) << "Setting up a new list of screens (screens: " << screen_list.screen_size()
+    qInfo() << "Setting up a new list of screens (screens: " << screen_list.screen_size()
                  << " resolutions: " << screen_list.resolution_size() << ")";
 
     for (int i = 0; i < screen_actions_.size(); ++i)

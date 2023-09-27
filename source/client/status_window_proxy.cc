@@ -21,6 +21,8 @@
 #include "base/logging.h"
 #include "base/task_runner.h"
 
+#include <QDebug>
+
 namespace client {
 
 //--------------------------------------------------------------------------------------------------
@@ -29,20 +31,20 @@ StatusWindowProxy::StatusWindowProxy(std::shared_ptr<base::TaskRunner> ui_task_r
     : ui_task_runner_(std::move(ui_task_runner)),
       status_window_(status_window)
 {
-    LOG(LS_INFO) << "Ctor";
+    qInfo() << "Ctor";
 }
 
 //--------------------------------------------------------------------------------------------------
 StatusWindowProxy::~StatusWindowProxy()
 {
-    LOG(LS_INFO) << "Dtor";
+    qInfo() << "Dtor";
     DCHECK(!status_window_);
 }
 
 //--------------------------------------------------------------------------------------------------
 void StatusWindowProxy::dettach()
 {
-    LOG(LS_INFO) << "Dettach status window";
+    qInfo() << "Dettach status window";
     DCHECK(ui_task_runner_->belongsToCurrentThread());
     status_window_ = nullptr;
 }

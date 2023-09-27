@@ -398,13 +398,13 @@ int clientMain(int argc, char* argv[])
 
     client::Application application(argc, argv);
 
-    LOG(LS_INFO) << "Version: " << ASPIA_VERSION_STRING;
+    qInfo() << "Version: " << ASPIA_VERSION_STRING;
 #if defined(GIT_CURRENT_BRANCH) && defined(GIT_COMMIT_HASH)
-    LOG(LS_INFO) << "Git branch: " << GIT_CURRENT_BRANCH;
-    LOG(LS_INFO) << "Git commit: " << GIT_COMMIT_HASH;
+    qInfo() << "Git branch: " << GIT_CURRENT_BRANCH;
+    qInfo() << "Git commit: " << GIT_COMMIT_HASH;
 #endif
-    LOG(LS_INFO) << "Qt version: " << QT_VERSION_STR;
-    LOG(LS_INFO) << "Command line: " << application.arguments();
+    qInfo() << "Qt version: " << QT_VERSION_STR;
+    qInfo() << "Command line: " << application.arguments();
 
     QCommandLineOption address_option("address",
         QApplication::translate("Client", "Remote computer address."),
@@ -625,7 +625,7 @@ int clientMain(int argc, char* argv[])
 
         if (base::isHostId(config.address_or_id))
         {
-            LOG(LS_INFO) << "Relay connection selected";
+            qInfo() << "Relay connection selected";
 
             client::RouterConfig router_config = client::RouterConfigStorage().routerConfig();
 
@@ -651,7 +651,7 @@ int clientMain(int argc, char* argv[])
         }
         else
         {
-            LOG(LS_INFO) << "Direct connection selected";
+            qInfo() << "Direct connection selected";
         }
 
         client::SessionWindow* session_window = nullptr;

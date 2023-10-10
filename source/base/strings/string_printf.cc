@@ -46,12 +46,23 @@ int vsnprintfT(char* buffer, size_t buffer_size, const char* format, va_list arg
 #endif
 }
 
+int vsnprintfT(const char* buffer, size_t buffer_size, const char* format, va_list args)
+{
+	return vsnprintfT(const_cast<char *>(buffer), buffer_size, format, args);
+}
+
 #if defined(OS_WIN)
 //--------------------------------------------------------------------------------------------------
 int vsnprintfT(wchar_t* buffer, size_t buffer_size, const wchar_t* format, va_list args)
 {
     return _vsnwprintf_s(buffer, buffer_size, _TRUNCATE, format, args);
 }
+
+int vsnprintfT(const wchar_t* buffer, size_t buffer_size, const wchar_t* format, va_list args)
+{
+	return vsnprintfT(const_cast<wchar_t*>(buffer), buffer_size, format, args);
+}
+
 #endif // defined(OS_WIN)
 
 //--------------------------------------------------------------------------------------------------
@@ -85,15 +96,13 @@ StringType stringPrintfVT(const typename StringType::value_type* format, va_list
     StringType result;
     result.resize(static_cast<size_t>(length));
 
-	int ret = 0; // vsnprintfT(const_cast<char *>(reinterpret_cast<const char *>(result.data())), static_cast<size_t>(length + 1), format, args_copy);
+	int ret = vsnprintfT(result.data(), static_cast<size_t>(length + 1), format, args_copy);
     va_end(args_copy);
 
     if (ret < 0 || ret > length)
         return StringType();
 
-	return StringType();
-	/// @todo
-    // return result;
+    return result;
 }
 
 } // namespace

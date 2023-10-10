@@ -29,11 +29,11 @@ namespace base {
 // UTF-16 <-> UTF-8.
 //
 
-bool utf16ToUtf8(std::u16string in, std::string* out);
-bool utf8ToUtf16(std::string in, std::u16string* out);
+bool utf16ToUtf8(const std::u16string &in, std::string* out);
+bool utf8ToUtf16(const std::string &in, std::u16string* out);
 
-std::u16string utf16FromUtf8(std::string in);
-std::string utf8FromUtf16(std::u16string in);
+std::u16string utf16FromUtf8(const std::string &in);
+std::string utf8FromUtf16(const std::u16string &in);
 
 #if defined(OS_WIN)
 
@@ -41,21 +41,21 @@ std::string utf8FromUtf16(std::u16string in);
 // Wide <-> UTF-8.
 //
 
-bool wideToUtf8(std::wstring in, std::string* out);
-bool utf8ToWide(std::string in, std::wstring* out);
+bool wideToUtf8(const std::wstring &in, std::string* out);
+bool utf8ToWide(const std::string &in, std::wstring* out);
 
-std::wstring wideFromUtf8(std::string in);
-std::string utf8FromWide(std::wstring in);
+std::wstring wideFromUtf8(const std::string &in);
+std::string utf8FromWide(const std::wstring &in);
 
 //
 // Wide <-> UTF-16.
 //
 
-bool wideToUtf16(std::wstring in, std::u16string* out);
-bool utf16ToWide(std::u16string in, std::wstring* out);
+bool wideToUtf16(const std::wstring &in, std::u16string* out);
+bool utf16ToWide(const std::u16string &in, std::wstring* out);
 
-std::wstring wideFromUtf16(std::u16string in);
-std::u16string utf16FromWide(std::wstring in);
+std::wstring wideFromUtf16(const std::u16string &in);
+std::u16string utf16FromWide(const std::wstring &in);
 
 #endif // #if defined(OS_WIN)
 
@@ -63,8 +63,8 @@ std::u16string utf16FromWide(std::wstring in);
 // ASCII <-> UTF-16.
 //
 
-std::string asciiFromUtf16(std::u16string in);
-std::u16string utf16FromAscii(std::string in);
+std::string asciiFromUtf16(const std::u16string &in);
+std::u16string utf16FromAscii(const std::string &in);
 
 #if defined(OS_WIN)
 
@@ -72,8 +72,8 @@ std::u16string utf16FromAscii(std::string in);
 // ASCII <-> Wide.
 //
 
-std::string asciiFromWide(std::wstring in);
-std::wstring wideFromAscii(std::string in);
+std::string asciiFromWide(const std::wstring &in);
+std::wstring wideFromAscii(const std::string &in);
 
 #endif // defined(OS_WIN)
 
@@ -81,11 +81,11 @@ std::wstring wideFromAscii(std::string in);
 // Local 8 bit <-> UTF-16.
 //
 
-bool utf16ToLocal8Bit(std::u16string in, std::string* out);
-bool local8BitToUtf16(std::string in, std::u16string* out);
+bool utf16ToLocal8Bit(const std::u16string &in, std::string* out);
+bool local8BitToUtf16(const std::string &in, std::u16string* out);
 
-std::u16string utf16FromLocal8Bit(std::string in);
-std::string local8BitFromUtf16(std::u16string in);
+std::u16string utf16FromLocal8Bit(const std::string &in);
+std::string local8BitFromUtf16(const std::u16string &in);
 
 #if defined(OS_WIN)
 
@@ -93,11 +93,11 @@ std::string local8BitFromUtf16(std::u16string in);
 // Local 8 bit <-> Wide.
 //
 
-bool wideToLocal8Bit(std::wstring in, std::string* out);
-bool local8BitToWide(std::string in, std::wstring* out);
+bool wideToLocal8Bit(const std::wstring &in, std::string* out);
+bool local8BitToWide(const std::string &in, std::wstring* out);
 
-std::wstring wideFromLocal8Bit(std::string in);
-std::string local8BitFromWide(std::wstring in);
+std::wstring wideFromLocal8Bit(const std::string &in);
+std::string local8BitFromWide(const std::wstring &in);
 
 #endif // defined(OS_WIN)
 

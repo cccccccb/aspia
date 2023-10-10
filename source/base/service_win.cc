@@ -383,7 +383,7 @@ void Service::exec()
 
     std::unique_ptr<win::ScopedCOMInitializer> com_initializer =
         std::make_unique<win::ScopedCOMInitializer>();
-    CHECK(com_initializer->isSucceeded());
+	CHECK(com_initializer->isSucceeded());
 
     win::initializeComSecurity(kComProcessSd, kComProcessMandatoryLabel, false);
 

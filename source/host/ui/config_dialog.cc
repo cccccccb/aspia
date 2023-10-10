@@ -673,7 +673,7 @@ void ConfigDialog::onButtonBoxClicked(QAbstractButton* button)
         settings.setUserList(*user_list);
         settings.setAutoUpdateEnabled(ui.checkbox_auto_update->isChecked());
         settings.setUpdateCheckFrequency(ui.combobox_update_check_freq->currentData().toInt());
-        settings.setUpdateServer(ui.edit_update_server->text().toStdString());
+        settings.setUpdateServer(ui.edit_update_server->text().toLatin1().data());
         settings.setPreferredVideoCapturer(ui.combo_video_capturer->currentData().toUInt());
 
         settings.setOneTimePassword(ui.checkbox_onetime_password->isChecked());

@@ -176,7 +176,7 @@ inline const wchar_t* asWide(const char16_t* str)
     return reinterpret_cast<const wchar_t*>(str);
 }
 
-inline const wchar_t* asWide(std::u16string str)
+inline const wchar_t* asWide(const std::u16string &str)
 {
     return reinterpret_cast<const wchar_t*>(str.data());
 }
